@@ -1,9 +1,0 @@
-.titleContainer{
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-}
-.title {
-    color: var(--_10a37f-background);
-  }

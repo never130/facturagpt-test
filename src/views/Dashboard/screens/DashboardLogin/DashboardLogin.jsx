@@ -31,7 +31,6 @@ import { FaLock } from "react-icons/fa";
 import { sendRecoveryCode, verifyRecoveryCode } from "../../../../actions/user";
 import LoginButton from "./LoginButton/LoginButton";
 import FooterLanding from "../../components/FooterLanding/FooterLanding";
-import { TokenInput } from "../../components/TokenInput/TokenInput";
 
 const DashboardLogin = () => {
   const { t } = useTranslation(["dahsboardLogin","ChatView"]);
@@ -287,7 +286,6 @@ const DashboardLogin = () => {
       setIsLoading(true);
       setError('')
       const language = await localStorage.getItem("language");
-
 
       const resp = await dispatch(sendOTP({ nombre, email: storedEmail, language, })).unwrap();
 

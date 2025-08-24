@@ -75,7 +75,6 @@ const UpgradePlanModal = ({
   const [message, setMessage] = useState("");
 
   const handleSaveUpgrade = async () => {
-    alert(1)
     const { paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardNumberElement),

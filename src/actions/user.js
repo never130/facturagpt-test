@@ -421,6 +421,7 @@ export const sendOTP = createAsyncThunk(
   "user/send-otp",
   async ({ nombre, email, language }, { rejectWithValue }) => {
     try {
+      console.log('ei4urhji')
       const res = await apiBackend.post(`/user/send-otp`, {
         nombre,
         email,

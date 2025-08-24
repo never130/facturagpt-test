@@ -5,7 +5,11 @@ const { fromPath } = require('pdf2pic');
 const { v4: uuidv4 } = require("uuid");
 const sharp = require('sharp');
 const axios = require('axios');
-const { sendTextData, sendRealTime } = require('../processChat');
+// const { sendTextData, sendRealTime } = require('../processChat');
+
+
+const sendTextData = () => {}
+const sendRealTime = () => {}
 
 const nano = require("nano")("http://admin:1234@127.0.0.1:5984");
 

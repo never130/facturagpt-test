@@ -3,7 +3,6 @@ import styles from './Landing.module.css';
 import Navbar from '../../components/Navbar/Navbar';
 import NavHeader from '../../components/NavHeader/NavHeader';
 import CookiePopup from '../../components/CookiePopup/CookiePopup';
-import Packs from '../Packs/Packs';
 import FooterLanding from '../../components/FooterLanding/FooterLanding';
 import { useParams } from 'react-router-dom';
 import { reinitI18n } from '../../../../i18';
@@ -62,7 +61,6 @@ const Landing = () => {
       <Navbar />
       <NavHeader />
 
-      <Packs />
       <CookiePopup />
       <FooterLanding />
     </div>

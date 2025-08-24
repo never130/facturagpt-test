@@ -63,7 +63,7 @@
   },
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "BROWSER=none PORT=3005 craco start --max-old-space-size=8046",
+    "start": "cross-env BROWSER=none PORT=3005 craco start --max-old-space-size=8046",
     "build": "webpack --mode production",
     "compile-react": "node scripts/compile-react-project.js",
     "create-react-project": "node scripts/create-react-project.js"

@@ -17,60 +17,16 @@ import "./index.css";
 import tinycolor from 'tinycolor2';
 
 import { loginToManager } from "./actions/user";
-import { getAllNotificationsNotViewed } from "./actions/notifications";
-import { getAllUserAutomations } from "./actions/automate";
-import { getUserFiles } from "./actions/scaleway";
+// import { getAllNotificationsNotViewed } from "./actions/notifications";
 
 import { AuthProvider, useAuth } from "./hooks/useAuth";
 
 import store from "./utils/store";
 
 import LandingPage from "./views/Dashboard/screens/Landing/Landing.jsx";
-import Pricing from "./views/Dashboard/screens/Pricing/Pricing.jsx";
-import Terms from "./views/Dashboard/screens/Terms/TermsAndConditions.jsx";
-import ContactForm from "./views/Dashboard/components/ContactForm/ContactForm.jsx";
-import FreeTrial from "./views/Dashboard/screens/FreeTrial/FreeTrial.jsx";
 import DashboardLogin from "./views/Dashboard/screens/DashboardLogin/DashboardLogin.jsx";
-import Instructions from "./views/Dashboard/screens/Instructions/Instructions.jsx";
-
-import Transactions from "./views/Dashboard/screens/Transactions/Transactions.jsx";
-import ArticlesTransactions from "./views/Dashboard/screens/ArticlesTransactions/ArticlesTransactions.jsx";
-import Assets from "./views/Dashboard/screens/Assets/Assets.jsx";
-import NewAsset from "./views/Dashboard/components/NewAsset/NewAsset.jsx"
-import Dashboard from "./views/Dashboard/Dashboard.jsx";
-import InvoicePanel from "./views/Dashboard/screens/InvoicePanel/InvoicePanel.jsx";
-import Contacts from "./views/Dashboard/screens/Contacts/Contacts.jsx";
-import NewContact from "./views/Dashboard/components/NewContact/NewContact.jsx";
-import UsersDashboard from "./views/Dashboard/UsersDashboard.jsx";
-import ChatView from "./views/Dashboard/screens/ChatView/ChatView.jsx";
-import AccountsDashboard from "./views/Dashboard/AccountsDashboard.jsx";
-import NotificationsView from "./views/Dashboard/screens/NotificationsView/NotificationsView.jsx";
 import Loading from "./views/Dashboard/components/Loading/Loading.jsx";
-import ErrorPage from "./views/Dashboard/screens/ErrorPage/ErrorPage.jsx";
 
-import Automate from "./views/Dashboard/components/Automate/Automate.jsx";
-
-import HelpPage from "./views/Dashboard/screens/HelpPage/HelpPage.jsx";
-import UpgradePage from "./views/Dashboard/screens/UpgradePage/UpgradePage.jsx";
-import SharePDF from "./views/Dashboard/screens/SharePDF/SharePDF.jsx";
-import NewBIll from "./views/Dashboard/components/NewBIll/NewBIll.jsx";
-import NewAgentComponent from "./views/Dashboard/components/NewAgentComponent/NewAgentComponent.jsx";
-import Tables from "./views/Dashboard/screens/Tables/Tables.jsx";
-
-import CalendarView from "./views/Dashboard/screens/CalendarView/CalendarView.jsx";
-
-import NewsViewer from "./views/Dashboard/screens/News/NewsViewer.jsx";
-// import HelpView from "./views/Dashboard/screens/Help/Help.jsx";
-// import ScrapView from "./views/Dashboard/screens/ScrapView/ScrapView.jsx";
-
-import PanelTemplateWrapper from "./views/Dashboard/components/PanelTemplate/PanelTemplateWrapper.jsx";
-
-import ExploreCommuniti from "./views/Dashboard/screens/ChatView/ExploreCommuniti/ExploreCommuniti.jsx";
-
-
-// import DemoTable from "./views/Dashboard/screens/DemoTable/DemoTable.jsx";
-
-import InvoicePDF from "./views/Dashboard/screens/InvoicePDF/InvoicePDF.jsx";
 import { setIsAppleOS } from "./slices/userSlices.js";
 
 
@@ -156,9 +112,9 @@ const Layout = () => {
 
     const getNotificationsFnPending = async () => {
       try {
-        const response = await dispatch(
-          getAllNotificationsNotViewed()
-        );
+        // const response = await dispatch(
+        //   getAllNotificationsNotViewed()
+        // );
       } catch (error) {
         console.error("Error fetching notifications:", error);
       }
@@ -187,19 +143,19 @@ const Layout = () => {
       if (user) {
         const userLocalStorage = localStorage.getItem("user");
         const parsedUser = userLocalStorage ? JSON.parse(userLocalStorage) : null;
-        dispatch(
-          getAllUserAutomations({
-            userId: user.id,
-            token: parsedUser.accessToken,
-          })
-        );
+        // dispatch(
+        //   getAllUserAutomations({
+        //     userId: user.id,
+        //     token: parsedUser.accessToken,
+        //   })
+        // );
         // if(userFiles?.length == 0){
-        dispatch(
-          getUserFiles({
-            userId: user.id,
-            token: parsedUser.accessToken
-          })
-        );
+        // dispatch(
+        //   getUserFiles({
+        //     userId: user.id,
+        //     token: parsedUser.accessToken
+        //   })
+        // );
       // }
 
         getNotificationsFnPending().then()
@@ -244,66 +200,13 @@ const Layout = () => {
     return (
       <>
         <Routes location={backgroundLocation || location}>
-          <Route path="/tables/settings/*" element={<PanelTemplateWrapper><Tables /></PanelTemplateWrapper>}></Route>
-          <Route path="/tables" element={<PanelTemplateWrapper><Tables /></PanelTemplateWrapper>}></Route>
-          <Route path="/tables/:id/settings/*" element={<PanelTemplateWrapper><Tables /></PanelTemplateWrapper>}></Route>
-          <Route path="/tables/:id" element={<PanelTemplateWrapper><Tables /></PanelTemplateWrapper>}></Route>
 
-          <Route path="/instructions" element={<PanelTemplateWrapper isOpenChat={true}><Instructions /></PanelTemplateWrapper>} />
-          {/* <Route path="/demo" element={<PanelTemplateWrapper isOpenChat={true}><TableSkeleton2 /></PanelTemplateWrapper>} /> */}
-          {/* <Route path="/scrap" element={<PanelTemplateWrapper><ScrapView /></PanelTemplateWrapper>}></Route> */}
 
-          <Route path="/help" element={<PanelTemplateWrapper><HelpPage /></PanelTemplateWrapper>}></Route>
-          <Route path="/help/:categoryId" element={<PanelTemplateWrapper><HelpPage /></PanelTemplateWrapper>}></Route>
-          <Route path="/news" element={<PanelTemplateWrapper><NewsViewer /></PanelTemplateWrapper>}></Route>
-          <Route path="/news/*" element={<PanelTemplateWrapper><NewsViewer /></PanelTemplateWrapper>}></Route>
-          <Route path="/home/*" element={<PanelTemplateWrapper><Dashboard /></PanelTemplateWrapper>}></Route>
-          <Route path="/home/accept-invite/:workspaceId/settings/workspace" element={<PanelTemplateWrapper><Dashboard /></PanelTemplateWrapper>}></Route>
-          <Route path="/contacts/*" element={<PanelTemplateWrapper><Contacts /></PanelTemplateWrapper>}></Route>
-          <Route path="/contacts/:contactId" element={<PanelTemplateWrapper><NewContact /></PanelTemplateWrapper>}></Route>
-          <Route path="/assets/*" element={<PanelTemplateWrapper><Assets /></PanelTemplateWrapper>}></Route>
-          <Route path="/assets/:assetId" element={<PanelTemplateWrapper><NewAsset /></PanelTemplateWrapper>}></Route>
-          <Route path="/notification/*" element={<PanelTemplateWrapper><NotificationsView /></PanelTemplateWrapper>}></Route>
-          <Route path="/accounts" element={<PanelTemplateWrapper><AccountsDashboard /></PanelTemplateWrapper>} />
-          <Route path="/accounts/settings/*" element={<PanelTemplateWrapper><AccountsDashboard /></PanelTemplateWrapper>} />
-          <Route path="/marketplace" element={<PanelTemplateWrapper><ExploreCommuniti /></PanelTemplateWrapper>} />
-          <Route path="/marketplace/settings/*" element={<PanelTemplateWrapper><ExploreCommuniti /></PanelTemplateWrapper>} />
-          <Route path="/users/*" element={<PanelTemplateWrapper><UsersDashboard /></PanelTemplateWrapper>} />
-          <Route path="/invoice/:id" element={<PanelTemplateWrapper><InvoicePDF /></PanelTemplateWrapper>} />
-          <Route path="/invoice/:id/*" element={<PanelTemplateWrapper><InvoicePDF /></PanelTemplateWrapper>} />
-          <Route path="/docs" element={<PanelTemplateWrapper><Transactions /></PanelTemplateWrapper>} />
-          <Route path="/docs/:id/settings/*" element={<PanelTemplateWrapper><Transactions /></PanelTemplateWrapper>} />
-          <Route path="/docs/:id" element={<PanelTemplateWrapper><Transactions /></PanelTemplateWrapper>} />
-          <Route path="/docs/:contactId/:docsId/*" element={<PanelTemplateWrapper><NewBIll /></PanelTemplateWrapper>} />
-          <Route path="/calendar" element={<PanelTemplateWrapper ><CalendarView /></PanelTemplateWrapper>} />
-          <Route path="/calendar/:tag" element={<PanelTemplateWrapper ><CalendarView /></PanelTemplateWrapper>} />
-          <Route path="/calendar/:tag/:kanbanId" element={<PanelTemplateWrapper ><CalendarView /></PanelTemplateWrapper>} />
-          <Route path="/calendar/:tag/:kanbanId/:taskId" element={<PanelTemplateWrapper ><CalendarView /></PanelTemplateWrapper>} />
-          <Route path="/chat" element={<PanelTemplateWrapper isOpenChat={true}><ChatView /></PanelTemplateWrapper>} />
-          <Route path="/chat/:agentId" element={<PanelTemplateWrapper isOpenChat={true}><ChatView /></PanelTemplateWrapper>} />
-          <Route path="/chat/:agentId/:chatId/*" element={<PanelTemplateWrapper isOpenChat={true}><ChatView /></PanelTemplateWrapper>} />
-          <Route path="/bot" element={<PanelTemplateWrapper isOpenChat={true}><NewAgentComponent /></PanelTemplateWrapper>} />
-          <Route path="/bot/:id" element={<PanelTemplateWrapper isOpenChat={true}><NewAgentComponent /></PanelTemplateWrapper>} />
-          <Route path="/articlestransactions" element={<PanelTemplateWrapper><ArticlesTransactions /></PanelTemplateWrapper>} />
-          <Route path="/panel/path/:path/settings/*" element={<PanelTemplateWrapper><InvoicePanel /></PanelTemplateWrapper>} />
-          <Route path="/panel/path/:path" element={<PanelTemplateWrapper><InvoicePanel /></PanelTemplateWrapper>} />
-          <Route path="/panel/:id/settings/*" element={<PanelTemplateWrapper><InvoicePanel /></PanelTemplateWrapper>} />
-          <Route path="/panel/:id" element={<PanelTemplateWrapper><InvoicePanel /></PanelTemplateWrapper>} />
-          <Route path="/panel" element={<PanelTemplateWrapper><InvoicePanel /></PanelTemplateWrapper>} />
-          <Route path="/error" element={<PanelTemplateWrapper><ErrorPage /></PanelTemplateWrapper>} />
-          <Route path="/workflow" element={<PanelTemplateWrapper><Automate /></PanelTemplateWrapper>} />
-          <Route path="/workflow/settings/*" element={<PanelTemplateWrapper><Automate /></PanelTemplateWrapper>} />
-          <Route path="*" element={<PanelTemplateWrapper isOpenChat={true}><ChatView /></PanelTemplateWrapper>} />
+          <Route path="*" element={<div>
+            {JSON.stringify(user)}
+          </div>} />
         </Routes>
-        {backgroundLocation && (
-          <Routes >
-            <Route path="/contacts/:contactId" element={<PanelTemplateWrapper><NewContact /></PanelTemplateWrapper>}></Route>
-            <Route path="/assets/:assetId" element={<PanelTemplateWrapper><NewAsset /></PanelTemplateWrapper>}></Route>
-            <Route path="/bot" element={<NewAgentComponent />} />
-            <Route path="/bot/:id" element={<NewAgentComponent />} />
-            <Route path="/panel/:id" element={<InvoicePanel />} />
-          </Routes>
-        )}
+       
       </>
     );
   };
@@ -318,23 +221,11 @@ const Layout = () => {
                 <Routes >
                   <Route path="/home" element={<LandingPage />} />
 
-                  <Route path="/go/:id" element={<LandingPage />} />
-                  <Route path="/contact" element={<ContactForm />} />
-                  <Route path="/pricing" element={<Pricing />} />
-                  <Route path="/upgrade/:categoryId" element={<UpgradePage />} />
-                  <Route path="/upgrade" element={<UpgradePage />} />
-                  <Route path="/help/:categoryId" element={<HelpPage />} />
-                  <Route path="/help" element={<HelpPage />} />
-                  <Route path="/terms" element={<Terms />} />
 
-                  <Route path="/freetrial" element={<FreeTrial />} />
                   <Route path="/login" element={<DashboardLogin />} />
                   <Route path="/register" element={<DashboardLogin />} />
                   <Route path="/recover" element={<DashboardLogin />} />
                   <Route path="/otp" element={<DashboardLogin />} />
-
-                  <Route path="/share/:id" element={<ContactForm />} />
-                  <Route path="/view/:id" element={<SharePDF />} />
 
                   <Route path="/admin/*" element={<ComponentPrivate />} />
 

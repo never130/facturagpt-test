@@ -44,6 +44,12 @@ Es porque tu correo no está en valid_emails.txt. Agrega tu email, uno por líne
 
 ---
 
+
+### 4 Instalar couchdb 
+ Desde la url https://couchdb.apache.org/
+ Poner usuario: admin
+ Poner password: 1234
+
 ## 🚀 Ejecución del Proyecto
 
 ### Frontend (Desarrollo)
@@ -236,20 +242,36 @@ sudo journalctl -u facturagpt-backend -f
 sudo certbot certonly --standalone -d facturagpt.com -d www.facturagpt.com
 ```
 
-*¿Necesitas ayuda? No dudes en preguntar al equipo por WhatsApp o en el canal correspondiente.*#   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
- #   f a c t u r a g p t - t e s t  
+*¿Necesitas ayuda? No dudes en preguntar al equipo por WhatsApp o en el canal correspondiente.*#   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
+ #   f a c t u r a g p t - t e s t 
+ 
  

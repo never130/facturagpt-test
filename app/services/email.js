@@ -121,6 +121,7 @@ const getEmail = async (req, res) => {
 };
 
 async function sendOtpEmail(nombre, email, otp, language = "Español",type="sendOtp") {
+    console.log('1234')
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {

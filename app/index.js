@@ -7,7 +7,6 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
 const api = require(`./routers/index`);
-const { validAutomate } = require("./services/automate/core");
 const { connectDB } = require("./services/automate/utils");
 const vm = require('vm');
 

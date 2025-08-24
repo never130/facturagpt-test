@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import {ReactComponent as Logo} from "../../assets/FacturaLogoIconGreen.svg";
 import { ReactComponent as SeeVideoIcon } from "../../assets/PlayIcon.svg";
 import starIcon from "../../assets/starGroup.svg";
-import FreeTrialButton from "../FreeTrialButton/FreeTrialButton";
 import SubtitleTemplate from "../SubtitleTemplate/SubtitleTemplate";
 import styles from "./NavHeader.module.css";
 
@@ -97,7 +96,6 @@ const NavHeader = ({}) => {
           stylesProp={{ padding: "0 20px" }}
         />
         <div className={styles.navButtons}>
-          <FreeTrialButton />
           <button
             onClick={() => setIsVideoOpen(true)}
             className={styles.button}

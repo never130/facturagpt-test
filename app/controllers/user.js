@@ -31,7 +31,6 @@ const { sendEmail, getTemplate } = require("../services/email");
 const { log } = require("console");
 
 
-const { languageToLan } = require("../services/gpt-meet");
 
 
 const newsletter = async ({
@@ -3107,8 +3106,6 @@ const upgradeNote = async (req, res) => {
     let dataOriginal = "";
 
     for (const language of languages) {
-      const lanCategory = await languageToLan({ text: category, language: language, token: token });
-      const lanData = await languageToLan({ text: data.data, language: language, token: token });
 
       if (language === lan) {
         dataOriginal = data.data;
