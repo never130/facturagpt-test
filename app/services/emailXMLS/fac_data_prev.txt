@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:Facturae xmlns:ns2="http://www.facturae.es/Facturae/2009/v3.2/Facturae">
+    <FileHeader>
+        <SchemaVersion>3.2</SchemaVersion>
+        <Modality>I</Modality>
+        <InvoiceIssuerType>EM</InvoiceIssuerType>
+        <Batch>
+            <BatchIdentifier>--</BatchIdentifier>
+            <InvoicesCount>1</InvoicesCount>
+            <TotalInvoicesAmount>
+                <TotalAmount>%totalAmount%</TotalAmount>
+            </TotalInvoicesAmount>
+            <TotalOutstandingAmount>
+                <TotalAmount>%totalAmount%</TotalAmount>
+            </TotalOutstandingAmount>
+            <TotalExecutableAmount>
+                <TotalAmount>%totalAmount%</TotalAmount>
+            </TotalExecutableAmount>
+            <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+        </Batch>
+    </FileHeader>
+    <Parties>
+      <SellerParty>
+    <TaxIdentification>
+    <PersonTypeCode>J</PersonTypeCode>
+    <ResidenceTypeCode>R</ResidenceTypeCode>
+    <TaxIdentificationNumber>ESB17623257</TaxIdentificationNumber>
+</TaxIdentification>
+<LegalEntity>
+<CorporateName>DEMO HSB, S.A.</CorporateName>
+<RegistrationData>
+<RegisterOfCompaniesLocation/>
+<Sheet/>
+<Folio/>
+<Section/>
+<Volume/>
+</RegistrationData>
+<AddressInSpain>
+<Address>%companyAddress%</Address>
+<PostCode>%companyPostCode%</PostCode>
+<Town>%companyCity%</Town>
+<Province>%companyProvince%</Province>
+<CountryCode>ESP</CountryCode>
+</AddressInSpain>
+<ContactDetails>
+<Telephone>%companyPhone%</Telephone>
+<TeleFax/>
+<ElectronicMail>%companyEmail%</ElectronicMail>
+</ContactDetails>
+</LegalEntity>
+    </SellerParty>  
+        <BuyerParty>
+            <TaxIdentification>
+                <PersonTypeCode>J</PersonTypeCode>
+                <ResidenceTypeCode>R</ResidenceTypeCode>
+                <TaxIdentificationNumber>%clientCif%</TaxIdentificationNumber>
+            </TaxIdentification>
+            <LegalEntity>
+                <CorporateName>%companyName%</CorporateName>
+                <AddressInSpain>
+                    <Address>%clientAddress%</Address>
+                    <PostCode>%clientPostCode%</PostCode>
+                    <Town>%clientCity%</Town>
+                    <Province>%clientProvince%</Province>
+                    <CountryCode>ES</CountryCode>
+                </AddressInSpain>
+                <ContactDetails>
+        <Telephone>%clientPhoneNumber%</Telephone>
+        <ElectronicMail>%clientEmail%</ElectronicMail>
+        </ContactDetails>
+            </LegalEntity>
+        </BuyerParty>
+    </Parties>
+
+    <Invoices>
+        <Invoice>
+            <InvoiceHeader>
+                <InvoiceNumber>%numberDocument%</InvoiceNumber>
+                <InvoiceDocumentType>FC</InvoiceDocumentType>
+                <InvoiceClass>OO</InvoiceClass>
+            </InvoiceHeader>
+            <InvoiceIssueData>
+                <IssueDate>%invoiceIssueDate%</IssueDate>
+                <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+                <TaxCurrencyCode>EUR</TaxCurrencyCode>
+                <LanguageName>es</LanguageName>
+            </InvoiceIssueData>
+
+            <TaxesOutputs>
+                <Tax>
+                    <TaxTypeCode>01</TaxTypeCode>
+                    <TaxRate>21.00</TaxRate>
+                    <TaxableBase>
+                        <TotalAmount>%partialAmount%</TotalAmount>
+                    </TaxableBase>
+                    <TaxAmount>
+                        <TotalAmount>%taxesFromPartialAmount%</TotalAmount>
+                    </TaxAmount>
+                </Tax>
+            </TaxesOutputs>
+
+            <InvoiceTotals>
+                <TotalGrossAmount>%partialAmount%</TotalGrossAmount>
+                <GeneralDiscounts>
+                    <Discount>
+                        <DiscountReason>Dto</DiscountReason>
+                        <DiscountRate>0.00</DiscountRate>
+                        <DiscountAmount>0.00</DiscountAmount>
+                    </Discount>
+                </GeneralDiscounts>
+                <TotalGeneralDiscounts>0.00</TotalGeneralDiscounts>
+                <TotalGeneralSurcharges>0.00</TotalGeneralSurcharges>
+                <TotalGrossAmountBeforeTaxes>%partialAmount%</TotalGrossAmountBeforeTaxes>
+                <TotalTaxOutputs>%taxesFromPartialAmount%</TotalTaxOutputs>
+                <TotalTaxesWithheld>0.00</TotalTaxesWithheld>
+                <InvoiceTotal>%totalAmount%</InvoiceTotal>
+                <TotalOutstandingAmount>%totalAmount%</TotalOutstandingAmount>
+                <TotalExecutableAmount>%totalAmount%</TotalExecutableAmount>
+            </InvoiceTotals>
+
+            <Items>
+                <InvoiceLine for-data="productList">
+                    <IssuerTransactionReference>%numberDocument%</IssuerTransactionReference>
+                    <ReceiverTransactionReference></ReceiverTransactionReference>
+                    <SequenceNumber>%n%</SequenceNumber>
+                    <DeliveryNotesReferences>
+                        <DeliveryNote>
+                            <DeliveryNoteNumber>%productAlbaranRef%</DeliveryNoteNumber>
+                        </DeliveryNote>
+                    </DeliveryNotesReferences>
+                    <ItemDescription>%productDescription%</ItemDescription>
+                    <Quantity>%productQuantity%</Quantity>
+                    <UnitPriceWithoutTax>%productPartial%</UnitPriceWithoutTax>
+                    <TotalCost>%productImportWithoutDiscount%</TotalCost>
+                    <DiscountsAndRebates>
+                        <Discount>
+                            <DiscountReason>Dto</DiscountReason>
+                            <DiscountRate>%productDiscountRate%</DiscountRate>
+                            <DiscountAmount>%productDiscountAmount%</DiscountAmount>
+                        </Discount>
+                    </DiscountsAndRebates>
+                    <GrossAmount>%productImport%</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.00</TaxRate>
+                            <TaxableBase>
+                                <TotalAmount>%productImport%</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+                                <TotalAmount>%productImportWithTaxes%</TotalAmount>
+                            </TaxAmount>
+                            <EquivalenceSurcharge>0.00</EquivalenceSurcharge>
+                            <EquivalenceSurchargeAmount>
+                                <TotalAmount>0.00</TotalAmount>
+                            </EquivalenceSurchargeAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+            </Items>
+        </Invoice>
+    </Invoices>
+</ns2:Facturae>

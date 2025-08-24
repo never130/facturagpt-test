@@ -1,0 +1,122 @@
+.instructionsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background: #f8fafc;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
+}
+
+.instructionsHeader {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.instructionsHeader h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.instructionsHeader p {
+  margin: 0.5rem 0 0 0;
+  font-size: 1rem;
+  color: #64748b;
+}
+
+.mainContent {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.flowArea {
+  flex: 1;
+  position: relative;
+  background: #f8fafc;
+  overflow: hidden;
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.flowArea :global(.react-flow) {
+  background: #f8fafc;
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.flowArea :global(.react-flow__viewport) {
+  background: #f8fafc;
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.flowArea :global(.react-flow__node) {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.flowArea :global(.react-flow__node:hover) {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.flowArea :global(.react-flow__node.selected) {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.flowArea :global(.react-flow__edge-path) {
+  stroke: #64748b;
+  stroke-width: 2;
+}
+
+.flowArea :global(.react-flow__edge.selected .react-flow__edge-path) {
+  stroke: #3b82f6;
+  stroke-width: 3;
+}
+
+.flowArea :global(.react-flow__controls) {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flowArea :global(.react-flow__controls button) {
+  background: white;
+  border: none;
+  border-radius: 0.25rem;
+  color: #64748b;
+}
+
+.flowArea :global(.react-flow__controls button:hover) {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+@media (max-width: 768px) {
+  .instructionsHeader {
+    padding: 1rem;
+  }
+
+  .mainContent {
+    flex-direction: column;
+  }
+
+  .flowArea {
+    height: 300px;
+  }
+}

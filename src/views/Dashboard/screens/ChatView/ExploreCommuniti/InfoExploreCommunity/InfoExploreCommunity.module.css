@@ -1,0 +1,280 @@
+.agentHeaderImage,.workspaceHeaderImage{
+    height: 70px;
+    min-width: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    .imageAgentDefault{
+        height: 100%;
+        width: 100%;
+        background-color: #10A37F;
+        border-radius: 50%;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.agentHeader,.workspaceHeader{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.agentHeaderContent,.workspaceHeaderContent{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.agentInfoHeader,.workspaceInfoHeader{
+    display: flex;  
+    flex-direction: column;
+    gap: 10px;
+    h4{
+        margin: 0;
+        font-weight: bold;
+        font-size: 24px;
+    }
+    span{
+        color: #8F8F8F;
+    }
+}
+
+.agentInfo,.workspaceInfo{
+    width: 100%;
+    p{
+        color: #0D0D0D;
+        font-weight: 300;
+    }
+    
+    .automationContainer{
+        width: 100%;
+        .automationInfo{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            color: #717171;
+            p{
+                margin: 0;
+            }
+        }
+    }
+}
+.agentInfoName,.documentInfoName,.workspaceInfoName,.workspaceHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    h5{
+        font-size: 24px;
+        margin: 0;
+    }
+    span{
+        color: #8F8F8F;
+    }
+}
+
+/* Estilos para la sección de rating */
+.ratingSection {
+    width: 100%;
+    /* padding: 20px; */
+    border-radius: 12px;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.ratingSection h4 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.ratingContent {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ratingItem {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.starIcon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ratingBar {
+    flex: 1;
+    /* max-width: 200px; */
+}
+
+.ratingBarBg {
+    width: 100%;
+    height: 8px;
+    background-color: #ECECEC;
+    /* border-radius: 4px; */
+    overflow: hidden;
+}
+
+.ratingBarFill {
+    height: 100%;
+    background: linear-gradient(90deg, #10A37F, #10A37F);
+    /* border-radius: 4px; */
+    transition: width 0.3s ease;
+}
+
+.ratingCount {
+    min-width: 30px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+}
+
+.averageRating {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+    text-align: center;
+}
+
+.ratingNumber {
+    font-size: 32px;
+    font-weight: 700;
+    color: #10A37F;
+}
+
+.ratingText {
+    font-size: 16px;
+    color: #666;
+    margin-left: 5px;
+}
+
+.contentContainer{
+    width: 90%;
+    height: calc(100% - 65px);
+    overflow-x: scroll;
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 12px;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.documentImageHeaderContainer{
+    width: 100%;
+    height: 100px;
+    border-radius: 12px;
+    overflow: hidden;
+    .documentDefault{
+        width: 100%;
+        height: 100%;
+        background-color: #ECECEC;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.documentInfoPages{
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.rowInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+/* Contenedor del carousel */
+.carouselContainer {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 
+Para lograr un carrusel infinito sin espacio en blanco al final, 
+debes duplicar los elementos del carrusel en el HTML/JSX.
+El CSS solo anima el contenedor, pero el truco es que el contenido se repite.
+La animación debe moverse solo la mitad del ancho total (es decir, el ancho de los elementos originales).
+*/
+
+.recommendationsContent{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    width: max-content; /* Permitir que el contenido se expanda */
+    transition: transform 0.1s ease-out; /* Transición suave para el drag */
+    
+    /* Removemos la animación CSS automática ya que ahora se controla con JavaScript */
+    /* animation: scrollLeftInfinite 30s linear infinite; */
+    
+    /* Pausar animación en hover */
+    &:hover {
+        /* animation-play-state: paused; */
+    }
+    
+    .recommendationItem{
+        background-color: #ECECEC;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 12px;
+        min-width: 200px; /* Ancho fijo para cada item */
+        flex-shrink: 0; /* Evitar que se comprima */
+        .info{
+            .title{
+
+            }
+            .pages{
+                font-size: 13px;
+            }
+            .authorInfo{
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                color: #8F8F8F;
+            }
+        }
+        p{
+            margin: 0;
+        }
+        .imageDefault{
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 12px;
+        }
+    }
+}
+
+/* 
+Keyframes para la animación infinita del carousel.
+El 100% debe ser el ancho de los elementos originales (la mitad si duplicas el contenido).
+Por ejemplo, si duplicas los elementos en el HTML, el 100% será -50%.
+*/
+@keyframes scrollLeftInfinite {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}

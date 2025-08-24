@@ -1,0 +1,293 @@
+/* .articlesContent{
+    background-color: aqua;
+} */
+.subtitle{
+    font-size: 24px;
+    font-weight: 600;
+    color: #10A37F;
+    margin: 16px 0;
+}
+.SteepCategory{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.SteepCategory  h3{
+    font-weight: 600;
+    font-size: 17px;
+}
+.SteepCategory  h4{
+    font-weight: 600;
+    font-size: 16px;
+}
+.SteepCategory  h5{
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+.cardGrid {
+  display: flex;
+  align-items: flex-start; /* Alinea al inicio para que el icono no se centre */
+  gap: 12px;
+  color: #1b5e20;
+  width: 100%;
+}
+.cardIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  font-size: 15px;
+  min-width: 40px; /* Para que tenga un tamaño mínimo consistente */
+  fill: white; 
+  background-color: #10A37F;
+  border-radius: 15px;
+}
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.cardText {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.cardDescription {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #1b5e20;
+}
+.card{
+    background-color: #ECFDF5;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: #10A37F 1px solid;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+.card h4{
+    color: #064E3B;
+    font-size: 16px;
+    font-weight: 600; 
+    padding: 0;
+    margin: 0;
+}
+.card svg{
+  width: 50px;
+}
+
+.SteepCategory .olstyle {
+  list-style: none;
+  counter-reset: item;
+  padding-left: 0;
+  position: relative; /* Necesario para posicionar la línea */
+}
+.textGray{
+  color: #6E6E80;
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: 600;
+  
+}
+/* Línea vertical central - ahora en #f5f5f5 */
+.SteepCategory .olstyle::before {
+  content: '';
+  position: absolute;
+  left: 14px; /* Centrado con el círculo de 28px */
+  top: 14px; /* Comienza justo debajo del primer círculo */
+  bottom: 10px; /* Termina antes del final para no llegar al fondo */
+  width: 2px;
+  background: #f5f5f5; /* ✅ Mismo color gris claro que el fondo del círculo */
+  z-index: 0; /* Detrás de los elementos */
+}
+
+.SteepCategory .olstyle > li {
+  counter-increment: item;
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 2rem;
+  z-index: 1; /* Mantiene el contenido del li por encima de la línea */
+}
+
+.SteepCategory .olstyle > li::before {
+  content: counter(item);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  background: #f5f5f5; /* Fondo gris claro */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #000;
+  font-size: 14px;
+  z-index: 2; /* El círculo y número encima de la línea */
+  border: 1px solid #e0e0e0; /* Bordes sutiles para definir el círculo */
+}
+.SteepCategory  ul {
+  list-style: none;
+  padding-left: 0;
+}
+.SteepCategory  ul li {
+  position: relative;
+  padding-left: 1.2em;
+  color: black;
+  margin: 6px;
+}
+
+.SteepCategory ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: black;
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1;
+}
+.SteepCategory a{  
+    color: #000;
+    text-decoration: underline;
+}
+.SteepCategory svg{  
+  fill: white !important;
+}
+
+.SteepCategory .secondarySubTitle{
+    color: #71717A;
+    font-weight: bold;
+}
+.SteepCategory p, span, li, td, th{
+  font-size: 13px;
+}
+.cardContent p{
+    color: #669C8D;
+    margin: 0;
+}
+.cardContent a{
+    color: #10A37F;
+    text-decoration: none;
+}
+.padUl{
+  padding-bottom: 22px;
+}
+.gptVideo{
+  text-align: center;
+  width: 100%;
+  height: 483px;
+}
+.SteepCategory p{
+  padding: 0;
+  margin: 15px 0;
+}
+.containerFlags{
+  display: flex;
+  justify-content: space-between;
+}
+.containerFlags p svg{
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+.contentFlags{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.coinContainer {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  max-height: 250px;
+}
+
+.coinItem {
+  display: flex;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  color: #868686;
+}
+.IconContainer{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.tableContainer{
+  display: flex;
+  gap: 5px;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+.InLine{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.inColumn{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Contenedor para permitir border-radius si es necesario */
+.tableWrapper {
+  overflow: hidden;
+  border-radius: 10px;
+  width: 100%;
+}
+
+/* Estilo base de la tabla */
+.customTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  table-layout: fixed; /* Opcional: para controlar anchos de columnas */
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Cabecera: fondo gris */
+.customTable th {
+  background-color: #e0e0e0; /* Gris claro */
+  color: #000;
+  padding: 12px 8px;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* Cuerpo de la tabla: fondo blanco en toda el área */
+.customTable tbody {
+  background-color: white;
+}
+
+/* Celdas del cuerpo: fondo transparente o blanco (opcional) */
+.customTable tbody td {
+  padding: 8px 8px;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.semibold{
+  font-weight: 500;
+  font-size: 14px !important;
+}
+/* Responsive: 1 columna en móviles */
+@media (max-width: 768px) {
+  .shortcutsContainer {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,534 @@
+.NewAgentContainer {
+  display: flex;
+  width: 100%;
+  position: relative;
+  padding: 0 20px;
+  background: #f5f5f5;
+  overflow-y: scroll;
+  height: calc(100vh - 50px);
+
+  h3 {
+    color: var(--_10a37f-background);
+  }
+
+  p {
+    color: var(--_18181b-color);
+    font-size: 10px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+  }
+
+  .subTitle {
+    color: var(--_18181b-color);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    margin-top: 0;
+  }
+
+  span {
+    font-size: 14px;
+    color: var(--_9b-color);
+    font-weight: 300;
+    padding: 0;
+    margin: 0;
+  }
+  .labelName{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    margin-top: 0;
+    color: var(--_18181b-color) !important;
+    /* background-color: red; */
+  }
+  .textareaEditableInput::placeholder{
+    color: var(--_67-color); 
+    /* color: red ; */
+    font-weight: 500;
+    
+  }
+  .textareaEditableInput{
+    display: flex
+    ;
+        gap: 5px;
+        color: var(--black);
+        user-select: none;
+        font-family: "Inter", sans-serif;
+        
+
+        
+  }
+  .leftSide {
+    height: 100%;
+    width: 100%;
+    max-width: 300px;
+
+    @media (width<=768px) {
+      max-width: 80%;
+    }
+  }
+
+  @media (width<=768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
+.infoAgentSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  overflow-y: auto;
+  height: calc(100vh - 80px);
+  position: relative;
+}
+
+
+.typeContact {
+  display: flex;
+  background-color: #ECECF0;
+  border-radius: 8px;
+  padding: 2px;
+  gap: 10px;
+  width: fit-content;
+  box-sizing: border-box;
+}
+
+.typeContact button {
+  background-color: transparent;
+  cursor: pointer;
+  color: #0A0A0A;
+  font-family: Inter;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  border-radius: 8px;
+  border: 1px solid transparent !important;
+  flex: 1;
+  height: 24px;
+  max-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-wrap: nowrap;
+  svg{
+    fill: #6E6E80;
+    color: #6E6E80;
+    height: 15px;
+    width: 15px;
+  }
+}
+
+  .typeIcon {
+    color: #6E6E80;
+    fill: #6E6E80;
+    height: 20px;
+    width: 20px;
+  }
+
+.typeContact .selected {
+  background-color: var(--white-color);
+  color: var(--black);
+  border-radius: 8px;
+  border: 1px solid var(--_00000033-background) !important;
+  box-shadow: 0 0 2px 0 var(--_00000033-background),
+    0 0 0 0 var(--black),
+    0 0 0 0 var(--black);
+
+  svg {
+    color: #0A0A0A;
+    fill: #0A0A0A;
+  }
+}
+
+.newAgentSection {
+  background-color: var(--white-color);
+  border-radius: 8px;
+  border: 1px solid var(--db-background);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+
+  textarea {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--_67-color);
+    background-color: var(--f5-background);
+    border-radius: 5px;
+    font-family: "Inter", sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    field-sizing: content;
+    min-height: 100px !important;
+    padding: 8px 4px;
+    resize: none;
+    field-sizing: content;
+  }
+}
+
+.workspaceHeader {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+  .addContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      height: 40px;
+      width: 40px;
+      border-radius: 8px;
+    }
+  }
+
+  h2 {
+    color: var(--_18181b-color);
+  }
+}
+
+.workspacesSearch {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--_67-color);
+  background-color: var(--f5-background);
+  border-radius: 5px;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+  field-sizing: content;
+  min-height: 21px !important;
+  padding: 8px 4px;
+  position: relative;
+
+  input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+
+    &::placeholder {
+      color: var(--_67-color);
+    }
+  }
+}
+
+
+.agentWorkspaceSection,
+.workspaceHeader {
+  p {
+    font-size: 16px;
+    color: var(--black);
+    font-weight: 400;
+  }
+}
+
+.agentWorkspaceSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid #ebebeb;
+
+  >div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      height: 60px;
+      width: 60px;
+      border-radius: 8px;
+    }
+
+    .quantityContactsAssets {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}
+
+.workspaceColumn {
+  >div {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+.listAgents {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.infoAgentSection .tabsSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.infoAgentSection .tabsSection .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+
+
+.Knowledge {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+@media (min-width: 768px) {
+  .NewAgentContainer {
+    flex-direction: row;
+  }
+
+}
+
+@media (max-width: 767px) {
+
+  .typeContact {
+    flex-direction: column;
+  }
+
+  .typeContact button {
+    width: 100%;
+  }
+}
+
+.chatSection {
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.dropdown {
+  background-color: var(--white-color);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 999;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdownItem {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: var(--db-background);
+}
+
+.dropdownAutomate {
+  .dropdownItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+}
+
+.automatesContent {
+  display: flex;
+  align-items: center;
+  gap: 10pxver;
+}
+
+
+.infoWorkspace {
+
+  .optionsSwitchInfoWorkspace {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    >div {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      gap: 10px;
+    }
+  }
+}
+
+.typesPrompts {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  >div {
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+    color: var(--_67-color);
+    font-weight: bold;
+
+    svg {
+      height: 30px;
+      width: 30px;
+      color: var(--_67-color);
+      fill: var(--_67-color);
+
+    }
+
+    .PromptsIcon {
+      height: 20px;
+      width: 20px;
+
+    }
+  }
+
+  .selectedType {
+    color: var(--_374151-color);
+
+    svg {
+      color: var(--_374151-color);
+      fill: var(--_374151-color);
+
+    }
+  }
+}
+
+.defaultInstructionsContainer {
+  padding: 6px;
+  box-sizing: border-box;
+  background-color: var(--db-background);
+}
+
+.instructionsContainer {
+  background-color: var(--f5-background);
+  padding: 6px;
+
+  textarea {
+    background-color: var(--white-color);
+  }
+}
+
+.footerInstructions {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: end;
+  gap: 10px;
+}
+
+.customLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.infoCustomLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  input {
+    width: 30%;
+    border: none;
+    outline: none;
+    background-color: var(--f5-background);
+    padding: 12px;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+  }
+}
+
+.instructionsContainer {
+
+ display: flex;
+ gap: 10px;
+ flex-wrap: wrap;
+ width: 100%;
+  
+  .actions{
+    background-color: var(--white-color);
+    color: var(--_67-color);
+    border: 1px solid var(--_00000033-background);
+    padding: 8px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    height: 20px;
+    display: flex
+  ;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    cursor: pointer;
+  }
+}
+
+
+.detectAutomaticallyIcon{
+  height: 15px !important;
+  width: 15px !important;
+  fill: #000000;
+}
+
+.headerNotificationSound{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.notificationSoundSelect{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #6E6E80;
+}
+
+.testAudio{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.activateKeyContainer{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: start;
+  p{
+    font-weight: 400;
+    font-size: 15px;
+  }
+}

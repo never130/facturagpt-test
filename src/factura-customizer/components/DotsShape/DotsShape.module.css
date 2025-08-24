@@ -1,0 +1,40 @@
+.container {
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222222;
+  margin: 0 0 16px 0;
+}
+
+.optionsContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.option {
+  flex: 1;
+  padding: 16px 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  background: #FFFFFF;
+  color: #364153;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.option:hover {
+  border-color: #D1D5DB;
+  background: #F9FAFB;
+}
+
+.option.selected {
+  background: #EAEAEF;
+  border-color: transparent;
+  color: #4F5660;
+} 

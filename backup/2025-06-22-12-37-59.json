@@ -1,0 +1,764 @@
+{
+  "d0d5167c-e58e-4214-ae23-3e86ebb89fce": {
+    "_id": "account_eclipsisnocte@gmail.com_d0d5167c-e58e-4214-ae23-3e86ebb89fce",
+    "_rev": "6-3ed9aa99df1262b61bff1dcbdd6b3164",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_eclipsisnocte@gmail.com_d0d5167c-e58e-4214-ae23-3e86ebb89fce",
+    "nombre": "",
+    "email": "eclipsisnocte@gmail.com",
+    "password": "TGF1dGFybzE=",
+    "role": "user",
+    "bucketCreated": false,
+    "payMethod": [
+      {
+        "id": "pm_1RZT7YArbxvCEfvZ9m88QhWQ",
+        "brand": "mastercard",
+        "last4": "0261",
+        "exp_month": 2,
+        "exp_year": 2031,
+        "country": "ES",
+        "funding": "debit",
+        "type": "creditCard",
+        "createdAt": 1749803877825
+      }
+    ],
+    "billingDetails": [
+      {
+        "_id": "20eff48a-1d85-4e89-9c83-bf7e00dfacfc",
+        "email": "",
+        "zipCode": "0988ok9jimim",
+        "country": "",
+        "facturacion": "facturacion0",
+        "editable": true
+      },
+      {
+        "_id": "8c3e684e-1592-41d7-8a4b-eb3701343790",
+        "email": "",
+        "zipCode": "",
+        "country": ""
+      }
+    ],
+    "automations": [],
+    "auths": []
+  },
+  "e6e88849-b898-428d-ac1f-39fc2934bf0b": {
+    "_id": "account_eng.carlos.valle@gmail.com_e6e88849-b898-428d-ac1f-39fc2934bf0b",
+    "_rev": "82-4cdda204b462f5727218ace7158dcabc",
+    "email": "eng.carlos.valle@gmail.com",
+    "paymentWarningDate": "2025-05-22",
+    "automations": [],
+    "auths": []
+  },
+  "e7430e51-fcf7-4362-8d76-2580e9231ce0": {
+    "_id": "account_facturagpt@serviciospalau.es_e7430e51-fcf7-4362-8d76-2580e9231ce0",
+    "_rev": "4-cc70fc63ec822dfc184ea79715c5ff8b",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_facturagpt@serviciospalau.es_e7430e51-fcf7-4362-8d76-2580e9231ce0",
+    "nombre": "serviciospalau",
+    "email": "facturagpt@serviciospalau.es",
+    "password": "QXl0aGVuMTIzNDUh",
+    "role": "user",
+    "bucketCreated": true,
+    "secondFactorAuth": false,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2NvdW50X2ZhY3R1cmFncHRAc2VydmljaW9zcGFsYXUuZXNfZTc0MzBlNTEtZmNmNy00MzYyLThkNzYtMjU4MGU5MjMxY2UwIiwiZW1haWwiOiJmYWN0dXJhZ3B0QHNlcnZpY2lvc3BhbGF1LmVzIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDk1NDE3NjUsImV4cCI6MTc0OTYyODE2NX0.zK_9xH8iH-wf4U9ceujNWUZV4K3Mz1Bh6Zm6YJ7FdCE",
+    "finishTutorial": true,
+    "automations": [],
+    "auths": []
+  },
+  "4d0e88d7-b4fa-47a0-a292-69f6adce31e4": {
+    "_id": "account_guille.castro5.12@gmail.com_4d0e88d7-b4fa-47a0-a292-69f6adce31e4",
+    "_rev": "1-fb43ad67f3775f31e052859649122a6e",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_guille.castro5.12@gmail.com_4d0e88d7-b4fa-47a0-a292-69f6adce31e4",
+    "nombre": "Guillem ",
+    "email": "guille.castro5.12@gmail.com",
+    "password": "SG9sYUhvbGEy",
+    "role": "user",
+    "bucketCreated": false,
+    "secondFactorAuth": false,
+    "automations": [],
+    "auths": []
+  },
+  "793ebcde-4ef3-4547-a8d8-9aad101ba9aa": {
+    "_id": "account_info@aythen.com_793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+    "_rev": "563-21bdefe855e893b7ea895c3b54f553be",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_info@aythen.com_793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+    "nombre": "carloswdderevefredwdcefdrvedcftrvbvrcex",
+    "email": "info@aythen.com",
+    "password": "QXl0aGVuMTIzNDUh",
+    "role": "superadmin",
+    "bucketCreated": true,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2NvdW50X2luZm9AYXl0aGVuLmNvbV83OTNlYmNkZS00ZWYzLTQ1NDctYThkOC05YWFkMTAxYmE5YWEiLCJlbWFpbCI6ImluZm9AYXl0aGVuLmNvbSIsInJvbGUiOiJzdXBlcmFkbWluIiwiaWF0IjoxNzUwNTk1Mjc5LCJleHAiOjE3NTA2ODE2Nzl9.uwdtQMgcw53Ifr73vRaDzPVoxqARXwLvmUbZ451shhQ",
+    "paymentWarningDate": "2025-05-29",
+    "tokenGPT": "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",
+    "tokenTotal": 1760,
+    "tokenMonth": 5280,
+    "automations": [
+      {
+        "_id": "28b698d1-495e-4b39-9b07-760ff90e78c0",
+        "_rev": "5-c36d3f7aef8791eb1e6198c1fb51d445",
+        "id": "28b698d1-495e-4b39-9b07-760ff90e78c0",
+        "userId": "account_info@aythen.com_793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+        "email": "info@aythen.com",
+        "type": "Outlook",
+        "folderLocation": "",
+        "includeAllRemitents": "",
+        "subjectExactMatch": "",
+        "bodyExactMatch": "",
+        "attachmentExactMatch": "",
+        "selectedTypes": "",
+        "addedRemitents": "",
+        "subjectKeyWords": "",
+        "bodyKeyWords": "",
+        "emailConnectionData": "",
+        "selectedEmailConnection": {
+          "email": "facturagpt@serviciospalau.es",
+          "userId": "793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+          "type": "Outlook",
+          "id": "fe4351a3778b3700f6fee5cb7c3a75d6"
+        },
+        "fileName": "",
+        "tags": "",
+        "notificateAfterExport": "",
+        "notificateGmail": "",
+        "notificateWhatsApp": "",
+        "gmailTo": "",
+        "gmailSubject": "",
+        "gmailBody": "",
+        "whatsAppToNotificate": "",
+        "whatsAppMessage": "",
+        "inputType": "",
+        "totalAmount": {
+          "currency": "",
+          "min": "",
+          "max": ""
+        },
+        "labels": "",
+        "filesExactMatch": "",
+        "phoneListNotificate": "",
+        "showContentSelectInfoToProcess": "",
+        "showContentImport": "",
+        "showContentExport": "",
+        "shotContentNotification": "",
+        "emailListColab": "",
+        "showContent": {
+          "info1": "",
+          "info2": "",
+          "info3": "",
+          "info4": "",
+          "info5": "",
+          "info6": "",
+          "info7": "",
+          "info8": "",
+          "info9": ""
+        },
+        "actionFrequency": "",
+        "createdAt": "2025-06-07T21:11:15.865Z",
+        "inputValue": "auto servicios palau",
+        "updatedAt": "2025-06-13T09:14:35.331Z",
+        "showContentFilterInfoDateKey": {
+          "info9": true
+        },
+        "filesArrayKeyWords": [
+          "factura"
+        ]
+      },
+      {
+        "_id": "4b14f709-f605-4ee7-96ad-07b5886bf4aa",
+        "_rev": "2-4e0ef32233a199d87334f7d2616db7de",
+        "id": "4b14f709-f605-4ee7-96ad-07b5886bf4aa",
+        "userId": "account_info@aythen.com_793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+        "email": "info@aythen.com",
+        "type": "Google Sheets",
+        "selectedGoogleSheetsConnection": "",
+        "googleSheetsConnectionData": "",
+        "sheetId": "",
+        "sheetTitle": "",
+        "generalConfiguration": {},
+        "notificateAfterCreatingRow": "",
+        "notificateGmail": "",
+        "notificateWhatsApp": "",
+        "gmailTo": "",
+        "gmailSubject": "",
+        "gmailBody": "",
+        "whatsAppToNotificate": "",
+        "whatsAppMessage": "",
+        "inputType": "",
+        "allowAllFileTypes": "",
+        "inputValue": "auto1",
+        "createdAt": "2025-06-14T19:59:12.688Z",
+        "agents": [
+          "c3edee40-c2e5-4dfb-9467-0fef1719d039"
+        ],
+        "updatedAt": "2025-06-14T19:59:27.252Z"
+      },
+      {
+        "_id": "b6dd7ab5-67e0-48a9-a0e5-05e0897cc960",
+        "_rev": "9-dedf3c3cfadf7981179b27c92d37964a",
+        "id": "b6dd7ab5-67e0-48a9-a0e5-05e0897cc960",
+        "userId": "account_info@aythen.com_793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+        "email": "info@aythen.com",
+        "type": "Outlook",
+        "folderLocation": "",
+        "includeAllRemitents": "",
+        "subjectExactMatch": "",
+        "bodyExactMatch": "",
+        "attachmentExactMatch": "",
+        "selectedTypes": "",
+        "addedRemitents": "",
+        "subjectKeyWords": "",
+        "bodyKeyWords": "",
+        "emailConnectionData": "",
+        "selectedEmailConnection": {
+          "email": "facturagpt@hsbsa.com",
+          "userId": "793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+          "type": "Outlook",
+          "id": "fe4351a3778b3700f6fee5cb7c211989"
+        },
+        "fileName": "",
+        "tags": "",
+        "notificateAfterExport": "",
+        "notificateGmail": "",
+        "notificateWhatsApp": "",
+        "gmailTo": "",
+        "gmailSubject": "",
+        "gmailBody": "",
+        "whatsAppToNotificate": "",
+        "whatsAppMessage": "",
+        "inputType": "",
+        "totalAmount": {
+          "currency": "",
+          "min": "",
+          "max": ""
+        },
+        "labels": [
+          {
+            "name": "C. Laboral",
+            "conditions": [
+              {
+                "title": "Apellidos del empleado",
+                "value": "apellidosEmpleado",
+                "description": "Apellidos del empleado"
+              },
+              {
+                "title": "DNI/NIF del empleado",
+                "value": "dniEmpleado",
+                "description": "Número de identificación fiscal del empleado"
+              },
+              {
+                "title": "Dirección del empleado",
+                "value": "direccionEmpleado",
+                "description": "Dirección física donde reside el empleado"
+              },
+              {
+                "title": "Fecha de nacimiento",
+                "value": "fechaNacimiento",
+                "description": "Fecha de nacimiento del empleado"
+              },
+              {
+                "title": "Puesto de trabajo",
+                "value": "puestoTrabajo",
+                "description": "Nombre del cargo o función que desempeñará el empleado"
+              },
+              {
+                "title": "Departamento",
+                "value": "departamento",
+                "description": "Departamento o área de trabajo"
+              },
+              {
+                "title": "Fecha de inicio",
+                "value": "fechaInicioContrato",
+                "description": "Fecha en la que inicia el contrato laboral"
+              },
+              {
+                "title": "Fecha de finalización",
+                "value": "fechaFinContrato",
+                "description": "Fecha de terminación del contrato (si es temporal)"
+              },
+              {
+                "title": "Tipo de contrato",
+                "value": "tipoContrato",
+                "description": "Especifica si el contrato es indefinido, temporal, obra y servicio, etc."
+              },
+              {
+                "title": "Jornada laboral",
+                "value": "jornadaLaboral",
+                "description": "Horas y tipo de jornada (completa, parcial, turnos, etc.)"
+              },
+              {
+                "title": "Salario base",
+                "value": "salarioBase",
+                "description": "Remuneración fija mensual o anual"
+              },
+              {
+                "title": "Otros complementos",
+                "value": "otrosComplementos",
+                "description": "Conceptos adicionales a la nómina base (plus, dietas, etc.)"
+              },
+              {
+                "title": "Forma de pago",
+                "value": "formaPago",
+                "description": "Método de pago (transferencia, efectivo, cheque, etc.)"
+              },
+              {
+                "title": "Periodicidad de pago",
+                "value": "periodicidadPago",
+                "description": "Frecuencia de los pagos (mensual, quincenal, etc.)"
+              },
+              {
+                "title": "Número de cuenta bancaria",
+                "value": "cuentaBancariaEmpleado",
+                "description": "IBAN o número de cuenta donde se realizará el pago"
+              },
+              {
+                "title": "Nombre de la empresa",
+                "value": "nombreEmpresa",
+                "description": "Nombre de la empresa empleadora"
+              },
+              {
+                "title": "CIF/NIF de la empresa",
+                "value": "cifEmpresa",
+                "description": "Número de identificación fiscal de la empresa"
+              },
+              {
+                "title": "Dirección de la empresa",
+                "value": "direccionEmpresa",
+                "description": "Domicilio fiscal de la empresa empleadora"
+              },
+              {
+                "title": "Representante legal",
+                "value": "representanteLegal",
+                "description": "Nombre y apellidos del representante que firma el contrato por parte de la empresa"
+              },
+              {
+                "title": "Fecha de firma",
+                "value": "fechaFirmaContrato",
+                "description": "Fecha en que ambas partes firman el contrato"
+              }
+            ],
+            "newCondition": {
+              "title": "",
+              "description": ""
+            },
+            "filters": [
+              {
+                "id": 1748769190666,
+                "conditionCurrency": {
+                  "title": "",
+                  "description": ""
+                },
+                "conditionOperator": "CONTAINS",
+                "conditionValue": "",
+                "type": "Condition",
+                "plainTextLabels": ""
+              }
+            ],
+            "conditionCurrency": {
+              "title": "Apellidos del empleado",
+              "value": "apellidosEmpleado",
+              "description": "Apellidos del empleado"
+            },
+            "updateDate": "2025-06-01T09:13:43.390Z"
+          }
+        ],
+        "filesExactMatch": "",
+        "phoneListNotificate": "",
+        "showContentSelectInfoToProcess": {
+          "info1": false,
+          "info2": false,
+          "info3": false,
+          "info4": false,
+          "info5": false,
+          "info6": false,
+          "info7": false,
+          "info8": false,
+          "info9": true
+        },
+        "showContentImport": "",
+        "showContentExport": "",
+        "shotContentNotification": "",
+        "emailListColab": "",
+        "showContent": {
+          "info1": "",
+          "info2": "",
+          "info3": "",
+          "info4": "",
+          "info5": "",
+          "info6": "",
+          "info7": "",
+          "info8": "",
+          "info9": ""
+        },
+        "actionFrequency": "",
+        "allowAllFileTypes": "",
+        "inputValue": "outlook",
+        "createdAt": "2025-05-29T17:59:38.269Z",
+        "updatedAt": "2025-06-02T23:22:26.530Z",
+        "showContentFilterInfoDateKey": {
+          "info9": true
+        },
+        "filesArrayKeyWords": [
+          "billing"
+        ]
+      },
+      {
+        "_id": "e5f37e75-0a1a-47e0-bfbf-01240545f488",
+        "_rev": "2-7041b4307022542ccdd08dd0923971bc",
+        "id": "e5f37e75-0a1a-47e0-bfbf-01240545f488",
+        "userId": "account_info@aythen.com_793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+        "email": "info@aythen.com",
+        "type": "Telematel",
+        "filesSource": "",
+        "selectedTelematelConnection": "",
+        "telematelConnectionData": "",
+        "filesKeyWords": "",
+        "filesKeyWordsExactMatch": "",
+        "selectedFileTypes": "",
+        "allowAllFileTypes": false,
+        "changeFileName": "",
+        "fileName": "",
+        "inputType": "",
+        "selectedEmailConnection": "27.0.174.150",
+        "inputValue": "wwedsdw",
+        "createdAt": "2025-05-29T17:47:21.200Z",
+        "agents": [
+          "611c8660-5e8b-4e16-8e98-5fed3ec76360"
+        ],
+        "updatedAt": "2025-06-21T20:09:27.203Z"
+      }
+    ],
+    "finishTutorial": true,
+    "phone": "",
+    "countryCode": "+34",
+    "areaCode": "+34",
+    "country": "",
+    "plan": "Free",
+    "userDomain": "",
+    "corporativeLogos": [
+      "https://s3.fr-par.scw.cloud/factura-gpt/corporativeLogos/luna.svg",
+      "https://s3.fr-par.scw.cloud/factura-gpt/corporativeLogos/Untitled%20%2865%29.png"
+    ],
+    "signatureImages": [],
+    "selectedSignatureImage": "",
+    "selectedCorporativeLogo": "",
+    "fiscalNumber": "",
+    "currency": "SGD",
+    "language": "Español",
+    "colorPrimary": "rgba(214, 26, 26, 1)",
+    "colorSecundary": "var(--_10a37f-background)",
+    "billingDetails": [
+      {
+        "_id": "20eff48a-1d85-4e89-9c83-bf7e00dfacfc",
+        "email": "",
+        "zipCode": "0988ok9jimim",
+        "country": "",
+        "facturacion": "facturacion0",
+        "editable": true
+      },
+      {
+        "_id": "8c3e684e-1592-41d7-8a4b-eb3701343790",
+        "email": "",
+        "zipCode": "",
+        "country": ""
+      }
+    ],
+    "secondFactorAuth": false,
+    "contactTableView": [
+      {
+        "label": "Dirección Física",
+        "key": "companyAddress"
+      },
+      {
+        "label": "Correo",
+        "key": "companyEmail"
+      },
+      {
+        "label": "Teléfono",
+        "key": "companyPhoneNumber"
+      },
+      {
+        "label": "Número Fiscal",
+        "key": "taxNumber"
+      },
+      {
+        "label": "Nombre",
+        "key": "contactName"
+      },
+      {
+        "label": "Métodos de Pago",
+        "key": "cardNumber"
+      },
+      {
+        "label": "Moneda Preferida",
+        "key": "preferredCurrency"
+      },
+      {
+        "label": "Desde",
+        "key": "createdAt"
+      },
+      {
+        "label": "transacciones",
+        "key": "transactions"
+      }
+    ],
+    "stripeCustomerId": "cus_SPOuzKPi5qEcIT",
+    "tableView": {
+      "contacts": [
+        {
+          "label": "Correo",
+          "key": "companyEmail"
+        },
+        {
+          "label": "Teléfono",
+          "key": "companyPhoneNumber"
+        },
+        {
+          "label": "Nombre",
+          "key": "contactName"
+        },
+        {
+          "label": "Dirección Física",
+          "key": "companyAddress"
+        },
+        {
+          "label": "Moneda Preferida",
+          "key": "preferredCurrency"
+        },
+        {
+          "label": "Número Fiscal",
+          "key": "taxNumber"
+        },
+        {
+          "label": "Métodos de Pago",
+          "key": "cardNumber"
+        },
+        {
+          "label": "Desde",
+          "key": "createdAt"
+        },
+        {
+          "label": "transacciones",
+          "key": "transactions"
+        }
+      ],
+      "assets": [
+        {
+          "label": "Código",
+          "key": "code"
+        },
+        {
+          "label": "Nombre o Descripción",
+          "key": "name"
+        },
+        {
+          "label": "Proveedor",
+          "key": "supplier_name"
+        },
+        {
+          "label": "Categoría",
+          "key": "category"
+        },
+        {
+          "label": [
+            "Cantidad",
+            "(Último mes)"
+          ],
+          "key": "quantity"
+        },
+        {
+          "label": "Generado",
+          "key": "generated"
+        },
+        {
+          "label": "Precio máximo",
+          "key": "maxPrice"
+        },
+        {
+          "label": "Precio mínimo",
+          "key": "minPrice"
+        },
+        {
+          "label": "Precio medio",
+          "key": "averagePrice"
+        },
+        {
+          "label": "Desde",
+          "key": "createdAt"
+        }
+      ]
+    },
+    "maxAccount": 0,
+    "selectedCurrency": "SGD",
+    "logicalDeletedAccount": false,
+    "payMethod": [],
+    "auths": [
+      {
+        "_id": "fe4351a3778b3700f6fee5cb7c14c92f",
+        "_rev": "1-d467e2eadd71813f6c817f6051175751",
+        "userId": "793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+        "type": "Google Drive"
+      },
+      {
+        "_id": "fe4351a3778b3700f6fee5cb7c18b362",
+        "_rev": "17-bf83180f547650df13d5c2c078c4aff5",
+        "userId": "793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+        "accessToken": "EwBYBMl6BAAUBKgm8k1UswUNwklmy2v7U/S+1fEAAQzyxnCfIMz9++Wywbkz/qO2dcVQpaOWtT0MvxwgxRs0qMB3EDKr0IeDOdSxRA6XzMYuTfFRBbYurmJD1jNo6O3MT9sWpTn7v0oxHCbFrzMkYdAh09E/zfRSo9a+541jMQ4z7VRITyfcs9tVk+cx/3+HLjMMJxPdjV61rH1GCQfAoyhJU/i8EwyU+eaQKH+DUjBV3ptUBl/x4NCXE+VpXTFQT8UM6PnbsgTvkETovY5jJI5/WxVk9zH2kzvuM1R3zxNEBktvmi+q6sJtX0WhKJh9rOVhrm7xFN132MukYf7l3UcgwOwWMO+ai7N57f+PjQnQqg201FzVPcTl8FdyXAkQZgAAEDKLjZxQBsFdJwR2x71J3MMgA2K+z+FoCCpb4tKoMSWfeqwXsiGvNwg2ilX5+LT9ZUASIHahvXaWt86GL4yKCy3fd9CnIRLig9R6vc/9A8PrEDiIwUDhmeEZvYuYCn3nXXl6gMw3X9rWkTs1hB5S62oNODO3XX3ghtYT3xAeWl1pvt7WwlXYQUBwA7PTQ7UBkezB75f4gIp1RtNfmCqSD4F0cinFaWZYKwOvNG7grvL9OjHD9xYnbohwuZIe1giGj0twEiyvBK9uYq6+68bKXLmlLCngi1rD/5iMMLO7hIS47rA7CUKC5t9rYIIMLH5DkgvRlq9AFUbzDYJssObcgYQ0JdMUPM29ypwKZwcKtI9MjUR0lh7bpylG+4J5+My1zJI7VfTnHYAMiAq/oJ/ZPjLm+fgbYzUcoWbZFExVcXL68ptyl59Wdqbbbyy8hrhc2tbLkkjDbHJizmNx2fPwWYKTHc7gvRT3CcU72oMlcXVqLWqmDO6de25MHAepyiYrtsq76Vic4qwd5o701ujtlkM9TarAqWUtKJkX8h9Gf3FArMnEWqKaaM6+ln4tyeJD6rPMSthjwykMPZiERsBAmF1vQlplOso56d0JUb1WZHsSaQZi77VuAyFMle6znBMDG1LIiBISjDd4gC6xCR7qghOalJYY1Fc2FEfpC66DoCri7i5mPFFbdN0eLxJso2YBH55pQewSZCVCoDUBjEpUNIrmSf6R9fw97e2HgIP37x3uKUPB6qR3ql1BefXeF2O9ddl4C9jRo7RJjvBPV3kvQCMXau7q22KrlNKO8FITyK98p431gAxMLa9Y2rIXtwnzEf1cjmKbAxb/CjihArbBB7YmAV5BJgzxGQwTjnzlvZBAzemCQeqOYaLgYPlt6PgdhrOnqJRmzrFxRfadqIjYVQSCh2sRtf1jQ8+ddRWY0HiZGpoB2IpG5GqUYkv7KsLA6ul2Y4osPcy8Wq0jlF1yNPorXZBwwaeiVE637/J6rRW0fcZ+6+/tri801aeg+f6rgc7OswkgBPGP3+OvGadLDFVMLUzfOTshWsNDSqvRUtltxRzmp8agsat+g7iDkdJdWWE6ZwM=",
+        "refreshToken": "M.C538_SN1.0.U.-CpjHTs8tuQvRvp0n7CxJL0QsHblHBYbDh0!fVUTYJ9whG9Z82Dc3qqtOwLZGDcHpGsZ2eMtJFBZl9J2ACva1LnqCWxUTqMlOPFHjDnWM1CKL2tztUpixgTuDB0hrkKX8wN8Sxwjt8xmqKLw88A2QDLSrrRx5lnFmGcb2B8SuyHFqh5ArGZf*eANIHvS2wyG7RFUW5xMwhfL7qI0RHt6PbUVPj*huiKYFup69RXbn8F4PZIHem!JpwuWKdZR4g!CXh3w4!o2154FCnELUgV1Msi8q1PD3*l6fjTCItJfm0f6mqLhRGah2w9tGwrtxoD0QTQwY4d!BNoQ1GAEJX9XRXqFFZi4ZP5DV91Hj2kFun1ocPCHP0ygIn3jsegJiejx!tnC*sQdpeMSLJCkgDFdJoetFeiKNMh7HlFTtv3Xy0uot872CiWEZthfhVLeDGT5XCQ$$",
+        "expiresIn": 1749334281106,
+        "account": {
+          "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users/$entity",
+          "userPrincipalName": "carlos_vallelopez@hotmail.com",
+          "id": "a6b642b8dd4eff94",
+          "displayName": "Carlos Valle",
+          "surname": "Valle",
+          "givenName": "Carlos",
+          "preferredLanguage": "es-ES",
+          "mail": "carlos_vallelopez@hotmail.com",
+          "mobilePhone": null,
+          "jobTitle": null,
+          "officeLocation": null,
+          "businessPhones": []
+        },
+        "type": "Outlook"
+      },
+      {
+        "_id": "fe4351a3778b3700f6fee5cb7c211989",
+        "_rev": "54-06c5015048587387271687c0f3103cb9",
+        "userId": "793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+        "accessToken": "eyJ0eXAiOiJKV1QiLCJub25jZSI6IlctcUlGTzFHY2tIdzQ2Ql9jZGNJRGRiVy1qekNaOVVPdEQ3blktWDVFQTQiLCJhbGciOiJSUzI1NiIsIng1dCI6IkNOdjBPSTNSd3FsSEZFVm5hb01Bc2hDSDJYRSIsImtpZCI6IkNOdjBPSTNSd3FsSEZFVm5hb01Bc2hDSDJYRSJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80MWEwMjc3Zi1mNmM4LTQ0MmUtYmVjNS01YmM0NWQ4ZDVmN2MvIiwiaWF0IjoxNzQ5MTEwNTUwLCJuYmYiOjE3NDkxMTA1NTAsImV4cCI6MTc0OTExNTcyNywiYWNjdCI6MCwiYWNyIjoiMSIsImFjcnMiOlsicDEiXSwiYWlvIjoiQVpRQWEvOFpBQUFBSjZuV1ZjQldjaU5RUFg2NXlGU01pSjkzQndUc2w3dXZnejZISE9WWDgyMTdhaWw0eTAzdVRxT28xQmZ4Rzdqa2lGZGk2ZHlvSkhjclBrOEV1RWxOTlkxQW9XQW1sWWFZVTR3VjJNWm03d2R3UCtEZ3ZzcG1uUzJwY0E2WDE4aHhTUG5Hd000M0Fad2ZyQVZRU1kra2NpaE1JbFRVZjRSUm12V04zQjFMUFhCZ1NwbENUOVFhRXpvQmJ3a0FJWlRLIiwiYW1yIjpbInB3ZCIsIm1mYSJdLCJhcHBfZGlzcGxheW5hbWUiOiJmYWN0dXJhUHJ1ZWJhRG9zIiwiYXBwaWQiOiJlMGU0MDM0YS1iODMzLTQ3ZjMtYmYwOS1hZDcxMDgwMmMzOTYiLCJhcHBpZGFjciI6IjEiLCJmYW1pbHlfbmFtZSI6IkdQVCIsImdpdmVuX25hbWUiOiJGYWN0dXJhIiwiaWR0eXAiOiJ1c2VyIiwiaXBhZGRyIjoiMjEyLjE2Ni4yMjIuMjM4IiwibmFtZSI6IkZhY3R1cmFHUFQiLCJvaWQiOiI2M2ZlYjM0MC02OGM0LTQzNTgtOWY4Yi1mZTQyODY5NTA2NTEiLCJwbGF0ZiI6IjMiLCJwdWlkIjoiMTAwMzIwMDRBRTdCQ0ZGRiIsInJoIjoiMS5BUjhBZnllZ1FjajJMa1MteFZ2RVhZMWZmQU1BQUFBQUFBQUF3QUFBQUFBQUFBQWNBWndmQUEuIiwic2NwIjoiTWFpbC5SZWFkIE1haWwuU2VuZCBVc2VyLlJlYWQgcHJvZmlsZSBvcGVuaWQgZW1haWwiLCJzaWQiOiIwMDUwYmZmOS0xOTI4LWNjZTEtOGI1Zi05MDY5MzgzYTQyMDUiLCJzdWIiOiJHVEw2X0tCcWU3VUI3WjNkM1d3NGMtc09XSFkzeVpVVmN1XzJTdzV6dlpnIiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkVVIiwidGlkIjoiNDFhMDI3N2YtZjZjOC00NDJlLWJlYzUtNWJjNDVkOGQ1ZjdjIiwidW5pcXVlX25hbWUiOiJmYWN0dXJhZ3B0QGhzYnNhLmNvbSIsInVwbiI6ImZhY3R1cmFncHRAaHNic2EuY29tIiwidXRpIjoiZmF4REJkNEdBRW1YOEpGUUJFY21BQSIsInZlciI6IjEuMCIsIndpZHMiOlsiYjc5ZmJmNGQtM2VmOS00Njg5LTgxNDMtNzZiMTk0ZTg1NTA5Il0sInhtc19mdGQiOiIyTmE5WGJvZU5LYVRZU3RYa3BjNm9mRzlXU1lWcGJROVJ1ZGlDaVk0bGpjQmMzZGxaR1Z1WXkxa2MyMXoiLCJ4bXNfaWRyZWwiOiIxIDMwIiwieG1zX3N0Ijp7InN1YiI6InB4bHZZeTFfRnY1NjlORkp3aGYwbzRXUnJEdmxZOGlKeFZlN0JNdkdyMWMifSwieG1zX3RjZHQiOjE1MzAyNjg4MDgsInhtc190ZGJyIjoiRVUifQ.B1qKEZy8bWMb5Jw0ZUd8PaM6hftxk5M_T00_I82Y0cuUwtg27Yxjf3LQ9VV-p9wWvulp12pRj2IQrwOrujDtNO_2rw6WHlWQiHGglypUVq5ng4dAzRiLZLGiOl8VLGMvH0QuxGv9ID8xPElhOb9wZvtqQeRgS-mx2SDHEjUieM_RZ_YHRwKvjLfF2kLAS-dz4bhldhStw-iq_mqxgT84bJiGm-SHmbNuo85mNuIxIJzs87DJk3H_OAj_3fek_1qvRsiLQqO1IRJE73jlwXoJQOb2itjdxpEYs79FVRApVOZXwOyyvpW0BUUdIiD9xs-ni2StFTQEpaQirHyBU2SevQ",
+        "refreshToken": "1.AR8AfyegQcj2LkS-xVvEXY1ffEoD5OAzuPNHvwmtcQgCw5YcAZwfAA.AgABAwEAAABVrSpeuWamRam2jAF1XRQEAwDs_wUA9P_UgsEi9joWAehsZdqxWBwM2qCbkfmET8uAsRoQGNJ38YYJqJxUsm0CXAu1zq0uAhEMqB_7Juh97shpHoYsBI9hgnvxfw09lTzpGmkRf7Qr4htrP_BOznFM84ABgICgS1pdl17ZHEN--Qih7UGN-2odTC6ImN1NiYNKcs-nQNfeQMV9GpI07QepglXRDzIDBkxu8_CiPH7qk09Hnfne6rA34AvI4G1xmjiAuabcPLjILAffhz1OzeEEY99LVzcYALBmki4FscEYWDjItaSlK87yh8EXF2MbzlEhXJ2PHStvEU9nafNeLgI2RmiuGlcRvQKAFlYkb0U6Cr45R5NMaCJCCkXDgAmT0Q1mkDszfdAWx1nVFMTzWxQFRQ2KXS9mcJLSFAIWiorm6BhwGzlZL5VN2NOGQeRe4-kUqQFc1sa5134LXDcKL3vPw4WsaMrvHuOXgIKavOaJQ9enbEFQwrgzjxN24MErF8Afb70cLMRoFbdKQpkkQG_4fU1qVgKyrpK21Oc3gApSh-51Iu-7YFSGUAie8SB15Ch-yH_fkSNmltyXnAViuF8wLhrAsS59q4NtxdUtPH4O3c9oGTfg9Nw-dP2x8h4IsUU0FAKp8Q-hiv0bt9CjsawDBdu6vSf00BuoyjmIsp92W2xYjuPZu-kQtFcIGN8REA897T0GIclgNL-tx4h8gvb26XcIvNWEBm7SGD73P9yxyli4Bah5M1e87uPF_2L8Kzj6YGYLHPeAVE77grAewiRVRjdDfV_n1J7gx3V5rD5hiL2yeeMjiGps_qcBcRN46lf-WFWBN2vLSCGqicuJTM9kt0IaiuRe7yOo7sWbebaSX_yHBP1LujrRA1hN52IEM11fmzGaFRz0A49UWA4rd8KCO8_u",
+        "expiresIn": 1749115726989,
+        "account": {
+          "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users/$entity",
+          "businessPhones": [],
+          "displayName": "FacturaGPT",
+          "givenName": "Factura",
+          "jobTitle": null,
+          "mail": "facturagpt@hsbsa.com",
+          "mobilePhone": null,
+          "officeLocation": null,
+          "preferredLanguage": null,
+          "surname": "GPT",
+          "userPrincipalName": "facturagpt@hsbsa.com",
+          "id": "63feb340-68c4-4358-9f8b-fe4286950651"
+        },
+        "type": "Outlook"
+      },
+      {
+        "_id": "fe4351a3778b3700f6fee5cb7c213c3f",
+        "_rev": "1-69e19e18faab5c2e35abc2428a05ccd2",
+        "j_username": "distri",
+        "j_password": "GOtmt%",
+        "host": "27.0.174.150",
+        "port": "8810",
+        "telematelData": {
+          "access_token": "AKAAAQAAAAhtb2JpbGVBAACgAAIAAAAHZGlzdHJpAACQAAsAAAAIAAAAAGg4nZ0AMAAMAAAAAgAMAKAAGgAAAA9TU09BY2Nlc3NUb2tlbgAAoAANAAAADVJPTEVfUFNDVXNlcgAAoAAPAAAANDI0RDE3ODc3OEVDMDhDQkZGOThFNDk3RDk1NTFCQUU1MDY1MDA2MzE3RjAxLm9lcGFzMQAA0AAQAAAACAAAAABoOKutANAAFwAAAAgAAAAAAAAAeADQABsAAAAIAAAAAAAAAHgA0AAcAAAACAAAAAAMwnAPALAAFQAAABDcyjJs3JjMqjcwuYHzRGy0",
+          "refresh_token": "e0c38b64-dba9-460a-9b78-9b25dff1f678.oepas1",
+          "token_type": "oecp",
+          "expires_in": 3600
+        },
+        "type": "Telematel",
+        "userId": "793ebcde-4ef3-4547-a8d8-9aad101ba9aa"
+      },
+      {
+        "_id": "fe4351a3778b3700f6fee5cb7c3a75d6",
+        "_rev": "1-614dd0bf0b905d4c4db90aabfb9e6a7b",
+        "userId": "793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+        "accessToken": "eyJ0eXAiOiJKV1QiLCJub25jZSI6ImQ1WkZXZ0lrQ3NSckJnV05JQ1V3dlJ1QzlkdUNtMENBVG51VlRSZXVLZlkiLCJhbGciOiJSUzI1NiIsIng1dCI6IkNOdjBPSTNSd3FsSEZFVm5hb01Bc2hDSDJYRSIsImtpZCI6IkNOdjBPSTNSd3FsSEZFVm5hb01Bc2hDSDJYRSJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC80MzY4YWJkOS1iMzI0LTRmMTAtOTg1Zi0yNTNkNGNjODhkNTMvIiwiaWF0IjoxNzQ5ODAzNjk3LCJuYmYiOjE3NDk4MDM2OTcsImV4cCI6MTc0OTgwODQ2MCwiYWNjdCI6MCwiYWNyIjoiMSIsImFpbyI6IkFYUUFpLzhaQUFBQXJQSit1MEJ2UnByb2hHbS9IaGUxaXlNckFlaW5BR25VRC9sT1Y2a1RrbEw4bDZWNVJKOGZodlBjWkdLNGNJalpMSVZYcmpYL2FVWXIxTjhjTmJmVFQ0UXpHNTJVYXAwTjNVSEFiaHRZV2lGYXM0Yjc2ajV2MWpSU1NYVlF3ZFpWK1Z1b1ZpcjNEUEhQMGdQRUJCejVsdz09IiwiYW1yIjpbInB3ZCJdLCJhcHBfZGlzcGxheW5hbWUiOiJmYWN0dXJhUHJ1ZWJhRG9zIiwiYXBwaWQiOiJlMGU0MDM0YS1iODMzLTQ3ZjMtYmYwOS1hZDcxMDgwMmMzOTYiLCJhcHBpZGFjciI6IjEiLCJmYW1pbHlfbmFtZSI6IkdQVCIsImdpdmVuX25hbWUiOiJGYWN0dXJhIiwiaWR0eXAiOiJ1c2VyIiwiaXBhZGRyIjoiNzcuMjI0LjE4LjE2MSIsIm5hbWUiOiJGYWN0dXJhR1BUIiwib2lkIjoiYzM2ODY3MzMtYjNlZS00ZjI5LThiZTctODNjOWFmODc2YjI4IiwicGxhdGYiOiIzIiwicHVpZCI6IjEwMDMyMDA0QjVDOUZBQ0EiLCJyaCI6IjEuQVRvQTJhdG9ReVN6RUUtWVh5VTlUTWlOVXdNQUFBQUFBQUFBd0FBQUFBQUFBQURoQUdjNkFBLiIsInNjcCI6Ik1haWwuUmVhZCBNYWlsLlNlbmQgVXNlci5SZWFkIHByb2ZpbGUgb3BlbmlkIGVtYWlsIiwic2lkIjoiMDA1ZDkxMzktMzYwNi1kN2E4LTliOGUtZTFkMmFlYTBkNzE2Iiwic3ViIjoiVGhoLWM2R0Eta3VtVG5SckE2MnEwQlFubHdRUmQ0TUNjNzRkcTVodFNMWSIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJFVSIsInRpZCI6IjQzNjhhYmQ5LWIzMjQtNGYxMC05ODVmLTI1M2Q0Y2M4OGQ1MyIsInVuaXF1ZV9uYW1lIjoiZmFjdHVyYWdwdEBzZXJ2aWNpb3NwYWxhdS5lcyIsInVwbiI6ImZhY3R1cmFncHRAc2VydmljaW9zcGFsYXUuZXMiLCJ1dGkiOiIwZDNNb19BNTlVaXNOV2ZvY3ZvVUFBIiwidmVyIjoiMS4wIiwid2lkcyI6WyJmMjhhMWY1MC1mNmU3LTQ1NzEtODE4Yi02YTEyZjJhZjZiNmMiLCIyOTIzMmNkZi05MzIzLTQyZmQtYWRlMi0xZDA5N2FmM2U0ZGUiLCJkMjU2MmVkZS03NGRiLTQ1N2UtYTdiNi01NDRlMjM2ZWJiNjEiLCI3Mjk4MjdlMy05YzE0LTQ5ZjctYmIxYi05NjA4ZjE1NmJiYjgiLCJmMmVmOTkyYy0zYWZiLTQ2YjktYjdjZi1hMTI2ZWU3NGM0NTEiLCI2MmU5MDM5NC02OWY1LTQyMzctOTE5MC0wMTIxNzcxNDVlMTAiLCI2OTA5MTI0Ni0yMGU4LTRhNTYtYWE0ZC0wNjYwNzViMmE3YTgiLCIyNzQ2MDg4My0xZGYxLTQ2OTEtYjAzMi0zYjc5NjQzZTVlNjMiLCJmMDIzZmQ4MS1hNjM3LTRiNTYtOTVmZC03OTFhYzAyMjYwMzMiLCJmZTkzMGJlNy01ZTYyLTQ3ZGItOTFhZi05OGMzYTQ5YTM4YjEiLCJiNzlmYmY0ZC0zZWY5LTQ2ODktODE0My03NmIxOTRlODU1MDkiXSwieG1zX2Z0ZCI6IldIRGl4Nnd2RW9Zcl82aFZFRi1OdjVMRkVPR1ZXY1pJOEpITkVEZXEwX1lCWm5KaGJtTmxZeTFrYzIxeiIsInhtc19pZHJlbCI6IjIwIDEiLCJ4bXNfc3QiOnsic3ViIjoibEJGTmJ6RnNZM3c2cDlEV3Fydi1IWl9fUndqNE1NbVVFYzZaSTFXZ2MwbyJ9LCJ4bXNfdGNkdCI6MTUxMjExODYwOCwieG1zX3RkYnIiOiJFVSJ9.QA4ebzpGJF6mBdH6yrxB_TzHCBGUmZp_tZZUXHb5nurG6ycK7-NqlWl9zu-n1LXziocCN18Y8zcOGTteuZQtvHE2nyJLmMj1qC_JcRuDyrWubXcr1PfMRvkWqwFErxcZ8aEGYEJRcii0Yv9aQhM5Q_h-PcRqf_LMr7g2u3S5Mi79il-UTxsV9Kj_9HyIx169YCp8qyr8QpeIhD6Bi_CZ1MwCjpgesQmjk8YxGaf0C_di1da6nYCZK_qbcVLate20V2zUN0U_h55ELrPIKdXo6E1MK28_fobGkBGgVb7PIMtRyGkv-zjhcZV4REbFMn1NxB6E6sabC0jbir5GMHqwRg",
+        "refreshToken": "1.AToA2atoQySzEE-YXyU9TMiNU0oD5OAzuPNHvwmtcQgCw5bhAGc6AA.AgABAwEAAABVrSpeuWamRam2jAF1XRQEAwDs_wUA9P84_jfFa4aQPuJpLJ5M93FKvR-DXxpiStoBGqWKvO2-3XzhUQTr3_BeAlhPfGIu5UBlxWVbkUrMYuMxl7m_t2YMqbxLwsZDn_PHEc33bALHIz1V1jv9dQ5uoqYcFevt5fnw9YH0bMzUf_-ncEjjmq0LUAdz812ZetNgqrjyMLVGJMPVO3P9k6A-Vhefo_vwkCeG5j3g8RQmAGZeZn9Nbw8vux6V77DzyhrTSciF8gx2q7PzMUWbOSzpdXqeFUPJfgINTtEaXsMtgEKvmgZa3ME5v-LmgOkUdE-JupRYHVCFS4rmM6bZc0uaH6b2tMMJatvqv0Xy6_ShcUL3JWEQMukOYk2IugRbmeul6KAiGcQtEauIByH4aeP9D23PcoQejsPQHKhrNP52c8u_3CYRguK438dGiZkmAsi3Ri2uOOOycaaQtlcwRnWy_NVg1w0fa42R5loJr3DmLjxIHuk_gIeD_phlu1owAeEr_dbq4GDSO40AkJxmjWsUaAqTbggoOJnK2ImcrQ2GLaDhgiKBpVpbguV2X8B7p4pNFgNPp1Xvy-VzfwJpKNhAscYueHkNbe6Oh3gKZSHv4p8pGftkw8KfCgaj6ND4uVK1B5haXlg7vNEziHXRDJyCYMegJs004tze1HAT4gRy9KmYXiC1sELwEbXfTUjppRFeGORHIz2z8hvhcEsHMujw_EC7zN98U3JinAgmyvk5PcUiqtBAOmN_oBmL5dQSTG_InJCPOwf9cpZlXiteHjV5iYdaq1y7q3XaPNtYEhvpYmpJ-Q6SApYqdXgwd_Jt2bOmE8Kd9r8I0K75ngD8aviZR1qDSA",
+        "expiresIn": 1749808460700,
+        "account": {
+          "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users/$entity",
+          "businessPhones": [],
+          "displayName": "FacturaGPT",
+          "givenName": "Factura",
+          "jobTitle": null,
+          "mail": "facturagpt@serviciospalau.es",
+          "mobilePhone": null,
+          "officeLocation": null,
+          "preferredLanguage": null,
+          "surname": "GPT",
+          "userPrincipalName": "facturagpt@serviciospalau.es",
+          "id": "c3686733-b3ee-4f29-8be7-83c9af876b28"
+        },
+        "type": "Outlook"
+      },
+      {
+        "_id": "whatsapp_account_info_telefono de trabjo",
+        "_rev": "103-fcd53c17d6c1b32523fd83c90db73756",
+        "type": "WhatsApp",
+        "userId": "793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+        "deviceId": "telefono de trabjo",
+        "status": "pending_qr",
+        "registeredPhoneNumber": null,
+        "createdAt": "2025-06-09T20:35:53.177Z",
+        "updatedAt": "2025-06-09T21:34:29.749Z",
+        "qrCode": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARQAAAEUCAYAAADqcMl5AAAAAklEQVR4AewaftIAABKPSURBVO3BQY7YypLAQFLo+1+Z42WuChBU7ef5yAj7g7XWuuBhrbUueVhrrUse1lrrkoe11rrkYa21LnlYa61LHtZa65KHtda65GGttS55WGutSx7WWuuSh7XWuuRhrbUueVhrrUse1lrrkh8+UvmbKiaVqeINlaliUjmpOFGZKk5Upoo3VL6oeENlqjhROamYVE4qJpWTikllqphUvqiYVE4qJpW/qeKLh7XWuuRhrbUueVhrrUt+uKziJpWTihOVN1SmikllUpkq3lCZKiaVLypOVE5U3lCZKk4q3qiYVKaKSeWkYlKZKk5UporfVHGTyk0Pa611ycNaa13ysNZal/zwy1TeqPhC5YuKNypOKiaVqWJSeaNiUplUpoqpYlKZKiaVqeJEZao4UZkq3lCZKiaVL1Smiknlb1J5o+I3Pay11iUPa611ycNaa13yw/9zKlPFGypfqEwVX1ScqLxR8UbFpDJVnKicqJxUvFExqZxUTCpTxaQyVUwqU8WkMlVMKv9LHtZa65KHtda65GGttS754X+cylQxVUwqU8VUMan8y1SmiknlDZX/ZSonKl+oTBX/Sx7WWuuSh7XWuuRhrbUu+eGXVfzLVKaKSeWkYlKZKr5QmSomlaliUplUTireUHmjYlKZVL6omFROKt5QOVE5qbip4l/ysNZalzystdYlD2utdckPl6n8L6uYVKaKSWWqmFSmit9UMamcqEwVJxWTyhsVk8pUMam8UTGpTBWTylQxqUwVk8qJylRxovIve1hrrUse1lrrkoe11rrE/uD/MZWpYlI5qbhJZaqYVL6omFROKiaVk4o3VE4q3lA5qZhUpoovVE4qvlA5qfj/7GGttS55WGutSx7WWusS+4MPVKaKN1SmiknljYoTlf9SxU0qJxUnKr+p4kRlqjhRmSomlZOKN1ROKiaVqeINlZsqTlSmii8e1lrrkoe11rrkYa21LvnhP1YxqUwVJyonKm9U3KTyhspUMam8oTJVnFRMKjepvKFyk8obFZPKpHKiMlWcVJyoTBWTyonKVHHTw1prXfKw1lqXPKy11iU//MdUpopJ5Q2VqWJSeUNlqnijYlKZKt6omFROKr6o+EJlqrhJ5Y2KLypOVN5QmSomlani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",
+        "qrExpiry": 1749505469749
+      }
+    ]
+  },
+  "6293cdf8-d6b7-4f36-bdd1-a43d51bd90e3": {
+    "_id": "account_shoaiballahbakhsh@gmail.com_6293cdf8-d6b7-4f36-bdd1-a43d51bd90e3",
+    "_rev": "16-7bcef8dd42cb8a9a0e88c691704f7c2f",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_shoaiballahbakhsh@gmail.com_6293cdf8-d6b7-4f36-bdd1-a43d51bd90e3",
+    "nombre": "Muhammad Shoaib",
+    "email": "shoaiballahbakhsh@gmail.com",
+    "password": "QEFwd2E0NDQ1",
+    "role": "user",
+    "bucketCreated": false,
+    "secondFactorAuth": false,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2NvdW50X3Nob2FpYmFsbGFoYmFraHNoQGdtYWlsLmNvbV82MjkzY2RmOC1kNmI3LTRmMzYtYmRkMS1hNDNkNTFiZDkwZTMiLCJlbWFpbCI6InNob2FpYmFsbGFoYmFraHNoQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUwMTI3MzU3LCJleHAiOjE3NTAyMTM3NTd9.jFDZZHi0rlMdShQYaN8-p5hutx1ZwJSR2_OCf4iCgPc",
+    "finishTutorial": true,
+    "phone": "",
+    "countryCode": "+34",
+    "areaCode": "+34",
+    "country": "",
+    "payMethod": [],
+    "plan": "Free",
+    "userDomain": "",
+    "corporativeLogos": [],
+    "signatureImages": [],
+    "selectedSignatureImage": "",
+    "selectedCorporativeLogo": "",
+    "fiscalNumber": "",
+    "currency": "Español",
+    "maxAccount": 0,
+    "language": "English",
+    "selectedCurrency": "Español",
+    "tokenGPT": "",
+    "colorPrimary": "#000000",
+    "colorSecundary": "var(--_10a37f-background)",
+    "billingDetails": "",
+    "automations": [],
+    "auths": []
+  },
+  "dc41eb4e-b092-488e-91c0-4446044fc0cb": {
+    "_id": "account_silvamaxiblas@gmail.com_dc41eb4e-b092-488e-91c0-4446044fc0cb",
+    "_rev": "60-b78db0a709ae4538fe0f59c972c6542e",
+    "email": "silvamaxiblas@gmail.com",
+    "paymentWarningDate": "2025-05-22",
+    "automations": [],
+    "auths": []
+  },
+  "3bf56d8f-2789-4bfa-b938-ef5cb4b2dd53": {
+    "_id": "account_yyeremi15@gmail.com_3bf56d8f-2789-4bfa-b938-ef5cb4b2dd53",
+    "_rev": "61-029c7ca5811b729e1ac7f1bbd781e133",
+    "email": "yyeremi15@gmail.com",
+    "paymentWarningDate": "2025-05-22",
+    "automations": [],
+    "auths": []
+  }
+}

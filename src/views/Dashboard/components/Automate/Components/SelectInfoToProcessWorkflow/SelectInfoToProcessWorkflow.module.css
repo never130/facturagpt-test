@@ -1,0 +1,40 @@
+.infoContainerWrapper {
+    display: flex
+    ;
+        align-items: center;
+        gap: 22px;
+        padding: 0;
+        justify-content: space-between;
+  }
+  
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+  
+    div {
+      color: #1f184b;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  
+    span {
+      color: #1f184b;
+      font-size: 12px;
+      font-weight: 300;
+    }
+  }
+
+  
+  .contentContainer {
+    &.active {
+      display: block;
+    }
+  
+    &.disabled {
+      display: none;
+    }
+  }
+  

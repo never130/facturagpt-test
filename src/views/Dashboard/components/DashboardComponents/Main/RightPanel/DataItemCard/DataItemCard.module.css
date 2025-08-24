@@ -1,0 +1,213 @@
+.dataItemCard {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px;
+}
+
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.headerInfo img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f0f0f0;
+}
+
+.headerInfo h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.headerInfo span {
+  /* display: block; */
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.headerInfo strong {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Tags Container */
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tagItem {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tagItem:hover {
+  transform: scale(1.05);
+}
+
+.tagItem p {
+  margin: 0;
+}
+
+.removeTag {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 2px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.removeTag:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  /* flex-direction: column; */
+  /* gap: 12px; */
+}
+
+.headerInfoText{
+  display: flex;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.buttonContainer button {
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Percentage Container */
+.percentageContainer {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.percentageText {
+  text-align: right;
+  font-size: 12px;
+  color: #6E6E80;
+  margin-bottom: 8px;
+}
+
+.percentageBar {
+  width: 100%;
+  height: 12px;
+  background: #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.percentageFill {
+  height: 100%;
+  background: #10a37f;
+  border-radius: 8px 0 0 8px;
+  transition: width 0.3s ease;
+}
+
+/* Custom Fields */
+.customFields {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.customField {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.customFieldLabel {
+  color: #666;
+  font-weight: 500;
+}
+
+.customFieldValue {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Active Button State */
+.activeBtn {
+  color: #10a37f !important;
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dataItemCard {
+    padding: 12px;
+  }
+  
+  .headerInfo img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .headerInfo h3 {
+    font-size: 14px;
+  }
+  
+  .buttonContainer {
+    width: 100%;
+    gap: 6px;
+  }
+  
+  .buttonContainer button {
+    min-width: 32px;
+    height: 32px;
+  }
+}
+
+
+.docItem{
+  display: flex;
+  align-items: center;
+}
+
+.docFooter{
+  width: 100%;
+  text-align: end;
+}

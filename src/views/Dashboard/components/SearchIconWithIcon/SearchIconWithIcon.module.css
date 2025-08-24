@@ -1,0 +1,113 @@
+.searchContainer {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+.searchInputWrapper {
+  display: flex;
+  align-items: center;
+  background: var(--white-color);
+  height: 30px;
+  min-height: 30px;
+  border: 1px solid var(--ed-background);
+  border-radius: 8px;
+  padding: 0px 8px 0px 2px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  width: 100%;
+  gap: 4px;
+  input{
+    padding: 8px 0px !important;
+    background-color: transparent !important;
+  }
+}
+
+.searchIconsWrappers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: var(--db-background);
+  cursor: pointer;
+  user-select: none;
+  border-radius: 3px;
+}
+
+.searchIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--_67-color);
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  outline: none;
+  color: var(--black);
+}
+
+.searchInput::placeholder {
+  color: var(--_67-color);
+}
+.searchIconsWrappers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: var(--db-background);
+  cursor: pointer;
+  user-select: none;
+  border-radius: 3px;
+}
+
+
+.imageHover {
+  position: relative
+}
+
+.imageHover:hover {
+  .shadowContainer {
+    opacity: 1;
+  }
+}
+
+.shadowContainer {
+  background-color: var(--_00000033-background);
+  transition: all 300ms;
+  width: 25px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 300ms;
+  position: absolute;
+  top: 50%;
+  border-radius: 4px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
+.count{
+  position: absolute;
+  background-color: var(--_292d32-color);
+  color: var(--white-color);
+  padding: 2px 3px;
+  border-radius: 6px;
+  top: -2px;
+  right: 0px;
+  font-size: 7px;
+}

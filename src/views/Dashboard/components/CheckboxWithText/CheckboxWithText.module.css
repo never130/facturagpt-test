@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.checkboxWithTextContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  font-family: "Inter", sans-serif;
+  margin-top: 2px;
+}
+
+.text {
+  color: var(--1e293b-color);
+  font-size: 11px;
+  font-weight: 400;
+}

@@ -1,0 +1,200 @@
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 23px;
+  height: calc(100% - 70px);
+  /* max-height: ; */
+  
+  .content {
+    box-sizing: border-box;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 10px;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 100%;
+    gap: 10px;
+    /* height: 100%; */
+    p,
+    h2 {
+      margin: 0;
+    }
+    .btnContainer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      width: 100%;
+    }
+    .iconContainer {
+      width: 30%;
+      margin: 0 auto;
+      height: 30%;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+
+.stepIndicator{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 30px;
+
+  .stepDot{
+    flex: 1;
+    height: 5px;
+    background-color: #71717a81;
+    border-radius: 4px;
+  }
+  .stepDotActive{
+    background-color: #00000080;
+  }
+}
+
+.Step1Container{
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.green{
+  color: var(--_10a37f-background);
+}
+
+.step1Form{
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 70%;
+  p{
+    margin: 0;
+  }
+  div{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+  }
+  input{
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 10px;
+  }
+}
+.completePersonalInformation{
+  color: #4F5660;
+}
+
+.helpContainer{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #6E6E80;
+}
+
+.helpIcon{
+  fill: #6E6E80;
+  height: 15px;
+  width: 15px;
+}
+
+.Step2Container{
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .youHaveBeenInvitedTo{
+    display: flex;
+    align-items: center;
+    .GreenStarIcon{
+      margin-top: -10px;
+    }
+  }
+.infoUser{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+  .youHaveBeenInvitedTo{
+    font-weight: 700;
+    color: #71717A;
+    strong{
+      color: #2C2C2C;
+    }
+  }
+
+  .hasInvitedYouLike{
+    color: #4F5660;
+  }
+
+  .cancel{
+    color: #666666;
+    cursor: pointer;
+  }
+}
+.Step3Container{
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  span{
+    color: #4F5660;
+  }
+}
+
+.HelpcenterCircleIcon{
+  fill: #222222;
+  color: #222222;
+}
+.Step2YourWorkspaceContainer{
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  h3{
+    margin: 0;
+  }
+  >p{
+    width: 70%;
+    color: #4F5660;
+  }
+}
+
+.howLikeIdentifyYou{
+  width: 70%;
+  color: #4F5660;
+  font-size: 13px;
+  text-align: start;
+}

@@ -1,0 +1,239 @@
+.balanceTotal {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 91px;
+    right: 111px;
+    z-index: 2;
+}
+
+.arrowContainer {
+    display: flex;
+    height: 21.213px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -11px;
+    position: relative;
+    flex-shrink: 0;
+    width: 21.213px;
+}
+
+.arrowIcon {
+    flex: none;
+    transform: rotate(315deg);
+}
+
+.arrowSquare {
+    background-color: #2c2c2c;
+    width: 15px;
+    height: 15px;
+}
+
+.popupContainer {
+    background-color: #2c2c2c;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: -11px;
+    padding: 15px;
+    position: relative;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.mainContentContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 370px;
+}
+
+.detailsContainer {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.detailsInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.detailsList {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
+    width: 100%;
+}
+
+.detailRow {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    align-items: flex-start;
+    justify-content: space-between;
+    line-height: 0;
+    font-style: normal;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    color: #d5d5d5;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.detailRowTotal {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    align-items: flex-start;
+    justify-content: space-between;
+    line-height: 0;
+    font-style: normal;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    color: #ffffff;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.detailLabel {
+    position: relative;
+    flex-shrink: 0;
+    font-size: 15px;
+}
+
+.detailLabelText {
+    display: block;
+    line-height: 26px;
+    white-space: nowrap;
+    white-space: pre;
+}
+
+.detailValue {
+    position: relative;
+    flex-shrink: 0;
+    font-size: 18px;
+    margin: 0px;
+}
+
+.detailValueText {
+    display: block;
+    line-height: 22px;
+    white-space: nowrap;
+    white-space: pre;
+    margin: 0px;
+}
+
+.totalPaymentContainer {
+    background-color: #10a37f;
+    position: relative;
+    border-radius: 10px;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.totalPaymentInner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.totalPaymentContent {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 23px;
+    padding-bottom: 23px;
+    position: relative;
+    width: 100%;
+}
+
+.totalPaymentLabel {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.totalPaymentLabelText {
+    display: block;
+    line-height: 26px;
+    white-space: pre;
+    margin: 0px;
+}
+
+.totalPaymentAmount {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    height: 30px;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #ffffff;
+    font-size: 25px;
+    text-align: left;
+    white-space: nowrap;
+    width: 39.867px;
+}
+
+.totalPaymentAmountNumber {
+    position: absolute;
+    left: 0;
+    right: 57.36%;
+    top: 0;
+}
+
+.totalPaymentAmountCurrency {
+    position: absolute;
+    left: 41.84%;
+    right: -2.04%;
+    top: 0;
+}
+
+.totalPaymentAmountText {
+    display: block;
+    line-height: 28px;
+    white-space: nowrap;
+    white-space: pre;
+}

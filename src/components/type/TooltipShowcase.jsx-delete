@@ -1,0 +1,67 @@
+import React from 'react';
+import PhoneTooltip from './PhoneTooltip';
+import WebTooltip from './WebTooltip';
+import EmailTooltip from './EmailTooltip';
+import LocationTooltip from './LocationTooltip';
+import StatusTooltip from './StatusTooltip';
+import FileTooltip from './FileTooltip';
+import DataTooltip from './DataTooltip';
+import DateTimeTooltip from './DateTimeTooltip';
+import ArrayTooltip from './ArrayTooltip';
+import TagTooltip from './TagTooltip';
+import ChecklistTooltip from './ChecklistTooltip';
+import WorkflowTooltip from './WorkflowTooltip';
+import UserTooltip from './UserTooltip';
+import AssetTooltip from './AssetTooltip';
+import MediaTooltip from './MediaTooltip';
+import RatingTooltip from './RatingTooltip';
+import SpecialTooltip from './SpecialTooltip';
+import styles from './TooltipShowcase.module.css';
+
+const TooltipShowcase = () => {
+  return (
+    <div className={styles.showcaseContainer}>
+      <div className={styles.tooltipGrid}>
+        {/* Basic Contact Tooltips */}
+        <PhoneTooltip className={styles.tooltipWrapper} />
+        <WebTooltip className={styles.tooltipWrapper} />
+        <EmailTooltip className={styles.tooltipWrapper} />
+        <LocationTooltip className={styles.tooltipWrapper} />
+        
+        {/* Data Tooltips */}
+        <DataTooltip className={styles.tooltipWrapper} />
+        <DateTimeTooltip className={styles.tooltipWrapper} />
+        
+        {/* Collection Tooltips */}
+        <ArrayTooltip className={styles.tooltipWrapper} />
+        <TagTooltip className={styles.tooltipWrapper} />
+        <ChecklistTooltip className={styles.tooltipWrapper} />
+        
+        {/* Status and Workflow */}
+        <StatusTooltip className={styles.tooltipWrapper} />
+        <WorkflowTooltip className={styles.tooltipWrapper} />
+        
+        {/* User and Asset Management */}
+        <UserTooltip className={styles.tooltipWrapper} />
+        <AssetTooltip className={styles.tooltipWrapper} />
+        
+        {/* Media and Files */}
+        <FileTooltip className={styles.tooltipWrapper} />
+        <MediaTooltip className={styles.tooltipWrapper} type="chronometer" />
+        <MediaTooltip className={styles.tooltipWrapper} type="recorder" />
+        <MediaTooltip className={styles.tooltipWrapper} type="language" />
+        <MediaTooltip className={styles.tooltipWrapper} type="formula" />
+        
+        {/* Special Types */}
+        <RatingTooltip className={styles.tooltipWrapper} />
+        <SpecialTooltip className={styles.tooltipWrapper} type="unit" />
+        <SpecialTooltip className={styles.tooltipWrapper} type="currency" />
+        <SpecialTooltip className={styles.tooltipWrapper} type="uuid" />
+        <SpecialTooltip className={styles.tooltipWrapper} type="input" />
+        <SpecialTooltip className={styles.tooltipWrapper} type="path" />
+      </div>
+    </div>
+  );
+};
+
+export default TooltipShowcase;

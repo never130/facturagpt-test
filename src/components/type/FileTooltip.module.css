@@ -1,0 +1,106 @@
+.fileItem {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+  height: 44px;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  border-radius: 12px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.fileItemSelected {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.fileContent {
+  flex-basis: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 1px;
+  min-width: 1px;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.fileIconContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.fileIcon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  preserveAspectRatio: none;
+  viewBox: 0 0 18 18;
+}
+
+.fileIconPath {
+  stroke: white;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.fileIconFill {
+  fill: white;
+}
+
+.fileTextIcon svg {
+  viewBox: 0 0 28 28;
+}
+
+.fileTextPath {
+  clip-rule: evenodd;
+  fill: white;
+  fill-rule: evenodd;
+}
+
+.fileLabel {
+  flex-basis: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 1px;
+  min-width: 1px;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.fileExtension {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: left;
+  white-space: nowrap;
+  line-height: 24px;
+}

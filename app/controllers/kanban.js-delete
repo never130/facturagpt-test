@@ -1,0 +1,434 @@
+const { catchedAsync, response } = require('../utils/err')
+const { connectDB } = require('./utils')
+const { v4: uuidv4 } = require('uuid')
+
+const { kanbanGPT } = require('../services/gpt-kanban.js')
+
+async function _createIdeaKanban(req, res) {
+	try {
+		const { token, workspaceId, kanbanId, kanban, text } = req.body
+
+		const userId = req.user._id.split('_').pop()
+
+		let tickets = await kanbanGPT(token, kanban, text)
+
+		if (tickets.error) {
+			return res.status(200).send([])
+		}
+
+		for (let i = 0; i < tickets.length; i++) {
+			let tasks = tickets[i].tasks
+			for (let j = 0; j < tasks.length; j++) {
+				tasks[j] = {
+					...tasks[j],
+					list: [],
+				}
+			}
+
+			tickets[i] = {
+				...tickets[i],
+				description: 'lorem ipsum',
+				tasks: tasks,
+			}
+		}
+
+		return res.status(200).send(tickets)
+	} catch (err) {
+		console.error('err', err)
+		return res.status(200).send(err)
+	}
+}
+
+async function _addKanban(req, res) {
+	const { user } = req
+	const { workspaceId, data } = req.body
+
+	const userId = req.user._id.split('_').pop()
+
+
+	let db_kanban = await connectDB(`db_calendar_kanban_${userId}`)
+
+
+	const resp = await db_kanban.insert(data)
+	data.id = resp.id
+
+	return res.status(200).send(data)
+}
+
+async function _addTicket(req, res) {
+	const { user } = req
+	const { workspaceId, kanbanId, ticket } = req.body
+
+	const userId = req.user._id.split('_').pop()
+
+	try {
+		const db = await connectDB(`db_calendar_kanban_${userId}`)
+
+		const kanbanDoc = await db.get(kanbanId)
+
+		kanbanDoc.tickets = kanbanDoc.tickets || []
+		ticket.id = uuidv4()
+		kanbanDoc.tickets.push(ticket)
+
+		const response = await db.insert(kanbanDoc)
+
+		res.status(200).send(kanbanDoc)
+	} catch (error) {
+		console.error('Error adding ticket:', error)
+		res.status(500).json({
+			success: false,
+			message: 'Failed to add ticket',
+			error: error.message,
+		})
+	}
+}
+
+async function _addTask(req, res) {
+	const { workspaceId, kanbanId, ticketId, task } = req.body
+
+	const userId = req.user._id.split('_').pop()
+
+	try {
+		const db = await connectDB(`db_calendar_kanban_${userId}`)
+
+		const kanbanDoc = await db.get(kanbanId)
+
+		const ticket = kanbanDoc.tickets.find((t) => t.id === ticketId)
+		if (!ticket) {
+			return res
+				.status(404)
+				.json({ success: false, message: 'Ticket not found' })
+		}
+
+		ticket.tasks = ticket.tasks || []
+		task.id = uuidv4()
+		ticket.tasks.push(task)
+
+		const response = await db.insert(kanbanDoc)
+
+		res.status(200).send(kanbanDoc)
+	} catch (error) {
+		console.error('Error adding task:', error)
+		res.status(500).json({
+			success: false,
+			message: 'Failed to add task',
+			error: error.message,
+		})
+	}
+}
+
+async function _updateTicket(req, res) {
+	const { workspaceId, kanbanId, ticketId, updatedTicket } = req.body
+
+	const userId = req.user._id.split('_').pop()
+
+	try {
+		const db = await connectDB(`db_calendar_kanban_${userId}`)
+		const kanbanDoc = await db.get(kanbanId)
+		const ticketIndex = kanbanDoc.tickets.findIndex(
+			(ticket) => ticket.id === ticketId
+		)
+		if (ticketIndex !== -1) {
+			kanbanDoc.tickets[ticketIndex] = {
+				...kanbanDoc.tickets[ticketIndex],
+				...updatedTicket,
+			}
+			await db.insert(kanbanDoc)
+			res.status(200).send(kanbanDoc)
+		} else {
+			res.status(404).send({ message: 'Ticket not found' })
+		}
+	} catch (error) {
+		console.error('Error updating ticket:', error)
+		res.status(500).json({
+			success: false,
+			message: 'Failed to update ticket',
+			error: error.message,
+		})
+	}
+}
+
+async function _updateTask(req, res) {
+	const { workspaceId, kanbanId, ticketId, taskId, updatedTask } = req.body
+
+	const userId = req.user._id.split('_').pop()
+
+	try {
+		const db = await connectDB(`db_calendar_kanban_${userId}`)
+		const kanbanDoc = await db.get(kanbanId)
+		const ticket = kanbanDoc.tickets.find((ticket) => ticket.id === ticketId)
+		if (ticket) {
+			const taskIndex = ticket.tasks.findIndex((task) => task.id === taskId)
+			if (taskIndex !== -1) {
+				ticket.tasks[taskIndex] = { ...ticket.tasks[taskIndex], ...updatedTask }
+				await db.insert(kanbanDoc)
+				res.status(200).send(kanbanDoc)
+			} else {
+				res.status(404).send({ message: 'Task not found' })
+			}
+		} else {
+			res.status(404).send({ message: 'Ticket not found' })
+		}
+	} catch (error) {
+		console.error('Error updating task:', error)
+		res.status(500).json({
+			success: false,
+			message: 'Failed to update task',
+			error: error.message,
+		})
+	}
+}
+
+async function _updateKanban(req, res) {
+	try {
+		const { workspaceId, kanban } = req.body
+
+		const userId = req.user._id.split('_').pop()
+
+		const db_kanban = await connectDB(`db_calendar_kanban_${userId}`)
+
+		const doc = await db_kanban.get(kanban._id)
+
+		Object.assign(doc, kanban)
+		resp = await db_kanban.insert(doc)
+
+		return res.status(200).send(kanban)
+	} catch (err) {
+		console.error('Error on updateKanban', err)
+		return res.status(500).send('Not verify user')
+	}
+}
+
+async function _deleteKanban(req, res) {
+	const { workspaceId, data } = req.body
+
+	const userId = req.user._id.split('_').pop()
+
+	let db_kanban = await connectDB(`db_calendar_kanban_${userId}`)
+
+	const doc = await db_kanban.get(data._id)
+	const response = await db_kanban.destroy(doc._id, doc._rev)
+	return res.status(200).send(data)
+}
+
+async function _deleteTicket(req, res) {
+	const { workspaceId, kanbanId, ticketId } = req.body
+
+	const userId = req.user._id.split('_').pop()
+
+	try {
+		const db = await connectDB(`db_calendar_kanban_${userId}`)
+
+		const kanbanDoc = await db.get(kanbanId)
+
+		kanbanDoc.tickets = kanbanDoc.tickets.filter(
+			(ticket) => ticket.id !== ticketId
+		)
+
+		const response = await db.insert(kanbanDoc)
+
+		res.status(200).send(kanbanDoc)
+	} catch (error) {
+		console.error('Error deleting ticket:', error)
+		res.status(500).json({
+			success: false,
+			message: 'Failed to delete ticket',
+			error: error.message,
+		})
+	}
+}
+
+async function _deleteTask(req, res) {
+	const { workspaceId, kanbanId, ticketId, taskId } = req.body
+
+	const userId = req.user._id.split('_').pop()
+
+	try {
+		const db = await connectDB(`db_calendar_kanban_${userId}`)
+
+		const kanbanDoc = await db.get(kanbanId)
+
+		const ticket = kanbanDoc.tickets.find((t) => t.id === ticketId)
+		if (!ticket) {
+			return res
+				.status(404)
+				.json({ success: false, message: 'Ticket not found' })
+		}
+
+		ticket.tasks = ticket.tasks.filter((task) => task.id !== taskId)
+
+		const response = await db.insert(kanbanDoc)
+
+		res.status(200).send(kanbanDoc)
+	} catch (error) {
+		console.error('Error deleting task:', error)
+		res.status(500).json({
+			success: false,
+			message: 'Failed to delete task',
+			error: error.message,
+		})
+	}
+}
+
+async function _fetchKanban(req, res) {
+	const { workspaceId, kanbanId } = req.body
+
+	const userId = req.user._id.split('_').pop()
+
+	let db_kanban = await connectDB(`db_calendar_kanban_${userId}`)
+	let db_ticket = await connectDB(
+		`db_calendar_kanban_${userId}_${kanbanId}`
+	)
+
+	try {
+		let selector = {
+			_id: kanbanId,
+		}
+
+		const resp = await db_kanban.find({ selector: selector })
+
+		if (resp.docs.length == 0) {
+			return res.status(200).send([])
+		}
+
+		let updatedKanban = { ...resp.docs[0], tickets: resp.docs[0].tickets }
+
+		const updatedTickets = []
+		const tickets = [...updatedKanban.tickets]
+
+		for (let i = 0; i < tickets.length; i++) {
+			let selector = {
+				_id: tickets[i].id,
+			}
+
+			const resp = await db_ticket.find({ selector: selector })
+
+			if (resp.docs.length == 0) {
+			} else {
+				updatedTickets.push({
+					...resp.docs[0],
+					tasks: resp.docs[0].tasks,
+					collaborator: resp.docs[0].collaborator,
+				})
+			}
+		}
+
+		
+		return res.status(200).send({
+			...updatedKanban,
+			tickets: updatedTickets,
+		})
+	} catch (err) {
+		return res.status(200).send([])
+	}
+}
+
+async function _fetchsKanban(req, res) {
+	const { workspaceId, kanbanId, filter = null } = req.body
+
+	const userId = req.user._id.split('_').pop()
+
+	const db_kanban = await connectDB(`db_calendar_kanban_${userId}`)
+
+	let selector = {}
+
+	if (filter) {
+		selector['title'] = { $regex: filter }
+	}
+
+	try {
+		const query = await db_kanban.find({ selector })
+
+		if (query.docs.length === 0) {
+			return res.status(200).send({ kanbans: [], kanban: null })
+		}
+
+		const kanbans = query.docs.map((kanban) => ({
+			...kanban,
+			tickets: kanban.tickets || [],
+			collaborators: kanban.collaborators || [],
+		}))
+
+		const sortedKanbans = kanbans.sort((a, b) => {
+			if (a.title < b.title) {
+				return -1
+			}
+			if (a.title > b.title) {
+				return 1
+			}
+			return 0
+		})
+
+		const updatedKanban = { ...sortedKanbans[0] }
+
+		return res.status(200).send({
+			kanbans: sortedKanbans,
+			kanban: updatedKanban,
+		})
+	} catch (err) {
+		console.error(err)
+		return res.status(500).send({ error: 'Internal Server Error' })
+	}
+}
+	
+const _fetchChat = async (req, res) => {
+	try {
+		const { kanbanId, taskId } = req.params
+
+		const userId = req.user._id.split('_').pop()
+
+		const db_kanban_chat = await connectDB(
+			`db_calendar_kanban_${kanbanId}_${taskId}`
+		)
+
+		const resp_kanban_chat = await db_kanban_chat.find({ selector: {} })
+
+		if (resp_kanban_chat.docs.length == 0) {
+			return res.status(200).send([])
+		}
+
+		return res.status(200).send(resp_kanban_chat.docs)
+	} catch (err) {
+		return res.status(500).send('Not verify user')
+	}
+}
+
+const _addChat = async (req, res) => {
+	try {
+		const { user } = req
+
+		const { kanbanId, taskId, chat } = req.body
+
+		const db_kanban_chat = await connectDB(
+			`db_calendar_kanban_${kanbanId}_${taskId}`
+		)
+
+		await db_kanban_chat.insert(chat)
+
+		return res.status(200).send(chat)
+	} catch (err) {
+		return res.status(500).send('Not verify user')
+	}
+}
+
+module.exports = {
+	createIdeaKanban: catchedAsync(_createIdeaKanban),
+
+	addKanban: catchedAsync(_addKanban),
+	updateKanban: catchedAsync(_updateKanban),
+
+	addTicket: catchedAsync(_addTicket),
+	addTask: catchedAsync(_addTask),
+	updateTicket: catchedAsync(_updateTicket),
+	updateTask: catchedAsync(_updateTask),
+	deleteTicket: catchedAsync(_deleteTicket),
+	deleteTask: catchedAsync(_deleteTask),
+
+	deleteKanban: catchedAsync(_deleteKanban),
+
+	fetchKanban: catchedAsync(_fetchKanban),
+	fetchsKanban: catchedAsync(_fetchsKanban),
+
+	fetchChat: catchedAsync(_fetchChat),
+	addChat: catchedAsync(_addChat),
+}

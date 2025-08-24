@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="ActionRequiredEmail"
+    style="width: 656px; padding: 32px; background: #F5F7FA; flex-direction: column; justify-content: center; align-items: flex-start; ">
+    <div class="ContainerElevated"
+      style="align-self: stretch;  padding: 40px; background: white; border-radius: 3px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 40px; ">
+      <div class="LogoBrand"
+        style="width: 124px;  padding-right: 0.79px; justify-content: center; align-items: flex-start; gap: 7px; display: inline-flex">
+        <img class="Company" style="width: 78.21px; " src="https://business.ay-cloud.com/service/v1/iam/user/{{id}}" />
+      </div>
+      <div class="Header"
+        style="margin-top: 20px;align-self: stretch; color: #222D38; font-size: 24px; font-family: system-ui; font-weight: 700; line-height: 32px; word-wrap: break-word">
+        {{text0}}</div>
+      <div class="MessageCta"
+        style="margin-top: 12px;align-self: stretch;  flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; ">
+        <div class="HiCustomerName"
+          style="align-self: stretch; color: #46586B; font-size: 16px; font-family: system-ui; font-weight: 400; line-height: 24px; word-wrap: break-word">
+          {{text1}}</div>
+        <div class="Text"
+          style="margin-top: 20px; align-self: stretch; color: #46586B; font-size: 16px; font-family: system-ui; font-weight: 400; line-height: 24px; word-wrap: break-word">
+          {{text2}}</div>
+        <div class="StackCardTasks"
+          style="margin-top: 12px;align-self: stretch;flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px;">
+          <div class="ActiveTeamMembers"
+            style="align-self: stretch; color: #222D38; font-size: 20px; font-family: system-ui; font-weight: 700; line-height: 28px; word-wrap: break-word">
+            {{text3}}</div>
+          {{cardTasks}}
+        </div>
+        <div class="ContainerCta"
+          style="margin-top: 20px; align-self: stretch; height: 48px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: flex">
+          <div class="ContainerPrimarySecondary"
+            style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
+            <div class="Button"
+              style="padding-left: 32px; padding-right: 32px; padding-top: 12px; padding-bottom: 12px; background: {{backgroundColor}}; box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.09); border-radius: 3px; justify-content: center; align-items: flex-start; gap: 16px; display: flex">
+              <div class="ButtonText"
+                style="text-align: center; color: white; font-size: 16px; font-family: system-ui; font-weight: 700; line-height: 24px; word-wrap: break-word">
+                {{text11}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{footerHtml}}
+  </div>
+</body>
+
+</html>

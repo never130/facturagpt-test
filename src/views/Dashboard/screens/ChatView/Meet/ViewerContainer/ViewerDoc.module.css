@@ -1,0 +1,714 @@
+/* .container {
+
+}
+
+
+
+.documentCard {
+  background-color: #eff1f4;
+  position: relative;
+  border-radius: 8px 8px 8px 0;
+  max-width: 56rem;
+  margin: 0 auto;
+} */
+
+/* .cardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+} */
+
+.cardContent {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /* padding: 0.4375rem; */
+  position: relative;
+  width: 100%;
+}
+
+.headerSection {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.headerRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.headerContent {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: center;
+  justify-content: flex-start;
+  /* padding: 0.6875rem 0.625rem; */
+  position: relative;
+  width: 100%;
+}
+
+.headerInner {
+  flex-basis: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.875rem;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 1px;
+  min-width: 1px;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.leftContent {
+  flex-basis: 0;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  align-items: center;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.leftInner {
+  flex-basis: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 1px;
+  min-width: 1px;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.titleRow {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.documentIcon {
+  height: 23px;
+  position: relative;
+  flex-shrink: 0;
+  width: 18.4px;
+}
+
+.documentIconSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.titleText {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  height: 23px;
+  justify-content: center;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 20px;
+  text-align: left;
+  color: #09090b;
+  letter-spacing: -0.3px;
+  width: 204px;
+}
+
+.titleTextP {
+  display: block;
+  line-height: 35px;
+  letter-spacing: -0.3px;
+}
+
+.createdInfo {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.5rem 0 0;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.createdText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #99a1af;
+  font-size: 10.5px;
+  text-align: left;
+  width: 317.133px;
+}
+
+.createdTextP {
+  display: block;
+  line-height: 14px;
+}
+
+.categoriesRow {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.125rem 0 0;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.categoryDropdown {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 168.5px;
+  padding: 0.125rem 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.categoryText {
+  flex-basis: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  flex-grow: 1;
+  line-height: 0;
+  min-height: 1px;
+  min-width: 1px;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #717171;
+  font-size: 12px;
+  text-align: left;
+}
+
+.categoryTextP {
+  display: block;
+  line-height: 20px;
+}
+
+.sparkleIcon {
+  height: 15px;
+  position: relative;
+  flex-shrink: 0;
+  width: 13px;
+}
+
+.sparkleIconSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.arrowIcon {
+  position: relative;
+  flex-shrink: 0;
+  width: 11px;
+  height: 11px;
+}
+
+.arrowIconSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.conceptDropdown {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 170px;
+  padding: 0.125rem 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pagadoBadge {
+  background-color: #d0fae5;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+  border-radius: 6.75px;
+  flex-shrink: 0;
+}
+
+.pagadoInner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  height: 0;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.statusIcon {
+  height: 11px;
+  position: relative;
+  flex-shrink: 0;
+  width: 10px;
+  background: var(--_10a37f-background);
+  border-radius: 10px;
+}
+
+.statusIconSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pagadoText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #009f7a;
+  font-size: 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.pagadoTextP {
+  display: block;
+  line-height: 24px;
+  white-space: pre;
+}
+
+.actionButtons {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.buttonRow {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.buttonRowInner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.approveButton {
+  background-color: #10a37f;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.875rem;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 7px 11px;
+  position: relative;
+  border-radius: 6.75px;
+  flex-shrink: 0;
+}
+
+.lockIcon {
+  height: 14px;
+  position: relative;
+  flex-shrink: 0;
+  width: 11px;
+}
+
+.lockIconSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.approveText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #ffffff;
+  font-size: 12.25px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.approveTextP {
+  display: block;
+  line-height: 17.5px;
+  white-space: pre;
+}
+
+.editButton {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 5px 13px;
+  position: relative;
+  border-radius: 6.75px;
+  flex-shrink: 0;
+  width: 80.367px;
+}
+
+.editButtonBorder {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 6.75px;
+}
+
+.editButtonInner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.editIcon {
+  position: relative;
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+}
+
+.editIconSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.editText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 12.25px;
+  text-align: left;
+  color: #0a0a0a;
+  white-space: nowrap;
+}
+
+.editTextP {
+  display: block;
+  line-height: 17.5px;
+  white-space: pre;
+}
+
+.moreButton {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 5.25px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 9.75px;
+  position: relative;
+  border-radius: 6.75px;
+  flex-shrink: 0;
+  width: 33.5px;
+}
+
+.moreButtonBorder {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 6.75px;
+}
+
+.moreIcon {
+  position: relative;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.moreIconSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.etiquetaBadge {
+  background-color: rgba(25, 60, 184, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3px 11px;
+  position: relative;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.etiquetaText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #193cb8;
+  font-size: 12.25px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.etiquetaTextP {
+  display: block;
+  line-height: 17.5px;
+  white-space: pre;
+}
+
+.etiquetaClose {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 5.25px;
+  height: 17.5px;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5px 0;
+  position: relative;
+  border-radius: 6.75px;
+  flex-shrink: 0;
+  width: 7.867px;
+}
+
+.etiquetaCloseText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #193cb8;
+  font-size: 12.25px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.etiquetaCloseTextP {
+  display: block;
+  line-height: 17.5px;
+  white-space: pre;
+}
+
+
+
+.footerInfo {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.footerRow {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  gap: 13px;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: 0;
+  font-style: normal;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+  color: #4a5565;
+  font-size: 12.25px;
+  text-align: left;
+  white-space: nowrap;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.footerItem {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.footerItemP {
+  line-height: 17.5px;
+  white-space: nowrap;
+}
+
+.footerItemLight {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.footerBottomRow {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.stripeBadge {
+  background-color: rgba(93, 98, 243, 0.2);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3px 11px;
+  position: relative;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.stripeIconContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.stripeIcon {
+  height: 12px;
+  position: relative;
+  flex-shrink: 0;
+  width: 29px;
+}
+
+.stripeIconSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.refundText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #9da2a9;
+  font-size: 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.refundTextP {
+  display: block;
+  line-height: 17.5px;
+  white-space: pre;
+}

@@ -1,0 +1,16 @@
+{
+  "save": "Salva",
+  "all": "Tutte",
+  "input": "Ingresso",
+  "output": "Uscita",
+  "addAutomation": "Aggiungi Automazione",
+  "testConnection": "Testa Connessione",
+  "inputAutomations": "Automazioni di Ingresso",
+  "outputAutomations": "Automazioni di Uscita",
+  "thereAreNoAutomationsAvailableInput": "Non ci sono automazioni di tipo ingresso disponibili",
+  "thereAreNoAutomationsAvailableOutput": "Non ci sono automazioni di tipo uscita disponibili",
+  "thereNoAutomationsAvailableType": "Non ci sono automazioni disponibili di questo tipo",
+  "facturaWillAnalyzeData": "FacturaGPT analizzerà automaticamente i dati in modo sicuro",
+  "help": "Aiuto",
+  "automationQuestion": "A cosa serve l'automazione di {{type}}?" 
+}

@@ -1,0 +1,33 @@
+.gridContainer {
+  display: grid;
+  gap: 12px;
+}
+
+.signInOption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  background-color: var(--white-color);
+  width: 100%;
+  border-radius: 6px;
+  height: 30px;
+}
+
+.serverConfigContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  column-gap: 24px;
+}
+
+.dropdownContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownContainer label {
+  font-weight: 700;
+}
+
+

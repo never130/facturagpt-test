@@ -1,0 +1,100 @@
+.scroller {
+  width: 100%;
+  max-width: calc(100vw - 236px);
+  overflow: hidden;
+  position: relative;
+  margin: 10px 0;
+  @media (width<=1128px) {
+    max-width: calc(100vw - 210px);
+  }
+  @media (width<=768px) {
+    max-width: calc(100vw - 0px);
+  }
+}
+
+.scrollerInner {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  svg{
+    fill: var(--black-border);
+  }
+}
+
+.scroller.scrollLeft .scrollerInner {
+  animation: scrollLeft var(--_animation-duration, 40s) linear infinite;
+}
+
+.scroller.scrollRight .scrollerInner {
+  animation: scrollRight var(--_animation-duration, 40s) linear infinite;
+}
+
+.scroller:hover .scrollerInner {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.scroller[data-speed="fast"] {
+  --_animation-duration: 20s;
+}
+
+.scroller[data-speed="slow"] {
+  --_animation-duration: 100s;
+}
+
+.tagList li.hidden {
+  opacity: 0.4;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.tagList {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tagList li {
+  display: flex;
+  padding: 16px;
+  border-radius: 6px;
+  align-items: center;
+  background: var( --f5-background );
+  gap: 10px;
+  cursor: pointer;
+  width: 240px;
+  transition: all 0.3s ease-in-out;
+  color: var(--black);
+  svg{
+    height: 12px;
+    width: 12px;
+    min-width: 12px;
+    min-height: 12px;
+  }
+  img {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.tagList li:hover {
+  background: var(--_00000033-background);
+}

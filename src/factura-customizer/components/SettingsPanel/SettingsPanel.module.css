@@ -1,0 +1,160 @@
+.settingsPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  max-width: 850px;
+  /* margin-left: 8px; */
+  align-items: stretch;
+  overflow-y: auto;
+  max-height: 100%;
+  padding: 10px;
+  -ms-overflow-style: none;
+  overflow-x: visible;
+  min-width: 0;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+.settingsPanel::-webkit-scrollbar {
+  display: none;
+}
+
+.settingsPanelWrapper {
+  position: relative;
+  overflow: visible;
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.qrStyleSection {
+  min-height: 320px;
+}
+
+.logoSection {
+  min-height: fit-content;
+  overflow: visible;
+}
+
+
+
+@media (max-width: 1200px) {
+  .settingsPanel {
+    max-width: 100%;
+    gap: 18px;
+    padding: 16px;
+    overflow-x: visible;
+  }
+}
+
+@media (max-width: 1024px) {
+  .settingsPanel {
+    gap: 16px;
+    padding: 12px;
+    margin-left: 0;
+    overflow-x: visible;
+  }
+
+  .settingsPanelWrapper {
+    overflow: visible;
+    padding: 0;
+  }
+
+  .qrStyleSection {
+    min-height: 280px;
+  }
+
+  .logoSection {
+    overflow: visible;
+  }
+
+
+}
+
+@media (max-width: 768px) {
+  .settingsPanel {
+    max-height: none;
+    overflow: visible;
+    padding: 12px;
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+    gap: 14px;
+    order: 2;
+  }
+  
+  .settingsPanelWrapper {
+    width: 100%;
+    order: 2;
+    flex: none;
+    overflow: visible;
+  }
+
+  .qrStyleSection {
+    min-height: auto;
+  }
+
+  .logoSection {
+    min-height: auto;
+    overflow: visible;
+  }
+
+
+
+
+}
+
+@media (max-width: 600px) {
+  .settingsPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    overflow: visible;
+  }
+
+  .qrStyleSection,
+  .logoSection{
+    width: 100%;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 480px) {
+  .settingsPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow: visible;
+  }
+
+  .qrStyleSection,
+  .logoSection{
+    min-height: auto;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 375px) {
+  .settingsPanel {
+    gap: 8px;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 320px) {
+  .settingsPanel {
+    gap: 6px;
+    overflow: visible;
+  }
+}
+
+.activeSection {
+  flex: 0 0 auto;
+  overflow: visible;
+}

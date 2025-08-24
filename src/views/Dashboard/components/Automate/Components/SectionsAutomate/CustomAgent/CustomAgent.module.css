@@ -1,0 +1,271 @@
+.infoContainerWrapper {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0;
+}
+
+
+.infoContainer {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+
+  div {
+    color: #1f184b;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  span {
+    max-width: 360px;
+    color: #1f184b;
+    font-size: 12px;
+    font-weight: 300;
+  }
+}
+
+.infoContainerFile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  margin: 0px;
+  width: 100%;
+}
+
+
+
+
+.containerAgents {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.customAgentsContainer{
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  background-color: var(--white-color);
+  z-index: 3;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.364);
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.searchContainer {
+  border: 1px solid var(--db-background);
+  border-radius: 5px;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  input {
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  .searchContainerShortcuts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: var(--db-background);
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border-radius: 3px;
+  }
+}
+
+.noResultsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  height: 100%;
+  width: 100%;
+  span {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 12px;
+    font-weight: 300;
+    margin: 0;
+  }
+}
+
+.searchContainerList {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+
+}
+
+.containerListAgents{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.agentItem {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0px;
+  width: 100%;
+  border-bottom: 1px solid #eeeeee;
+
+  &:hover {
+    background: var(--f5-background);
+  }
+
+  .agentItemIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    background: var(--_10a37f-background);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    min-width: 45px;
+    height: 45px;
+    overflow: hidden;
+    img{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      /* border-radius: 50%; */
+    }
+    svg {
+      color: var(--white-color);
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .agentItemInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0px;
+    padding: 0;
+    margin: 0px;
+
+    p {
+      margin: 0px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #292828;
+    }
+
+    span {
+      font-size: 16px;
+      font-weight: 400;
+      color: #7e7e7e;
+    }
+  }
+
+  .agentItemActions {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    margin-left: auto;
+
+    .agentItemActionsInfo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .agentItemActionsItem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0;
+      align-items: flex-end;
+
+      .agentItemActionsItemLabel {
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 0;
+        font-size: 14px;
+        font-weight: 300;
+        background: #cccccc;
+        color: #233f39;
+        border-radius: 5px;
+        padding: 6px;
+        /* height: 20px; */
+        /* width: 20px; */
+        display: flex;
+        /* height: 40px; */
+        /* width: 40px; */
+
+        svg {
+          width: 15px;
+          height: 15px;
+          /* fill: #233f39; */
+          color: #666666;
+        }
+      }
+
+      span {
+        font-size: 12px;
+        font-weight: 300;
+      }
+    }
+  }
+}
+

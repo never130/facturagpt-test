@@ -1,0 +1,76 @@
+.newAgentSection {
+  background-color: var(--white-color);
+  border-radius: 8px;
+  border: 1px solid var(--db-background);
+
+  padding: 20px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.rowHeaderCapacities {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+
+  p {
+    margin: 5px 0;
+  }
+
+  span {
+    color: var(--_67-color);
+  }
+}
+
+.progressWrapper {
+  margin: 16px 0;
+}
+
+.responseTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arrowDown {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}
+
+.parametersInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 300ms;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -ms-transition: all 300ms;
+  -o-transition: all 300ms;
+  overflow: hidden;
+  interpolate-size: allow-keywords;
+
+}
+
+.progressBar {
+  width: 100%;
+  height: 25px;
+  background-color: transparent;
+  border: 1px solid var(--db-background);
+  overflow: hidden;
+  border-radius: 4px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--_10a37f-background);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}

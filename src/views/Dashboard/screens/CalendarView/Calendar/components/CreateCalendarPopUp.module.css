@@ -1,0 +1,66 @@
+.popupContainer {
+	position: relative;
+	width: 350px;
+	border-radius: 8px;
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+	z-index: 900000;
+	gap: 7px;
+}
+.popupTitle {
+	font-size: 20px;
+	color: var(--_374151-color);
+	font-weight: 600;
+}
+
+
+.inputContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.inputField,
+.textArea{
+	width: 100%;
+	padding: 10px;
+	border-radius: 4px;
+	font-size: 14px;
+	background-color: var(--f5-background);
+	outline: none;
+	margin-top: 5px;
+}
+
+.textArea {
+	height: 80px;
+	resize: none;
+	background: var(--f5-background);
+	border: none !important;
+}
+
+.ownerInfo {
+	display: flex;
+	flex-direction: column;
+}
+
+.ownerName {
+	margin-top: 5px;
+	font-size: 14px;
+}
+
+.createButton {
+	background-color: var(--_10a37f-background);
+	color: var(--white-color);
+	border: none;
+	padding: 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: 600;
+	margin-top: 10px;
+	transition: background-color 0.3s ease;
+}
+
+.createButton:hover {
+	background-color: var(--_122521-background);
+}

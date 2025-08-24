@@ -1,0 +1,124 @@
+.volumeSliderContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--f5-background);
+    border: 1px solid var(--db-background);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.sliderContainer {
+    position: relative;
+    width: 100%;
+    height: 60%;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+}
+
+.sliderBackground {
+    position: absolute;
+    height: 100%;
+    background-color: var(--_18181b-color);
+    border-radius: 5px;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.volumeSlider {
+    position: relative;
+    width: 100%;
+    height: 60%;
+    -webkit-appearance: none;
+    background: transparent;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 21px;
+    height: 60%;
+    border-radius: 5px;
+    border: 1px solid var(--db-background);
+    background: var(--ed-background);
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+}
+
+.volumeSlider::-moz-range-thumb {
+    width: 21px;
+    height: 60%;
+    border-radius: 5px;
+    border: 1px solid var(--db-background);
+    background: var(--ed-background);
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+}
+
+
+
+
+.volumeSliderContainerMinimal {
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .sliderContainerMinimal {
+    position: relative;
+    height: 20px;
+    width: 100%;
+  }
+
+  .sliderLineMinimal {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #bebebeaf;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  .sliderActiveLineMinimal {
+    position: absolute;
+    top: 50%;
+    height: 2px;
+    background-color: var(--_292d32-color);
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  .sliderIndicatorMinimal {
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    background-color: var(--f5-background);
+    border: 2px solid var(--_292d32-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    pointer-events: none;
+    cursor: pointer;
+  }
+
+  .nativeSliderMinimal {
+    width: 100%;
+    position: relative;
+    z-index: 4;
+    background: transparent;
+    opacity: 0;
+    cursor: pointer;
+  }

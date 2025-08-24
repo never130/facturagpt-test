@@ -1,0 +1,1501 @@
+.container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Main Timer Container */
+  .timerContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 27px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .timerContainer {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+  
+  /* Left Panel */
+  .leftPanel {
+    background-color: #eff1f4;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    position: relative;
+    border-radius: 8px 8px 0 8px;
+    flex-shrink: 0;
+  }
+  
+  .leftPanelInner {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  /* Header */
+  .header {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .headerIcon {
+    background-color: #10a37f;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 11px;
+    position: relative;
+    border-radius: 12.75px;
+    flex-shrink: 0;
+  }
+  
+  .headerIconFrame {
+    position: relative;
+    flex-shrink: 0;
+    width: 17.5px;
+    height: 17.5px;
+  }
+  
+  .headerIconSvg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .headerTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #101828;
+    font-size: 15.75px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  .headerTitleText {
+    display: block;
+    line-height: 24.5px;
+    white-space: pre;
+  }
+  
+  /* Main Timer Section */
+  .mainTimerSection {
+    basis: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 1px;
+    min-width: 1px;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .timerDisplay {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  /* Circular Timer */
+  .circularTimer {
+    position: relative;
+    border-radius: 50%;
+    flex-shrink: 0;
+    width: 168px;
+    height: 168px;
+  }
+  
+  .circularTimerBorder {
+    position: absolute;
+    border: 2px solid #e5e7eb;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 50%;
+  }
+  
+  .circularTimerGradient {
+    position: absolute;
+    background: linear-gradient(to bottom, #10a37f, rgba(16, 163, 127, 0.62));
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    left: 50%;
+    padding: 4px;
+    border-radius: 50%;
+    top: 2px;
+    transform: translateX(-50%);
+  }
+  
+  .circularTimerGradientBorder {
+    position: absolute;
+    border: 2px solid rgba(0, 0, 0, 0);
+    inset: 0;
+    pointer-events: none;
+    border-radius: 50%;
+  }
+  
+  .circularTimerInner {
+    background-color: #ffffff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 26.789px 60.75px;
+    position: relative;
+    border-radius: 50%;
+    flex-shrink: 0;
+    width: 156.5px;
+    height: 156.5px;
+  }
+  
+  .timerText {
+    height: 35px;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    text-align: left;
+    white-space: nowrap;
+    width: 102.922px;
+  }
+  
+  .timerMainText {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    left: 0;
+    right: -4.93%;
+    color: #101828;
+    font-size: 26.25px;
+    top: -0.25px;
+    letter-spacing: -0.525px;
+  }
+  
+  .timerMainTextSpan {
+    display: block;
+    line-height: 31.5px;
+    white-space: pre;
+  }
+  
+  .timerSubText {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    left: 31.46px;
+    color: #4a5565;
+    font-size: 12.25px;
+    top: 26.75px;
+  }
+  
+  .timerSubTextSpan {
+    display: block;
+    line-height: 17.5px;
+    white-space: pre;
+  }
+  
+  /* Progress Circle */
+  .progressCircle {
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    width: 160px;
+    height: 160px;
+  }
+  
+  .progressCirclePath {
+    position: absolute;
+    inset: 0;
+  }
+  
+  .progressCirclePathSvg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .progressCircleCenter {
+    position: absolute;
+    inset: 37.97% 19.09% 40.16% 16.59%;
+  }
+  
+  .progressCircleCenterText {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 0;
+    left: 0;
+    font-style: normal;
+    right: -5.91%;
+    color: #101828;
+    font-size: 26.25px;
+    text-align: left;
+    white-space: nowrap;
+    top: -0.25px;
+    letter-spacing: -0.525px;
+  }
+  
+  .progressCircleTrail {
+    position: absolute;
+    inset: 0;
+  }
+  
+  .progressCircleTrailInner {
+    position: absolute;
+    bottom: 0;
+    left: 0.06%;
+    right: 0;
+    top: 0.06%;
+  }
+  
+  .progressCircleTrailSvg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Control Buttons */
+  .controlButtons {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 33px;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    .controlButtons {
+      gap: 20px;
+    }
+  }
+  
+  .controlButton {
+    background-color: #ffffff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    position: relative;
+    border-radius: 14px;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .controlButtonPrimary {
+    background-color: #10a37f;
+  }
+  
+  .controlButtonDisabled {
+    background-color: #a7a7a7;
+  }
+  
+  .controlButtonIcon {
+    position: relative;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .controlButtonIconSmall {
+    position: relative;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .playIcon {
+    height: 36px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    width: 40px;
+  }
+  
+  .playIconInner {
+    position: absolute;
+    inset: 13.79% 15.71% 13.73% 24.69%;
+  }
+  
+  .playIconSvg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .pauseIcon {
+    height: 34px;
+    position: relative;
+    flex-shrink: 0;
+    width: 33px;
+  }
+  
+  .pauseIconSvg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Activities Section */
+  .activitiesSection {
+    basis: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 1px;
+    min-width: 1px;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .activitiesTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #6a7282;
+    font-size: 12.25px;
+    text-align: left;
+    width: 61.286px;
+  }
+  
+  .activitiesGrid {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    gap: 7px;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    .activitiesGrid {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+  
+  .activityButton {
+    background-color: #ffffff;
+    height: 40.5px;
+    position: relative;
+    border-radius: 12.75px;
+    flex-shrink: 0;
+    width: 136.5px;
+  }
+  
+  @media (max-width: 480px) {
+    .activityButton {
+      width: 100%;
+    }
+  }
+  
+  .activityButtonBorder {
+    position: absolute;
+    border: 1px solid rgba(229, 231, 235, 0.5);
+    inset: 0;
+    pointer-events: none;
+    border-radius: 12.75px;
+  }
+  
+  .activityButtonContent {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  .activityEmoji {
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .activityEmojiText {
+    display: block;
+    line-height: 17.5px;
+    white-space: pre;
+  }
+  
+  .activityText {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #4a5565;
+    font-size: 12.25px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  .activityTextSpan {
+    display: block;
+    line-height: 17.5px;
+    white-space: pre;
+  }
+  
+  /* Recent Times Section */
+  .recentTimesSection {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 280px;
+  }
+  
+  @media (max-width: 768px) {
+    .recentTimesSection {
+      width: 100%;
+    }
+  }
+  
+  .recentTimesTitle {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 0;
+    font-style: normal;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    color: #6a7282;
+    font-size: 12.25px;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+  }
+  
+  .recentTimesTitleText {
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .recentTimesTitleTextSpan {
+    display: block;
+    line-height: 17.5px;
+    white-space: pre;
+  }
+  
+  .recentTimeItem {
+    background-color: rgba(249, 250, 251, 0.4);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    height: 58px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    position: relative;
+    border-radius: 12.75px;
+    flex-shrink: 0;
+    width: 280px;
+  }
+  
+  @media (max-width: 768px) {
+    .recentTimeItem {
+      width: 100%;
+    }
+  }
+  
+  .recentTimeItemBorder {
+    position: absolute;
+    border: 1px solid rgba(243, 244, 246, 0.5);
+    inset: 0;
+    pointer-events: none;
+    border-radius: 12.75px;
+  }
+  
+  .recentTimeInfo {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .recentTimeActivity {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .recentTimeActivityInfo {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .recentTimeActivityEmoji {
+    position: relative;
+    flex-shrink: 0;
+    color: #4a5565;
+  }
+  
+  .recentTimeActivityText {
+    position: relative;
+    flex-shrink: 0;
+    color: #000000;
+  }
+  
+  .recentTimeLaps {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    height: 17.5px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .recentTimeLapsText {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #71717a;
+    font-size: 12.25px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  .recentTimeValue {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #0a0a0a;
+    font-size: 12.25px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  /* Right Panel */
+  .rightPanel {
+    flex-basis: 0;
+    background-color: #eff1f4;
+    flex-grow: 1;
+    min-height: 1px;
+    min-width: 1px;
+    position: relative;
+    border-radius: 8px 8px 0 8px;
+    flex-shrink: 0;
+  }
+  
+  .rightPanelInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .rightPanelContent {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 7px;
+    position: relative;
+    width: 100%;
+  }
+  
+  /* Header with Save Button */
+  .headerWithSave {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  .headerLeft {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .headerRight {
+    basis: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 1px;
+    min-width: 1px;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .saveButton {
+    background-color: #10a37f;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 24px;
+    position: relative;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  
+  .saveButtonIcon {
+    position: relative;
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+  }
+  
+  .saveButtonIconInner {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+  }
+  
+  .saveButtonText {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #ffffff;
+    font-size: 13px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  .saveButtonTextSpan {
+    display: block;
+    line-height: normal;
+    white-space: pre;
+  }
+  
+  /* Time Selectors */
+  .timeSelectors {
+    height: 157.5px;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  .timeSelectorColumn {
+    position: absolute;
+    bottom: 0;
+    height: 157.5px;
+    transform: translateX(-50%);
+    width: 70px;
+  }
+  
+  .timeSelectorColumnLeft {
+    left: calc(50% - 90.5px);
+  }
+  
+  .timeSelectorColumnCenter {
+    left: calc(50% + 0.5px);
+  }
+  
+  .timeSelectorColumnRight {
+    left: calc(50% + 91.5px);
+  }
+  
+  .timeSelectorLabel {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 0;
+    font-style: normal;
+    color: #6a7282;
+    font-size: 10.5px;
+    text-align: left;
+    white-space: nowrap;
+    top: 0;
+    letter-spacing: 0.2625px;
+    text-transform: uppercase;
+  }
+  
+  .timeSelectorLabelHours {
+    left: calc(50% - 19.148px);
+  }
+  
+  .timeSelectorLabelMinutes {
+    left: calc(50% - 25.578px);
+  }
+  
+  .timeSelectorLabelSeconds {
+    left: calc(50% - 30.789px);
+  }
+  
+  .timeSelectorLabelSpan {
+    display: block;
+    line-height: 14px;
+    white-space: pre;
+  }
+  
+  .timeSelector {
+    position: absolute;
+    height: 133px;
+    left: 50%;
+    top: 24.5px;
+    transform: translateX(-50%);
+    width: 70px;
+  }
+  
+  .timeSelectorInner {
+    position: absolute;
+    backdrop-filter: blur(4px);
+    background-color: rgba(249, 250, 251, 0.8);
+    height: 112px;
+    left: 0;
+    right: 0;
+    border-radius: 14px;
+    top: 0;
+  }
+  
+  .timeSelectorInnerContent {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .timeSelectorValue {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    height: 110px;
+    justify-content: center;
+    line-height: 0;
+    left: 35px;
+    font-style: normal;
+    font-size: 28px;
+    text-align: center;
+    color: #0a0a0a;
+    top: 56px;
+    transform: translateX(-50%) translateY(-50%);
+    width: 68px;
+  }
+  
+  .timeSelectorValueText {
+    display: block;
+    line-height: 42px;
+  }
+  
+  .timeSelectorBorder {
+    position: absolute;
+    border: 1px solid rgba(243, 244, 246, 0.5);
+    inset: 0;
+    pointer-events: none;
+    border-radius: 14px;
+  }
+  
+  .timeSelectorUnit {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 0;
+    font-style: normal;
+    color: #99a1af;
+    font-size: 10.5px;
+    text-align: left;
+    white-space: nowrap;
+    top: 119px;
+  }
+  
+  .timeSelectorUnitHours {
+    left: 45.51%;
+    right: 44.49%;
+  }
+  
+  .timeSelectorUnitMinutes {
+    left: 37.04%;
+    right: 37.24%;
+  }
+  
+  .timeSelectorUnitSeconds {
+    left: 37.02%;
+    right: 37.27%;
+  }
+  
+  .timeSelectorUnitText {
+    display: block;
+    line-height: 14px;
+    white-space: pre;
+  }
+  
+  /* Timer Quick Tags */
+  .quickTagsSection {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  .quickTagsTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #6a7282;
+    font-size: 12.25px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  .quickTagsTitleText {
+    display: block;
+    line-height: 17.5px;
+    white-space: pre;
+  }
+  
+  .quickTagsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 4px;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  .quickTagButton {
+    background-color: rgba(249, 250, 251, 0.6);
+    height: 41px;
+    position: relative;
+    border-radius: 12.75px;
+    flex-shrink: 0;
+    width: 136px;
+  }
+  
+  @media (max-width: 480px) {
+    .quickTagButton {
+      width: calc(50% - 2px);
+    }
+  }
+  
+  .quickTagButtonBorder {
+    position: absolute;
+    border: 1px solid rgba(229, 231, 235, 0.5);
+    inset: 0;
+    pointer-events: none;
+    border-radius: 12.75px;
+  }
+  
+  .quickTagButtonContent {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 0;
+    font-style: normal;
+    color: #4a5565;
+    font-size: 12.25px;
+    text-align: left;
+    white-space: nowrap;
+    top: 11.5px;
+  }
+  
+  .quickTagButtonEmoji {
+    left: calc(50% - 31.414px);
+  }
+  
+  .quickTagButtonText {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 0;
+    left: 41.09%;
+    right: 26.68%;
+    font-style: normal;
+    color: #4a5565;
+    font-size: 12.25px;
+    text-align: left;
+    top: 11.5px;
+  }
+  
+  .quickTagButtonTextSpan {
+    display: block;
+    line-height: 17.5px;
+  }
+  
+  /* Recent Timers */
+  .recentTimersSection {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .recentTimersTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #6a7282;
+    font-size: 12.25px;
+    text-align: left;
+    width: 150.461px;
+  }
+  
+  .recentTimersTitleText {
+    display: block;
+    line-height: 17.5px;
+  }
+  
+  .recentTimersList {
+    height: 188px;
+    position: relative;
+    flex-shrink: 0;
+    width: 279px;
+  }
+  
+  @media (max-width: 768px) {
+    .recentTimersList {
+      width: 100%;
+    }
+  }
+  
+  .recentTimerItem {
+    position: absolute;
+    background-color: rgba(249, 250, 251, 0.4);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    height: 58px;
+    align-items: center;
+    justify-content: space-between;
+    left: 0;
+    padding: 15px;
+    right: 0;
+    border-radius: 12.75px;
+  }
+  
+  .recentTimerItem:nth-child(1) {
+    top: 0;
+  }
+  
+  .recentTimerItem:nth-child(2) {
+    top: 65px;
+  }
+  
+  .recentTimerItem:nth-child(3) {
+    top: 130px;
+  }
+  
+  .recentTimerItemBorder {
+    position: absolute;
+    border: 1px solid rgba(243, 244, 246, 0.5);
+    inset: 0;
+    pointer-events: none;
+    border-radius: 12.75px;
+  }
+  
+  .recentTimerItemInfo {
+    height: 24.5px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .recentTimerItemTime {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 0;
+    left: 0;
+    font-style: normal;
+    color: #101828;
+    font-size: 17.5px;
+    text-align: left;
+    white-space: nowrap;
+    top: calc(50% - 12.25px);
+  }
+  
+  .recentTimerItemTimeText {
+    display: block;
+    line-height: 24.5px;
+    white-space: pre;
+  }
+  
+  .recentTimerItemActivity {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    height: 21px;
+    line-height: 0;
+    font-style: normal;
+    color: #4a5565;
+    text-align: left;
+    white-space: nowrap;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .recentTimerItemActivityEmoji {
+    position: absolute;
+    left: 0;
+    font-size: 14px;
+    top: calc(50% - 10.75px);
+  }
+  
+  .recentTimerItemActivityEmojiText {
+    display: block;
+    line-height: 21px;
+    white-space: pre;
+  }
+  
+  .recentTimerItemActivityText {
+    position: absolute;
+    font-size: 12.25px;
+    top: calc(50% - 8.75px);
+  }
+  
+  .recentTimerItemActivityTextSpan {
+    display: block;
+    line-height: 17.5px;
+    white-space: pre;
+  }
+  
+  .recentTimerPlay {
+    position: relative;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .recentTimerPlaySvg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Laps Section */
+  .lapsSection {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .lapsTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    height: 17.5px;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    color: #6a7282;
+    font-size: 12.25px;
+    text-align: left;
+    white-space: nowrap;
+    width: 280px;
+  }
+  
+  @media (max-width: 768px) {
+    .lapsTitle {
+      width: 100%;
+    }
+  }
+  
+  .lapsTitleText {
+    position: absolute;
+    left: 0;
+    right: 81.43%;
+    top: 0;
+  }
+  
+  .lapsTitleCount {
+    position: absolute;
+    left: 18.6%;
+    right: 78.54%;
+    top: 0;
+  }
+  
+  .lapsTitleClose {
+    position: absolute;
+    left: 21.37%;
+    right: 76.85%;
+    top: 0;
+  }
+  
+  .lapsList {
+    height: 140px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    width: 280px;
+  }
+  
+  @media (max-width: 768px) {
+    .lapsList {
+      width: 100%;
+    }
+  }
+  
+  .lapItem {
+    position: absolute;
+    background-color: rgba(249, 250, 251, 0.4);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    height: 40.5px;
+    align-items: center;
+    justify-content: space-between;
+    left: 0;
+    padding: 11.5px;
+    right: 0;
+    border-radius: 12.75px;
+  }
+  
+  .lapItem:nth-child(1) {
+    top: 0;
+  }
+  
+  .lapItem:nth-child(2) {
+    top: 47.5px;
+    background-color: rgba(240, 253, 244, 0.8);
+  }
+  
+  .lapItem:nth-child(3) {
+    top: 95px;
+  }
+  
+  .lapItem:nth-child(4) {
+    top: 142.5px;
+  }
+  
+  .lapItem:nth-child(5) {
+    top: 190px;
+    background-color: rgba(254, 242, 242, 0.8);
+  }
+  
+  .lapItemBorder {
+    position: absolute;
+    border: 1px solid rgba(243, 244, 246, 0.5);
+    inset: 0;
+    pointer-events: none;
+    border-radius: 12.75px;
+  }
+  
+  .lapItemBorderGreen {
+    border: 1px solid #b9f8cf;
+  }
+  
+  .lapItemBorderRed {
+    border: 1px solid #ffc9c9;
+  }
+  
+  .lapItemInfo {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    height: 17.5px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .lapNumber {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    height: 17.5px;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    font-size: 12.25px;
+    text-align: left;
+    white-space: nowrap;
+    color: #0a0a0a;
+  }
+  
+  .lapNumberGreen {
+    color: #016630;
+  }
+  
+  .lapNumberRed {
+    color: #9f0712;
+  }
+  
+  .lapNumberText {
+    position: absolute;
+    left: 0;
+    top: calc(50% - 8.75px);
+  }
+  
+  .lapNumberTextSpan {
+    display: block;
+    line-height: 17.5px;
+    white-space: pre;
+  }
+  
+  .lapIcon {
+    position: absolute;
+    font-size: 10.5px;
+    top: calc(50% - 7px);
+  }
+  
+  .lapIconText {
+    display: block;
+    line-height: 14px;
+    white-space: pre;
+  }
+  
+  .lapTime {
+    height: 17.5px;
+    line-height: 0;
+    font-style: normal;
+    position: relative;
+    flex-shrink: 0;
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  .lapTimeMain {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    left: 0;
+    font-size: 12.25px;
+    top: calc(50% - 8.75px);
+    color: #0a0a0a;
+  }
+  
+  .lapTimeMainGreen {
+    color: #016630;
+  }
+  
+  .lapTimeMainRed {
+    color: #9f0712;
+  }
+  
+  .lapTimeMainText {
+    display: block;
+    line-height: 17.5px;
+    white-space: pre;
+  }
+  
+  .lapTimeSub {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: #6a7282;
+    font-size: 10.5px;
+    top: calc(50% - 7px);
+  }
+  
+  .lapTimeSubText {
+    display: block;
+    line-height: 14px;
+    white-space: pre;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .mainTimerSection {
+      align-items: center;
+    }
+    
+    .activitiesSection {
+      width: 100%;
+    }
+    
+    .quickTagsSection {
+      width: 100%;
+    }
+    
+    .recentTimersSection {
+      width: 100%;
+    }
+    
+    .timeSelectors {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .circularTimer {
+      width: 140px;
+      height: 140px;
+    }
+    
+    .circularTimerInner {
+      width: 130px;
+      height: 130px;
+      padding: 20px 40px;
+    }
+    
+    .progressCircle {
+      width: 140px;
+      height: 140px;
+    }
+    
+    .timerMainText {
+      font-size: 22px;
+    }
+    
+    .controlButton {
+      width: 50px;
+      height: 50px;
+    }
+  }

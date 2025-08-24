@@ -1,0 +1,1294 @@
+{
+  "4730de8c-be57-419f-b646-5a9bfe0b896f": {
+    "_id": "account_HOLA@ABRAHAMGILSICILIA.COM_4730de8c-be57-419f-b646-5a9bfe0b896f",
+    "_rev": "86-582e0dc70d39450220d6b7bd6fb591f2",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.\nThe number of documents examined is high in proportion to the number of results returned. Consider adding a more specific index to improve this.",
+    "id": "account_HOLA@ABRAHAMGILSICILIA.COM_4730de8c-be57-419f-b646-5a9bfe0b896f",
+    "nombre": "ABRAHAM",
+    "email": "HOLA@ABRAHAMGILSICILIA.COM",
+    "password": "U2ljaWxpYTAw",
+    "role": "user",
+    "bucketCreated": false,
+    "secondFactorAuth": false,
+    "selectedCurrency": "EUR",
+    "automations": [],
+    "auths": []
+  },
+  "49372213-6893-4358-bbfc-086c4af83c10": {
+    "_id": "account__49372213-6893-4358-bbfc-086c4af83c10",
+    "_rev": "34-c4647e5f7046a574cc98364ad8fa4ab8",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account__49372213-6893-4358-bbfc-086c4af83c10",
+    "nombre": "",
+    "email": "",
+    "password": "MTIzNDU2",
+    "role": "user",
+    "bucketCreated": false,
+    "secondFactorAuth": false,
+    "payMethod": [
+      {
+        "id": "pm_1RejaiArbxvCEfvZawjrj4tW",
+        "brand": "mastercard",
+        "last4": "0261",
+        "exp_month": 2,
+        "exp_year": 2031,
+        "country": "ES",
+        "funding": "debit",
+        "type": "creditCard",
+        "createdAt": 1751058828718
+      }
+    ],
+    "billingDetails": [
+      {
+        "_id": "20eff48a-1d85-4e89-9c83-bf7e00dfacfc",
+        "email": "",
+        "zipCode": "0988ok9jimim",
+        "country": "",
+        "facturacion": "facturacion0",
+        "editable": true
+      },
+      {
+        "_id": "8c3e684e-1592-41d7-8a4b-eb3701343790",
+        "email": "",
+        "zipCode": "",
+        "country": ""
+      }
+    ],
+    "selectedCurrency": "EUR",
+    "automations": [],
+    "auths": []
+  },
+  "d0d5167c-e58e-4214-ae23-3e86ebb89fce": {
+    "_id": "account_eclipsisnocte@gmail.com_d0d5167c-e58e-4214-ae23-3e86ebb89fce",
+    "_rev": "6-3ed9aa99df1262b61bff1dcbdd6b3164",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_eclipsisnocte@gmail.com_d0d5167c-e58e-4214-ae23-3e86ebb89fce",
+    "nombre": "",
+    "email": "eclipsisnocte@gmail.com",
+    "password": "TGF1dGFybzE=",
+    "role": "user",
+    "bucketCreated": false,
+    "payMethod": [
+      {
+        "id": "pm_1RZT7YArbxvCEfvZ9m88QhWQ",
+        "brand": "mastercard",
+        "last4": "0261",
+        "exp_month": 2,
+        "exp_year": 2031,
+        "country": "ES",
+        "funding": "debit",
+        "type": "creditCard",
+        "createdAt": 1749803877825
+      }
+    ],
+    "billingDetails": [
+      {
+        "_id": "20eff48a-1d85-4e89-9c83-bf7e00dfacfc",
+        "email": "",
+        "zipCode": "0988ok9jimim",
+        "country": "",
+        "facturacion": "facturacion0",
+        "editable": true
+      },
+      {
+        "_id": "8c3e684e-1592-41d7-8a4b-eb3701343790",
+        "email": "",
+        "zipCode": "",
+        "country": ""
+      }
+    ],
+    "automations": [],
+    "auths": []
+  },
+  "e6e88849-b898-428d-ac1f-39fc2934bf0b": {
+    "_id": "account_eng.carlos.valle@gmail.com_e6e88849-b898-428d-ac1f-39fc2934bf0b",
+    "_rev": "82-4cdda204b462f5727218ace7158dcabc",
+    "email": "eng.carlos.valle@gmail.com",
+    "paymentWarningDate": "2025-05-22",
+    "automations": [],
+    "auths": []
+  },
+  "37e24389-9075-44af-897a-2f198af3a479": {
+    "_id": "account_facturagpt@hsbsa.com_37e24389-9075-44af-897a-2f198af3a479",
+    "_rev": "7-a6b9ba5f2a7785c946f20ac34d95d912",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_facturagpt@hsbsa.com_37e24389-9075-44af-897a-2f198af3a479",
+    "nombre": "hsbsa",
+    "email": "facturagpt@hsbsa.com",
+    "password": "Uyk3MDQxMDk4NjE4Mzh1eg==",
+    "role": "user",
+    "bucketCreated": true,
+    "secondFactorAuth": false,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2NvdW50X2ZhY3R1cmFncHRAaHNic2EuY29tXzM3ZTI0Mzg5LTkwNzUtNDRhZi04OTdhLTJmMTk4YWYzYTQ3OSIsImVtYWlsIjoiZmFjdHVyYWdwdEBoc2JzYS5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc1MTQ2MzQ0MSwiZXhwIjoxNzUxNTQ5ODQxfQ.vk-IS_PWsuo2g7tmGON0SJ2IAo3lgVX45S6Qmf8zG8Q",
+    "finishTutorial": true,
+    "automations": [],
+    "auths": []
+  },
+  "e7430e51-fcf7-4362-8d76-2580e9231ce0": {
+    "_id": "account_facturagpt@serviciospalau.es_e7430e51-fcf7-4362-8d76-2580e9231ce0",
+    "_rev": "4-cc70fc63ec822dfc184ea79715c5ff8b",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_facturagpt@serviciospalau.es_e7430e51-fcf7-4362-8d76-2580e9231ce0",
+    "nombre": "serviciospalau",
+    "email": "facturagpt@serviciospalau.es",
+    "password": "QXl0aGVuMTIzNDUh",
+    "role": "user",
+    "bucketCreated": true,
+    "secondFactorAuth": false,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2NvdW50X2ZhY3R1cmFncHRAc2VydmljaW9zcGFsYXUuZXNfZTc0MzBlNTEtZmNmNy00MzYyLThkNzYtMjU4MGU5MjMxY2UwIiwiZW1haWwiOiJmYWN0dXJhZ3B0QHNlcnZpY2lvc3BhbGF1LmVzIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDk1NDE3NjUsImV4cCI6MTc0OTYyODE2NX0.zK_9xH8iH-wf4U9ceujNWUZV4K3Mz1Bh6Zm6YJ7FdCE",
+    "finishTutorial": true,
+    "automations": [],
+    "auths": []
+  },
+  "4d0e88d7-b4fa-47a0-a292-69f6adce31e4": {
+    "_id": "account_guille.castro5.12@gmail.com_4d0e88d7-b4fa-47a0-a292-69f6adce31e4",
+    "_rev": "1-fb43ad67f3775f31e052859649122a6e",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_guille.castro5.12@gmail.com_4d0e88d7-b4fa-47a0-a292-69f6adce31e4",
+    "nombre": "Guillem ",
+    "email": "guille.castro5.12@gmail.com",
+    "password": "SG9sYUhvbGEy",
+    "role": "user",
+    "bucketCreated": false,
+    "secondFactorAuth": false,
+    "automations": [],
+    "auths": []
+  },
+  "793ebcde-4ef3-4547-a8d8-9aad101ba9aa": {
+    "_id": "account_info@aythen.com_793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+    "_rev": "889-faf07975c5fca02d08e5fb7f9d709fb8",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_info@aythen.com_793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+    "nombre": "Negocioej",
+    "email": "info@aythen.com",
+    "password": "QXl0aGVuMTIzNDUh",
+    "role": "superadmin",
+    "bucketCreated": true,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2NvdW50X2luZm9AYXl0aGVuLmNvbV83OTNlYmNkZS00ZWYzLTQ1NDctYThkOC05YWFkMTAxYmE5YWEiLCJlbWFpbCI6ImluZm9AYXl0aGVuLmNvbSIsInJvbGUiOiJzdXBlcmFkbWluIiwiaWF0IjoxNzU0NTEyMDA4LCJleHAiOjE3NTQ1OTg0MDh9.k8wDo0ZsRoit59RQzxJHnvGQsyDq3hfCB3tCuBA782w",
+    "paymentWarningDate": "2025-05-29",
+    "tokenGPT": "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",
+    "tokenTotal": 1760,
+    "tokenMonth": 5280,
+    "automations": [
+      {
+        "_id": "0843fffb-539a-4399-ad46-ffd4263e3371",
+        "_rev": "3-ff6685a6def6e91af849fcfee0abfa55",
+        "id": "0843fffb-539a-4399-ad46-ffd4263e3371",
+        "userId": "account_info@aythen.com_793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+        "email": "info@aythen.com",
+        "automateName": "",
+        "image": "",
+        "contactType": "",
+        "type": "Google Sheets",
+        "role": "",
+        "available": "",
+        "category": "",
+        "description": "",
+        "folderLocation": "",
+        "includeAllRemitents": "",
+        "subjectExactMatch": "",
+        "bodyExactMatch": "",
+        "attachmentExactMatch": "",
+        "selectedTypes": "",
+        "addedRemitents": "",
+        "subjectKeyWords": "",
+        "bodyKeyWords": "",
+        "emailConnectionData": "",
+        "selectedEmailConnection": "",
+        "fileName": "",
+        "tags": "",
+        "notificateAfterExport": "",
+        "notificateGmail": "",
+        "notificateWhatsApp": "",
+        "gmailTo": "",
+        "gmailSubject": "",
+        "gmailBody": "",
+        "whatsAppToNotificate": "",
+        "whatsAppMessage": "",
+        "totalAmount": {
+          "currency": "",
+          "min": "",
+          "max": ""
+        },
+        "inputType": "",
+        "labels": "",
+        "filesExactMatch": "",
+        "phoneListNotificate": "",
+        "showContentSelectInfoToProcess": {
+          "info1": "",
+          "info2": "",
+          "info3": "",
+          "info4": "",
+          "info5": "",
+          "info6": "",
+          "info7": "",
+          "info8": "",
+          "info9": ""
+        },
+        "showContentImport": "",
+        "showContentExport": "",
+        "shotContentNotification": "",
+        "emailListColab": "",
+        "showContent": {
+          "info1": "",
+          "info2": "",
+          "info3": "",
+          "info4": "",
+          "info5": "",
+          "info6": "",
+          "info7": "",
+          "info8": "",
+          "info9": ""
+        },
+        "actionFrequency": "",
+        "allowAllFileTypes": "",
+        "inputValue": "",
+        "createdAt": "2025-07-14T21:19:06.411Z",
+        "showContentFilterInfoDateKey": {
+          "info9": ""
+        },
+        "selectedActionFrequency": "",
+        "updatedAt": "2025-08-06T14:39:53.449Z",
+        "automateSelected": "",
+        "showContentDataToSync": {
+          "info1": "",
+          "info2": true,
+          "info3": "",
+          "info4": "",
+          "info5": "",
+          "info6": "",
+          "info7": "",
+          "info8": "",
+          "info9": ""
+        },
+        "showAllEndPoints": true,
+        "inputSearchEnpoints": "",
+        "variablesEnpoints": [
+          [
+            {
+              "endpoint": "https://graph.microsoft.com/v1.0/me/drive/items/{id}/workbook/",
+              "method": "POST",
+              "name": "Actualiza un google sheets",
+              "description": "Este método permite actualizar un google sheets. Proporciona acceso directo al archivo solicitado mediante una conexión google sheets segura.",
+              "type": "Google Sheets",
+              "image": "/static/media/excelCircle.f1121d661a78c0ff7b765ef59edc1f77.svg",
+              "editable": true,
+              "data": [
+                {
+                  "type": "character",
+                  "required": true,
+                  "title": "Nombre del documento",
+                  "description": "Inserte el nombre del documento que desea actualizar"
+                },
+                {
+                  "type": "uuid",
+                  "required": true,
+                  "title": "Identificador del documento",
+                  "description": "Inserte el identificador del documento que desea actualizar"
+                },
+                {
+                  "_id": "5f8f8fca-2269-40e6-921f-b759af529b18",
+                  "_rev": "1-a94846247c3f2571d66c68241384b6ff",
+                  "title": "sde",
+                  "description": "xwdefvg",
+                  "category": "global",
+                  "selected": false,
+                  "type": "",
+                  "required": false,
+                  "userId": "account_info@aythen.com_793ebcde-4ef3-4547-a8d8-9aad101ba9aa"
+                }
+              ],
+              "show": true
+            }
+          ]
+        ]
+      },
+      {
+        "_id": "3ed9c5bb-08a2-4a54-8e08-3e80fb05684c",
+        "_rev": "2-f24fcb619552f0ba0168ac63270cb24e",
+        "id": 1,
+        "userId": "account_info@aythen.com_793ebcde-4ef3-4547-a8d8-9aad101ba9aa",
+        "email": "info@aythen.com",
+        "automateName": "Upload your Gmail Documents",
+        "image": "/static/media/gmail.7d6f9b19b127b8d5a5875551437d42d0.svg",
+        "contactType": "example@gmail.com",
+        "type": "Gmail",
+        "role": "input",
+        "available": true,
+        "category": "Importación",
+        "description": "Import attachments with advanced filters.",
+        "allowAllFileTypes": false,
+        "inputValue": "holaaa1",
+        "createdAt": "2025-07-14T21:12:21.625Z",
+        "showContentSelectInfoToProcess": {
+          "info1": false,
+          "info2": false,
+          "info3": false,
+          "info4": false,
+          "info5": false,
+          "info6": false,
+          "info7": false,
+          "info8": false,
+          "info9": true
+        },
+        "labels": [
+          {
+            "name": "Plano de Viviendia",
+            "conditions": [
+              {
+                "title": "Nombre del propietario",
+                "value": "nombrePropietario",
+                "description": "Nombre de la persona propietaria de la vivienda."
+              },
+              {
+                "title": "Número de plano",
+                "value": "numeroPlano",
+                "description": "Número o código identificador asignado al plano."
+              },
+              {
+                "title": "Fecha de emisión",
+                "value": "fechaEmision",
+                "description": "Fecha en que se elaboró o emitió el plano."
+              },
+              {
+                "title": "Escala",
+                "value": "escalaPlano",
+                "description": "Escala gráfica/numeral utilizada para el plano (ejemplo: 1:100)."
+              },
+              {
+                "title": "Firma del arquitecto",
+                "value": "firmaArquitecto",
+                "description": "Espacio o campo donde figura la firma del arquitecto responsable."
+              },
+              {
+                "title": "Colegiado/Registro",
+                "value": "numeroColegiado",
+                "description": "Número de colegiado o registro del profesional que firma el plano."
+              },
+              {
+                "title": "Superficie construida",
+                "value": "superficieConstruida",
+                "description": "Superficie total construida expresada en m²."
+              },
+              {
+                "title": "Superficie útil",
+                "value": "superficieUtil",
+                "description": "Superficie útil de la vivienda expresada en m²."
+              },
+              {
+                "title": "Distribución de espacios",
+                "value": "distribucionEspacios",
+                "description": "Descripción o diagrama de la distribución de las áreas internas."
+              },
+              {
+                "title": "Materiales principales",
+                "value": "materialesPrincipales",
+                "description": "Breve lista o Leyenda de los materiales clave utilizados en la construcción."
+              },
+              {
+                "title": "Leyenda de símbolos",
+                "value": "leyendaSimbolos",
+                "description": "Explicación de los símbolos o iconos usados en el plano."
+              },
+              {
+                "title": "Orientación/Norte",
+                "value": "orientacionNorte",
+                "description": "Indicador de la orientación geográfica; generalmente una flecha con \"Norte\"."
+              },
+              {
+                "title": "Escalas gráficas",
+                "value": "escalasGraficas",
+                "description": "Representación gráfica de la escala en el plano."
+              },
+              {
+                "title": "Localidad/Municipio",
+                "value": "localidadMunicipio",
+                "description": "Nombre de la localidad o municipio donde reside la vivienda."
+              }
+            ],
+            "newCondition": {
+              "title": "",
+              "description": ""
+            },
+            "filters": [
+              {
+                "id": 1752529046909,
+                "conditionCurrency": {
+                  "title": "",
+                  "description": ""
+                },
+                "conditionOperator": "CONTAINS",
+                "conditionValue": "",
+                "type": "Condition",
+                "plainTextLabels": ""
+              }
+            ],
+            "conditionCurrency": {
+              "title": "Nombre del propietario",
+              "value": "nombrePropietario",
+              "description": "Nombre de la persona propietaria de la vivienda."
+            },
+            "updateDate": "2025-07-14T21:37:33.564Z"
+          }
+        ],
+        "updatedAt": "2025-07-14T21:37:38.246Z"
+      }
+    ],
+    "finishTutorial": true,
+    "phone": "",
+    "countryCode": "+34",
+    "areaCode": "+34",
+    "country": "",
+    "plan": "Free",
+    "userDomain": "",
+    "corporativeLogos": [],
+    "signatureImages": [],
+    "selectedSignatureImage": "",
+    "selectedCorporativeLogo": "",
+    "fiscalNumber": "",
+    "currency": "ILS",
+    "language": "Español",
+    "colorPrimary": "#823983ff",
+    "colorSecundary": "#10A37F",
+    "billingDetails": [
+      {
+        "_id": "20eff48a-1d85-4e89-9c83-bf7e00dfacfc",
+        "email": "",
+        "zipCode": "0988ok9jimim",
+        "country": "",
+        "facturacion": "facturacion0",
+        "editable": true
+      },
+      {
+        "_id": "8c3e684e-1592-41d7-8a4b-eb3701343790",
+        "email": "",
+        "zipCode": "",
+        "country": ""
+      }
+    ],
+    "secondFactorAuth": false,
+    "contactTableView": [
+      {
+        "label": "Dirección Física",
+        "key": "companyAddress"
+      },
+      {
+        "label": "Correo",
+        "key": "companyEmail"
+      },
+      {
+        "label": "Teléfono",
+        "key": "companyPhoneNumber"
+      },
+      {
+        "label": "Número Fiscal",
+        "key": "taxNumber"
+      },
+      {
+        "label": "Nombre",
+        "key": "contactName"
+      },
+      {
+        "label": "Métodos de Pago",
+        "key": "cardNumber"
+      },
+      {
+        "label": "Moneda Preferida",
+        "key": "preferredCurrency"
+      },
+      {
+        "label": "Desde",
+        "key": "createdAt"
+      },
+      {
+        "label": "transacciones",
+        "key": "transactions"
+      }
+    ],
+    "stripeCustomerId": "cus_SPOuzKPi5qEcIT",
+    "tableView": {
+      "contacts": [
+        {
+          "label": "Correo",
+          "key": "companyEmail"
+        },
+        {
+          "label": "Teléfono",
+          "key": "companyPhoneNumber"
+        },
+        {
+          "label": "Nombre",
+          "key": "contactName"
+        },
+        {
+          "label": "Dirección Física",
+          "key": "companyAddress"
+        },
+        {
+          "label": "Moneda Preferida",
+          "key": "preferredCurrency"
+        },
+        {
+          "label": "Número Fiscal",
+          "key": "taxNumber"
+        },
+        {
+          "label": "Métodos de Pago",
+          "key": "cardNumber"
+        },
+        {
+          "label": "Desde",
+          "key": "createdAt"
+        },
+        {
+          "label": "transacciones",
+          "key": "transactions"
+        }
+      ],
+      "assets": [
+        {
+          "label": "Código",
+          "key": "code"
+        },
+        {
+          "label": "Nombre o Descripción",
+          "key": "name"
+        },
+        {
+          "label": "Proveedor",
+          "key": "supplier_name"
+        },
+        {
+          "label": "Categoría",
+          "key": "category"
+        },
+        {
+          "label": [
+            "Cantidad",
+            "(Último mes)"
+          ],
+          "key": "quantity"
+        },
+        {
+          "label": "Generado",
+          "key": "generated"
+        },
+        {
+          "label": "Precio máximo",
+          "key": "maxPrice"
+        },
+        {
+          "label": "Precio mínimo",
+          "key": "minPrice"
+        },
+        {
+          "label": "Precio medio",
+          "key": "averagePrice"
+        },
+        {
+          "label": "Desde",
+          "key": "createdAt"
+        }
+      ]
+    },
+    "maxAccount": 0,
+    "selectedCurrency": "ILS",
+    "logicalDeletedAccount": false,
+    "payMethod": [
+      {
+        "id": "pm_1RejaiArbxvCEfvZawjrj4tW",
+        "type": "card",
+        "brand": "mastercard",
+        "last4": "0261",
+        "exp_month": 2,
+        "exp_year": 2031,
+        "country": "ES"
+      }
+    ],
+    "paymentMethod": [
+      {
+        "id": "pm_1RejTiArbxvCEfvZ9aSN9IQn",
+        "type": "card",
+        "brand": "mastercard",
+        "last4": "0261",
+        "exp_month": 2,
+        "exp_year": 2031,
+        "country": "ES"
+      },
+      {
+        "id": "pm_1RejVFArbxvCEfvZ2N8odR5h",
+        "type": "card",
+        "brand": "mastercard",
+        "last4": "0261",
+        "exp_month": 2,
+        "exp_year": 2031,
+        "country": "ES"
+      }
+    ],
+    "payMethods": [
+      {
+        "id": "pm_1RejY5ArbxvCEfvZgSSTUb6R",
+        "type": "card",
+        "brand": "mastercard",
+        "last4": "0261",
+        "exp_month": 2,
+        "exp_year": 2031,
+        "country": "ES"
+      }
+    ],
+    "typePlan": 0,
+    "lastPayment": 0,
+    "speechVoice": "Hombre",
+    "speechLenguage": "",
+    "subscription": [
+      {
+        "keys": {
+          "endpoint": "https://fcm.googleapis.com/fcm/send/cYctprTFnNY:APA91bFFUXfhhcnxxnqxwN7KVsLpc0bl2gxu4xvpvCz9Bv9itMS6R7kNXgzDa-jW6lrcdK4eAK7np7wtqhyjy7Y3OipmB0LDjVdNKrF6jcX0ixuG2BlAAjAlCWMENrpQWQNWcQEkPT3z",
+          "expirationTime": null,
+          "keys": {
+            "p256dh": "BBjEG8wAbixOdacbcqyi9_zvXDsjG50bLewC4mYmDu7R6epJ3tphg_Lb7Pk47WL_0aefxGfmhbPZyNp8bdjCfic",
+            "auth": "1hEd2sLKcsYSpIdk0A45Xg"
+          }
+        },
+        "deviceInfo": {
+          "type": "Desktop",
+          "brand": "Windows",
+          "browser": "Chrome"
+        }
+      }
+    ],
+    "selectedWorkspace": "6e6b6ac5-7651-4156-987b-3ddbeeb87168",
+    "auths": []
+  },
+  "c6fff15b-5412-4b37-8b94-c49dcc9d3fb3": {
+    "_id": "account_juanjosehuertas.dev@gmail.com_c6fff15b-5412-4b37-8b94-c49dcc9d3fb3",
+    "_rev": "10-83e00a9b63c7697a326f01be2a28966f",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.\nThe number of documents examined is high in proportion to the number of results returned. Consider adding a more specific index to improve this.",
+    "id": "account_juanjosehuertas.dev@gmail.com_c6fff15b-5412-4b37-8b94-c49dcc9d3fb3",
+    "nombre": "juan",
+    "email": "juanjosehuertas.dev@gmail.com",
+    "password": "SjEyMzQ1Njc4OTBq",
+    "role": "user",
+    "bucketCreated": true,
+    "secondFactorAuth": false,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2NvdW50X2p1YW5qb3NlaHVlcnRhcy5kZXZAZ21haWwuY29tX2M2ZmZmMTViLTU0MTItNGIzNy04Yjk0LWM0OWRjYzlkM2ZiMyIsImVtYWlsIjoianVhbmpvc2VodWVydGFzLmRldkBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc1NDU0MDI4OCwiZXhwIjoxNzU0NjI2Njg4fQ.9uLtiNEMBhHcGSxsZAf8_SHRIvS6_fDE2cnEqasKbKQ",
+    "finishTutorial": true,
+    "selectedWorkspace": "445ef673-ee8c-4e52-8050-f372af21abca",
+    "phone": "",
+    "countryCode": "+34",
+    "areaCode": "+34",
+    "country": "",
+    "payMethod": [],
+    "plan": "Free",
+    "userDomain": "",
+    "corporativeLogos": [],
+    "signatureImages": [],
+    "selectedSignatureImage": "",
+    "selectedCorporativeLogo": "",
+    "fiscalNumber": "",
+    "currency": "EUR",
+    "maxAccount": 0,
+    "typePlan": 0,
+    "lastPayment": 0,
+    "language": "Español",
+    "selectedCurrency": "EUR",
+    "tokenGPT": "",
+    "billingDetails": "",
+    "speechVoice": "",
+    "speechLenguage": "",
+    "automations": [],
+    "auths": []
+  },
+  "64efe4a1-f1a6-456c-8bac-4dbf232ff5cc": {
+    "_id": "account_luisfeliperodrigo30@gmail.com_64efe4a1-f1a6-456c-8bac-4dbf232ff5cc",
+    "_rev": "1-d9d7522259119deb4ec85cb8a1095d5b",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.\nThe number of documents examined is high in proportion to the number of results returned. Consider adding a more specific index to improve this.",
+    "id": "account_luisfeliperodrigo30@gmail.com_64efe4a1-f1a6-456c-8bac-4dbf232ff5cc",
+    "nombre": "lui",
+    "email": "luisfeliperodrigo30@gmail.com",
+    "password": "QFBhc3N3b3JkMTIzNDM=",
+    "role": "user",
+    "bucketCreated": false,
+    "secondFactorAuth": false,
+    "automations": [],
+    "auths": []
+  },
+  "53e7dcd8-3319-4f39-a17d-d8defa27b415": {
+    "_id": "account_narcis.clavell@gmail.com_53e7dcd8-3319-4f39-a17d-d8defa27b415",
+    "_rev": "45-bc7de6bb056f929fb5c61e3ac6313638",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_narcis.clavell@gmail.com_53e7dcd8-3319-4f39-a17d-d8defa27b415",
+    "nombre": "User",
+    "email": "narcis.clavell@gmail.com",
+    "password": "SG9sYTEyMyE=",
+    "role": "user",
+    "bucketCreated": true,
+    "secondFactorAuth": false,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2NvdW50X25hcmNpcy5jbGF2ZWxsQGdtYWlsLmNvbV81M2U3ZGNkOC0zMzE5LTRmMzktYTE3ZC1kOGRlZmEyN2I0MTUiLCJlbWFpbCI6Im5hcmNpcy5jbGF2ZWxsQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU0NTAyNjMwLCJleHAiOjE3NTQ1ODkwMzB9.eG7mq5llwl4GkYjoyx5V_7tpKEXyjTwzbhM4hpz_DF0",
+    "finishTutorial": true,
+    "automations": [
+      {
+        "_id": "2f59f3d2-c75d-4eac-8b1d-2c11603c6e0d",
+        "_rev": "1-c39508b54c1a11e6af15641ba2289f72",
+        "id": 1,
+        "userId": "account_narcis.clavell@gmail.com_53e7dcd8-3319-4f39-a17d-d8defa27b415",
+        "email": "narcis.clavell@gmail.com",
+        "automateName": "Sube tus Documentos de Gmail",
+        "image": "/static/media/gmail.7d6f9b19b127b8d5a5875551437d42d0.svg",
+        "contactType": "example@gmail.com",
+        "type": "Gmail",
+        "role": "input",
+        "available": true,
+        "category": "Importación",
+        "description": "Importa adjuntos con filtros avanzados.",
+        "folderLocation": "",
+        "includeAllRemitents": "",
+        "subjectExactMatch": "",
+        "bodyExactMatch": "",
+        "attachmentExactMatch": "",
+        "selectedTypes": "",
+        "addedRemitents": "",
+        "subjectKeyWords": "",
+        "bodyKeyWords": "",
+        "emailConnectionData": "",
+        "selectedEmailConnection": "",
+        "fileName": "",
+        "tags": "",
+        "notificateAfterExport": "",
+        "notificateGmail": "",
+        "notificateWhatsApp": "",
+        "gmailTo": "",
+        "gmailSubject": "",
+        "gmailBody": "",
+        "whatsAppToNotificate": "",
+        "whatsAppMessage": "",
+        "totalAmount": {
+          "currency": "",
+          "min": "",
+          "max": ""
+        },
+        "inputType": "",
+        "labels": "",
+        "filesExactMatch": "",
+        "phoneListNotificate": "",
+        "showContentSelectInfoToProcess": "",
+        "showContentImport": "",
+        "showContentExport": "",
+        "shotContentNotification": "",
+        "emailListColab": "",
+        "showContent": {
+          "info1": "",
+          "info2": "",
+          "info3": "",
+          "info4": "",
+          "info5": "",
+          "info6": "",
+          "info7": "",
+          "info8": "",
+          "info9": ""
+        },
+        "actionFrequency": "",
+        "allowAllFileTypes": "",
+        "createdAt": "2025-07-05T18:47:19.215Z"
+      },
+      {
+        "_id": "4c99111e-2d35-47c6-9930-55867540c75e",
+        "_rev": "1-fe419c87256d6dc7f4149c27e7b4f0a9",
+        "id": 1,
+        "userId": "account_narcis.clavell@gmail.com_53e7dcd8-3319-4f39-a17d-d8defa27b415",
+        "email": "narcis.clavell@gmail.com",
+        "automateName": "Sube tus Documentos de Gmail",
+        "image": "/static/media/gmail.7d6f9b19b127b8d5a5875551437d42d0.svg",
+        "contactType": "example@gmail.com",
+        "type": "Gmail",
+        "role": "input",
+        "available": true,
+        "category": "Importación",
+        "description": "Importa adjuntos con filtros avanzados.",
+        "folderLocation": "",
+        "includeAllRemitents": "",
+        "subjectExactMatch": "",
+        "bodyExactMatch": "",
+        "attachmentExactMatch": "",
+        "selectedTypes": "",
+        "addedRemitents": "",
+        "subjectKeyWords": "",
+        "bodyKeyWords": "",
+        "emailConnectionData": "",
+        "selectedEmailConnection": "",
+        "fileName": "",
+        "tags": "",
+        "notificateAfterExport": "",
+        "notificateGmail": "",
+        "notificateWhatsApp": "",
+        "gmailTo": "",
+        "gmailSubject": "",
+        "gmailBody": "",
+        "whatsAppToNotificate": "",
+        "whatsAppMessage": "",
+        "totalAmount": {
+          "currency": "",
+          "min": "",
+          "max": ""
+        },
+        "inputType": "",
+        "labels": "",
+        "filesExactMatch": "",
+        "phoneListNotificate": "",
+        "showContentSelectInfoToProcess": "",
+        "showContentImport": "",
+        "showContentExport": "",
+        "shotContentNotification": "",
+        "emailListColab": "",
+        "showContent": {
+          "info1": "",
+          "info2": "",
+          "info3": "",
+          "info4": "",
+          "info5": "",
+          "info6": "",
+          "info7": "",
+          "info8": "",
+          "info9": ""
+        },
+        "actionFrequency": "",
+        "allowAllFileTypes": "",
+        "inputValue": "sksnkas",
+        "createdAt": "2025-07-01T22:10:19.809Z"
+      },
+      {
+        "_id": "8c8aad80-f233-45e0-aa36-3e9d1af5789e",
+        "_rev": "1-c664a69b2946507a12a9f7c6f3e2b051",
+        "id": 1,
+        "userId": "account_narcis.clavell@gmail.com_53e7dcd8-3319-4f39-a17d-d8defa27b415",
+        "email": "narcis.clavell@gmail.com",
+        "automateName": "Sube tus Documentos de Gmail",
+        "image": "/static/media/gmail.7d6f9b19b127b8d5a5875551437d42d0.svg",
+        "contactType": "example@gmail.com",
+        "type": "Gmail",
+        "role": "input",
+        "available": true,
+        "category": "Importación",
+        "description": "Importa adjuntos con filtros avanzados.",
+        "folderLocation": "",
+        "includeAllRemitents": "",
+        "subjectExactMatch": "",
+        "bodyExactMatch": "",
+        "attachmentExactMatch": "",
+        "selectedTypes": "",
+        "addedRemitents": "",
+        "subjectKeyWords": "",
+        "bodyKeyWords": "",
+        "emailConnectionData": "",
+        "selectedEmailConnection": "",
+        "fileName": "",
+        "tags": "",
+        "notificateAfterExport": "",
+        "notificateGmail": "",
+        "notificateWhatsApp": "",
+        "gmailTo": "",
+        "gmailSubject": "",
+        "gmailBody": "",
+        "whatsAppToNotificate": "",
+        "whatsAppMessage": "",
+        "totalAmount": {
+          "currency": "",
+          "min": "",
+          "max": ""
+        },
+        "inputType": "",
+        "labels": "",
+        "filesExactMatch": "",
+        "phoneListNotificate": "",
+        "showContentSelectInfoToProcess": "",
+        "showContentImport": "",
+        "showContentExport": "",
+        "shotContentNotification": "",
+        "emailListColab": "",
+        "showContent": {
+          "info1": "",
+          "info2": "",
+          "info3": "",
+          "info4": "",
+          "info5": "",
+          "info6": "",
+          "info7": "",
+          "info8": "",
+          "info9": ""
+        },
+        "actionFrequency": "",
+        "allowAllFileTypes": "",
+        "inputValue": "ejdnkjd",
+        "createdAt": "2025-07-01T22:07:56.773Z"
+      },
+      {
+        "_id": "b687f285-6c70-4a69-a3fc-5b6f925e916a",
+        "_rev": "1-c40682ab37e2a8a4bdf380d7ab5d2133",
+        "id": "b687f285-6c70-4a69-a3fc-5b6f925e916a",
+        "userId": "account_narcis.clavell@gmail.com_53e7dcd8-3319-4f39-a17d-d8defa27b415",
+        "email": "narcis.clavell@gmail.com",
+        "automateName": "Sube tus Documentos de Gmail",
+        "image": "/static/media/gmail.7d6f9b19b127b8d5a5875551437d42d0.svg",
+        "contactType": "example@gmail.com",
+        "type": "Gmail",
+        "role": "input",
+        "available": true,
+        "category": "Importación",
+        "description": "Importa adjuntos con filtros avanzados.",
+        "folderLocation": "",
+        "includeAllRemitents": "",
+        "subjectExactMatch": "",
+        "bodyExactMatch": "",
+        "attachmentExactMatch": "",
+        "selectedTypes": "",
+        "addedRemitents": "",
+        "subjectKeyWords": "",
+        "bodyKeyWords": "",
+        "emailConnectionData": "",
+        "selectedEmailConnection": "",
+        "fileName": "",
+        "tags": "",
+        "notificateAfterExport": "",
+        "notificateGmail": "",
+        "notificateWhatsApp": "",
+        "gmailTo": "",
+        "gmailSubject": "",
+        "gmailBody": "",
+        "whatsAppToNotificate": "",
+        "whatsAppMessage": "",
+        "totalAmount": {
+          "currency": "",
+          "min": "",
+          "max": ""
+        },
+        "inputType": "",
+        "labels": "",
+        "filesExactMatch": "",
+        "phoneListNotificate": "",
+        "showContentSelectInfoToProcess": "",
+        "showContentImport": "",
+        "showContentExport": "",
+        "shotContentNotification": "",
+        "emailListColab": "",
+        "showContent": {
+          "info1": "",
+          "info2": "",
+          "info3": "",
+          "info4": "",
+          "info5": "",
+          "info6": "",
+          "info7": "",
+          "info8": "",
+          "info9": ""
+        },
+        "actionFrequency": "",
+        "allowAllFileTypes": "",
+        "inputValue": "edbwend ",
+        "createdAt": "2025-07-04T21:10:44.480Z"
+      },
+      {
+        "_id": "bfa26271-d660-4bb4-9752-e338396aae76",
+        "_rev": "1-f03f9abc64e900f3f20f7620d4a557cb",
+        "id": "bfa26271-d660-4bb4-9752-e338396aae76",
+        "userId": "account_narcis.clavell@gmail.com_53e7dcd8-3319-4f39-a17d-d8defa27b415",
+        "email": "narcis.clavell@gmail.com",
+        "automateName": "Actualiza tu Google Sheets",
+        "image": "/static/media/excelCircle.f1121d661a78c0ff7b765ef59edc1f77.svg",
+        "contactType": "Título de la hoja.xls",
+        "type": "Google Sheets",
+        "role": "output",
+        "available": true,
+        "category": "Archivos",
+        "description": "Exporta los datos a una hoja de cálculo",
+        "selectedGoogleSheetsConnection": "",
+        "googleSheetsConnectionData": "",
+        "sheetId": "",
+        "sheetTitle": "",
+        "generalConfiguration": {},
+        "notificateAfterCreatingRow": "",
+        "notificateGmail": "",
+        "notificateWhatsApp": "",
+        "gmailTo": "",
+        "gmailSubject": "",
+        "gmailBody": "",
+        "whatsAppToNotificate": "",
+        "whatsAppMessage": "",
+        "inputType": "",
+        "allowAllFileTypes": "",
+        "inputValue": "djdwj",
+        "createdAt": "2025-07-04T21:10:08.551Z"
+      },
+      {
+        "_id": "e0c29c2f-0ed7-47c1-80df-06441f354e7b",
+        "_rev": "1-7198fc8dc3c83ce4306304cd321ae505",
+        "id": "e0c29c2f-0ed7-47c1-80df-06441f354e7b",
+        "userId": "account_narcis.clavell@gmail.com_53e7dcd8-3319-4f39-a17d-d8defa27b415",
+        "email": "narcis.clavell@gmail.com",
+        "type": "Gmail",
+        "folderLocation": "",
+        "includeAllRemitents": "",
+        "subjectExactMatch": "",
+        "bodyExactMatch": "",
+        "attachmentExactMatch": "",
+        "selectedTypes": "",
+        "addedRemitents": "",
+        "subjectKeyWords": "",
+        "bodyKeyWords": "",
+        "emailConnectionData": "",
+        "selectedEmailConnection": "",
+        "fileName": "",
+        "tags": "",
+        "notificateAfterExport": "",
+        "notificateGmail": "",
+        "notificateWhatsApp": "",
+        "gmailTo": "",
+        "gmailSubject": "",
+        "gmailBody": "",
+        "whatsAppToNotificate": "",
+        "whatsAppMessage": "",
+        "totalAmount": {
+          "currency": "",
+          "min": "",
+          "max": ""
+        },
+        "inputType": "",
+        "labels": "",
+        "filesExactMatch": "",
+        "phoneListNotificate": "",
+        "showContentSelectInfoToProcess": "",
+        "showContentImport": "",
+        "showContentExport": "",
+        "shotContentNotification": "",
+        "emailListColab": "",
+        "showContent": {
+          "info1": "",
+          "info2": "",
+          "info3": "",
+          "info4": "",
+          "info5": "",
+          "info6": "",
+          "info7": "",
+          "info8": "",
+          "info9": ""
+        },
+        "actionFrequency": "",
+        "allowAllFileTypes": "",
+        "inputValue": "auto prueba 1",
+        "createdAt": "2025-06-22T12:35:20.577Z"
+      },
+      {
+        "_id": "f40255a0-ba48-41a7-8fa7-5d7e7aa046ae",
+        "_rev": "1-44cde5a4b1b61bdd0f5d7d75aa84515a",
+        "id": "f40255a0-ba48-41a7-8fa7-5d7e7aa046ae",
+        "userId": "account_narcis.clavell@gmail.com_53e7dcd8-3319-4f39-a17d-d8defa27b415",
+        "email": "narcis.clavell@gmail.com",
+        "automateName": "Recibe archivos de WhatsApp",
+        "image": "/static/media/whatsappIcon.063f41f0b86098c3ba0bf9a5bb1e8f54.svg",
+        "contactType": "+00000000",
+        "type": "WhatsApp",
+        "role": "input",
+        "available": true,
+        "category": "Importación",
+        "description": "Importa los archivos enviados por el chat de WhatsApp",
+        "phoneNumber": "",
+        "folderLocation": "",
+        "selectedWhatsAppConnection": "",
+        "whatsAppConnectionData": "",
+        "phoneNumbers": "",
+        "notificateAfterExport": "",
+        "notificateGmail": "",
+        "notificateWhatsApp": "",
+        "gmailTo": "",
+        "gmailSubject": "",
+        "gmailBody": "",
+        "whatsAppMessage": "",
+        "inputType": "",
+        "showContent": {
+          "info1": "",
+          "info2": "",
+          "info3": "",
+          "info4": "",
+          "info5": "",
+          "info6": "",
+          "info7": "",
+          "info8": "",
+          "info9": ""
+        },
+        "actionFrequency": "",
+        "inputValue": "wdjijdk",
+        "createdAt": "2025-07-01T22:07:12.294Z"
+      }
+    ],
+    "auths": [],
+    "phone": "",
+    "countryCode": "+34",
+    "areaCode": "+34",
+    "country": "",
+    "payMethod": [],
+    "plan": "Free",
+    "userDomain": "",
+    "corporativeLogos": [],
+    "signatureImages": [],
+    "selectedSignatureImage": "",
+    "selectedCorporativeLogo": "",
+    "fiscalNumber": "",
+    "currency": "Español",
+    "maxAccount": 0,
+    "language": "English",
+    "selectedCurrency": "Español",
+    "tokenGPT": "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",
+    "colorPrimary": "#000000",
+    "colorSecundary": "#10A37F",
+    "billingDetails": "",
+    "typePlan": 0,
+    "lastPayment": 0,
+    "speechVoice": "",
+    "speechLenguage": "",
+    "subscription": [
+      {
+        "keys": {
+          "endpoint": "https://fcm.googleapis.com/fcm/send/c0o235S4xmE:APA91bHabC_rHTkr-UEqszDyDkm7PgbE0PEIVmeSJDS1I4rd5y1gUfjJ9-QPOZye0ZkvHj0WxG6LXpJSXYO6SLu7h0IcOxVfVs6qE42pUASEDp0wg2QNjrWMCA8L4Aa1LE3ohWwlT36p",
+          "expirationTime": null,
+          "keys": {
+            "p256dh": "BBfZJW4aSl9g32rP2XqNtQGziMwm86cHjQ-xJrcLQcOAJAVmc8oYfyu7IwV1ksW0-5EMSg0OzM-KPEeynOSMAzM",
+            "auth": "T6IDuhj5NS7MxLylg43EtQ"
+          }
+        },
+        "deviceInfo": {
+          "type": "Desktop",
+          "brand": "Mac",
+          "browser": "Chrome"
+        }
+      }
+    ]
+  },
+  "d2ab08f8-3cc2-4652-8918-d794fbb5a243": {
+    "_id": "account_pyautoemail000@gmail.com_d2ab08f8-3cc2-4652-8918-d794fbb5a243",
+    "_rev": "1-a0d767b802516d71be4b9d5aac0db004",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.\nThe number of documents examined is high in proportion to the number of results returned. Consider adding a more specific index to improve this.",
+    "id": "account_pyautoemail000@gmail.com_d2ab08f8-3cc2-4652-8918-d794fbb5a243",
+    "nombre": "juan",
+    "email": "pyautoemail000@gmail.com",
+    "password": "SjEyMzQ1Njc4OTBq",
+    "role": "user",
+    "bucketCreated": false,
+    "secondFactorAuth": false,
+    "automations": [],
+    "auths": []
+  },
+  "6293cdf8-d6b7-4f36-bdd1-a43d51bd90e3": {
+    "_id": "account_shoaiballahbakhsh@gmail.com_6293cdf8-d6b7-4f36-bdd1-a43d51bd90e3",
+    "_rev": "16-7bcef8dd42cb8a9a0e88c691704f7c2f",
+    "docs": [],
+    "bookmark": "nil",
+    "warning": "No matching index found, create an index to optimize query time.",
+    "id": "account_shoaiballahbakhsh@gmail.com_6293cdf8-d6b7-4f36-bdd1-a43d51bd90e3",
+    "nombre": "Muhammad Shoaib",
+    "email": "shoaiballahbakhsh@gmail.com",
+    "password": "QEFwd2E0NDQ1",
+    "role": "user",
+    "bucketCreated": false,
+    "secondFactorAuth": false,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2NvdW50X3Nob2FpYmFsbGFoYmFraHNoQGdtYWlsLmNvbV82MjkzY2RmOC1kNmI3LTRmMzYtYmRkMS1hNDNkNTFiZDkwZTMiLCJlbWFpbCI6InNob2FpYmFsbGFoYmFraHNoQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUwMTI3MzU3LCJleHAiOjE3NTAyMTM3NTd9.jFDZZHi0rlMdShQYaN8-p5hutx1ZwJSR2_OCf4iCgPc",
+    "finishTutorial": true,
+    "phone": "",
+    "countryCode": "+34",
+    "areaCode": "+34",
+    "country": "",
+    "payMethod": [],
+    "plan": "Free",
+    "userDomain": "",
+    "corporativeLogos": [],
+    "signatureImages": [],
+    "selectedSignatureImage": "",
+    "selectedCorporativeLogo": "",
+    "fiscalNumber": "",
+    "currency": "Español",
+    "maxAccount": 0,
+    "language": "English",
+    "selectedCurrency": "Español",
+    "tokenGPT": "",
+    "colorPrimary": "#000000",
+    "colorSecundary": "#10A37F",
+    "billingDetails": "",
+    "automations": [],
+    "auths": []
+  },
+  "dc41eb4e-b092-488e-91c0-4446044fc0cb": {
+    "_id": "account_silvamaxiblas@gmail.com_dc41eb4e-b092-488e-91c0-4446044fc0cb",
+    "_rev": "60-b78db0a709ae4538fe0f59c972c6542e",
+    "email": "silvamaxiblas@gmail.com",
+    "paymentWarningDate": "2025-05-22",
+    "automations": [],
+    "auths": []
+  },
+  "3bf56d8f-2789-4bfa-b938-ef5cb4b2dd53": {
+    "_id": "account_yyeremi15@gmail.com_3bf56d8f-2789-4bfa-b938-ef5cb4b2dd53",
+    "_rev": "65-3bfcbfc4bcebd07b9e83074617f92f25",
+    "email": "yyeremi15@gmail.com",
+    "paymentWarningDate": "2025-05-22",
+    "password": "RG9nZWxpZmUxN3I=",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2NvdW50X3l5ZXJlbWkxNUBnbWFpbC5jb21fM2JmNTZkOGYtMjc4OS00YmZhLWI5MzgtZWY1Y2I0YjJkZDUzIiwiZW1haWwiOiJ5eWVyZW1pMTVAZ21haWwuY29tIiwiaWF0IjoxNzUzNDAzMjM2LCJleHAiOjE3NTM0ODk2MzZ9.QJndXnwRsFPYZNdRPrmYIVb3eygCL3eUCbDJrWc-NCA",
+    "bucketCreated": true,
+    "automations": [],
+    "auths": []
+  },
+  "fe4351a3778b3700f6fee5cb7c4c5fe6": {
+    "_id": "fe4351a3778b3700f6fee5cb7c4c5fe6",
+    "_rev": "1-215a28037fe526c9199dc81f9c249d11",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/etfPFnNjEQo:APA91bFOcWWDkCGumTUx_INd_lQH6sfKiDtxooJLGqveDSEM_HLr1V3Qm9EXFKr2LlbjFswhyqppZvpc0wbHhth1C5_Koyo6VbxNz6UOZ3Drlf0G73_myebv4vyh4YNHDnXaDpTLzN5-",
+    "expirationTime": null,
+    "keys": {
+      "p256dh": "BLymBmzsrbqz9g5yDU5rSRGfWM6lom_wdggcgS5M0WIu9R5cSCNUSUERnzk8zeIwc9eqXrcxTA2M9zVDZqPknVw",
+      "auth": "sJHDYYxgxzCwty727CUpqA"
+    },
+    "automations": [],
+    "auths": []
+  },
+  "fe4351a3778b3700f6fee5cb7c4c63fd": {
+    "_id": "fe4351a3778b3700f6fee5cb7c4c63fd",
+    "_rev": "1-215a28037fe526c9199dc81f9c249d11",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/etfPFnNjEQo:APA91bFOcWWDkCGumTUx_INd_lQH6sfKiDtxooJLGqveDSEM_HLr1V3Qm9EXFKr2LlbjFswhyqppZvpc0wbHhth1C5_Koyo6VbxNz6UOZ3Drlf0G73_myebv4vyh4YNHDnXaDpTLzN5-",
+    "expirationTime": null,
+    "keys": {
+      "p256dh": "BLymBmzsrbqz9g5yDU5rSRGfWM6lom_wdggcgS5M0WIu9R5cSCNUSUERnzk8zeIwc9eqXrcxTA2M9zVDZqPknVw",
+      "auth": "sJHDYYxgxzCwty727CUpqA"
+    },
+    "automations": [],
+    "auths": []
+  },
+  "fe4351a3778b3700f6fee5cb7c4c7168": {
+    "_id": "fe4351a3778b3700f6fee5cb7c4c7168",
+    "_rev": "1-215a28037fe526c9199dc81f9c249d11",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/etfPFnNjEQo:APA91bFOcWWDkCGumTUx_INd_lQH6sfKiDtxooJLGqveDSEM_HLr1V3Qm9EXFKr2LlbjFswhyqppZvpc0wbHhth1C5_Koyo6VbxNz6UOZ3Drlf0G73_myebv4vyh4YNHDnXaDpTLzN5-",
+    "expirationTime": null,
+    "keys": {
+      "p256dh": "BLymBmzsrbqz9g5yDU5rSRGfWM6lom_wdggcgS5M0WIu9R5cSCNUSUERnzk8zeIwc9eqXrcxTA2M9zVDZqPknVw",
+      "auth": "sJHDYYxgxzCwty727CUpqA"
+    },
+    "automations": [],
+    "auths": []
+  }
+}

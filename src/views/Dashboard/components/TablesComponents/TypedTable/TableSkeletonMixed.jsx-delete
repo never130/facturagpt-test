@@ -1,0 +1,463 @@
+import React, { useState, useEffect } from 'react';
+import './TableSkeleton.module.css';
+
+const TableSkeletonMixed = ({ 
+  skeletonConfig, 
+  onCellClick, 
+  onFormulaApply,
+  isAnimating = true 
+}) => {
+  const [animationPhase, setAnimationPhase] = useState(0);
+  const [selectedCell, setSelectedCell] = useState(null);
+  const [formulaMode, setFormulaMode] = useState(false);
+  const [hoveredCell, setHoveredCell] = useState(null);
+  const [loadingState, setLoadingState] = useState('loading');
+  const [activeTable, setActiveTable] = useState('table1');
+
+  // Configuración por defecto para tablas mezcladas
+  const config = skeletonConfig || {
+    rows: 8,
+    columns: 6,
+    headers: ['Tabla 1', 'Tabla 2', 'Datos Nuevos', 'Skeleton 1', 'Skeleton 2', 'Skeleton 3'],
+    formulas: {
+      '0,2': { type: 'sum', source: ['0,0', '0,1'], color: '#ff6b6b', description: 'Suma Tabla 1 + Tabla 2' },
+      '1,2': { type: 'sum', source: ['1,0', '1,1'], color: '#ff6b6b', description: 'Suma Tabla 1 + Tabla 2' },
+      '2,2': { type: 'sum', source: ['2,0', '2,1'], color: '#ff6b6b', description: 'Suma Tabla 1 + Tabla 2' },
+      '3,2': { type: 'sum', source: ['3,0', '3,1'], color: '#ff6b6b', description: 'Suma Tabla 1 + Tabla 2' },
+      '4,2': { type: 'sum', source: ['4,0', '4,1'], color: '#ff6b6b', description: 'Suma Tabla 1 + Tabla 2' },
+      '5,2': { type: 'sum', source: ['5,0', '5,1'], color: '#ff6b6b', description: 'Suma Tabla 1 + Tabla 2' },
+      '6,2': { type: 'sum', source: ['6,0', '6,1'], color: '#ff6b6b', description: 'Suma Tabla 1 + Tabla 2' },
+      '7,2': { type: 'sum', source: ['7,0', '7,1'], color: '#ff6b6b', description: 'Suma Tabla 1 + Tabla 2' },
+      '7,3': { type: 'average', source: ['0,2', '1,2', '2,2', '3,2', '4,2', '5,2', '6,2', '7,2'], color: '#4ecdc4', description: 'Promedio de Datos Nuevos' }
+    },
+    connections: [
+      { from: '0,0', to: '0,2', type: 'sum' },
+      { from: '0,1', to: '0,2', type: 'sum' },
+      { from: '1,0', to: '1,2', type: 'sum' },
+      { from: '1,1', to: '1,2', type: 'sum' },
+      { from: '2,0', to: '2,2', type: 'sum' },
+      { from: '2,1', to: '2,2', type: 'sum' },
+      { from: '3,0', to: '3,2', type: 'sum' },
+      { from: '3,1', to: '3,2', type: 'sum' },
+      { from: '4,0', to: '4,2', type: 'sum' },
+      { from: '4,1', to: '4,2', type: 'sum' },
+      { from: '5,0', to: '5,2', type: 'sum' },
+      { from: '5,1', to: '5,2', type: 'sum' },
+      { from: '6,0', to: '6,2', type: 'sum' },
+      { from: '6,1', to: '6,2', type: 'sum' },
+      { from: '7,0', to: '7,2', type: 'sum' },
+      { from: '7,1', to: '7,2', type: 'sum' },
+      { from: '0,2', to: '7,3', type: 'average' },
+      { from: '1,2', to: '7,3', type: 'average' },
+      { from: '2,2', to: '7,3', type: 'average' },
+      { from: '3,2', to: '7,3', type: 'average' },
+      { from: '4,2', to: '7,3', type: 'average' },
+      { from: '5,2', to: '7,3', type: 'average' },
+      { from: '6,2', to: '7,3', type: 'average' },
+      { from: '7,2', to: '7,3', type: 'average' }
+    ]
+  };
+
+  // Efecto de animación del gradiente
+  useEffect(() => {
+    if (!isAnimating) return;
+    
+    const interval = setInterval(() => {
+      setAnimationPhase(prev => (prev + 1) % 360);
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [isAnimating]);
+
+  // Efecto de simulación de carga
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingState('loaded');
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleCellClick = (rowIndex, colIndex) => {
+    const cellKey = `${rowIndex},${colIndex}`;
+    setSelectedCell(cellKey);
+    
+    if (onCellClick) {
+      onCellClick(rowIndex, colIndex, cellKey);
+    }
+  };
+
+  const handleFormulaClick = (formula) => {
+    setFormulaMode(true);
+    if (onFormulaApply) {
+      onFormulaApply(formula);
+    }
+  };
+
+  const getCellStyle = (rowIndex, colIndex) => {
+    const cellKey = `${rowIndex},${colIndex}`;
+    const formula = config.formulas[cellKey];
+    const isSelected = selectedCell === cellKey;
+    const isHovered = hoveredCell === cellKey;
+    
+    let baseStyle = {
+      position: 'relative',
+      border: '1px solid #e0e0e0',
+      padding: '16px 12px',
+      textAlign: 'center',
+      cursor: 'pointer',
+      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+      minHeight: '70px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'white',
+      overflow: 'hidden'
+    };
+
+    // Estilos específicos por columna (tabla)
+    if (colIndex === 0) {
+      // Tabla 1 - Azul
+      baseStyle = {
+        ...baseStyle,
+        background: loadingState === 'loading' 
+          ? `linear-gradient(90deg, #e3f2fd 25%, #bbdefb 50%, #e3f2fd 75%)`
+          : 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)',
+        backgroundSize: loadingState === 'loading' ? '200% 100%' : '100% 100%',
+        animation: loadingState === 'loading' ? 'skeletonShimmer 1.5s infinite' : 'none',
+        borderColor: '#2196f3'
+      };
+    } else if (colIndex === 1) {
+      // Tabla 2 - Verde
+      baseStyle = {
+        ...baseStyle,
+        background: loadingState === 'loading' 
+          ? `linear-gradient(90deg, #e8f5e8 25%, #c8e6c9 50%, #e8f5e8 75%)`
+          : 'linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%)',
+        backgroundSize: loadingState === 'loading' ? '200% 100%' : '100% 100%',
+        animation: loadingState === 'loading' ? 'skeletonShimmer 1.5s infinite' : 'none',
+        borderColor: '#4caf50'
+      };
+    } else if (colIndex === 2) {
+      // Datos Nuevos - Naranja
+      baseStyle = {
+        ...baseStyle,
+        background: loadingState === 'loading' 
+          ? `linear-gradient(90deg, #fff3e0 25%, #ffcc80 50%, #fff3e0 75%)`
+          : 'linear-gradient(135deg, #fff3e0 0%, #ffcc80 100%)',
+        backgroundSize: loadingState === 'loading' ? '200% 100%' : '100% 100%',
+        animation: loadingState === 'loading' ? 'skeletonShimmer 1.5s infinite' : 'none',
+        borderColor: '#ff9800'
+      };
+    } else {
+      // Skeleton columns - Gris
+      baseStyle = {
+        ...baseStyle,
+        background: loadingState === 'loading' 
+          ? `linear-gradient(90deg, #f5f5f5 25%, #e0e0e0 50%, #f5f5f5 75%)`
+          : 'linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)',
+        backgroundSize: loadingState === 'loading' ? '200% 100%' : '100% 100%',
+        animation: loadingState === 'loading' ? 'skeletonShimmer 1.5s infinite' : 'none',
+        borderColor: '#9e9e9e'
+      };
+    }
+
+    if (formula) {
+      baseStyle = {
+        ...baseStyle,
+        background: `linear-gradient(135deg, ${formula.color}15, ${formula.color}25, ${formula.color}15)`,
+        border: `2px solid ${formula.color}`,
+        fontWeight: '600',
+        boxShadow: `0 4px 20px ${formula.color}30`
+      };
+    } else if (isSelected) {
+      baseStyle = {
+        ...baseStyle,
+        background: 'linear-gradient(135deg, #667eea, #764ba2)',
+        color: 'white',
+        transform: 'scale(1.02)',
+        boxShadow: '0 8px 25px rgba(102, 126, 234, 0.4)',
+        zIndex: 10
+      };
+    } else if (isHovered) {
+      baseStyle = {
+        ...baseStyle,
+        transform: 'translateY(-2px)',
+        boxShadow: '0 6px 20px rgba(0,0,0,0.1)',
+        zIndex: 5
+      };
+    }
+
+    return baseStyle;
+  };
+
+  const renderConnectionLines = () => {
+    return config.connections.map((connection, index) => {
+      const [fromRow, fromCol] = connection.from.split(',').map(Number);
+      const [toRow, toCol] = connection.to.split(',').map(Number);
+      
+      return (
+        <svg
+          key={index}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',
+            zIndex: 1
+          }}
+        >
+          <defs>
+            <linearGradient id={`gradient-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#667eea" stopOpacity="0.4">
+                <animate
+                  attributeName="stop-opacity"
+                  values="0.4;0.8;0.4"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
+              </stop>
+              <stop offset="100%" stopColor="#764ba2" stopOpacity="0.4">
+                <animate
+                  attributeName="stop-opacity"
+                  values="0.4;0.8;0.4"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
+              </stop>
+            </linearGradient>
+          </defs>
+          <line
+            x1={`${(fromCol + 0.5) * (100 / config.columns)}%`}
+            y1={`${(fromRow + 0.5) * (100 / config.rows)}%`}
+            x2={`${(toCol + 0.5) * (100 / config.columns)}%`}
+            y2={`${(toRow + 0.5) * (100 / config.rows)}%`}
+            stroke={`url(#gradient-${index})`}
+            strokeWidth="2"
+            strokeDasharray="6,6"
+            opacity="0.6"
+          >
+            <animate
+              attributeName="stroke-dashoffset"
+              values="0;-12"
+              dur="1.5s"
+              repeatCount="indefinite"
+            />
+          </line>
+        </svg>
+      );
+    });
+  };
+
+  // Datos simulados para mostrar en la tabla
+  const getSimulatedData = (rowIndex, colIndex) => {
+    // Datos para Tabla 1 (columna 0)
+    const table1Data = ['Producto A', 'Producto B', 'Producto C', 'Producto D', 'Producto E', 'Producto F', 'Producto G', 'Producto H'];
+    const table1Values = [150, 230, 180, 320, 190, 280, 210, 350];
+    
+    // Datos para Tabla 2 (columna 1)
+    const table2Data = ['Servicio X', 'Servicio Y', 'Servicio Z', 'Servicio W', 'Servicio V', 'Servicio U', 'Servicio T', 'Servicio S'];
+    const table2Values = [120, 200, 160, 280, 170, 250, 190, 310];
+    
+    // Datos para Datos Nuevos (columna 2) - resultado de suma
+    const newDataValues = table1Values.map((val, idx) => val + table2Values[idx]);
+    
+    switch(colIndex) {
+      case 0: // Tabla 1
+        return loadingState === 'loading' ? null : (
+          <div>
+            <div style={{ fontWeight: 'bold', color: '#1976d2' }}>{table1Data[rowIndex]}</div>
+            <div style={{ fontSize: '14px', color: '#2196f3' }}>${table1Values[rowIndex]}</div>
+          </div>
+        );
+      case 1: // Tabla 2
+        return loadingState === 'loading' ? null : (
+          <div>
+            <div style={{ fontWeight: 'bold', color: '#388e3c' }}>{table2Data[rowIndex]}</div>
+            <div style={{ fontSize: '14px', color: '#4caf50' }}>${table2Values[rowIndex]}</div>
+          </div>
+        );
+      case 2: // Datos Nuevos
+        return loadingState === 'loading' ? null : (
+          <div>
+            <div style={{ fontWeight: 'bold', color: '#f57c00' }}>Total</div>
+            <div style={{ fontSize: '14px', color: '#ff9800' }}>${newDataValues[rowIndex]}</div>
+          </div>
+        );
+      default: // Skeleton columns
+        return null;
+    }
+  };
+
+  const renderSkeletonContent = (rowIndex, colIndex) => {
+    if (loadingState === 'loading') {
+      const skeletonCount = colIndex >= 3 ? Math.floor(Math.random() * 3) + 2 : 1; // Mínimo 2 skeleton en columnas 3+
+      return (
+        <div className="skeleton-content">
+          {Array.from({ length: skeletonCount }, (_, i) => (
+            <div 
+              key={i}
+              className="skeleton-line" 
+              style={{ 
+                width: `${Math.random() * 40 + 60}%`, 
+                height: `${Math.random() * 4 + 8}px`,
+                marginBottom: i < skeletonCount - 1 ? '4px' : '0'
+              }}
+            ></div>
+          ))}
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const renderCell = (rowIndex, colIndex) => {
+    const cellKey = `${rowIndex},${colIndex}`;
+    const formula = config.formulas[cellKey];
+    const simulatedData = getSimulatedData(rowIndex, colIndex);
+    
+    return (
+      <td
+        key={`${rowIndex}-${colIndex}`}
+        style={getCellStyle(rowIndex, colIndex)}
+        onClick={() => handleCellClick(rowIndex, colIndex)}
+        onMouseEnter={() => setHoveredCell(cellKey)}
+        onMouseLeave={() => setHoveredCell(null)}
+        data-formula={formula ? "true" : "false"}
+        className={`table-cell ${formula ? 'formula-cell' : 'data-cell'}`}
+      >
+        {loadingState === 'loading' ? (
+          renderSkeletonContent(rowIndex, colIndex)
+        ) : formula ? (
+          <div className="formula-content">
+            <div className="formula-value">
+              {simulatedData}
+            </div>
+            <div className="formula-type">
+              {formula.type.toUpperCase()}
+            </div>
+            <div className="formula-description">
+              {formula.description}
+            </div>
+            {/* <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleFormulaClick(formula);
+              }}
+              className="formula-button"
+            >
+              Aplicar
+            </button> */}
+          </div>
+        ) : (
+          <div className="cell-content">
+            {simulatedData}
+          </div>
+        )}
+      </td>
+    );
+  };
+
+  return (
+    <div className="table-skeleton-container">
+      <div className="table-skeleton-header">
+        <div className="header-content">
+          <h3>Tablas Mezcladas con Skeleton</h3>
+          <p>Visualiza cómo se combinan datos de diferentes tablas con skeleton en las columnas restantes</p>
+        </div>
+        <div className="header-controls">
+          <div className="table-selector">
+            <button
+              onClick={() => setActiveTable('table1')}
+              className={`table-btn ${activeTable === 'table1' ? 'active' : ''}`}
+              style={{ background: activeTable === 'table1' ? '#2196f3' : '#e3f2fd', color: activeTable === 'table1' ? 'white' : '#1976d2' }}
+            >
+              Tabla 1
+            </button>
+            <button
+              onClick={() => setActiveTable('table2')}
+              className={`table-btn ${activeTable === 'table2' ? 'active' : ''}`}
+              style={{ background: activeTable === 'table2' ? '#4caf50' : '#e8f5e8', color: activeTable === 'table2' ? 'white' : '#388e3c' }}
+            >
+              Tabla 2
+            </button>
+          </div>
+          <button
+            onClick={() => setFormulaMode(!formulaMode)}
+            className={`formula-toggle ${formulaMode ? 'active' : ''}`}
+          >
+            {formulaMode ? 'Ocultar Fórmulas' : 'Mostrar Fórmulas'}
+          </button>
+          <div className="loading-indicator">
+            {loadingState === 'loading' && (
+              <div className="loading-spinner"></div>
+            )}
+          </div>
+        </div>
+      </div>
+      
+      <div className="table-wrapper">
+        {renderConnectionLines()}
+        <table className="table-skeleton">
+          <thead>
+            <tr>
+              {config.headers.map((header, index) => (
+                <th key={index} className="skeleton-header">
+                  <div className="header-content">
+                    {loadingState === 'loading' ? (
+                      <div className="skeleton-line" style={{ width: '80%', height: '16px' }}></div>
+                    ) : (
+                      <div style={{ 
+                        color: index === 0 ? '#1976d2' : 
+                               index === 1 ? '#388e3c' : 
+                               index === 2 ? '#f57c00' : '#9e9e9e',
+                        fontWeight: 'bold'
+                      }}>
+                        {header}
+                      </div>
+                    )}
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: config.rows }, (_, rowIndex) => (
+              <tr key={rowIndex} className={`table-row ${rowIndex % 2 === 0 ? 'even' : 'odd'}`}>
+                {Array.from({ length: config.columns }, (_, colIndex) => 
+                  renderCell(rowIndex, colIndex)
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      
+      {formulaMode && (
+        <div className="formula-panel">
+          <h4>Fórmulas Disponibles para Probar</h4>
+          <div className="formula-list">
+            {Object.entries(config.formulas).map(([cellKey, formula]) => (
+              <div key={cellKey} className="formula-item">
+                <span className="formula-cell-badge">{cellKey}</span>
+                <span className="formula-type-badge">{formula.type}</span>
+                <span className="formula-source">{formula.source.join(' + ')}</span>
+                <span className="formula-description-text">{formula.description}</span>
+                <button
+                  onClick={() => handleFormulaClick(formula)}
+                  className="test-formula-btn"
+                >
+                  Probar Fórmula
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default TableSkeletonMixed; 

@@ -1,0 +1,74 @@
+.colorPaletteContainer {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	position: relative;
+	width: 55px;
+}
+
+.colorPaletteContainer:hover {
+	background-color: var(--_073f31-color);
+	border-radius: 8px;
+}
+
+.colorPalettePopup {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	background-color: var(--white-color);
+	border-radius: 8px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+	z-index: 10;
+}
+
+.colorOption {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	padding: 2px;
+	border-radius: 50%;
+}
+
+.colorOption:hover {
+	background-color: var(--_073f31-color);
+	border-radius: 50%;
+}
+.dot {
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+}
+.checkIcon {
+	position: absolute;
+	color: var(--white-color);
+	font-size: 14px;
+}
+
+.tooltip {
+	position: absolute;
+	top: -30px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #333;
+	color: var(--white-color);
+	padding: 4px 8px;
+	border-radius: 4px;
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+.arrow {
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 4px solid #666;
+	margin-left: 8px;
+	transition: transform 0.2s ease-in-out;
+}

@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+.inputWithTitleContainer {
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+}
+
+.inputTitle {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+
+.inputContainer {
+  border-radius: 3px;
+  display: flex;
+  font-family: "Inter", sans-serif;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--f5-background);
+  padding: 8px;
+  box-sizing: border-box;
+
+}
+
+.inputWithTitle {
+  outline: none;
+  border: none;
+  font-family: "Inter", sans-serif !important;
+  width: 100%;
+  background: transparent;
+  &::placeholder {
+    font-size: 13px;
+    font-weight: 300 !important;
+  }
+}
+
+.inputWithTitle::-webkit-inner-spin-button,
+.inputWithTitle::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

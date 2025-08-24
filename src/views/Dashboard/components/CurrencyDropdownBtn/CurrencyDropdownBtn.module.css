@@ -1,0 +1,29 @@
+.currencyContainer {
+  color: #264f88;
+  font-weight: bold;
+  border-bottom: 2px solid #264f88;
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  width: fit-content;
+  div {
+    gap: 5px;
+  }
+  span {
+    color: #264f88;
+  }
+}
+
+.currencyDropdownButton {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.chevronIcon {
+  margin-top: 3px;
+}

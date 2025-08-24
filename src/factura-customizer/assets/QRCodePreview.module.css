@@ -1,0 +1,12 @@
+.qrCodeWrapper {
+  margin-bottom: 16px; 
+}
+
+.activeStylesContainer {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 8px; 
+  padding: 0 10px; 
+}

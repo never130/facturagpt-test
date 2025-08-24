@@ -1,0 +1,123 @@
+.ContactAssetNavigation {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    scroll-behavior: smooth;
+
+    .deleteContact {
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      color: #dc3545;
+      gap: 7px;
+      font-family: Inter;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16.9px;
+      cursor: pointer;
+
+      .icon {
+        display: flex;
+        padding: 5px;
+        align-items: center;
+        gap: 10px;
+        border-radius: 200px;
+        background: #ededed;
+      }
+    }
+
+    .parameters {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      cursor: pointer;
+      color: var(--black);
+      svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      span {
+        color: var(--_67-color);
+      }
+    }
+    .searchIconsWrappers {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      background: var(--db-background);
+      cursor: pointer;
+      user-select: none;
+      border-radius: 3px;
+    }
+    .parametersContainer {
+      transition: all 300ms;
+      -webkit-transition: all 300ms;
+      -moz-transition: all 300ms;
+      -ms-transition: all 300ms;
+      -o-transition: all 300ms;
+      overflow: hidden;
+      interpolate-size: allow-keywords;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      ul {
+        li {
+          text-decoration: none;
+          color: var(--_374151-color);
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+    ul {
+      padding: 0;
+      margin: 0;
+      .active {
+        border-left: 4px solid var(--_10a37f-background);
+        border-radius: 10px;
+        background-color: var(--db-background);
+        a {
+          color: var(--_10a37f-background);
+          font-weight: bold;
+        }
+      }
+      li {
+        list-style: none;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+
+        a {
+          text-decoration: none;
+          color: #333333;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  .dataInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    p{
+      color: #000000;
+    }
+    span{
+      color: var(--_67-color);
+    }
+  }
+  

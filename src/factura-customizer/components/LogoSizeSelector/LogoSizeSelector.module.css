@@ -1,0 +1,121 @@
+.logoSizeSelector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: auto;
+  box-sizing: border-box;
+}
+
+.label {
+  font-size: 1rem;
+  color: var(--black);
+  font-weight: 500;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.sizeOptions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sizeButton {
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #222222;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  min-width: 40px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.sizeButton:hover {
+  color: #000000;
+  background-color: #f5f5f5;
+}
+
+.sizeButton.selected {
+  color: #000000;
+  background-color: #f0f0f0;
+  font-weight: 700;
+}
+
+
+
+@media (max-width: 1024px) {
+  .logoSizeSelector {
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .label {
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .sizeOptions {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .sizeButton {
+    padding: 7px 10px;
+    font-size: 0.85rem;
+    min-width: 38px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .logoSizeSelector {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .label {
+    font-size: 0.9rem;
+  }
+
+  .sizeOptions {
+    gap: 6px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sizeButton {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    min-width: 35px;
+    flex: 1;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .logoSizeSelector {
+    gap: 10px;
+  }
+
+  .label {
+    font-size: 0.85rem;
+  }
+
+  .sizeOptions {
+    gap: 4px;
+  }
+
+  .sizeButton {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+    min-width: 30px;
+  }
+}

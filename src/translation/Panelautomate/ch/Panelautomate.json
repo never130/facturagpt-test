@@ -1,0 +1,16 @@
+{
+  "save": "保存",
+  "all": "全部",
+  "input": "输入",
+  "output": "输出",
+  "addAutomation": "添加自动化",
+  "testConnection": "测试连接",
+  "inputAutomations": "输入自动化",
+  "outputAutomations": "输出自动化",
+  "thereAreNoAutomationsAvailableInput": "没有可用的输入类型自动化",
+  "thereAreNoAutomationsAvailableOutput": "没有可用的输出类型自动化",
+  "thereNoAutomationsAvailableType": "没有可用的此类型自动化",
+  "facturaWillAnalyzeData": "FacturaGPT将自动安全地分析数据",
+  "help": "帮助" ,
+  "automationQuestion": "自动化 {{type}} 有什么用？" 
+}

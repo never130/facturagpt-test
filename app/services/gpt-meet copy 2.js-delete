@@ -1,0 +1,973 @@
+const axios = require("axios");
+const { v4: uuidv4 } = require('uuid');
+
+const { 
+  connectDB, 
+  validateToken, 
+  extractCodeBlocks, 
+  assistantAgent,
+  // generateReactApp
+} = require("./automate/utils");
+
+
+const { sendTextData, sendRealTime } = require('./processChat.js');
+
+// const { connectDB } = require("../controllers/utils");
+const {
+  createApiScraping,
+  cancelApiScraping,
+  createTableFromApi,
+  addDoc,
+  openDoc,
+  cancelDoc
+} = require("./meet/fn");
+
+const {
+  meetAction,
+  meetApi,
+  meetApp,
+  meetExitAgent,
+  meetAudio,
+  meetAutomate,
+  meetDoc,
+  meetGraph,
+  meetGym,
+  meetImage,
+  meetOnline,
+  meetScraping,
+  meetOther,
+  meetTable,
+  meetAddItem,
+  meetDeleteItem,
+  meetEditItem,
+  meetSearchItem,
+} = require("./meet");
+
+
+
+const meetGPT = async ({
+  id,
+  res,
+  token,
+  agent,
+  prompt,
+  agentId,
+  chatId,
+  timestamp,
+  threadId,
+  docId,
+  appId,
+  replyId,
+  isRAG,
+}) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      console.log('prompt', prompt)
+      console.log('docId', docId)
+      console.log('appId', appId)
+      console.log('replyId', replyId)
+      console.log('isRAG', isRAG)
+      // console.log('meetGPT - prompt', prompt);
+
+
+      const skProjRegex = /^sk-proj-[A-Za-z0-9-_]{100,}$/;
+      const skCaludeRegex = /^sk-calude-[A-Za-z0-9-_]{100,}$/;
+
+      if (skProjRegex.test(prompt)) {
+
+        const text = `El token ha sido ingresado correctamente. ¡Acceso autorizado! 🎉`
+
+        await sendTextData({
+          res,
+          text,
+          type: 'text'
+        })
+
+        resolve({
+          success: false,
+          text: text
+        });
+
+        return false
+      }
+
+
+      if (typeof prompt === 'string' && prompt?.startsWith('fn-')) {
+        await fnPrompt(prompt)
+      }
+
+
+      if (!token || token === '' || token === undefined || token === null) {
+        let text = `Parece que falta el token necesario para continuar. Asegúrate de ingresarlo correctamente. Si no tienes un token válido, es posible que necesites generar uno nuevo o revisar la configuración de autenticación. Si el problema persiste, revisa la documentación o contacta al soporte técnico para obtener asistencia.`
+
+        sendTextData({
+          res,
+          text,
+          type: 'text'
+        })
+
+        resolve({
+          success: false,
+          text: text
+        });
+        return false
+      }
+
+
+      let promptRAG = ''
+      if (isRAG) {
+        promptRAG = `
+        Items a analizar:
+        ${JSON.stringify(isRAG)}
+
+        Si hay dos o más items pon el primero que encuentres como docs, assets, contacts o agents
+        
+        *REGLAS*
+        - Añade una variable "data" que sea un objeto con todos los parametros que se vayan a añadir donde [key] sera un camelcase
+        y [value] será lo que diga el usuario, si faltan datos obvialos como key,value.
+        - Todas las variables en ingles, camelcase y sin faltas de ortografia.
+        - Añademe sólo cuando el usuario pide eliminar un campo o parametro dentro de "data"."removeField" con el campo o parametro que el usuario quiera eliminar.
+        `
+      }
+
+      let systemPrompt = `
+      Eres un agente que tiene que devolverme un JSON con el siguiente formato:
+
+      {
+        "type": "table" | "automate" | "action" | "graph" | "api" | "other" | "audio" | "image" | "online" | "edit-docs" | "edit-assets" | "edit-contacts" | "edit-agents" | "add-docs" | "add-assets" | "add-contacts" | "add-agents" | "delete-agents" | "search-docs" | "search-assets" | "search-contacts" | "search-agents" | "exit-agent",
+      
+        "data": {
+          "key": "value"
+          ... // añade todos los campos que el usuario quiera añadir, si no hay ninguno, no añadas nada.
+              // si el usuario manda un nombre siempre sera contactName
+              // si el usuario manda un email siempre sera contactEmail
+        }
+      }
+
+        TYPE según la consulta del cliente:
+      - table: Si el usuario te pide una tabla
+      - automate: Si el usuario te pide una automatización
+      - action: Si el usuario te pide una acción
+      - graph: Si el usuario te pide una gráfica
+      - api: Si el usuario te pide una conexión api, diciendo "crear", "añadir", "conectar", etc..
+      - audio: Si el usuario te pide un audio o voz
+      - image: Si el usuario te pide una imagen
+      - online: Si el usuario te pide una conexión online o buscar cualquier cosa en internet
+      - scraping: Si el usuario te pide un scraping de una página web o catalogo
+      - other: Si no está buscando nada en especifico o no se puede determinar el tipo
+      Ordenes:
+      - exit-agent: Si el usuario quiere salir de una automatización o documento diciendo cualquier tipo como "salir", "parar", "desconectar", "terminar", "cancelar", "stop", "exit", "quit", "end", "finish", "no más", "basta", "ya no", "detener", "interrumpir"
+      Especiales:
+      - add-app: Si el usuario te pide crear una aplicación, web, app, sitio web, etc..
+      - add-docs: Si el usuario te pide crear un documento, html, diseño, pdf, excel
+      - edit-docs: Si el usuario te pide editar un documento o parametro de él
+      - edit-assets: Si el usuario te pife editar un activo o parametro de él
+      - edit-contacts: Si el usuario te pide editar un contacto o parametro de él
+      - edit-agents: Si el usuario te pide editar un agente o parametro de él
+      - add-assets: Si el usuario te pide agregar un activo
+      - add-contacts: Si el usuario te pide agregar un contacto
+      - add-agents: Si el usuario te pide agregar un agente
+      - search-docs: Si el usuario te pide un documento o quiere buscarlo
+      - search-assets: Si el usuario te pide un activo, producto, servicio o quiere buscarlo
+      - search-contacts: Si el usuario te pide un contacto o quiere buscarlo
+      - search-agents: Si el usuario te pide un agente o quiere buscarlo
+      - gym: Cuando hable del gimnasio
+      
+      ${promptRAG}
+      
+      Devuelveme el JSON completo, no me devuelvas nada más.
+      `
+
+
+      let json_response = null
+
+      if (typeof prompt === 'object' && prompt.type) {
+        console.log('🔄 Processing file operation:', prompt.type);
+        
+        // Extraer información del archivo para el sendTextData
+        const fileInfo = {
+          operation: prompt.type,
+          path: prompt.text?.path || '',
+          content: prompt.text?.content || '',
+          appId: prompt.appId || appId,
+          ...(prompt.text?.oldPath && { oldPath: prompt.text.oldPath }),
+          ...(prompt.text?.newPath && { newPath: prompt.text.newPath })
+        };
+
+        await sendTextData({
+          res,
+          data: {
+            text: `Procesando ${fileInfo.operation} en archivo: ${fileInfo.path}`,
+            fileInfo: fileInfo
+          },
+          type: 'app',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId,
+            appId: fileInfo.appId
+          }
+        });
+
+        // Procesar la operación de archivo
+        await meetApp({
+          res,
+          prompt: prompt.text,
+          type: prompt.type,
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        });
+
+        resolve({
+          success: true,
+          text: `Operación ${fileInfo.operation} completada`
+        });
+        return false;
+      }
+
+      if (!replyId && typeof prompt !== 'object') {
+        const pre_response = await axios.post("https://api.openai.com/v1/chat/completions",
+          {
+            model: "gpt-4o-mini",
+            temperature: 0.7,
+            max_tokens: 2096,
+            messages: [{
+              role: 'user',
+              content: [{
+                type: 'text',
+                text: systemPrompt
+              },
+              {
+                type: 'text',
+                text: prompt
+              }]
+            }],
+          }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        console.log('pre_response', pre_response.data.choices[0].message.content)
+
+        const value_response = extractCodeBlocks(pre_response.data.choices[0].message.content)
+
+        json_response = JSON.parse(value_response[1])
+      }
+
+
+      if (json_response?.type === 'exit-agent') {
+        await meetExitAgent({
+          res,
+          text: prompt,
+          type: 'exit-agent',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Agente salido correctamente'
+        })
+        return false
+      }
+
+
+      if (replyId) {
+        const systemPrompt = [{
+          role: 'user',
+          content: `Quiero saber más sobre esta pregunta: ${replyId.text}, ademas de eso quiero que me des una respuesta sobre el tema del usuario.	`
+        }, {
+          role: 'user',
+          content: prompt
+        }]
+
+        const response = await sendRealTime({
+          res,
+          token,
+          systemPrompt: systemPrompt,
+          userId: id,
+          agentId,
+          chatId,
+        })
+
+        resolve({
+          success: true,
+          text: response.text
+        })
+        return false
+      } else if (docId || json_response?.type === 'add-docs') {
+        await meetDoc({
+          res,
+          text: prompt,
+          type: 'add-docs',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+      } else if (appId || json_response?.type === 'add-app') {
+
+        console.log('appId - 1234', appId)
+        console.log('appId - prompt', prompt)
+        const assistantResult = await assistantAgent({
+          res,
+          prompt: `Vamos a crear una aplicación React. Necesito que me ayudes a definir los detalles.`,
+          token,
+          agent,
+          userId: id,
+          agentId: agentId,
+          chatId: chatId,
+          appId: appId || 'new-app',
+          action: {
+            text: 'Aplicación React creada exitosamente',
+            automate: []
+          },
+          data: {
+            appName: {
+              description: "Nombre de la aplicación",
+              type: "text",
+              required: true
+            },
+            appDescription: {
+              description: "Descripción de lo que hace la aplicación",
+              type: "text",
+              required: true
+            },
+            appType: {
+              description: "Tipo de aplicación (web, dashboard, ecommerce, blog, portfolio, etc.)",
+              type: "text",
+              required: true
+            },
+            features: {
+              description: "Características principales que debe tener la aplicación (separadas por comas)",
+              type: "text",
+              required: false
+            },
+            styling: {
+              description: "Estilo visual preferido (moderno, minimalista, corporativo, colorido, etc.)",
+              type: "text",
+              required: false
+            },
+            components: {
+              description: "Componentes específicos que debe incluir (navbar, sidebar, forms, tables, etc.)",
+              type: "text",
+              required: false
+            }
+          }
+        });
+
+        console.log('assistantResult', assistantResult)
+
+        if (assistantResult.success && assistantResult.data?.type === 'end-process') {
+          // Generar el código React basado en los datos obtenidos
+          await generateReactApp({
+            res,
+            token,
+            prompt,
+            appData: assistantResult.data,
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId,
+              appId: appId || 'new-app'
+            }
+          });
+        }
+      } else if (json_response?.type === 'gym') {
+        await meetGym({
+          res,
+          text: prompt,
+          type: 'gym',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+      } 
+     
+
+      else if (json_response?.type == 'api') {
+        await meetApi({
+          res,
+          token,
+          prompt,
+          type: 'api',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+      } else if (json_response?.type === 'online') {
+
+        await meetOnline({
+          res,
+          token,
+          prompt,
+          type: 'online',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+      } else if (json_response?.type === 'scraping') {
+
+        console.log('meet scraping', json_response)
+        await meetScraping({
+          res,
+          token,
+          prompt,
+          type: 'scraping',
+          conf: {
+            userId: id, 
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+      } else if (json_response?.type === 'image') {
+
+        await meetImage({
+          res,
+          token,
+          prompt,
+          type: 'image',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+      
+      } else if (json_response?.type === 'audio') {
+
+
+        await meetAudio({
+          res,
+          token,
+          prompt,
+          type: 'audio',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+      } else if (json_response?.type === 'action') {
+        await meetAction({
+          res,
+          text: prompt,
+          type: 'action',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+      } else if (json_response?.type === 'automate') {
+        await meetAutomate({
+          res,
+          text: prompt,
+          type: 'automate',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+
+      } else if (json_response?.type === 'graph') {
+
+        await meetGraph({
+          res,
+          token,
+          prompt,
+          type: 'graph',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+      } else if (json_response?.type === 'table') {
+
+        await meetTable({
+          res,
+          prompt,
+          type: 'table',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+      } else if (json_response?.type === 'other') {
+
+
+
+        await meetOther({
+          res,
+          token,
+          agent,
+          prompt,
+          type: 'other',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+      } else if (json_response?.type === 'add-assets' || json_response?.type === 'add-contacts' || json_response?.type === 'add-agents') {
+        await meetAddItem({
+          res,
+          prompt,
+          data: json_response.data,
+          type: 'add-assets',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+      } else if (json_response?.type === 'search-docs' || json_response?.type === 'search-assets' || json_response?.type === 'search-contacts' || json_response?.type === 'search-agents') {
+        await meetSearchItem({
+          res,
+          prompt,
+          data: json_response,
+          type: 'search-assets',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+      } else if (isRAG && (json_response?.type === 'edit-docs' || json_response?.type === 'edit-assets' || json_response?.type === 'edit-contacts' || json_response?.type === 'edit-agents')) {
+
+        await meetEditItem({
+          res,
+          prompt,
+          type: 'edit-docs',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+      } else if (isRAG && (json_response?.type === 'delete-docs' || json_response?.type === 'delete-assets' || json_response?.type === 'delete-contacts' || json_response?.type === 'delete-agents')) {
+        await meetDeleteItem({
+          res,
+          prompt,
+          type: 'delete-docs',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+      } else if (!isRAG) {
+        await sendTextData({
+          res,
+          text: 'No se encontro ninguna acción para realizar',
+          type: 'text',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+
+        return false
+      }
+    } catch (e) {
+      console.error('Error in meetGPT:', e);
+      resolve({
+        success: false,
+        text: 'Error al procesar la solicitud'
+      });
+    }
+  })
+}
+
+
+
+
+
+
+const fnPrompt = async ({
+  prompt,
+  userId,
+  agentId,
+  chatId,
+  threadId,
+  docId
+}) => {
+  try {
+    const fn = prompt.split('-')[1]
+
+    switch (fn) {
+      case 'createApiScraping':
+        createApiScraping({ res, userId: id, agentId, chatId, timestamp, })
+        break
+      case 'cancelApiScraping':
+        cancelApiScraping({ res, userId: id, chatId, timestamp })
+        break
+      case 'createTableFromApi':
+        createTableFromApi({ res, userId: id, agentId, chatId, timestamp, })
+        break
+      case 'addDoc':
+        addDoc({ res, userId: id, token, prompt, agentId, chatId, timestamp, })
+        break
+      case 'openDoc':
+        openDoc({ res, userId: id, chatId, timestamp, })
+        break
+      case 'cancelDoc':
+        cancelDoc({ res, userId: id, chatId, timestamp, })
+        break
+    
+    }
+
+    resolve({
+      success: true,
+      text: 'fn-' + fn
+    })
+
+    return false
+  } catch (error) {
+    console.error('Error in fnPrompt:', error);
+  }
+}
+
+
+
+const generateReactApp = async ({ 
+  res, 
+  token, 
+  prompt,
+  appData, 
+  conf,
+  appId
+}) => {
+  try {
+    const { userId, agentId, chatId, appId } = conf;
+
+    const appName = appData.appName || 'ReactApp';
+    const appDescription = appData.appDescription || 'Una aplicación React moderna';
+    const appType = appData.appType || 'web';
+    const features = appData.features || '';
+    const styling = appData.styling || 'moderno';
+    const components = appData.components || '';
+
+    const reactPrompt = `
+Genera una aplicación React completa basada en los siguientes requisitos:
+
+**Información de la aplicación:**
+- Nombre: ${appName}
+- Descripción: ${appDescription}
+- Tipo: ${appType}
+- Características: ${features}
+- Estilo: ${styling}
+- Componentes: ${components}
+
+**Requisitos técnicos:**
+- Usa React 18+ con hooks
+- Usa Tailwind CSS para estilos
+- Crea una estructura de archivos organizada
+- Incluye componentes reutilizables
+- Usa TypeScript para mejor tipado
+- Incluye un README.md con instrucciones
+- Crea un package.json con dependencias necesarias
+
+**Estructura de archivos requerida:**
+- src/App.tsx (componente principal)
+- src/components/ (carpeta de componentes)
+- src/pages/ (carpeta de páginas)
+- src/utils/ (carpeta de utilidades)
+- src/types/ (carpeta de tipos TypeScript)
+- public/index.html
+- package.json
+- README.md
+- tailwind.config.js
+- tsconfig.json
+
+**Reglas importantes:**
+- El código debe ser funcional y listo para usar
+- Usa las mejores prácticas de React
+- Incluye comentarios explicativos
+- El diseño debe ser responsive
+- Usa iconos de Heroicons o similar
+- Incluye estados de carga y error
+- Usa React Router para navegación si es necesario
+
+Genera el código completo para cada archivo en formato JSON con la siguiente estructura:
+{
+  "files": {
+    "src/App.tsx": "contenido del archivo",
+    "src/components/Header.tsx": "contenido del archivo",
+    ...
+  }
+}
+`;
+
+
+    const response = await axios({
+      method: 'post',
+      url: 'https://api.openai.com/v1/chat/completions',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      data: {
+        model: 'gpt-4o-mini',
+        messages: [{
+          role: 'user',
+          content: reactPrompt
+        }],
+
+        stream: true
+      },
+      responseType: 'stream'
+    });
+
+
+
+    let text = ''
+      let buffer = ''
+      const MIN_CHUNK_SIZE = 50
+
+
+
+    response.data.on('data', async chunk => {
+      const lines = chunk.toString().split('\n').filter(line => line.trim() !== '');
+
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const jsonStr = line.replace('data: ', '');
+          if (jsonStr === '[DONE]') {
+            // Send any remaining buffer content
+            if (buffer.length > 0) {
+              await sendTextData({
+                res,
+                data: {
+                  path: prompt.path,
+                  buffer,
+                },
+                type: 'app',
+                conf: {
+                  // threadId: threadId,
+                  // docId: docId
+                  appId: appId
+                }
+              })
+              text += buffer
+              buffer = ''
+            }
+            return;
+          }
+
+          try {
+            const json = JSON.parse(jsonStr);
+            const content = json.choices?.[0]?.delta?.content;
+
+            if (content) {
+              buffer += content
+             
+              // Send chunk when it reaches minimum size
+              if (buffer.length >= MIN_CHUNK_SIZE) {
+                // sconsole.log('buffer', buffer)
+                await sendTextData({
+                  res,
+                  data: {
+                    path: prompt.path,
+                    buffer,
+                  },
+                  type: 'app',
+                  conf: {
+                    // threadId: threadId,
+                    // docId: docId
+                    appId: appId
+                  }
+                })
+                text += buffer
+                buffer = ''
+              }
+            }
+          } catch (err) {
+            console.error('Error al parsear JSON:', err.message);
+          }
+        }
+      }
+    });
+
+    response.data.on('end', async () => {
+      
+      // console.log('step6 generateReactApp', text)
+      
+      
+      if (userId && agentId && chatId) {
+        await sendTextData({
+          res,
+          data: {
+            path: prompt.path,
+            buffer: text,
+          },
+          type: 'app',
+          conf: {
+            userId: userId,
+            agentId: agentId,
+            chatId: chatId,
+            // threadId: threadId,
+            // docId: docId,
+            appId: appId
+          }
+        })
+      }
+
+      res.end();
+      return {
+        success: true,
+        text: text
+      }
+    });
+
+    response.data.on('error', err => {
+      console.error('Error de stream:', err.message);
+      return {
+        success: false,
+        text: 'Error al procesar la solicitud2'
+      }
+    });
+
+    // const generatedCode = response.data.choices[0].message.content;
+    // console.log('generatedCode', generatedCode)
+    // // Extraer el JSON del código generado
+    // const codeMatch = generatedCode.match(/\{[\s\S]*\}/);
+    // if (!codeMatch) {
+    //   throw new Error('No se pudo extraer el código JSON');
+    // }
+
+    // const filesData = JSON.parse(codeMatch[0]);
+
+    // console.log('filesData', filesData)
+    // // Guardar los archivos en la base de datos
+    // const dbApp = await connectDB(`db_${userId}_app`);
+
+    // let doc;
+    // try {
+    //   doc = await dbApp.get(appId);
+    // } catch (err) {
+    //   if (err.statusCode === 404) {
+    //     doc = { _id: appId, files: {} };
+    //   } else {
+    //     throw err;
+    //   }
+    // }
+
+    // // Actualizar los archivos
+    // doc.files = { ...doc.files, ...filesData.files };
+
+    // await dbApp.insert(doc);
+
+    // // Enviar la respuesta al frontend
+    // await sendTextData({
+    //   res,
+    //   data: {
+    //     files: doc.files,
+    //     appName,
+    //     appDescription,
+    //     appType
+    //   },
+    //   type: 'app',
+    //   conf: {
+    //     userId,
+    //     agentId,
+    //     chatId,
+    //     appId
+    //   }
+    // });
+
+  } catch (error) {
+    console.error('Error generating React app:', error);
+
+    await sendTextData({
+      res,
+      text: 'Error al generar la aplicación React. Por favor, intenta de nuevo.',
+      type: 'text',
+      conf: {
+        userId: conf.userId,
+        agentId: conf.agentId,
+        chatId: conf.chatId
+      }
+    });
+  }
+};
+
+module.exports = {
+  meetGPT,
+  fnPrompt
+};
+
+// const cleanDataObject = (obj) => {
+//   if (typeof obj !== 'object' || obj === null) {
+//     return obj;
+//   }
+
+//   const cleaned = {};
+
+//   for (const [key, value] of Object.entries(obj)) {
+//     if (key === '_id' || key === '_rev') {
+//       continue;
+//     }
+
+//     if (value === undefined || value === null || value === '') {
+//       continue;
+//     }
+
+//     if (typeof value === 'object') {
+//       continue;
+//     }
+
+//     cleaned[key] = value;
+//   }
+
+//   return cleaned;
+// };
+
+// Función para generar preguntas guiadas según el nivel de acierto
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------

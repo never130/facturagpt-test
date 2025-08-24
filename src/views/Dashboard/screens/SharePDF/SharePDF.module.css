@@ -1,0 +1,12 @@
+.sharePDFContainer{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    embed{
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100%;
+    }
+}

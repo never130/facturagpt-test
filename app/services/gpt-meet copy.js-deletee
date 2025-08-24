@@ -1,0 +1,4358 @@
+const axios = require("axios");
+// const tiktoken = require("tiktoken");
+const { v4: uuidv4 } = require('uuid');
+
+const { extractCodeBlocks } = require("./automate/utils");
+const { connectDB } = require("../controllers/utils");
+
+
+const { sendTextData } = require('./processChat.js');
+
+
+
+const meetGPT = async ({
+  id,
+  res,
+  token,
+  agent,
+  prompt,
+  agentId,
+  chatId,
+  timestamp,
+  threadId,
+  docId,
+  replyId,
+  isRAG,
+}) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      // const start = performance.now()
+
+      // console.log('esto es prompt dentro de gpt meet', prompt)
+
+      console.log('prompt', prompt)
+      // token openai
+      const skProjRegex = /^sk-proj-[A-Za-z0-9-_]{100,}$/;
+      // token calude gemini
+      const skCaludeRegex = /^sk-calude-[A-Za-z0-9-_]{100,}$/;
+
+      if (skProjRegex.test(prompt)) {
+        // const userData = {
+        //   id: id,
+        //   tokenGPT: prompt
+        // }
+        // type openai
+        // type claude
+
+        // verify si ese token ya existe
+
+        // updateAccountToken
+        const text = `El token ha sido ingresado correctamente. ¡Acceso autorizado! 🎉`
+
+        await sendTextData({
+          res,
+          text,
+          type: 'text'
+        })
+
+        resolve({
+          success: false,
+          text: text
+        });
+
+        return false
+      }
+
+
+      if (prompt.startsWith('fn-')) {
+        const fn = prompt.split('-')[1]
+
+        switch (fn) {
+          case 'createApiScraping':
+            createApiScraping({ res, userId: id, agentId, chatId, timestamp, })
+            break
+          case 'cancelApiScraping':
+            cancelApiScraping({ res, userId: id, chatId, timestamp })
+            break
+          case 'createTableFromApi':
+            createTableFromApi({ res, userId: id, agentId, chatId, timestamp, })
+            break
+          case 'addDoc':
+            addDoc({ res, userId: id, token, prompt, agentId, chatId, timestamp, })
+            break
+          case 'openDoc':
+            openDoc({ res, userId: id, chatId, timestamp, })
+            break
+          case 'cancelDoc':
+            cancelDoc({ res, userId: id, chatId, timestamp, })
+            break
+        }
+
+        resolve({
+          success: true,
+          text: 'fn-' + fn
+        })
+
+        return false
+      }
+
+
+      if (!token || token === '' || token === undefined || token === null) {
+        let text = `Parece que falta el token necesario para continuar. Asegúrate de ingresarlo correctamente. Si no tienes un token válido, es posible que necesites generar uno nuevo o revisar la configuración de autenticación. Si el problema persiste, revisa la documentación o contacta al soporte técnico para obtener asistencia.`
+
+        sendTextData({
+          res,
+          text,
+          type: 'text'
+        })
+
+        resolve({
+          success: false,
+          text: text
+        });
+        return false
+      }
+
+
+      let promptRAG = ''
+      if (isRAG) {
+        promptRAG = `
+        Items a analizar:
+        ${JSON.stringify(isRAG)}
+
+        Si hay dos o más items pon el primero que encuentres como docs, assets, contacts o agents
+        
+        *REGLAS*
+        - Añade una variable "data" que sea un objeto con todos los parametros que se vayan a añadir donde [key] sera un camelcase
+        y [value] será lo que diga el usuario, si faltan datos obvialos como key,value.
+        - Todas las variables en ingles, camelcase y sin faltas de ortografia.
+        - Añademe sólo cuando el usuario pide eliminar un campo o parametro dentro de "data"."removeField" con el campo o parametro que el usuario quiera eliminar.
+        `
+      }
+
+      let systemPrompt = `
+      Eres un agente que tiene que devolverme un JSON con el siguiente formato:
+
+      {
+        "type": "table" | "automate" | "action" | "graph" | "api" | "other" | "audio" | "image" | "online" | "edit-docs" | "edit-assets" | "edit-contacts" | "edit-agents" | "add-docs" | "add-assets" | "add-contacts" | "add-agents" | "delete-agents" | "search-docs" | "search-assets" | "search-contacts" | "search-agents" | "exit-agent",
+      
+        "data": {
+          "key": "value"
+          ... // añade todos los campos que el usuario quiera añadir, si no hay ninguno, no añadas nada.
+              // si el usuario manda un nombre siempre sera contactName
+              // si el usuario manda un email siempre sera contactEmail
+        }
+      }
+
+        TYPE según la consulta del cliente:
+      - table: Si el usuario te pide una tabla
+      - automate: Si el usuario te pide una automatización
+      - action: Si el usuario te pide una acción
+      - graph: Si el usuario te pide una gráfica
+      - api: Si el usuario te pide una conexión api, diciendo "crear", "añadir", "conectar", etc..
+      - audio: Si el usuario te pide un audio o voz
+      - image: Si el usuario te pide una imagen
+      - online: Si el usuario te pide una conexión online o buscar cualquier cosa en internet
+      - other: Si no está buscando nada en especifico o no se puede determinar el tipo
+      Ordenes:
+      - exit-agent: Si el usuario quiere salir de una automatización o documento diciendo cualquier tipo como "salir", "parar", "desconectar", "terminar", "cancelar", "stop", "exit", "quit", "end", "finish", "no más", "basta", "ya no", "detener", "interrumpir"
+      Especiales:
+      - add-docs: Si el usuario te pide crear un documento, html, diseño, pdf, excel
+      - edit-docs: Si el usuario te pide editar un documento o parametro de él
+      - edit-assets: Si el usuario te pife editar un activo o parametro de él
+      - edit-contacts: Si el usuario te pide editar un contacto o parametro de él
+      - edit-agents: Si el usuario te pide editar un agente o parametro de él
+      - add-assets: Si el usuario te pide agregar un activo
+      - add-contacts: Si el usuario te pide agregar un contacto
+      - add-agents: Si el usuario te pide agregar un agente
+      - search-docs: Si el usuario te pide un documento o quiere buscarlo
+      - search-assets: Si el usuario te pide un activo, producto, servicio o quiere buscarlo
+      - search-contacts: Si el usuario te pide un contacto o quiere buscarlo
+      - search-agents: Si el usuario te pide un agente o quiere buscarlo
+      - gym: Cuando hable del gimnasio
+      
+      ${promptRAG}
+      
+      Devuelveme el JSON completo, no me devuelvas nada más.
+      `
+
+
+      let json_response = null
+
+
+      console.log('json_response', json_response)
+
+
+      // if (!threadId && !replyId) {
+      if (!replyId) {
+        const pre_response = await axios.post("https://api.openai.com/v1/chat/completions",
+          {
+            model: "gpt-4o-mini",
+            temperature: 0.7,
+            max_tokens: 2096,
+            messages: [{
+              role: 'user',
+              content: [{
+                type: 'text',
+                text: systemPrompt
+              },
+              {
+                type: 'text',
+                text: prompt
+              }]
+            }],
+          }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        console.log('pre_response', pre_response.data.choices[0].message.content)
+
+        const value_response = extractCodeBlocks(pre_response.data.choices[0].message.content)
+
+        json_response = JSON.parse(value_response[1])
+      }
+
+      if (replyId) {
+        const systemPrompt = [{
+          role: 'user',
+          content: `Quiero saber más sobre esta pregunta: ${replyId.text}, ademas de eso quiero que me des una respuesta sobre el tema del usuario.	`
+        }, {
+          role: 'user',
+          content: prompt
+        }]
+
+        const response = await sendRealTime({
+          res,
+          token,
+          systemPrompt: systemPrompt,
+          userId: id,
+          agentId,
+          chatId,
+        })
+
+        resolve({
+          success: true,
+          text: response.text
+        })
+        return false
+      }
+
+      console.log('json_response', json_response)
+
+
+
+      if (docId || json_response?.type === 'add-docs') {
+        if (true) {
+          console.log('add_docs - Generating HTML document')
+
+
+          console.log('threadIdthreadId', threadId)
+          try {
+            const dbTemplate = await connectDB(`db_${id}_template`)
+
+            let template = null
+            console.log('docId!!!', docId)
+            // const template = await dbTemplate.get(isDoc.id)
+
+            if (!docId) {
+              console.log('efrtgrfecvt')
+              await assistantAgent({
+                res,
+                token,
+                agent,
+                prompt,
+                userId: id,
+                agentId,
+                chatId,
+                docId,
+                // threadId,
+                action: {
+                  text: `Gracias por proporcionar la información. Ahora puedes generar el documento o realizar otras acciones.`,
+                  view: 'minimized',
+                  automate: [{
+                    id: "add-doc",
+                    icon: "📄",
+                    title: "Generar documento",
+                    description: "Crea un nuevo documento con los datos proporcionados",
+                    prompt: `Generar documento con los datos configurados`,
+                    fn: 'addDoc'
+                  }, {
+                    id: "open-doc",
+                    icon: "📖",
+                    title: "Abrir documento",
+                    description: "Abre y visualiza un documento existente",
+                    prompt: `Abrir documento existente para visualización`,
+                    fn: 'openDoc'
+                  }, {
+                    id: "cancel-doc",
+                    icon: "❌",
+                    title: "Cancelar documento",
+                    description: "Cancela la creación del documento actual",
+                    prompt: `Cancelar la creación del documento`,
+                    fn: 'cancelDoc'
+                  }],
+                },
+                data: {
+                  "nameDocument": {
+                    "description": "Cómo quieres llamar al documento",
+                    "required": true,
+                    "type": "ejemplo.pdf"
+                  },
+                  // "hasModule": {
+                  //   "description": "Pregunta si tiene o quiere un módulo de FacturaGPT",
+                  //   "required": true,
+                  //   "type": "true or false"
+                  // },
+                  // "module": {
+                  //   "description": "Qué módulo es el que tiene FacturaGPT",
+                  //   "required": true,
+                  //   "end": true,
+                  //   "has": "hasModule",
+                  //   "type": "string"
+                  // },
+                  "themeDocument": {
+                    "description": "Explicación corta del tema de estos documentos",
+                    // "required": true,
+                    "type": "string"
+                  },
+                  "pageDocument": {
+                    "description": "El número de páginas que quieres que tenga el documento",
+                    "default": 0,
+                    "type": "0"
+                  },
+                }
+              })
+            } else if (template && template.status == 200) {
+              // Verificar si hay un ID de documento existente para edición
+              const existingDocId = isDoc ? isDoc.id : null
+              const existingHtml = isDoc ? isDoc.html : null
+
+             
+            } else if (template && template.status == 200 && template.completed) {
+              resolve({
+                success: true,
+                text: template.html
+              })
+            } else if (template && template.status == 202) {
+              await assistantAgent({
+                res,
+                token,
+                agent,
+                prompt,
+                userId: id,
+                agentId,
+                chatId
+              })
+            }
+
+
+            resolve({
+              success: true,
+              text: 'Funcion add doc'
+            })
+            return false
+
+          } catch (error) {
+            console.error('Error generating document:', error)
+
+            await sendTextData({
+              res,
+              text: 'Error al generar el documento. Por favor, intenta de nuevo.',
+              type: 'text',
+              conf: {
+                userId: id,
+                agentId: agentId,
+                chatId: chatId
+              }
+            })
+
+            resolve({
+              success: false,
+              text: 'Error al generar el documento'
+            })
+            return false
+          }
+
+        }
+      }
+
+      // Manejar salida de automatización
+      
+      if (json_response?.type === 'gym') {
+        console.log('User requested to exit agent')
+
+        await assistantAgent({
+          res,
+          token,
+          agent,
+          action: [{
+            id: "gym",
+            icon: "🏋️",
+            title: "Gimnasio",
+            description: "Gimnasio",
+            prompt: "Gimnasio",
+            fn: 'gym' 
+          }, {
+            id: "cancel-gym",
+            icon: "❌",
+            title: "Cancelar",
+            description: "Cancelar el gimnasio",
+            prompt: "Cancelar el gimnasio",
+            fn: 'cancelGym'
+          }],
+          data: { 
+            "gym": {
+              "description": "Gimnasio",
+              "type": "string",
+              "required": true
+            },
+            "peso_actual": {
+              "description": "Peso actual en kg",
+              "type": "number",
+              "required": true
+            },
+            "peso_objetivo": {
+              "description": "Peso objetivo en kg",
+              "type": "number",
+              "required": true
+            },
+            "altura": {
+              "description": "Altura en cm",
+              "type": "number",
+              "required": true
+            },
+            "edad": {
+              "description": "Edad en años",
+              "type": "number",
+              "required": true
+            },
+            "nivel_experiencia": {
+              "description": "Nivel de experiencia (principiante, intermedio, avanzado)",
+              "type": "string",
+              "required": true
+            },
+            "objetivo_principal": {
+              "description": "Objetivo principal (ganar masa muscular, perder grasa, fuerza, definición)",
+              "type": "string",
+              "required": true
+            },
+            "dias_entrenamiento": {
+              "description": "Días disponibles para entrenar por semana",
+              "type": "number",
+              "required": true
+            },
+            "tiempo_disponible": {
+              "description": "Tiempo disponible por sesión en minutos",
+              "type": "number",
+              "required": true
+            },
+            "medidas_actuales": {
+              "description": "Medidas actuales (pecho, brazos, piernas, cintura)",
+              "type": "object",
+              "required": false
+            },
+            "medidas_objetivo": {
+              "description": "Medidas objetivo (pecho, brazos, piernas, cintura)",
+              "type": "object",
+              "required": false
+            },
+            "porcentaje_grasa": {
+              "description": "Porcentaje de grasa corporal actual",
+              "type": "number",
+              "required": false
+            },
+            "lesiones_previas": {
+              "description": "Lesiones previas o limitaciones físicas",
+              "type": "string",
+              "required": false
+            },
+            "equipamiento_disponible": {
+              "description": "Equipamiento disponible (gimnasio completo, pesas en casa, solo peso corporal)",
+              "type": "string",
+              "required": true
+            },
+            "preferencias_alimentacion": {
+              "description": "Preferencias alimentarias (vegetariano, vegano, sin restricciones)",
+              "type": "string",
+              "required": false
+            }
+          }
+
+        })
+
+      } else if (json_response?.type === 'exit-agent') {
+        console.log('User requested to exit agent')
+
+        // Limpiar el chat de automatización
+        if (chatId) {
+          try {
+            const dbChat = await connectDB(`db_${id}_chat`)
+            const chat = await dbChat.get(chatId)
+
+            // Limpiar datos de automatización
+            chat.data = {}
+            chat.action = {}
+            chat.threadId = null
+
+            await dbChat.insert(chat)
+            console.log('Chat automation data cleared')
+          } catch (error) {
+            console.error('Error clearing chat automation data:', error)
+          }
+        }
+
+        console.log('json_response mdriejcvuieh')
+        // Mensajes variados para salir de automatización
+        const exitMessages = [
+          '¡Perfecto! He salido del modo asistente. ¿En qué más puedo ayudarte?',
+          'Entendido, he terminado el proceso. ¿Hay algo más en lo que pueda asistirte?',
+          '¡Listo! Ya no estoy en modo asistente. ¿Qué te gustaría hacer ahora?',
+          'De acuerdo, he cancelado el proceso. ¿En qué puedo ayudarte?',
+          '¡Perfecto! He salido del modo bot. ¿Qué necesitas ahora?',
+          'Entendido, he parado el asistente. ¿Hay algo más que quieras hacer?',
+          '¡Listo! He terminado con el proceso. ¿En qué más puedo ser útil?',
+          'De acuerdo, he desconectado del modo asistente. ¿Qué te gustaría hacer?'
+        ]
+
+        const randomMessage = exitMessages[Math.floor(Math.random() * exitMessages.length)]
+
+        await sendTextData({
+          res,
+          text: randomMessage,
+          type: 'stream',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Automation exited successfully'
+        })
+        return false
+      } else if (threadId && (json_response?.type === 'other' ||
+        json_response?.type === 'api' ||
+        json_response?.type === 'online' ||
+        json_response?.type === 'search-docs' ||
+        json_response?.type === 'search-assets' ||
+        json_response?.type === 'search-contacts' ||
+        json_response?.type === 'search-agents')
+      ) {
+        await assistantAgent({
+          res,
+          token,
+          agent,
+          prompt,
+          userId: id,
+          agentId,
+          chatId,
+          threadId,
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+        return false
+      } else if (json_response?.type == 'api') {
+        await assistantAgent({
+          res,
+          token,
+          agent,
+          prompt,
+          userId: id,
+          agentId,
+          chatId,
+          action: {
+            text: `**Gracias por tu ayuda, ya tengo toda la información que necesito para crear la automatización:**\n`,
+            automate: [{
+              ini: true,
+              id: "create-api-automation",
+              icon: "🔗",
+              title: "Crear API de Scraping",
+              description: "Crea una automatización de API para scraping de datos",
+              prompt: `Crear API de scraping con los parámetros configurados`,
+              fn: 'createApiScraping'
+            }, {
+              id: "cancel-api-automation",
+              icon: "❌",
+              title: "Cancelar",
+              description: "Cancelar la creación de API de scraping",
+              prompt: `Cancelar la creación de API de scraping`,
+              fn: 'cancelApiScraping'
+            }, {
+              id: "create-table-automation",
+              icon: "📊",
+              title: "Crear Tabla",
+              description: "Crear una tabla con los datos de la API",
+              prompt: `Crear una tabla con los datos extraídos de la API`,
+              fn: 'createTableFromApi'
+            }],
+          },
+          data: {
+            "targetUrl": {
+              "description": "URL del sitio web o API que quieres scrapear",
+              "type": "string",
+              "required": true
+            },
+            // "apiName": {
+            //   "description": "Nombre descriptivo para identificar esta API de scraping",
+            //   "type": "string",
+            //   "required": true
+            // },
+            // "dataToExtract": {
+            //   "description": "Qué datos específicos quieres extraer (ej: precios, títulos, fechas, etc.)",
+            //   "type": "string",
+            //   "required": true
+            // },
+            // "authentication": {
+            //   "description": "¿La API o sitio web requiere autenticación?",
+            //   "type": "boolean"
+            // },
+            // "authType": {
+            //   "description": "Tipo de autenticación requerida",
+            //   "has": "authentication",
+            //   "type": "[api-key, oauth, basic-auth, bearer-token, cookies]"
+            // },
+            // "apiKey": {
+            //   "description": "Clave de API si es necesaria",
+            //   "has": "authentication|authType",
+            //   "type": "string"
+            // },
+            // "username": {
+            //   "description": "Nombre de usuario para autenticación",
+            //   "has": "authentication|authType",
+            //   "type": "string"
+            // },
+            // "password": {
+            //   "description": "Contraseña para autenticación",
+            //   "has": "authentication|authType",
+            //   "type": "string"
+            // },
+            // "outputFormat": {
+            //   "description": "Formato de salida para los datos",
+            //   "type": "[json, csv, xml, excel, database-table]",
+            //   "required": true
+            // },
+            // "dataTransformation": {
+            //   "description": "¿Necesitas transformar o procesar los datos extraídos?",
+            //   "type": "boolean"
+            // },
+            // "transformationRules": {
+            //   "description": "Reglas de transformación para los datos",
+            //   "has": "dataTransformation",
+            //   "type": "string"
+            // }
+          }
+        })
+
+        console.log('apiiiii')
+
+
+        resolve({
+          success: true,
+          text: '¡Perfecto! He configurado los parámetros para tu API de scraping. Ahora puedes definir todos los detalles necesarios para extraer los datos que necesitas.'
+        })
+
+        return false
+      } else if (json_response?.type === 'online') {
+
+        const systemPrompt = `
+        Eres un agente que tiene que devolverme una respuesta sobre este tema:
+        ${prompt}
+        `
+
+        const online = await axios.post(`https://api.openai.com/v1/chat/completions`, {
+          model: "gpt-4o-mini-search-preview",
+          max_tokens: 2096,
+          web_search_options: {
+            search_context_size: "low",
+            user_location: {
+              type: "approximate",
+              approximate: {
+                country: "GB",
+                city: "London",
+                region: "London"
+              }
+            }
+          },
+          messages: [{
+            role: 'user',
+            content: systemPrompt
+          }]
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+
+        const onlineText = online.data.choices[0].message.content
+        const onlineAnnotations = online.data.choices[0].message.annotations
+
+        sendTextData({
+          res,
+          data: {
+            text: onlineText,
+            annotations: onlineAnnotations
+          },
+          type: 'online',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+      } else if (json_response?.type === 'image') {
+
+        const systemPrompt = `
+        Eres un agente que tiene que devolverme una imagen con el siguiente prompt:
+        ${prompt}
+        `
+
+        const image = await axios.post(`https://api.openai.com/v1/images/generations`, {
+          prompt: systemPrompt,
+          n: 1,
+          size: "1024x1024"
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+
+        sendTextData({
+          res,
+          data: image.data.data[0].url,
+          type: 'image',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+      } else if (json_response?.type === 'audio') {
+
+
+        const scriptPrompt = `
+        Eres un guionista experto. Basándote en este prompt:
+        "${prompt}"
+        
+        Genera un guion natural y conversacional que capture la esencia del mensaje. 
+        El guion debe ser claro, conciso y sonar natural al ser leído en voz alta.
+        No incluyas acotaciones ni indicaciones de guion, solo el texto a ser narrado.
+        Limita la respuesta a 2-3 oraciones.`
+
+        const scriptResponse = await axios.post("https://api.openai.com/v1/chat/completions", {
+          model: "gpt-4o-mini",
+          temperature: 0.7,
+          max_tokens: 256,
+          messages: [{
+            role: 'user',
+            content: scriptPrompt
+          }]
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          }
+        });
+
+        const script = scriptResponse.data.choices[0].message.content;
+
+        const audio = await axios.post(`https://api.openai.com/v1/audio/speech`, {
+          input: script,
+          model: "tts-1",
+          voice: "alloy",
+          response_format: "mp3",
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          responseType: 'arraybuffer'
+        });
+
+        const base64Audio = Buffer.from(audio.data).toString('base64');
+        const audioBase64 = `data:audio/mp3;base64,${base64Audio}`;
+
+
+        sendTextData({
+          res,
+          data: audioBase64,
+          type: 'audio',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nuevo audio'
+        })
+        return false
+
+      } else if (json_response?.type === 'action') {
+        // } else if (json_response?.type === 'action' || json_response?.type === 'automate') {
+
+        const systemPrompt1 = [{
+          role: 'user',
+          content: `Dame un texto de 20 palabras como respuesta a la siguiente pregunta:`
+        }, {
+          role: 'user',
+          content: prompt
+        }]
+
+        const realtimeResult = await sendRealTime({
+          res,
+          token,
+          systemPrompt: systemPrompt1,
+          userId: id,
+          agentId,
+          chatId
+        })
+
+        if (!realtimeResult.success) {
+          resolve({
+            success: false,
+            text: 'Error al procesar la solicitud'
+          })
+          return false
+        }
+
+        const systemPrompt2 = `
+        Eres un agente y vas a devolverme una lista como sobre este
+        tema: ${prompt}
+
+        Basándote en esta respuesta previa: "${realtimeResult.text}"
+
+        [{
+          icon: "🔍",
+          title: "titulo de la pregunta",
+          text: "texto de la pregunta",
+          sql: {
+            selector: "codigo del selector couchdb"
+          }
+        }, ..]
+        `
+
+        sendTextData({
+          res,
+          text: 'e',
+          type: 'pause'
+        })
+
+        const actionResult = await axios.post("https://api.openai.com/v1/chat/completions",
+          {
+            model: "gpt-4o-mini",
+            temperature: 0.7,
+            max_tokens: 2096,
+            messages: [{
+              role: 'user',
+              content: [{
+                type: 'text',
+                text: systemPrompt2
+              }]
+            }],
+          }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!actionResult.data.choices[0].message.content) {
+          resolve({
+            success: false,
+            text: 'Error al procesar la solicitud'
+          })
+          return false
+        }
+
+        const value_response = extractCodeBlocks(actionResult.data.choices[0].message.content)
+        const json_response_data = JSON.parse(value_response[1])
+
+        await sendTextData({
+          res,
+          data: json_response_data,
+          type: 'action',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva automatizacion'
+        })
+        return false
+      } else if (json_response?.type === 'automate') {
+        console.log('automate')
+
+        await assistantAgent({
+          res,
+          token,
+          agent,
+          prompt,
+          userId: id,
+          agentId,
+          chatId,
+          // threadId,
+          action: {
+            text: `Gracias por proporcionar la información. Ahora puedes crear o actualizar la automatización.`,
+            automate: [{
+              id: "create-automation",
+              icon: "💰",
+              title: "Crear automatización",
+              description: "Crea una automatización con estos datos de forma automatica",
+              prompt: `Necesito calcular el salario de un empleado al dia será salaryLige/200`,
+              fn: 'alerta123'
+            }, {
+              id: "refresh-automation",
+              icon: "🚫",
+              title: "Actualizar automatización",
+              description: "Actualiza una automatización con estos datos de forma automatica",
+              prompt: `Necesito actualizar la automatización con estos datos de forma automatica`,
+              fn: 'refresh123'
+            }],
+          },
+          data: {
+            "senders": {
+              "description": "De que personas vas a recibir los emails",
+              "type": "[info@example.com, info2@example.com]"
+            },
+            "resume": {
+              "description": "El resumen de estos documentos",
+              "required": true,
+              "type": "string"
+            },
+            "subject": {
+              "description": "El asunto de estos documentos",
+              "type": "string"
+            },
+            "body": {
+              "description": "Qué contenido tiene en comun estos documentos",
+              "type": "string"
+            },
+            "attachment": {
+              "description": "Son pdfs, excels, qué formatos o hay más",
+              "type": "[pdf, excel, word, etc]"
+            },
+            "dates": {
+              "description": "Son fechas especificas o le da igual",
+              "type": "[2025-01-01, 2025-01-02]"
+            },
+            "frequency": {
+              "description": "Son frecuentes o no, si son frecuentes, cuántas veces a la semana",
+              "type": "[Default, 15 Minutes, 30 Minutres, 1 Hours, Hour 4, 6, 7]"
+            },
+            "rule": {
+              "description": "Hay alguna regla que tenga que saber para los documentos",
+              "type": "string"
+            },
+            "saveAttachment": {
+              "description": "Quieres guardar los archivos en la base de datos",
+              "type": "boolean"
+            },
+            "notificationActive": {
+              "description": "Quieres que se notifique al usuario cuando se encuentre un documento",
+              "type": "boolean"
+            },
+            "notificationType": {
+              "description": "Qué tipo de notificación quieres que se envíe",
+              "has": "noficationActive",
+              "type": "[google, telegram, email]"
+            },
+            "notificationSuccess": {
+              "description": "Qué tipo de notificación quieres que se envíe",
+              "has": "noficationActive|notificationType",
+              "type": "[error, success, info]"
+            },
+          }
+        })
+
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva automatizacion'
+        })
+        return false
+
+        // const systemPrompt = `
+        // Eres un agente que tiene que devolverme una lista como sobre este
+        // tema: ${prompt}
+
+        // Basándote en esta respuesta previa: "${realtimeResult.text}"
+        // `
+      } else if (json_response?.type === 'graph') {
+
+        const json_response = await axios.post("https://api.openai.com/v1/chat/completions",
+          {
+            model: "gpt-4o-mini",
+            temperature: 0.7,
+            max_tokens: 2096,
+            messages: [{
+              role: 'user',
+              content: [{
+                type: 'text',
+                text: `Analiza el siguiente texto y crea una visualización de datos apropiada:
+
+${systemPrompt}
+
+Basándote en el contenido, genera un JSON con la siguiente estructura:
+{
+  "type": "graph",
+  "style": "pie|bar|flow|sequence", // Elige el estilo más apropiado para los datos
+  "data": {
+    "title": "Título descriptivo de la visualización",
+    // Para gráficos de pie:
+    "slices": [
+      {"label": "Categoría 1", "value": 30},
+      {"label": "Categoría 2", "value": 70}
+    ],
+    // Para gráficos de barras:
+    "bars": [
+      {"label": "Categoría 1", "value": 20},
+      {"label": "Categoría 2", "value": 30}
+    ],
+    // Para diagramas de flujo:
+    "nodes": [
+      {"id": "A", "label": "Inicio"},
+      {"id": "B", "label": "Proceso"},
+      {"id": "C", "label": "Fin"}
+    ],
+    "edges": [
+      {"from": "A", "to": "B"},
+      {"from": "B", "to": "C"}
+    ],
+    // Para diagramas de secuencia:
+    "participants": ["A", "B"],
+    "messages": [
+      {"from": "A", "to": "B", "text": "Mensaje"},
+      {"from": "B", "to": "A", "text": "Respuesta"}
+    ]
+  }
+}
+
+Elige el tipo de visualización más apropiado basándote en los datos y el contexto proporcionado.`
+              }],
+            }],
+          }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+
+        const value_response = extractCodeBlocks(json_response.data.choices[0].message.content)
+        const json_response_data = JSON.parse(value_response[1])
+
+
+        sendTextData({
+          res,
+          data: json_response_data,
+          type: 'graph',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+        sendTextData({
+          res,
+          text: 'ee',
+          type: 'pause'
+        })
+        resolve({
+          success: true,
+          text: 'Mira tu nueva grafica'
+        })
+
+        return false
+      } else if (json_response?.type === 'table') {
+
+        await sendTextData({
+          res,
+          text: 'Voy a analizar las diferentes tablas.',
+          type: 'text',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        await sendTextData({
+          res,
+          text: 'e',
+          type: 'pause'
+        })
+
+        await sendTextData({
+          res,
+          text: 'Pennsando que tablas voy a darte',
+          type: 'text',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        await sendTextData({
+          res,
+          text: 'e',
+          type: 'pause'
+        })
+
+        json_response.data = [{
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          phone: '123-456-7890',
+        }, {
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          phone: '123-456-7890',
+        }, {
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          phone: '123-456-7890',
+        }, {
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          phone: '123-456-7890',
+        }]
+
+
+        await sendTextData({
+          res,
+          data: {
+            text: 'Toma la siguiente tabla y analiza los datos',
+            data: json_response.data,
+          },
+          type: 'table',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        await sendTextData({
+          res,
+          text: 'e',
+          type: 'pause'
+        })
+
+        await sendTextData({
+          res,
+          text: 'Toma la siguiente tabla y analiza los datos',
+          type: 'text',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        await sendTextData({
+          res,
+          text: 'e',
+          type: 'pause'
+        })
+
+        await sendTextData({
+          res,
+          data: {
+            text: 'Toma la siguiente tabla y analiza los datos',
+            data: json_response.data,
+          },
+          type: 'table',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+
+        await sendTextData({
+          res,
+          text: 'Analizando los datos',
+          type: 'text',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        await sendTextData({
+          res,
+          text: 'e',
+          type: 'pause'
+        })
+
+
+        await sendTextData({
+          res,
+          text: 'Toma dos tablas más',
+          type: 'text',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        await sendTextData({
+          res,
+          text: 'e',
+          type: 'pause'
+        })
+
+        await sendTextData({
+          res,
+          data: {
+            text: 'Toma la siguiente tabla y analiza los datos',
+            data: json_response.data,
+          },
+          type: 'table',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+        await sendTextData({
+          res,
+          text: 'e',
+          type: 'pause'
+        })
+
+        await sendTextData({
+          res,
+          data: {
+            text: 'Toma la siguiente tabla y analiza los datos',
+            data: json_response.data,
+          },
+          type: 'table',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+
+        return false
+      } else if (json_response?.type === 'other') {
+        const {
+          name = "Nombre por defecto",
+          description = "",
+          language = "Español",
+          tone = "",
+          answer = "",
+          ageOfInterlocutor = "",
+          availability = true,
+          useOfEmojis = false,
+          inclusiveLanguage = false,
+          formality = "",
+          presicion = "",
+          coherence = "",
+          emotionalLanguage = "",
+          scheduledResponses = []
+        } = agent || {}; // ← esto evita el error si agent es undefined
+
+
+        let responses = ''
+        if (scheduledResponses) {
+          responses += `Si el usuario te habla sobre algun tema que está en el listado, vas a hablar sobre ellos teniendo en cuenta todos los puntos que te indico para cada uno de ellos:\n`
+
+          scheduledResponses.map((resp0) => {
+            // console.log('resp0', resp0)
+            responses += `\n Tema ${resp0.whenuseraskabout}:\n`
+            // responses += `\n Lo que vas a hacer es hablar sobre estas ${resp0.responses.length} temas\n`
+            // console.log('response%%%%', resp0)
+            resp0.responses.map((resp1, index) => {
+              responses += `- Punto ${index + 1}: ${resp1}\n`
+            })
+          })
+
+
+          responses += `\n**Reglas**
+- Solo puedes hablar sobre los puntos del tema, no mezcles temas con puntos.
+- Habla solo sobre los temas que te indico, no hablés sobre otros temas.
+- No comentes que estas programado o des indicios de que tienes ordenes de seguir este guión.
+\n`
+        }
+
+
+        let systemPrompt =
+          `Eres un agente que tiene las siguientes reglas:
+
+          Tu nombre es: ${name}
+
+          Tu descripción es: ${description || 'No tienes descripción'}
+
+       Necesito que me respondas en este lenguaje: ${language || "español"}, 
+      
+      **CONFIGURACIÓN DE PERSONALIDAD (Escala 0-100%, por defecto 50%)**
+
+      - **Tono (${tone || 50}%)**: Ajusta el estilo general del lenguaje
+        - 0-20%: Muy directo y desenfadado
+        - 21-40%: Informal y cercano
+        - 41-60%: Equilibrado y natural
+        - 61-80%: Formal y estructurado
+        - 81-100%: Muy sobrio y profesional
+
+      - **Respuesta (${answer || 50}%)**: Define el nivel de detalle
+        - 0-20%: Resumen básico (1-2 frases)
+        - 21-40%: Explicación concisa
+        - 41-60%: Respuesta equilibrada
+        - 61-80%: Explicación detallada
+        - 81-100%: Análisis profundo paso a paso
+
+      - **Edad/Experiencia del interlocutor (${ageOfInterlocutor || 50}%)**: Adapta según el nivel de conocimiento
+        - 0-20%: Principiante (explicaciones muy básicas)
+        - 21-40%: Básico-intermedio
+        - 41-60%: Intermedio (equilibrado)
+        - 61-80%: Intermedio-avanzado
+        - 81-100%: Experto (conceptos avanzados)
+
+      - **Disponibilidad (${availability || 50}%)**: Controla la disposición a ayudar
+        - 0-20%: Estilo neutro y distante
+        - 21-40%: Moderadamente disponible
+        - 41-60%: Equilibrado en disponibilidad
+        - 61-80%: Proactivo y cercano
+        - 81-100%: Muy acompañante y proactivo
+
+      - **Uso de emojis (${useOfEmojis || 50}%)**: Cantidad de emojis en las respuestas
+        - 0-20%: Ningún emoji
+        - 21-40%: Emojis sutiles ocasionales
+        - 41-60%: Uso equilibrado de emojis
+        - 61-80%: Emojis frecuentes para énfasis
+        - 81-100%: Muchos emojis expresivos
+
+      - **Lenguaje inclusivo (${inclusiveLanguage || 50}%)**: Atención a diversidad y neutralidad
+        - 0-20%: Lenguaje tradicional sin consideraciones especiales
+        - 21-40%: Inclusión básica
+        - 41-60%: Equilibrado en inclusión
+        - 61-80%: Lenguaje muy inclusivo
+        - 81-100%: Máxima atención a diversidad y neutralidad
+
+      - **Formalidad (${formality || 50}%)**: Estilo relajado vs profesional
+        - 0-20%: Muy relajado y casual
+        - 21-40%: Informal
+        - 41-60%: Equilibrado entre formal e informal
+        - 61-80%: Profesional
+        - 81-100%: Muy formal y corporativo
+
+      - **Precisión (${presicion || 50}%)**: Rigurosidad en datos y argumentos
+        - 0-20%: Aproximación general y flexible
+        - 21-40%: Precisión básica
+        - 41-60%: Precisión equilibrada
+        - 61-80%: Alta precisión
+        - 81-100%: Exactitud quirúrgica y rigurosa
+
+      - **Coherencia (${coherence || 50}%)**: Conexión lógica en el discurso
+        - 0-20%: Simple y directo
+        - 21-40%: Coherencia básica
+        - 41-60%: Coherencia equilibrada
+        - 61-80%: Bien hilado y argumentado
+        - 81-100%: Máxima coherencia lógica y estructura
+
+      - **Lenguaje emocional (${emotionalLanguage || 50}%)**: Componente emocional
+        - 0-20%: Frío y objetivo
+        - 21-40%: Poco emocional
+        - 41-60%: Equilibrado emocionalmente
+        - 61-80%: Cálido y humano
+        - 81-100%: Muy emocional y empático
+
+      Ten en cuenta la siguiente configuración adicional para tu respuesta:
+      ${description}
+
+      ${responses}
+      `
+
+        systemPrompt = [{
+          role: 'user',
+          content: systemPrompt
+        }, {
+          role: 'user',
+          content: prompt
+        }]
+
+        const { success, text } = await sendRealTime({
+          res,
+          token,
+          systemPrompt,
+          userId: id,
+          agentId,
+          chatId
+        })
+
+        resolve({
+          success: true,
+          text: text
+        })
+
+      } else if (json_response?.type === 'add-assets' || json_response?.type === 'add-contacts' || json_response?.type === 'add-agents') {
+        const type = json_response?.type.split('-')[1]
+
+        let db = null
+        if (type === 'docs') {
+          db = await connectDB(`db_${id}_docs`)
+        } else if (type === 'assets') {
+          db = await connectDB(`db_${id}_assets`)
+        } else if (type === 'contacts') {
+          db = await connectDB(`db_${id}_contacts`)
+        } else if (type === 'agents') {
+          db = await connectDB(`db_${id}_agents`)
+        } else {
+          sendTextData({
+            res,
+            text: `No se encontró el ${type}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+
+          resolve({
+            success: true,
+            text: 'Mira tu nueva tabla'
+          })
+          return false
+        }
+
+        const data = {
+          ...json_response.data,
+          _id: uuidv4(),
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        }
+
+
+        await db.insert(data)
+
+        const responseRAG = cleanDataObject(data);
+
+        await sendTextData({
+          res,
+          text: `Se ha añadido ${type} correctamente con los siguientes datos: \n 
+${Object.entries(responseRAG).map(([key, value]) => `${key}: ${value}`).join('\n')}`,
+          type: 'stream',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+        return false
+
+      } else if (json_response?.type === 'search-docs' || json_response?.type === 'search-assets' || json_response?.type === 'search-contacts' || json_response?.type === 'search-agents') {
+        const type = json_response?.type.split('-')[1]
+
+        const db = await connectDB(`db_${id}_${type}`)
+        const result = await db.find({
+          selector: {
+            _id: json_response?.id
+          },
+          limit: 1
+        })
+
+        let doc = null
+        if (result.docs.length > 0) {
+          doc = result.docs[0]
+        }
+
+        await sendTextData({
+          res,
+          data: {
+            id: doc?._id,
+            type: type,
+            data: doc
+          },
+          type: 'viewer',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+
+        return false
+      } else if (isRAG && (json_response?.type === 'edit-docs' || json_response?.type === 'edit-assets' || json_response?.type === 'edit-contacts' || json_response?.type === 'edit-agents')) {
+
+        const type = json_response?.type.split('-')[1]
+
+        // Manejo especial para documentos HTML
+        if (type === 'docs') {
+          console.log('edit-docs - Editing HTML document')
+
+          try {
+            const dbDocs = await connectDB(`db_${id}_docs`)
+            const result = await dbDocs.find({
+              selector: {
+                _id: isRAG[0].id
+              },
+              limit: 1
+            })
+
+            if (result.docs.length === 0) {
+              await sendTextData({
+                res,
+                text: `No se encontró el documento #${isRAG[0].id}`,
+                type: 'text',
+                conf: {
+                  userId: id,
+                  agentId: agentId,
+                  chatId: chatId
+                }
+              })
+
+              resolve({
+                success: false,
+                text: 'Documento no encontrado'
+              })
+              return false
+            }
+
+            const existingDoc = result.docs[0]
+            const existingDocId = existingDoc._id
+            const existingHtml = existingDoc.html || ''
+            const existingCode = existingDoc.code || ''
+
+            // Construir el prompt para editar el documento
+            let documentPrompt = `
+Eres un asistente especializado en la creación y edición de documentos profesionales con múltiples páginas utilizando un conjunto de funciones HTML predefinidas.
+
+## Funciones HTML Disponibles
+
+### Estructura de Páginas
+- page(content, pageNumber, title) - Crea una página completa con numeración
+- pageHeader(title, subtitle) - Encabezado de página
+- pageFooter(pageNumber, totalPages) - Pie de página con numeración
+- pageBreak() - Separador de páginas
+
+### Títulos y Encabezados
+- title1(text, id) - Título principal H1
+- title2(text, id) - Subtítulo H2  
+- title3(text, id) - Subtítulo H3
+- title4(text, id) - Subtítulo H4
+- title5(text, id) - Subtítulo H5
+- title6(text, id) - Subtítulo H6
+
+### Contenido de Texto
+- paragraph(text, id) - Párrafos de texto
+- strong(text) - Texto en negrita
+- em(text) - Texto en cursiva
+- code(text) - Código inline
+- pre(text) - Bloques de código
+- blockquote(text) - Citas destacadas
+
+### Listas
+- ul(items, id) - Listas no numeradas
+- ol(items, id) - Listas numeradas
+- li(text) - Elementos de lista individuales
+
+### Enlaces e Imágenes
+- a(text, href) - Enlaces
+- img(src, alt) - Imágenes
+
+### Contenedores y Estructura
+- div(content, id) - Contenedores div
+- span(text) - Elementos span
+- section(content, id) - Secciones
+- article(content, id) - Artículos
+- aside(content, id) - Contenido lateral
+- header(content, id) - Encabezados
+- footer(content, id) - Pie de página
+- nav(content, id) - Navegación
+- main(content, id) - Contenido principal
+
+### Tablas
+- table(headers, rows, id) - Tablas con encabezados y filas
+
+### Elementos de Separación
+- hr() - Líneas horizontales
+- br() - Saltos de línea
+
+### Formularios
+- form(content, action, method) - Formularios
+- input(type, name, placeholder, value) - Campos de entrada
+- textarea(name, placeholder, rows, cols) - Áreas de texto
+- button(text, type) - Botones
+- label(text, forAttr) - Etiquetas
+- select(options, name) - Listas desplegables
+- option(text, value) - Opciones de selección
+
+## Documento Existente para Editar
+
+ID del documento: ${existingDocId}
+
+Código JavaScript actual del documento:
+\`\`\`javascript
+${existingCode}
+\`\`\`
+
+HTML actual del documento:
+${existingHtml}
+
+## Solicitud de Edición del Usuario
+
+${prompt}
+
+## Instrucciones para la Edición
+
+1. **Mantén los identificadores existentes** cuando sea posible para preservar la estructura
+2. **Solo modifica las secciones** que el usuario solicite cambiar
+3. **Preserva la estructura general** del documento
+4. **Agrega nuevos identificadores únicos** para elementos nuevos
+5. **Todo el contenido debe estar dentro de secciones** con IDs únicos
+6. **Si el usuario quiere eliminar un campo**, usa el parámetro removeField en el JSON de respuesta
+7. **Si el usuario quiere eliminar todo el documento**, devuelve type: "delete-docs"
+
+## Respuesta Requerida
+
+Devuelve ÚNICAMENTE el código JavaScript que genera el HTML del documento editado, sin bloques de código markdown, sin texto adicional ni explicaciones.
+
+Ejemplo de respuesta:
+section(
+  title1("Título del Documento", "main-title") +
+  section(
+    paragraph("Contenido del documento", "main-content")
+  , "content-section")
+, "main-section")
+`
+
+            // Llamar a OpenAI para editar el documento
+            const documentResponse = await axios.post("https://api.openai.com/v1/chat/completions", {
+              model: "gpt-4o-mini",
+              temperature: 0.7,
+              max_tokens: 4000,
+              messages: [{
+                role: 'user',
+                content: documentPrompt
+              }]
+            }, {
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+              }
+            });
+
+            const generatedCode = documentResponse.data.choices[0].message.content
+            console.log('Generated edited document code:', generatedCode)
+
+            // El código ya viene sin bloques markdown, usarlo directamente
+            const documentCode = generatedCode.trim()
+
+            // Verificar si el usuario quiere eliminar el documento
+            if (documentCode.toLowerCase().includes('delete-docs') || json_response?.data?.removeField === 'all') {
+              await dbDocs.destroy(existingDoc._id, existingDoc._rev)
+
+              await sendTextData({
+                res,
+                text: `Documento #${existingDocId} eliminado correctamente`,
+                type: 'text',
+                conf: {
+                  userId: id,
+                  agentId: agentId,
+                  chatId: chatId
+                }
+              })
+
+              resolve({
+                success: true,
+                text: 'Documento eliminado correctamente'
+              })
+              return false
+            }
+
+            // Ejecutar el código JavaScript para generar el HTML
+            const htmlFunctions = {
+              // Nuevas funciones para páginas
+              page: (content, pageNumber, title) => `
+                <div class="page" id="page-${pageNumber}" data-page="${pageNumber}" data-title="${title}">
+                  <div class="page-content">
+                    ${content}
+                  </div>
+                  
+                </div>
+              `,
+              pageHeader: (title, subtitle) => `
+                <section id="page-header-${uuidv4()}" class="page-header">
+                  <h1 class="document-title">${title}</h1>
+                  ${subtitle ? `<h2 class="document-subtitle">${subtitle}</h2>` : ''}
+                  <hr class="header-divider">
+                </section>
+              `,
+              pageFooter: (pageNumber, totalPages) => `
+                <section id="page-footer-${uuidv4()}" class="page-footer">
+                  <hr class="footer-divider">
+                  <div class="footer-content">
+                    <span class="page-number">Página ${pageNumber} de ${totalPages}</span>
+                    <span class="document-date">${new Date().toLocaleDateString()}</span>
+                  </div>
+                </section>
+              `,
+              pageBreak: () => '<section id="page-break-' + uuidv4() + '" class="page-break"></section>',
+
+              // Funciones HTML existentes - todas envueltas en secciones con uuidv4
+              title1: (text, id = null) => `<section id="${id || 'title1-' + uuidv4()}"><h1>${text}</h1></section>`,
+              title2: (text, id = null) => `<section id="${id || 'title2-' + uuidv4()}"><h2>${text}</h2></section>`,
+              title3: (text, id = null) => `<section id="${id || 'title3-' + uuidv4()}"><h3>${text}</h3></section>`,
+              title4: (text, id = null) => `<section id="${id || 'title4-' + uuidv4()}"><h4>${text}</h4></section>`,
+              title5: (text, id = null) => `<section id="${id || 'title5-' + uuidv4()}"><h5>${text}</h5></section>`,
+              title6: (text, id = null) => `<section id="${id || 'title6-' + uuidv4()}"><h6>${text}</h6></section>`,
+              paragraph: (text, id = null) => `<section id="${id || 'paragraph-' + uuidv4()}"><p>${text}</p></section>`,
+              strong: (text) => `<section id="strong-' + uuidv4() + '"><strong>${text}</strong></section>`,
+              em: (text) => `<section id="em-' + uuidv4() + '"><em>${text}</em></section>`,
+              code: (text) => `<section id="code-' + uuidv4() + '"><code>${text}</code></section>`,
+              pre: (text) => `<section id="pre-' + uuidv4() + '"><pre>${text}</pre></section>`,
+              blockquote: (text) => `<section id="blockquote-' + uuidv4() + '"><blockquote>${text}</blockquote></section>`,
+              ul: (items, id = null) => `<section id="${id || 'ul-' + uuidv4()}"><ul>${items.map(item => `<li>${item}</li>`).join('')}</ul></section>`,
+              ol: (items, id = null) => `<section id="${id || 'ol-' + uuidv4()}"><ol>${items.map(item => `<li>${item}</li>`).join('')}</ol></section>`,
+              li: (text) => `<section id="li-' + uuidv4() + '"><li>${text}</li></section>`,
+              a: (text, href) => `<section id="a-' + uuidv4() + '"><a href="${href}">${text}</a></section>`,
+              img: (src, alt) => `<section id="img-' + uuidv4() + '"><img src="${src}" alt="${alt}"></section>`,
+              div: (content, id = null) => `<section id="${id || 'div-' + uuidv4()}"><div>${content}</div></section>`,
+              span: (text) => `<section id="span-' + uuidv4() + '"><span>${text}</span></section>`,
+              section: (content, id = null) => `<section id="${id || 'section-' + uuidv4()}">${content}</section>`,
+              article: (content, id = null) => `<section id="${id || 'article-' + uuidv4()}"><article>${content}</article></section>`,
+              aside: (content, id = null) => `<section id="${id || 'aside-' + uuidv4()}"><aside>${content}</aside></section>`,
+              header: (content, id = null) => `<section id="${id || 'header-' + uuidv4()}"><header>${content}</header></section>`,
+              footer: (content, id = null) => `<section id="${id || 'footer-' + uuidv4()}"><footer>${content}</footer></section>`,
+              nav: (content, id = null) => `<section id="${id || 'nav-' + uuidv4()}"><nav>${content}</nav></section>`,
+              main: (content, id = null) => `<section id="${id || 'main-' + uuidv4()}"><main>${content}</main></section>`,
+              table: (headers, rows, id = null) => {
+                const headerRow = `<tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>`
+                const dataRows = rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')
+                return `<section id="${id || 'table-' + uuidv4()}"><table><thead>${headerRow}</thead><tbody>${dataRows}</tbody></table></section>`
+              },
+              hr: () => '<section id="hr-' + uuidv4() + '"><hr></section>',
+              br: () => '<section id="br-' + uuidv4() + '"><br></section>',
+              form: (content, action = '', method = 'post') => `<section id="form-' + uuidv4() + '"><form action="${action}" method="${method}">${content}</form></section>`,
+              input: (type, name, placeholder = '', value = '') => `<section id="input-' + uuidv4() + '"><input type="${type}" name="${name}" placeholder="${placeholder}" value="${value}"></section>`,
+              textarea: (name, placeholder = '', rows = 4, cols = 50) => `<section id="textarea-' + uuidv4() + '"><textarea name="${name}" placeholder="${placeholder}" rows="${rows}" cols="${cols}"></textarea></section>`,
+              button: (text, type = 'button') => `<section id="button-' + uuidv4() + '"><button type="${type}">${text}</button></section>`,
+              label: (text, forAttr = '') => `<section id="label-' + uuidv4() + '"><label${forAttr ? ` for="${forAttr}"` : ''}>${text}</label></section>`,
+              select: (options, name) => `<section id="select-' + uuidv4() + '"><select name="${name}">${options.map(opt => `<option value="${opt.value}">${opt.text}</option>`).join('')}</select></section>`,
+              option: (text, value) => `<section id="option-' + uuidv4() + '"><option value="${value}">${text}</option></section>`
+            }
+
+            // Ejecutar el código del documento de manera segura
+            const generatedHtml = (function () {
+              const { page, pageHeader, pageFooter, pageBreak, title1, title2, title3, title4, title5, title6, paragraph, strong, em, code, pre, blockquote, ul, ol, li, a, img, div, span, section, article, aside, header, footer, nav, main, table, hr, br, form, input, textarea, button, label, select, option } = htmlFunctions;
+              return eval(documentCode);
+            })()
+
+            console.log('Generated edited HTML:', generatedHtml)
+
+            // Agregar CSS y JavaScript para la navegación de páginas (mismo que en creación)
+            // const pageStyles = `
+            //   <style>
+            //     .document-container {
+            //       max-width: 800px;
+            //       margin: 0 auto;
+            //       font-family: 'Arial', sans-serif;
+            //       line-height: 1.6;
+            //     }
+                
+            //     .page {
+            //       background: white;
+            //       margin: 20px 0;
+            //       padding: 40px;
+            //       border: 1px solid #ddd;
+            //       border-radius: 8px;
+            //       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            //       min-height: 800px;
+            //       position: relative;
+            //     }
+                
+            //     .page-content {
+            //       margin-bottom: 60px;
+            //     }
+                
+            //     .page-header {
+            //       text-align: center;
+            //       margin-bottom: 30px;
+            //       border-bottom: 2px solid #333;
+            //       padding-bottom: 20px;
+            //     }
+                
+            //     .document-title {
+            //       color: #2c3e50;
+            //       margin: 0 0 10px 0;
+            //       font-size: 2.5em;
+            //     }
+                
+            //     .document-subtitle {
+            //       color: #7f8c8d;
+            //       margin: 0;
+            //       font-size: 1.2em;
+            //       font-weight: normal;
+            //     }
+                
+            //     .header-divider {
+            //       border: none;
+            //       height: 2px;
+            //       background: linear-gradient(to right, #3498db, #2ecc71);
+            //       margin: 20px 0;
+            //     }
+                
+            //     .page-footer {
+            //       position: absolute;
+            //       bottom: 20px;
+            //       left: 40px;
+            //       right: 40px;
+            //     }
+                
+            //     .footer-divider {
+            //       border: none;
+            //       height: 1px;
+            //       background: #bdc3c7;
+            //       margin-bottom: 15px;
+            //     }
+                
+            //     .footer-content {
+            //       display: flex;
+            //       justify-content: space-between;
+            //       font-size: 0.9em;
+            //       color: #7f8c8d;
+            //     }
+                
+            //     .page-navigation {
+            //       display: flex;
+            //       justify-content: space-between;
+            //       align-items: center;
+            //       margin-top: 20px;
+            //       padding: 15px;
+            //       background: #f8f9fa;
+            //       border-radius: 5px;
+            //     }
+                
+            //     .nav-btn {
+            //       background: #3498db;
+            //       color: white;
+            //       border: none;
+            //       padding: 8px 16px;
+            //       border-radius: 4px;
+            //       cursor: pointer;
+            //       font-size: 0.9em;
+            //       transition: background 0.3s;
+            //     }
+                
+            //     .nav-btn:hover {
+            //       background: #2980b9;
+            //     }
+                
+            //     .nav-btn:disabled {
+            //       background: #bdc3c7;
+            //       cursor: not-allowed;
+            //     }
+                
+            //     .page-indicator {
+            //       font-weight: bold;
+            //       color: #2c3e50;
+            //     }
+                
+            //     .page-break {
+            //       page-break-after: always;
+            //       height: 0;
+            //       margin: 0;
+            //       border: 0;
+            //     }
+                
+            //     h1, h2, h3, h4, h5, h6 {
+            //       color: #2c3e50;
+            //       margin-top: 25px;
+            //       margin-bottom: 15px;
+            //     }
+                
+            //     p {
+            //       margin-bottom: 15px;
+            //       text-align: justify;
+            //     }
+                
+            //     table {
+            //       width: 100%;
+            //       border-collapse: collapse;
+            //       margin: 20px 0;
+            //     }
+                
+            //     th, td {
+            //       border: 1px solid #ddd;
+            //       padding: 12px;
+            //       text-align: left;
+            //     }
+                
+            //     th {
+            //       background-color: #f8f9fa;
+            //       font-weight: bold;
+            //     }
+                
+            //     ul, ol {
+            //       margin: 15px 0;
+            //       padding-left: 30px;
+            //     }
+                
+            //     li {
+            //       margin-bottom: 8px;
+            //     }
+                
+            //     blockquote {
+            //       border-left: 4px solid #3498db;
+            //       margin: 20px 0;
+            //       padding: 15px 20px;
+            //       background: #f8f9fa;
+            //       font-style: italic;
+            //     }
+                
+            //     code {
+            //       background: #f1f2f6;
+            //       padding: 2px 6px;
+            //       border-radius: 3px;
+            //       font-family: 'Courier New', monospace;
+            //     }
+                
+            //     pre {
+            //       background: #2c3e50;
+            //       color: #ecf0f1;
+            //       padding: 15px;
+            //       border-radius: 5px;
+            //       overflow-x: auto;
+            //     }
+            //   </style>
+            // `
+
+            const pageStyles = ``
+            // const pageScript = `
+            //   <script>
+            //     function goToPage(pageNumber) {
+            //       const pages = document.querySelectorAll('.page');
+            //       const targetPage = document.querySelector(\`[data-page="\${pageNumber}"]\`);
+                  
+            //       if (targetPage) {
+            //         pages.forEach(page => page.style.display = 'none');
+            //         targetPage.style.display = 'block';
+                    
+            //         // Actualizar botones de navegación
+            //         updateNavigation(pageNumber, pages.length);
+            //       }
+            //     }
+                
+            //     function updateNavigation(currentPage, totalPages) {
+            //       const prevBtn = document.querySelector('.prev-btn');
+            //       const nextBtn = document.querySelector('.next-btn');
+                  
+            //       if (prevBtn) {
+            //         prevBtn.disabled = currentPage <= 1;
+            //         prevBtn.onclick = () => goToPage(currentPage - 1);
+            //       }
+                  
+            //       if (nextBtn) {
+            //         nextBtn.disabled = currentPage >= totalPages;
+            //         nextBtn.onclick = () => goToPage(currentPage + 1);
+            //       }
+            //     }
+                
+            //     // Inicializar navegación
+            //     document.addEventListener('DOMContentLoaded', function() {
+            //       const pages = document.querySelectorAll('.page');
+            //       if (pages.length > 0) {
+            //         // Mostrar solo la primera página inicialmente
+            //         pages.forEach((page, index) => {
+            //           page.style.display = index === 0 ? 'block' : 'none';
+            //         });
+                    
+            //         updateNavigation(1, pages.length);
+            //       }
+            //     });
+            //   </script>
+            // `
+
+            // Combinar HTML generado con estilos y scripts
+            
+            const pageScript = ``
+            
+            const completeHtml = pageStyles + '<div class="document-container">' + generatedHtml + '</div>' + pageScript
+
+            // Actualizar el documento en la base de datos
+            const updatedDocData = {
+              ...existingDoc,
+              html: completeHtml,
+              code: documentCode,
+              prompt: prompt,
+              data: json_response.data || {},
+              updatedAt: new Date().toISOString(),
+            }
+
+            await dbDocs.insert(updatedDocData)
+
+            // Enviar respuesta al frontend
+            await sendTextData({
+              res,
+              data: {
+                id: updatedDocData._id,
+                html: generatedHtml,
+                code: documentCode,
+                status: 200,
+                message: 'Documento editado correctamente'
+              },
+              type: 'doc',
+              conf: {
+                userId: id,
+                agentId: agentId,
+                chatId: chatId
+              }
+            })
+
+            resolve({
+              success: true,
+              text: 'Documento editado correctamente'
+            })
+            return false
+
+          } catch (error) {
+            console.error('Error editing document:', error)
+
+            await sendTextData({
+              res,
+              text: 'Error al editar el documento. Por favor, intenta de nuevo.',
+              type: 'text',
+              conf: {
+                userId: id,
+                agentId: agentId,
+                chatId: chatId
+              }
+            })
+
+            resolve({
+              success: false,
+              text: 'Error al editar el documento'
+            })
+            return false
+          }
+        }
+
+        // Manejo para otros tipos (assets, contacts, agents)
+        let db = null
+        if (type === 'assets') {
+          db = await connectDB(`db_${id}_assets`)
+        } else if (type === 'contacts') {
+          db = await connectDB(`db_${id}_contacts`)
+        } else if (type === 'agents') {
+          db = await connectDB(`db_${id}_agents`)
+        } else {
+          sendTextData({
+            res,
+            text: `No se encontró el ${type} #${isRAG[0].id}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+
+          resolve({
+            success: true,
+            text: 'Documento actualizado'
+          })
+
+          return false
+        }
+
+        const result = await db.find({
+          selector: {
+            _id: isRAG[0].id
+          },
+          limit: 1
+        })
+
+        if (result.docs.length == 0) {
+          await sendTextData({
+            res,
+            text: `No se encontró el ${type} #${isRAG[0].id}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+        } else {
+
+          const data = {
+            ...result.docs[0],
+            ...(json_response?.data?.removeFiled ? {} : json_response.data),
+            updatedAt: new Date().toISOString(),
+          }
+
+          if (json_response.data?.removeField) {
+            delete data[json_response.data.removeField]
+            delete data.removeField
+          }
+
+          await db.insert(data)
+
+          const responseRAG = cleanDataObject(data);
+
+          await sendTextData({
+            res,
+            text: `Documento actualizado ${type} #${isRAG[0].id} \n 
+${Object.entries(responseRAG).map(([key, value]) => `${key}: ${value}`).join('\n')}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+        }
+
+        resolve({
+          success: true,
+          text: 'Documento actualizado'
+        })
+        return false
+
+      } else if (isRAG && (json_response?.type === 'delete-docs' || json_response?.type === 'delete-assets' || json_response?.type === 'delete-contacts' || json_response?.type === 'delete-agents')) {
+
+        const type = json_response?.type.split('-')[1]
+
+        let db = null
+
+        if (type === 'docs') {
+          db = await connectDB(`db_${id}_docs`)
+        } else if (type === 'assets') {
+          db = await connectDB(`db_${id}_assets`)
+        } else if (type === 'contacts') {
+          db = await connectDB(`db_${id}_contacts`)
+        } else if (type === 'agents') {
+          db = await connectDB(`db_${id}_agents`)
+        } else {
+          await sendTextData({
+            res,
+            text: `No se encontró el ${type}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+
+          resolve({
+            success: true,
+            text: 'Mira tu nueva tabla'
+          })
+
+          return false
+        }
+
+
+        const result = await db.find({
+          selector: {
+            _id: isRAG[0].id
+          },
+          limit: 1
+        })
+
+
+        if (result.docs.length == 0) {
+          await sendTextData({
+            res,
+            text: `No se encontró el ${type} #${isRAG[0].id}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+
+          resolve({
+            success: true,
+            text: 'Mira tu nueva tabla'
+          })
+
+          return false
+        }
+
+        await db.destroy(result.docs[0]._id, result.docs[0]._rev)
+
+        await sendTextData({
+          res,
+          text: `Se ha eliminado ${type} #${isRAG[0].id}`,
+          type: 'stream',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+        return false
+
+      } else if (!isRAG) {
+        await sendTextData({
+          res,
+          text: 'No se encontro ninguna acción para realizar',
+          type: 'text',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+
+        return false
+      }
+    } catch (e) {
+      console.error('Error in meetGPT:', e);
+      resolve({
+        success: false,
+        text: 'Error al procesar la solicitud'
+      });
+    }
+  })
+}
+
+
+
+const sendRealTime = async ({
+  res,
+  token,
+  systemPrompt,
+  userId = null,
+  agentId = null,
+  chatId = null,
+  threadId = null,
+  docId = null
+}) => {
+  return new Promise(async (resolve, reject) => {
+
+    try {
+
+      const response = await axios({
+        method: 'post',
+        url: 'https://api.openai.com/v1/chat/completions',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        data: {
+          model: 'gpt-4o-mini',
+          messages: systemPrompt,
+
+          stream: true
+        },
+        responseType: 'stream'
+      });
+
+      let text = ''
+      let buffer = ''
+      const MIN_CHUNK_SIZE = 50
+
+      response.data.on('data', async chunk => {
+        const lines = chunk.toString().split('\n').filter(line => line.trim() !== '');
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const jsonStr = line.replace('data: ', '');
+            if (jsonStr === '[DONE]') {
+              // Send any remaining buffer content
+              if (buffer.length > 0) {
+                await sendTextData({
+                  res,
+                  text: buffer,
+                  type: 'text',
+                  conf: {
+                    threadId: threadId,
+                    docId: docId
+                  }
+                })
+                text += buffer
+                buffer = ''
+              }
+              return;
+            }
+
+            try {
+              const json = JSON.parse(jsonStr);
+              const content = json.choices?.[0]?.delta?.content;
+
+              if (content) {
+                buffer += content
+
+                // Send chunk when it reaches minimum size
+                if (buffer.length >= MIN_CHUNK_SIZE) {
+                  await sendTextData({
+                    res,
+                    text: buffer,
+                    type: 'text',
+                    conf: {
+                      threadId: threadId,
+                      docId: docId
+                    }
+                  })
+                  text += buffer
+                  buffer = ''
+                }
+              }
+            } catch (err) {
+              console.error('Error al parsear JSON:', err.message);
+            }
+          }
+        }
+      });
+
+      response.data.on('end', async () => {
+        console.log('step6', text)
+        if (userId && agentId && chatId) {
+          await sendTextData({
+            res,
+            text: text,
+            type: 'bot-end',
+            conf: {
+              userId: userId,
+              agentId: agentId,
+              chatId: chatId,
+              threadId: threadId,
+              docId: docId
+            }
+          })
+        }
+
+        res.end();
+        resolve({
+          success: true,
+          text: text
+        })
+      });
+
+      response.data.on('error', err => {
+        console.error('Error de stream:', err.message);
+        reject({
+          success: false,
+          text: 'Error al procesar la solicitud2'
+        })
+      });
+    } catch (error) {
+      console.error('Error in sendRealTime:', error);
+      reject({
+        success: false,
+        text: 'Error al procesar la solicitud1'
+      })
+    }
+  })
+}
+
+
+
+const validateToken = async (token) => {
+
+  // console.log('esto es validador de token', token)
+  try {
+
+    await axios.get("https://api.openai.com/v1/models", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
+const assistantAgent = async ({
+  res,
+  prompt,
+  token,
+  agent,
+  userId,
+  agentId,
+  chatId,
+  threadId = null,
+  docId = null,
+  action = [],
+  data = null,
+}) => {
+
+
+
+  const fnAgent = async ({
+    res,
+    token,
+    // data,
+    prompt,
+    userId,
+    agentId,
+    chatId,
+    threadId,
+    docId
+  }) => {
+    try {
+      console.log('fnAgent called with prompt:', prompt)
+
+
+
+      const {
+        tone = 50,
+        answer = 50,
+        ageOfInterlocutor = 50,
+        availability = 50,
+        useOfEmojis = 50,
+        inclusiveLanguage = 50,
+        formality = 50,
+        presicion = 50,
+        coherence = 50,
+        emotionalLanguage = 50,
+      } = agent || {}
+
+      // console.log('3456ijuhyre', tone, answer, ageOfInterlocutor, availability, useOfEmojis, inclusiveLanguage, formality, presicion, coherence, emotionalLanguage)
+
+      // console.log('promptt', prompt)
+
+      const systemPrompt = [{
+        role: 'user',
+        content: `
+Eres un interlocutor que debe obtener un dato específico de un usuario a través de una pregunta.
+
+${prompt}
+
+**CONFIGURACIÓN DE PERSONALIDAD DEL INTERLOCUTOR (Escala 0-100%, por defecto 50%)**
+
+- **Tono (${tone || 50}%)**: Ajusta el estilo general del lenguaje
+  - 0-20%: Muy directo y desenfadado
+  - 21-40%: Informal y cercano
+  - 41-60%: Equilibrado y natural
+  - 61-80%: Formal y estructurado
+  - 81-100%: Muy sobrio y profesional
+
+- **Respuesta (${answer || 50}%)**: Define el nivel de detalle
+  - 0-20%: Resumen básico (1-2 frases)
+  - 21-40%: Explicación concisa
+  - 41-60%: Respuesta equilibrada
+  - 61-80%: Explicación detallada
+  - 81-100%: Análisis profundo paso a paso
+
+- **Edad/Experiencia del interlocutor (${ageOfInterlocutor || 50}%)**: Adapta según el nivel de conocimiento
+  - 0-20%: Principiante (explicaciones muy básicas)
+  - 21-40%: Básico-intermedio
+  - 41-60%: Intermedio (equilibrado)
+  - 61-80%: Intermedio-avanzado
+  - 81-100%: Experto (conceptos avanzados)
+
+- **Disponibilidad (${availability || 50}%)**: Controla la disposición a ayudar
+  - 0-20%: Estilo neutro y distante
+  - 21-40%: Moderadamente disponible
+  - 41-60%: Equilibrado en disponibilidad
+  - 61-80%: Proactivo y cercano
+  - 81-100%: Muy acompañante y proactivo
+
+- **Uso de emojis (${useOfEmojis || 50}%)**: Cantidad de emojis en las respuestas
+  - 0-20%: Ningún emoji
+  - 21-40%: Emojis sutiles ocasionales
+  - 41-60%: Uso equilibrado de emojis
+  - 61-80%: Emojis frecuentes para énfasis
+  - 81-100%: Muchos emojis expresivos
+
+- **Lenguaje inclusivo (${inclusiveLanguage || 50}%)**: Atención a diversidad y neutralidad
+  - 0-20%: Lenguaje tradicional sin consideraciones especiales
+  - 21-40%: Inclusión básica
+  - 41-60%: Equilibrado en inclusión
+  - 61-80%: Lenguaje muy inclusivo
+  - 81-100%: Máxima atención a diversidad y neutralidad
+
+- **Formalidad (${formality || 50}%)**: Estilo relajado vs profesional
+  - 0-20%: Muy relajado y casual
+  - 21-40%: Informal
+  - 41-60%: Equilibrado entre formal e informal
+  - 61-80%: Profesional
+  - 81-100%: Muy formal y corporativo
+
+- **Precisión (${presicion || 50}%)**: Rigurosidad en datos y argumentos
+  - 0-20%: Aproximación general y flexible
+  - 21-40%: Precisión básica
+  - 41-60%: Precisión equilibrada
+  - 61-80%: Alta precisión
+  - 81-100%: Exactitud quirúrgica y rigurosa
+
+- **Coherencia (${coherence || 50}%)**: Conexión lógica en el discurso
+  - 0-20%: Simple y directo
+  - 21-40%: Coherencia básica
+  - 41-60%: Coherencia equilibrada
+  - 61-80%: Bien hilado y argumentado
+  - 81-100%: Máxima coherencia lógica y estructura
+
+- **Lenguaje emocional (${emotionalLanguage || 50}%)**: Componente emocional
+  - 0-20%: Frío y objetivo
+  - 21-40%: Poco emocional
+  - 41-60%: Equilibrado emocionalmente
+  - 61-80%: Cálido y humano
+  - 81-100%: Muy emocional y empático
+
+**La pregunta debe:**
+- Un texto plano
+- Reunir la personalidad del interlocutor 
+- Usar en todo momento la configuración de personalidad
+- No debe de contener ninguna bienvenida, es una conversación fluida
+- Sí es un booleano hazlo natural haciendo que el usuario conteste con "si" o "no" o una respuesta positiva o negativa.
+
+**Obligatorio:**
+- Usa la descripción y el tipo de respuesta, para aclarar
+la respuesta, muchas veces la información es vaga y requiere de aclaración,
+por eso necesito que la pregunta sea clara y descrptiva si es necesario, para que la
+entienda un joven de 7 años.
+
+
+`
+      }]
+
+      console.log('Calling sendRealTime from fnAgent...')
+      await sendRealTime({
+        res,
+        token,
+        systemPrompt,
+        userId,
+        agentId,
+        chatId,
+        threadId,
+        docId
+      })
+      console.log('fnAgent completed successfully')
+    } catch (error) {
+      console.error('Error in fnAgent:', error);
+    }
+  }
+
+  const dbChat = await connectDB(`db_${userId}_chat`)
+  let chat = await dbChat.get(chatId)
+
+  if (!chat) {
+    return false
+  }
+
+  return new Promise(async (resolve, reject) => {
+    try {
+      // Find the last message sent by the bo
+      if (!chat.data?.info || (!threadId && typeof data === 'object')) {
+        threadId = uuidv4()
+        let iniData = {}
+        Object.keys(data || {}).map((item) => {
+          iniData[item] = {
+            ...data[item],
+            verified: false,
+            timestamp: null
+          }
+        })
+
+
+
+        const getAvailableKeys = (data, currentData = {}) => {
+          return Object.keys(data || {}).filter((key) => {
+            const field = data[key];
+
+            // Si ya tiene timestamp, no está disponible
+            if (field.timestamp !== null) {
+              return false;
+            }
+
+            // Si el campo tiene .end = true, no está disponible (proceso terminado)
+            if (field.end === true) {
+              return false;
+            }
+
+            // Si tiene .has, verificar que las dependencias estén satisfechas
+            if (field.has) {
+              const dependencies = field.has.split('|');
+              return dependencies.every(dep => {
+                // Si la dependencia es un campo booleano, debe ser true
+                if (typeof currentData[dep] === 'boolean') {
+                  return currentData[dep] === true;
+                }
+                // Si es un campo contestado, debe tener valor
+                return currentData[dep] !== undefined && currentData[dep] !== null && currentData[dep] !== '';
+              });
+            }
+
+            // Si no tiene .has, está disponible
+            return true;
+          });
+        };
+
+        const availableKeys = getAvailableKeys(iniData, chat.data || {});
+        const requiredKeys = availableKeys.filter(key => iniData[key].required === true);
+        const nonRequiredKeys = availableKeys.filter(key => !iniData[key].required);
+
+        const keysToUse = requiredKeys.length > 0 ? requiredKeys : nonRequiredKeys;
+        const key = keysToUse[Math.floor(Math.random() * keysToUse.length)]
+
+
+        const answerPrompt = () => {
+          return `**Información de la pregunta "${key}"** 
+          - Descripción de la pregunta: ${chat.data.info[key]?.description}
+          - Tipo de respuesta: ${chat.data.info[key]?.type}
+          `
+        }
+
+        console.log('anserprompt1')
+
+        chat.action = action || []
+
+        chat.data = {
+          // ...chat.data,
+          info: {
+            ...iniData,
+            [key]: {
+              ...iniData[key],
+              verified: false,
+              timestamp: new Date().toISOString()
+            }
+          }
+        }
+
+        await dbChat.insert(chat)
+        await fnAgent({
+          res,
+          token,
+          prompt: answerPrompt(),
+          // data: chat.data,
+          userId,
+          agentId,
+          chatId,
+          threadId,
+          docId
+        })
+
+        console.log('step3')
+
+        resolve({
+          success: true,
+          threadId
+        })
+      } else {
+        // console.log('chat.data.info', chat.data)
+        const info = Object.values(chat.data.info || {})
+          .map(item => item.timestamp).filter(Boolean)
+          .sort().pop()
+
+        // console.log('info', info)
+        const key = Object.keys(chat.data.info || {}).find(key => chat.data.info[key].timestamp === info)
+
+        // console.log('key', key)
+        // const lastMessage = chat.messages.filter(message => message.type === 'bot').pop().text
+
+        const assistantSystemPrompt = [{
+          role: 'user',
+          content: `
+Actúa como un asistente experto en procesamiento de datos.     
+      
+Devuelve un JSON con la siguiente estructura:
+{
+  "value": "valor del campo si es válido",
+  "accuracy": 8, // Nivel de acierto de 0-10 (0=totalmente incorrecto, 10=perfecto)
+  "confidence": 7, // Nivel de confianza de 0-10 (0=no sabe, 10=totalmente seguro)
+  "feedback": "breve explicación del nivel de acierto"
+}
+
+Formato de la pregunta:
+- ${prompt}
+
+Formato del tipo: 
+ - ${chat.data.info[key].type}
+
+Descripción del campo pendiente:	
+ - ${chat.data.info[key].description}
+
+CRITERIOS DE EVALUACIÓN:
+- accuracy 0-3: Respuesta completamente incorrecta o irrelevante
+- accuracy 4-6: Respuesta parcialmente correcta pero confusa
+- accuracy 7: Respuesta aceptable pero necesita aclaración
+- accuracy 8-10: Respuesta correcta y clara
+
+- confidence 0-3: Usuario no sabe o está muy confundido
+- confidence 4-6: Usuario está inseguro o necesita ayuda
+- confidence 7-10: Usuario está seguro de su respuesta
+
+IMPORTANTE: Si el usuario dice salir de la automatización | documento acompañado de "salir", "parar", "cancelar", "terminar", "desconectar", "no más", "basta", "ya no", "detener", "interrumpir", "abandonar", "dejar", "cesar", "finalizar", "concluir", "acabar", "cerrar", "no quiero continuar", "ya no quiero", "me aburro", "es suficiente", "ya está bien", "no más preguntas", "me aburro", "es suficiente", "ya está bien" 
+No confundir nunca con la respuesta si es un booleano.
+
+{
+  "type": "exit-automate",
+  "value": "exit",
+  "accuracy": 10,
+  "confidence": 10,
+  "feedback": "Usuario quiere salir de la automatización"
+}
+
+Devuelve ÚNICAMENTE el JSON, sin texto adicional.`
+        }, {
+          role: 'user',
+          content: prompt
+        }]
+
+        // console.log('assistantSystemPrompt', assistantSystemPrompt)
+
+        const assistantResponse = await axios.post("https://api.openai.com/v1/chat/completions", {
+          model: "gpt-4o-mini",
+          temperature: 0.7,
+          max_tokens: 2096,
+          messages: assistantSystemPrompt
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          }
+        });
+
+        const value_response = extractCodeBlocks(assistantResponse.data.choices[0].message.content)
+
+
+        let json_response
+        try {
+          if (value_response && value_response.length >= 2) {
+            json_response = JSON.parse(value_response[1])
+          } else {
+            console.error('Invalid value_response structure:', value_response)
+            throw new Error('Invalid response structure')
+          }
+        } catch (parseError) {
+          console.error('Error parsing JSON response:', parseError)
+
+          await sendTextData({
+            res,
+            text: 'Lo siento, hubo un error procesando tu respuesta. Por favor, intenta de nuevo.',
+            type: 'text',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId,
+              threadId: threadId,
+              docId: docId
+            }
+          })
+
+          resolve({
+            success: false,
+            text: 'Error parsing response'
+          })
+          return
+        }
+
+        console.log('json_response', json_response)
+
+        if (json_response?.type === 'exit-automate') {
+          console.log('User requested to exit automation from assistantAgent')
+
+          try {
+            const dbChat = await connectDB(`db_${userId}_chat`)
+            const chat = await dbChat.get(chatId)
+
+            chat.data = {}
+            chat.action = {}
+            chat.threadId = null
+
+            await dbChat.insert(chat)
+            console.log('Chat automation data cleared from assistantAgent')
+          } catch (error) {
+            console.error('Error clearing chat automation data from assistantAgent:', error)
+          }
+
+          const exitMessages = [
+            '¡Perfecto! He salido del modo automatización. ¿En qué más puedo ayudarte?',
+            'Entendido, he terminado la automatización. ¿Hay algo más en lo que pueda asistirte?',
+            '¡Listo! Ya no estoy en modo automatización. ¿Qué te gustaría hacer ahora?',
+            'De acuerdo, he cancelado la automatización. ¿En qué puedo ayudarte?',
+            '¡Perfecto! He salido del proceso automatizado. ¿Qué necesitas ahora?',
+            'Entendido, he parado la automatización. ¿Hay algo más que quieras hacer?',
+            '¡Listo! He terminado con la automatización. ¿En qué más puedo ser útil?',
+            'De acuerdo, he desconectado del modo automatización. ¿Qué te gustaría hacer?'
+          ]
+
+          const randomMessage = exitMessages[Math.floor(Math.random() * exitMessages.length)]
+
+          await sendTextData({
+            res,
+            text: randomMessage,
+            type: 'text',
+            conf: {
+              userId: userId,
+              agentId: agentId,
+              chatId: chatId,
+              threadId: threadId
+            }
+          })
+
+          resolve({
+            success: true,
+            data: { type: 'exit-automate' }
+          })
+          return
+        }
+
+        // Obtener el número de intentos para esta pregunta
+        const currentAttempts = chat.data.info[key]?.attempts || 0
+        const maxAttempts = 3
+
+        console.log('Current attempts:', currentAttempts, 'Max attempts:', maxAttempts)
+        console.log('Accuracy:', json_response.accuracy)
+
+        // Verificar si la respuesta es válida (accuracy >= 7)
+        if (json_response.accuracy < 7) {
+          console.log('Response accuracy < 7, generating guided question...')
+
+          // Incrementar intentos
+          chat.data.info[key] = {
+            ...chat.data.info[key],
+            attempts: currentAttempts + 1,
+            lastResponse: json_response,
+            timestamp: new Date().toISOString()
+          }
+
+          await dbChat.insert(chat)
+
+          if (currentAttempts < maxAttempts) {
+            console.log('Calling generateGuidedQuestion...')
+            await generateGuidedQuestion({
+              res,
+              token,
+              key,
+              chat,
+              json_response,
+              userId,
+              agentId,
+              chatId,
+              threadId
+            })
+          } else {
+            console.log('Max attempts reached, moving to next question...')
+            await moveToNextQuestion({
+              res,
+              token,
+              chat,
+              userId,
+              agentId,
+              chatId,
+              threadId
+            })
+          }
+
+          resolve({
+            success: true,
+            data: json_response
+          })
+          return
+        }
+
+        chat.data = {
+          ...chat.data,
+          [key]: json_response.value,
+          info: {
+            ...chat.data.info,
+            [key]: {
+              ...chat.data.info[key],
+              verified: true,
+              attempts: 0,
+              accuracy: json_response.accuracy,
+              confidence: json_response.confidence
+            }
+          }
+        }
+
+        await dbChat.insert(chat)
+
+        console.log('Response accuracy >= 7, continuing with normal flow...')
+        chat = await dbChat.get(chat._id)
+        if (chat.data.info[key]?.end === true) {
+          console.log('Campo con .end = true contestado, finalizando proceso de automatización');
+
+          chat.data = {
+            ...chat.data,
+            [key]: json_response.value,
+            info: {
+              ...chat.data.info,
+              [key]: {
+                ...chat.data.info[key],
+                verified: true,
+                attempts: 0,
+                accuracy: json_response.accuracy,
+                confidence: json_response.confidence
+              }
+            }
+          }
+
+          await dbChat.insert(chat)
+
+          await sendTextData({
+            res,
+            data: {
+              text: chat.action.text || 'Proceso completado exitosamente',
+              variable: Object.entries(chat.data || {}).filter(([key]) => key !== 'info' && key !== 'undefined').map(([key, value]) => ({
+                key,
+                value,
+                description: chat.data.info?.[key]?.description || '',
+                type: chat.data.info?.[key]?.type || '',
+              })),
+              action: chat.action.automate || []
+            },
+            type: 'automate',
+            conf: {
+              userId: userId,
+              agentId: agentId,
+              chatId: chatId,
+              threadId: threadId
+            }
+          })
+
+          resolve({
+            success: true,
+            data: { type: 'end-process' }
+          })
+          return
+        }
+
+        const getAvailableKeysForNext = (info, currentData = {}) => {
+          return Object.keys(info || {}).filter((key) => {
+            const field = info[key];
+
+            if (field.timestamp !== null || field.verified === true) {
+              return false;
+            }
+
+            if (field.end === true) {
+              return false;
+            }
+
+            if (field.has) {
+              const dependencies = field.has.split('|');
+              return dependencies.every(dep => {
+                if (typeof currentData[dep] === 'boolean') {
+                  return currentData[dep] === true;
+                }
+                return currentData[dep] !== undefined && currentData[dep] !== null && currentData[dep] !== '';
+              });
+            }
+
+            return true;
+          });
+        };
+
+        const availableKeys = getAvailableKeysForNext(chat.data.info, chat.data);
+
+        // Si no hay claves disponibles, finalizar el proceso
+        if (availableKeys.length === 0) {
+          console.log('No more available keys, finishing automation process');
+
+
+
+          await sendTextData({
+            res,
+            data: {
+              text: chat.action.text || 'Proceso completado exitosamente',
+              variable: Object.entries(chat.data || {}).filter(([key]) => key !== 'info' && key !== 'undefined').map(([key, value]) => ({
+                key,
+                value,
+                description: chat.data.info?.[key]?.description || '',
+                type: chat.data.info?.[key]?.type || '',
+              })),
+              action: chat.action.automate || []
+            },
+            type: 'automate',
+            conf: {
+              userId: userId,
+              agentId: agentId,
+              chatId: chatId,
+              threadId: threadId
+            }
+          })
+
+          resolve({
+            success: true,
+            data: { type: 'end-process' }
+          })
+          return
+        }
+
+        // Priorizar campos con dependencias has que se acaban de contestar
+        const hasDependentKeys = availableKeys.filter(key => {
+          const field = chat.data.info[key];
+          if (!field.has) return false;
+
+          const dependencies = field.has.split('|');
+          return dependencies.some(dep => {
+            // Verificar si alguna dependencia se acaba de contestar (tiene timestamp reciente)
+            const depField = chat.data.info[dep];
+            if (!depField) return false;
+
+            // Si la dependencia se contestó en los últimos 5 segundos, priorizar este campo
+            if (depField.timestamp) {
+              const depTime = new Date(depField.timestamp);
+              const now = new Date();
+              const diffSeconds = (now - depTime) / 1000;
+              return diffSeconds < 5;
+            }
+            return false;
+          });
+        });
+
+        // Si hay campos dependientes recién contestados, usarlos primero
+        const keysToUse = hasDependentKeys.length > 0 ? hasDependentKeys : availableKeys;
+
+        // Filtrar por requeridos primero, luego no requeridos
+        const requiredKeys = keysToUse.filter(key => chat.data.info[key].required === true);
+        const nonRequiredKeys = keysToUse.filter(key => !chat.data.info[key].required);
+
+        const finalKeysToUse = requiredKeys.length > 0 ? requiredKeys : nonRequiredKeys;
+        const keyPrompt = finalKeysToUse[Math.floor(Math.random() * finalKeysToUse.length)];
+
+        // Verificar que keyPrompt existe antes de usarlo
+        if (!keyPrompt) {
+          console.log('No valid keyPrompt found, finishing process');
+
+          await sendTextData({
+            res,
+            data: {
+              text: chat.action.text || 'Proceso completado exitosamente',
+              variable: Object.entries(chat.data || {}).filter(([key]) => key !== 'info' && key !== 'undefined').map(([key, value]) => ({
+                key,
+                value,
+                description: chat.data.info?.[key]?.description || '',
+                type: chat.data.info?.[key]?.type || '',
+              })),
+              action: chat.action.automate || []
+            },
+            type: 'automate',
+            conf: {
+              userId: userId,
+              agentId: agentId,
+              chatId: chatId,
+              threadId: threadId
+            }
+          })
+
+          resolve({
+            success: true,
+            data: { type: 'end-process' }
+          })
+          return
+        }
+
+        console.log('1345654334565')
+
+        const answerPrompt = () => {
+          const fieldInfo = chat?.data?.info[keyPrompt];
+          if (!fieldInfo) {
+            console.error('Field info not found for key:', keyPrompt);
+            return 'Error: Información del campo no encontrada';
+          }
+          return ` - "${keyPrompt}" (${fieldInfo.type || 'text'}): ${fieldInfo.description || 'Sin descripción'}`
+        }
+
+        chat.data = {
+          ...chat.data,
+          [key]: json_response.value,
+          info: {
+            ...chat.data.info,
+            [key]: {
+              ...chat.data.info[key],
+              verified: true,
+              attempts: 0,
+              accuracy: json_response.accuracy,
+              confidence: json_response.confidence
+            },
+            [keyPrompt]: {
+              ...chat.data.info[keyPrompt],
+              verified: false,
+              timestamp: new Date().toISOString(),
+              attempts: 0
+            }
+          }
+        }
+
+        await dbChat.insert(chat)
+
+        let _keys = Object.keys(chat.data.info || {})
+        let isAllData = true
+
+        for (const key of _keys) {
+          const field = chat.data.info[key];
+          console.log('field', field)
+
+          if (!field.has || (field.has && field.has.split('|').every(dep => {
+            if (typeof chat.data[dep] === 'boolean') {
+              return chat.data[dep] === true;
+            }
+            return chat.data[dep] !== undefined && chat.data[dep] !== null && chat.data[dep] !== '';
+          }))) {
+            if (field.required === true || !field.has) {
+              if (!chat.data[key] && key !== "undefined") {
+                isAllData = false;
+              }
+            }
+          }
+        }
+
+        console.log('isAllData', isAllData, answerPrompt())
+
+        if (!isAllData) {
+          await fnAgent({
+            res,
+            token,
+            prompt: answerPrompt(),
+            userId,
+            agentId,
+            chatId,
+            threadId,
+            docId
+          })
+        } else {
+          await sendTextData({
+            res,
+            data: {
+              text: chat.action.text,
+              variable: Object.entries(chat.data || {}).filter(([key]) => key !== 'info' && key !== 'undefined').map(([key, value]) => ({
+                key,
+                value,
+                description: chat.data.info?.[key]?.description || '',
+                type: chat.data.info?.[key]?.type || '',
+              })),
+              action: chat.action.automate || []
+            },
+            type: 'automate',
+            conf: {
+              userId: userId,
+              agentId: agentId,
+              chatId: chatId,
+              threadId: threadId
+            }
+          })
+        }
+
+        resolve({
+          success: true,
+          data: json_response
+        })
+      }
+
+    } catch (error) {
+      console.error('Error in assistantAgent:', error);
+      reject({
+        success: false,
+        error: 'Error al procesar la solicitud'
+      });
+    }
+  });
+};
+
+
+
+
+const languageToLan = async ({ text, language = "español", token = null }) => {
+  try {
+
+    let systemPrompt = []
+
+    if (text.name && text.description) {
+      systemPrompt = [{
+        role: 'user',
+        content: `
+      Eres un experto en traducciones.
+      Traduceme el siguiente texto al ${language}:
+      Texto Name:${text.name}
+      Texto Description:${text.description}
+  
+      *Reglas*
+      - Devuelve el texto traducido en el mismo idioma que el texto original
+      
+      Devuelve en el formato: 
+  
+      {
+        "name": "nombre traducido",
+        "description": "descripción traducida"
+      }
+      `}]
+    } else {
+      systemPrompt = [{
+        role: 'user',
+        content: `
+      Eres un experto en traducciones.
+      Traduceme el siguiente texto al ${language}:
+      Texto :${text}
+  
+      *Reglas*
+      - Devuelve el texto traducido en el mismo idioma que el texto original
+      - No devuelvas nada más que el texto traducido
+      `}]
+    }
+
+
+    const response = await axios.post("https://api.openai.com/v1/chat/completions", {
+      model: "gpt-4o-mini",
+      temperature: 0.7,
+      max_tokens: 2096,
+      messages: systemPrompt
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      }
+    });
+
+
+    const value_response = extractCodeBlocks(response.data.choices[0].message.content)
+
+    if (typeof value_response[1] === 'object') {
+      return JSON.parse(value_response[1])
+    } else {
+      return value_response[1]
+    }
+
+  } catch (error) {
+    console.error('Error in languageToLan:', error);
+    return "español"
+  }
+}
+
+
+module.exports = {
+  meetGPT,
+  validateToken,
+  languageToLan
+}
+
+const cleanDataObject = (obj) => {
+  if (typeof obj !== 'object' || obj === null) {
+    return obj;
+  }
+
+  const cleaned = {};
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (key === '_id' || key === '_rev') {
+      continue;
+    }
+
+    if (value === undefined || value === null || value === '') {
+      continue;
+    }
+
+    if (typeof value === 'object') {
+      continue;
+    }
+
+    cleaned[key] = value;
+  }
+
+  return cleaned;
+};
+
+// Función para generar preguntas guiadas según el nivel de acierto
+const generateGuidedQuestion = async ({
+  res,
+  token,
+  key,
+  chat,
+  json_response,
+  userId,
+  agentId,
+  chatId,
+  threadId
+}) => {
+  try {
+    console.log('generateGuidedQuestion called with:', { key, accuracy: json_response.accuracy, confidence: json_response.confidence })
+
+    const currentAttempts = chat.data.info[key]?.attempts || 0
+    const accuracy = json_response.accuracy || 0
+    const confidence = json_response.confidence || 0
+    const feedback = json_response.feedback || ""
+
+    let guidanceLevel = "básico"
+    if (currentAttempts === 2) {
+      guidanceLevel = "muy específico"
+    } else if (currentAttempts === 1) {
+      guidanceLevel = "específico"
+    }
+
+    let toneLevel = "amable"
+    if (accuracy <= 3) {
+      toneLevel = "muy directo"
+    } else if (accuracy <= 6) {
+      toneLevel = "directo"
+    }
+
+    console.log('Generating guided question with:', { guidanceLevel, toneLevel, currentAttempts })
+
+    const systemPrompt = [{
+      role: 'user',
+      content: `
+Eres un asistente experto en ayudar a usuarios que están teniendo dificultades para responder preguntas.
+
+CONTEXTO:
+- Pregunta original: "${chat.data.info[key].description}"
+- Tipo de dato esperado: ${chat.data.info[key].type}
+- Nivel de acierto de la respuesta anterior: ${accuracy}/10
+- Nivel de confianza del usuario: ${confidence}/10
+- Feedback de la respuesta anterior: "${feedback}"
+- Número de intentos: ${currentAttempts}
+- Nivel de guía requerido: ${guidanceLevel}
+- Tono requerido: ${toneLevel}
+
+OBJETIVO:
+Genera una pregunta más específica y guiada que ayude al usuario a responder correctamente.
+
+REGLAS:
+- Si accuracy ≤ 3: El usuario está muy confundido, da ejemplos específicos
+- Si accuracy 4-6: El usuario entiende parcialmente, aclara el formato esperado
+- Si accuracy = 7: El usuario está cerca, solo necesita un pequeño ajuste
+- Si confidence ≤ 3: El usuario no está seguro, ofrece opciones o ejemplos
+- Si confidence 4-6: El usuario está inseguro, confirma que está en el camino correcto
+- Si confidence ≥ 7: El usuario está seguro pero se equivoca, corrige suavemente
+
+La pregunta debe ser:
+- Máximo 2 frases
+- Muy específica sobre qué necesitas
+- Incluir ejemplos si es necesario
+- Usar el tono apropiado según el nivel de acierto
+
+Devuelve ÚNICAMENTE la pregunta, sin texto adicional.`
+    }]
+
+    console.log('Calling OpenAI for guided question...')
+    const response = await axios.post("https://api.openai.com/v1/chat/completions", {
+      model: "gpt-4o-mini",
+      temperature: 0.7,
+      max_tokens: 256,
+      messages: systemPrompt
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      }
+    });
+
+    const guidedQuestion = response.data.choices[0].message.content
+    console.log('Generated guided question:', guidedQuestion)
+
+    console.log('Sending guided question to frontend...')
+    await sendTextData({
+      res,
+      text: guidedQuestion,
+      type: 'stream',
+      conf: {
+        userId: userId,
+        agentId: agentId,
+        chatId: chatId,
+        threadId: threadId
+      }
+    })
+
+    console.log('Guided question sent successfully')
+
+  } catch (error) {
+    console.error('Error in generateGuidedQuestion:', error);
+    // Fallback a pregunta simple
+    console.log('Using fallback question...')
+    await sendTextData({
+      res,
+      text: `Por favor, intenta responder de nuevo: ${chat.data.info[key].description}`,
+      type: 'text',
+      conf: {
+        userId: userId,
+        agentId: agentId,
+        chatId: chatId,
+        threadId: threadId
+      }
+    })
+  }
+}
+
+// Función para pasar a la siguiente pregunta
+const moveToNextQuestion = async ({
+  res,
+  token,
+  // chat,
+  userId,
+  agentId,
+  chatId,
+  threadId
+}) => {
+  try {
+
+    const dbChat = await connectDB(`db_${userId}_chat`)
+
+    let chat = await dbChat.get(chatId)
+
+    // Marcar la pregunta actual como saltada
+    const currentKey = Object.keys(chat.data.info || {}).find(key =>
+      chat.data.info[key].timestamp && !chat.data.info[key].verified
+    )
+
+    if (currentKey) {
+      chat.data.info[currentKey] = {
+        ...chat.data.info[currentKey],
+        verified: true,
+        skipped: true,
+        attempts: chat.data.info[currentKey].attempts || 0
+      }
+    }
+
+
+    await dbChat.insert(chat)
+
+    // Buscar la siguiente pregunta disponible
+    const getAvailableKeysForNext = (info, currentData = {}) => {
+      return Object.keys(info || {}).filter((key) => {
+        const field = info[key];
+
+        if (field.timestamp !== null || field.verified === true) {
+          return false;
+        }
+
+        // Si el campo tiene .end = true, no está disponible (proceso terminado)
+        if (field.end === true) {
+          return false;
+        }
+
+        if (field.has) {
+          const dependencies = field.has.split('|');
+          return dependencies.every(dep => {
+            if (typeof currentData[dep] === 'boolean') {
+              return currentData[dep] === true;
+            }
+            return currentData[dep] !== undefined && currentData[dep] !== null && currentData[dep] !== '';
+          });
+        }
+
+        return true;
+      });
+    };
+
+    const availableKeys = getAvailableKeysForNext(chat.data.info, chat.data);
+
+    // Si no hay claves disponibles, finalizar el proceso
+    if (availableKeys.length === 0) {
+      console.log('No more available keys in moveToNextQuestion, finishing automation process');
+
+      await sendTextData({
+        res,
+        data: {
+          text: chat.action.text || 'Proceso completado exitosamente',
+          variable: Object.entries(chat.data || {}).filter(([key]) => key !== 'info' && key !== 'undefined').map(([key, value]) => ({
+            key,
+            value,
+            description: chat.data.info?.[key]?.description || '',
+            type: chat.data.info?.[key]?.type || '',
+          })),
+          action: chat.action.automate || []
+        },
+        type: 'automate',
+        conf: {
+          userId: userId,
+          agentId: agentId,
+          chatId: chatId,
+          threadId: threadId
+        }
+      })
+      return
+    }
+
+    // Priorizar campos con dependencias has que se acaban de contestar
+    const hasDependentKeys = availableKeys.filter(key => {
+      const field = chat.data.info[key];
+      if (!field.has) return false;
+
+      const dependencies = field.has.split('|');
+      return dependencies.some(dep => {
+        // Verificar si alguna dependencia se acaba de contestar (tiene timestamp reciente)
+        const depField = chat.data.info[dep];
+        if (!depField) return false;
+
+        // Si la dependencia se contestó en los últimos 5 segundos, priorizar este campo
+        if (depField.timestamp) {
+          const depTime = new Date(depField.timestamp);
+          const now = new Date();
+          const diffSeconds = (now - depTime) / 1000;
+          return diffSeconds < 5;
+        }
+        return false;
+      });
+    });
+
+    // Si hay campos dependientes recién contestados, usarlos primero
+    const keysToUse = hasDependentKeys.length > 0 ? hasDependentKeys : availableKeys;
+
+    // Filtrar por requeridos primero, luego no requeridos
+    const requiredKeys = keysToUse.filter(key => chat.data.info[key].required === true);
+    const nonRequiredKeys = keysToUse.filter(key => !chat.data.info[key].required);
+
+    const finalKeysToUse = requiredKeys.length > 0 ? requiredKeys : nonRequiredKeys;
+
+    if (finalKeysToUse.length > 0) {
+      const nextKey = finalKeysToUse[Math.floor(Math.random() * finalKeysToUse.length)]
+
+      // Verificar que nextKey existe antes de usarlo
+      if (!nextKey) {
+        console.log('No valid nextKey found in moveToNextQuestion, finishing process');
+
+        await sendTextData({
+          res,
+          data: {
+            text: chat.action.text || 'Proceso completado exitosamente',
+            variable: Object.entries(chat.data || {}).filter(([key]) => key !== 'info' && key !== 'undefined').map(([key, value]) => ({
+              key,
+              value,
+              description: chat.data.info?.[key]?.description || '',
+              type: chat.data.info?.[key]?.type || '',
+            })),
+            action: chat.action.automate || []
+          },
+          type: 'automate',
+          conf: {
+            userId: userId,
+            agentId: agentId,
+            chatId: chatId,
+            threadId: threadId
+          }
+        })
+        return
+      }
+
+      chat.data.info[nextKey] = {
+        ...chat.data.info[nextKey],
+        verified: false,
+        timestamp: new Date().toISOString(),
+        attempts: 0
+      }
+
+      await dbChat.insert(chat)
+
+      const answerPrompt = () => {
+        const fieldInfo = chat?.data?.info[nextKey];
+        if (!fieldInfo) {
+          console.error('Field info not found for key:', nextKey);
+          return 'Error: Información del campo no encontrada';
+        }
+        return ` - "${nextKey}" (${fieldInfo.type || 'text'}): ${fieldInfo.description || 'Sin descripción'}`
+      }
+
+      console.log('anserprompt2')
+
+      await fnAgent({
+        res,
+        token,
+        prompt: answerPrompt(),
+        userId,
+        agentId,
+        chatId,
+        threadId
+      })
+    } else {
+      // No hay más preguntas, finalizar
+      await sendTextData({
+        res,
+        data: {
+          text: chat.action.text || 'Proceso completado exitosamente',
+          variable: Object.entries(chat.data || {}).filter(([key]) => key !== 'info' && key !== 'undefined').map(([key, value]) => ({
+            key,
+            value,
+            description: chat.data.info?.[key]?.description || '',
+            type: chat.data.info?.[key]?.type || '',
+          })),
+          action: chat.action.automate || []
+        },
+        type: 'automate',
+        conf: {
+          userId: userId,
+          agentId: agentId,
+          chatId: chatId,
+          threadId: threadId
+        }
+      })
+    }
+
+  } catch (error) {
+    console.error('Error in moveToNextQuestion:', error);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------
+
+const createApiScraping = async ({
+  res,
+  userId,
+  agentId,
+  chatId,
+  threadId,
+  timestamp
+}) => {
+
+  try {
+    await sendTextData({
+      res,
+      data: {
+        timestamp: timestamp,
+        status: 201,
+        message: 'createApiScraping',
+      },
+      type: 'fn',
+    })
+
+
+    const dbChat = await connectDB(`db_${userId}_chat`)
+    const chat = await dbChat.get(chatId)
+
+    if (!chat) {
+      return {
+        success: false,
+        message: 'Chat not found'
+      }
+    }
+
+    const targetUrl = chat.data.targetUrl || ''
+
+    const updatedMessages = chat.messages.map(message => {
+      if (message && message.timestamp !== timestamp) {
+        return message
+      }
+    }).filter(Boolean)
+
+    chat.threadId = null
+    chat.data = {}
+    chat.messages = updatedMessages
+    chat.action.success = 201
+
+    await dbChat.insert(chat)
+
+    await sendTextData({
+      res,
+      type: 'api',
+      data: {
+        status: 201,
+        message: 'createApiScraping',
+        url: targetUrl,
+      },
+      conf: {
+        userId: userId,
+        agentId: agentId,
+        chatId: chatId,
+        threadId: threadId
+      }
+    })
+  } catch (error) {
+    console.error('Error in createApiScraping:', error);
+  }
+
+}
+
+
+const cancelApiScraping = async ({
+  res,
+  userId,
+  chatId,
+  timestamp
+}) => {
+
+  try {
+
+    const dbChat = await connectDB(`db_${userId}_chat`)
+    const chat = await dbChat.get(chatId)
+
+    if (!chat) {
+      return {
+        success: false,
+        message: 'Chat not found'
+      }
+    }
+
+    const updatedMessages = chat.messages.map(message => {
+      if (message.timestamp === timestamp) {
+        return {
+          ...message,
+          text: {
+            ...message.text,
+            status: 500
+          },
+        }
+      }
+
+      return message
+    })
+
+    chat.threadId = null
+    chat.data = {}
+    chat.messages = updatedMessages
+    chat.action.success = 500
+
+    await dbChat.insert(chat)
+
+    await sendTextData({
+      res,
+      data: {
+        timestamp: timestamp,
+        status: 500,
+        message: 'Api scraping cancelled',
+        updatedMessages: updatedMessages
+      },
+      type: 'fn',
+    })
+  } catch (error) {
+    console.error('Error in cancelApiScraping:', error);
+  }
+
+}
+
+
+const createTableFromApi = async ({
+  res,
+  userId,
+  agentId,
+  chatId,
+  timestamp
+}) => {
+
+  try {
+    await sendTextData({
+      res,
+      text: {
+        timestamp: timestamp,
+        status: 202,
+        message: 'createTableFromApi',
+      },
+      type: 'fn',
+    })
+
+    const dbChat = await connectDB(`db_${userId}_chat`)
+    const chat = await dbChat.get(chatId)
+
+    if (!chat) {
+      return {
+        success: false,
+        message: 'Chat not found'
+      }
+    }
+
+    const updatedMessages = chat.messages.map(message => {
+      if (message && message.timestamp !== timestamp) {
+        return message
+      }
+    }).filter(Boolean)
+
+    chat.threadId = null
+    chat.data = {}
+    chat.messages = updatedMessages
+    chat.action.success = 201
+
+    await dbChat.insert(chat)
+
+    const data = [{
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      phone: '123-456-7890',
+    }, {
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      phone: '123-456-7890',
+    }, {
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      phone: '123-456-7890',
+    }, {
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      phone: '123-456-7890',
+    }]
+
+    await sendTextData({
+      res,
+      data: data,
+      type: 'table',
+      conf: {
+        userId: userId,
+        agentId: agentId,
+        chatId: chatId
+      }
+    })
+
+  } catch (error) {
+    console.error('Error in createTableFromApi:', error);
+  }
+
+}
+
+
+
+// ------------------------------------------------------------
+
+
+const addDoc = async ({
+  res,
+  token,
+  prompt,
+  userId,
+  agentId,
+  chatId,
+  docId,
+  timestamp
+}) => {
+  try {
+
+    const dbTemplate = await connectDB(`db_${userId}_template`)
+    // const template = await dbTemplate.get(docId)
+
+    // console.log('template', template)
+
+
+    const existingDocId = null
+    const existingHtml = null
+
+    // console.log('existingDocId', existingDocId)
+    // console.log('existingHtml', existingHtml)
+
+    // Construir el prompt para el generador de documentos
+    let documentPrompt = `
+Eres un asistente especializado en la creación de documentos profesionales con múltiples páginas utilizando un conjunto de funciones HTML predefinidas.
+
+## Funciones HTML Disponibles
+
+### Estructura de Páginas
+- page(content, pageNumber, title) - Crea una página completa con numeración
+- pageHeader(title, subtitle) - Encabezado de página
+- pageFooter(pageNumber, totalPages) - Pie de página con numeración
+- pageBreak() - Separador de páginas
+
+### Títulos y Encabezados
+- title1(text, id) - Título principal H1
+- title2(text, id) - Subtítulo H2  
+- title3(text, id) - Subtítulo H3
+- title4(text, id) - Subtítulo H4
+- title5(text, id) - Subtítulo H5
+- title6(text, id) - Subtítulo H6
+
+### Contenido de Texto
+- paragraph(text, id) - Párrafos de texto
+- strong(text) - Texto en negrita
+- em(text) - Texto en cursiva
+- code(text) - Código inline
+- pre(text) - Bloques de código
+- blockquote(text) - Citas destacadas
+
+### Listas
+- ul(items, id) - Listas no numeradas
+- ol(items, id) - Listas numeradas
+- li(text) - Elementos de lista individuales
+
+### Enlaces e Imágenes
+- a(text, href) - Enlaces
+- img(src, alt) - Imágenes
+
+### Contenedores y Estructura
+- div(content, id) - Contenedores div
+- span(text) - Elementos span
+- section(content, id) - Secciones
+- article(content, id) - Artículos
+- aside(content, id) - Contenido lateral
+- header(content, id) - Encabezados
+- footer(content, id) - Pie de página
+- nav(content, id) - Navegación
+- main(content, id) - Contenido principal
+
+### Tablas
+- table(headers, rows, id) - Tablas con encabezados y filas
+
+### Elementos de Separación
+- hr() - Líneas horizontales
+- br() - Saltos de línea
+
+### Formularios
+- form(content, action, method) - Formularios
+- input(type, name, placeholder, value) - Campos de entrada
+- textarea(name, placeholder, rows, cols) - Áreas de texto
+- button(text, type) - Botones
+- label(text, forAttr) - Etiquetas
+- select(options, name) - Listas desplegables
+- option(text, value) - Opciones de selección
+
+## Instrucciones de Uso para Documentos Multi-Página
+
+1. **Estructura del Documento**: Usa page() para crear cada página del documento
+2. **Numeración**: Cada página debe tener un número y título descriptivo
+3. **Contenido por Página**: Organiza el contenido de manera lógica por páginas
+4. **Navegación**: Incluye navegación entre páginas cuando sea apropiado
+5. **Consistencia**: Mantén un estilo consistente en todas las páginas
+
+## IMPORTANTE - Estructura de Secciones e Identificadores Únicos
+
+**REGLAS OBLIGATORIAS:**
+1. **Todo el contenido debe estar dentro de secciones**: Cada elemento HTML se envuelve automáticamente en una sección con ID único
+2. **Identificadores únicos**: Cada elemento debe tener un identificador único para permitir modificaciones posteriores
+3. **Estructura jerárquica**: Usa secciones anidadas para organizar el contenido de manera lógica
+
+**Formato de uso:**
+- Para páginas: page(content, pageNumber, "page-title")
+- Para secciones: section(content, "section-id")
+- Para párrafos: paragraph(text, "paragraph-id") 
+- Para títulos: title1(text, "title-id")
+- Para listas: ul(items, "list-id")
+- Para tablas: table(headers, rows, "table-id")
+
+**Ejemplo de estructura correcta:**
+\`\`\`javascript
+page(
+  section(
+    title1("Título Principal", "main-title") +
+    paragraph("Contenido del párrafo", "main-content") +
+    section(
+      title2("Subtítulo", "subtitle") +
+      ul(["Item 1", "Item 2"], "list-items")
+    , "subsection-1")
+  , "main-section")
+, 1, "Página Principal")
+\`\`\`
+
+## Ejemplo de Documento Multi-Página
+
+\`\`\`javascript
+page(
+  section(
+    pageHeader("Manual de Usuario", "Guía Completa") +
+    title1("Introducción", "intro-title") +
+    paragraph("Este manual le ayudará a utilizar nuestro software.", "intro-content") +
+    pageFooter(1, 3)
+  , "intro-section")
+, 1, "Introducción") +
+page(
+  section(
+    pageHeader("Manual de Usuario", "Guía Completa") +
+    title1("Instalación", "installation-title") +
+    paragraph("Siga estos pasos para instalar el software:", "installation-content") +
+    section(
+      ol(["Paso 1", "Paso 2", "Paso 3"], "installation-steps")
+    , "steps-section") +
+    pageFooter(2, 3)
+  , "installation-section")
+, 2, "Instalación") +
+page(
+  section(
+    pageHeader("Manual de Usuario", "Guía Completa") +
+    title1("Configuración", "config-title") +
+    paragraph("Configure el software según sus necesidades.", "config-content") +
+    section(
+      table(["Parámetro", "Valor", "Descripción"], [["param1", "valor1", "desc1"]], "config-table")
+    , "table-section") +
+    pageFooter(3, 3)
+  , "config-section")
+, 3, "Configuración")
+\`\`\`
+
+## Solicitud del Usuario
+
+${prompt}
+
+${existingDocId ? (`
+## Documento Existente para Editar
+
+ID del documento: ${existingDocId}
+HTML actual del documento:
+
+${existingHtml}
+
+INSTRUCCIONES ESPECIALES PARA EDICIÓN:
+- Mantén los identificadores existentes cuando sea posible
+- Solo modifica las secciones que el usuario solicite cambiar
+- Preserva la estructura general del documento
+- Agrega nuevos identificadores únicos para elementos nuevos
+`) : ''}
+
+## Respuesta Requerida
+
+Devuelve ÚNICAMENTE el código JavaScript que genera el HTML del documento, sin bloques de código markdown, sin texto adicional ni explicaciones.
+
+Ejemplo de respuesta:
+page(
+  section(
+    pageHeader("Título del Documento", "Subtítulo") +
+    title1("Contenido de la página", "main-title") +
+    paragraph("Contenido del documento", "main-content") +
+    pageFooter(1, 1)
+  , "main-content-section")
+, 1, "Página Principal")
+`
+
+    // Llamar a OpenAI para generar el documento
+    const documentResponse = await axios.post("https://api.openai.com/v1/chat/completions", {
+      model: "gpt-4o-mini",
+      temperature: 0.7,
+      max_tokens: 4000,
+      messages: [{
+        role: 'user',
+        content: documentPrompt
+      }]
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      }
+    });
+
+    const generatedCode = documentResponse.data.choices[0].message.content
+    console.log('Generated document code:', generatedCode)
+
+    // El código ya viene sin bloques markdown, usarlo directamente
+    const documentCode = generatedCode.trim()
+
+    // Ejecutar el código JavaScript para generar el HTML
+    const htmlFunctions = {
+      // Nuevas funciones para páginas
+      page: (content, pageNumber, title) => `
+     <div class="page" id="page-${pageNumber}" data-page="${pageNumber}" data-title="${title}">
+       <div class="page-content">
+         ${content}
+       </div>
+       
+     </div>
+   `,
+      pageHeader: (title, subtitle) => `
+     <section id="page-header-${uuidv4()}" class="page-header">
+       <h1 class="document-title">${title}</h1>
+       ${subtitle ? `<h2 class="document-subtitle">${subtitle}</h2>` : ''}
+       <hr class="header-divider">
+     </section>
+   `,
+      pageFooter: (pageNumber, totalPages) => `
+     <section id="page-footer-${uuidv4()}" class="page-footer">
+       <hr class="footer-divider">
+       <div class="footer-content">
+         <span class="page-number">Página ${pageNumber} de ${totalPages}</span>
+         <span class="document-date">${new Date().toLocaleDateString()}</span>
+       </div>
+     </section>
+   `,
+      pageBreak: () => '<section id="page-break-' + uuidv4() + '" class="page-break"></section>',
+
+      // Funciones HTML existentes - todas envueltas en secciones con uuidv4
+      title1: (text, id = null) => `<section id="${id || 'title1-' + uuidv4()}"><h1>${text}</h1></section>`,
+      title2: (text, id = null) => `<section id="${id || 'title2-' + uuidv4()}"><h2>${text}</h2></section>`,
+      title3: (text, id = null) => `<section id="${id || 'title3-' + uuidv4()}"><h3>${text}</h3></section>`,
+      title4: (text, id = null) => `<section id="${id || 'title4-' + uuidv4()}"><h4>${text}</h4></section>`,
+      title5: (text, id = null) => `<section id="${id || 'title5-' + uuidv4()}"><h5>${text}</h5></section>`,
+      title6: (text, id = null) => `<section id="${id || 'title6-' + uuidv4()}"><h6>${text}</h6></section>`,
+      paragraph: (text, id = null) => `<section id="${id || 'paragraph-' + uuidv4()}"><p>${text}</p></section>`,
+      strong: (text) => `<section id="strong-' + uuidv4() + '"><strong>${text}</strong></section>`,
+      em: (text) => `<section id="em-' + uuidv4() + '"><em>${text}</em></section>`,
+      code: (text) => `<section id="code-' + uuidv4() + '"><code>${text}</code></section>`,
+      pre: (text) => `<section id="pre-' + uuidv4() + '"><pre>${text}</pre></section>`,
+      blockquote: (text) => `<section id="blockquote-' + uuidv4() + '"><blockquote>${text}</blockquote></section>`,
+      ul: (items, id = null) => `<section id="${id || 'ul-' + uuidv4()}"><ul>${items.map(item => `<li>${item}</li>`).join('')}</ul></section>`,
+      ol: (items, id = null) => `<section id="${id || 'ol-' + uuidv4()}"><ol>${items.map(item => `<li>${item}</li>`).join('')}</ol></section>`,
+      li: (text) => `<section id="li-' + uuidv4() + '"><li>${text}</li></section>`,
+      a: (text, href) => `<section id="a-' + uuidv4() + '"><a href="${href}">${text}</a></section>`,
+      img: (src, alt) => `<section id="img-' + uuidv4() + '"><img src="${src}" alt="${alt}"></section>`,
+      div: (content, id = null) => `<section id="${id || 'div-' + uuidv4()}"><div>${content}</div></section>`,
+      span: (text) => `<section id="span-' + uuidv4() + '"><span>${text}</span></section>`,
+      section: (content, id = null) => `<section id="${id || 'section-' + uuidv4()}">${content}</section>`,
+      article: (content, id = null) => `<section id="${id || 'article-' + uuidv4()}"><article>${content}</article></section>`,
+      aside: (content, id = null) => `<section id="${id || 'aside-' + uuidv4()}"><aside>${content}</aside></section>`,
+      header: (content, id = null) => `<section id="${id || 'header-' + uuidv4()}"><header>${content}</header></section>`,
+      footer: (content, id = null) => `<section id="${id || 'footer-' + uuidv4()}"><footer>${content}</footer></section>`,
+      nav: (content, id = null) => `<section id="${id || 'nav-' + uuidv4()}"><nav>${content}</nav></section>`,
+      main: (content, id = null) => `<section id="${id || 'main-' + uuidv4()}"><main>${content}</main></section>`,
+      table: (headers, rows, id = null) => {
+        const headerRow = `<tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>`
+        const dataRows = rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')
+        return `<section id="${id || 'table-' + uuidv4()}"><table><thead>${headerRow}</thead><tbody>${dataRows}</tbody></table></section>`
+      },
+      hr: () => '<section id="hr-' + uuidv4() + '"><hr></section>',
+      br: () => '<section id="br-' + uuidv4() + '"><br></section>',
+      form: (content, action = '', method = 'post') => `<section id="form-' + uuidv4() + '"><form action="${action}" method="${method}">${content}</form></section>`,
+      input: (type, name, placeholder = '', value = '') => `<section id="input-' + uuidv4() + '"><input type="${type}" name="${name}" placeholder="${placeholder}" value="${value}"></section>`,
+      textarea: (name, placeholder = '', rows = 4, cols = 50) => `<section id="textarea-' + uuidv4() + '"><textarea name="${name}" placeholder="${placeholder}" rows="${rows}" cols="${cols}"></textarea></section>`,
+      button: (text, type = 'button') => `<section id="button-' + uuidv4() + '"><button type="${type}">${text}</button></section>`,
+      label: (text, forAttr = '') => `<section id="label-' + uuidv4() + '"><label${forAttr ? ` for="${forAttr}"` : ''}>${text}</label></section>`,
+      select: (options, name) => `<section id="select-' + uuidv4() + '"><select name="${name}">${options.map(opt => `<option value="${opt.value}">${opt.text}</option>`).join('')}</select></section>`,
+      option: (text, value) => `<section id="option-' + uuidv4() + '"><option value="${value}">${text}</option></section>`
+    }
+
+    // Ejecutar el código del documento de manera segura
+    const generatedHtml = (function () {
+      const { page, pageHeader, pageFooter, pageBreak, title1, title2, title3, title4, title5, title6, paragraph, strong, em, code, pre, blockquote, ul, ol, li, a, img, div, span, section, article, aside, header, footer, nav, main, table, hr, br, form, input, textarea, button, label, select, option } = htmlFunctions;
+      return eval(documentCode);
+    })()
+
+    console.log('Generated HTML:', generatedHtml)
+
+    // Agregar CSS y JavaScript para la navegación de páginas
+
+    // Combinar HTML generado con estilos y scripts
+    const completeHtml = '<div class="document-container">' + generatedHtml + '</div>'
+
+
+    const docData = {
+      _id: existingDocId || uuidv4(),
+      html: completeHtml,
+      code: documentCode,
+      prompt: prompt,
+      // data: json_response.data || {},
+      createdAt: existingDocId ? undefined : new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+
+    await dbTemplate.insert(docData)
+
+
+    await sendTextData({
+      res,
+      data: {
+        id: docData._id,
+        docId: docData._id,
+        html: generatedHtml,
+        code: documentCode,
+        status: 200,
+        message: existingDocId ? 'Documento actualizado correctamente' : 'Documento creado correctamente'
+      },
+      type: 'doc',
+      conf: {
+        userId: userId,
+        agentId: agentId,
+        chatId: chatId,
+        docId: docData._id
+      }
+    })
+
+
+    // Guardar el documento en la base de datos
+    //  const dbDocs = await connectDB(`db_${id}_docs`)
+    //  const docData = {
+    //    _id: existingDocId || uuidv4(),
+    //    html: completeHtml,
+    //    code: documentCode,
+    //    prompt: prompt,
+    //    data: json_response.data || {},
+    //    createdAt: existingDocId ? undefined : new Date().toISOString(),
+    //    updatedAt: new Date().toISOString(),
+    //  }
+
+    //  await dbDocs.insert(docData)
+
+
+
+
+    // -----
+
+    // await sendTextData({
+    //   res,
+    //   data: {
+    //     timestamp: timestamp,
+    //     status: 200,
+    //     message: 'addDoc',
+    //   },
+    //   type: 'doc',
+    // })
+
+    const dbChat = await connectDB(`db_${userId}_chat`)
+    const chat = await dbChat.get(chatId)
+
+    if (!chat) {
+      return {
+        success: false,
+        message: 'Chat not found'
+      }
+    }
+
+    const updatedMessages = chat.messages.map(message => {
+      if (message && message.timestamp !== timestamp) {
+        return message
+      }
+    }).filter(Boolean)
+
+    chat.threadId = null
+    chat.messages = updatedMessages
+    chat.action.success = 200
+
+    await dbChat.insert(chat)
+
+    // await sendTextData({
+    //   res,
+    //   data: {
+    //     timestamp: timestamp,
+    //     status: 201,
+    //     message: 'addDoc',
+    //   },
+    //   type: 'fn',
+    // })
+  } catch (error) {
+    console.error('Error in addDoc:', error);
+  }
+
+}
+
+
+const openDoc = async ({
+  res,
+  userId,
+  agentId,
+  chatId,
+  timestamp
+}) => {
+  try {
+
+    await sendTextData({
+      res,
+      text: {
+        timestamp: timestamp,
+        status: 201,
+        message: 'openDoc',
+      },
+      type: 'doc',
+    })
+
+    const dbChat = await connectDB(`db_${userId}_chat`)
+    const chat = await dbChat.get(chatId)
+
+    if (!chat) {
+      return {
+        success: false,
+        message: 'Chat not found'
+      }
+    }
+
+    const updatedMessages = chat.messages.map(message => {
+      if (message && message.timestamp !== timestamp) {
+        return message
+      }
+    }).filter(Boolean)
+
+    chat.threadId = null
+
+    chat.messages = updatedMessages
+    chat.action.success = 201
+
+    await dbChat.insert(chat)
+
+    // await sendTextData({
+    //   res,
+    //   data: {
+    //     timestamp: timestamp,
+    //     status: 201,
+    //     message: 'openDoc',
+    //   },
+    //   type: 'fn',
+    // })
+
+  } catch (error) {
+    console.error('Error in openDoc:', error);
+  }
+
+}
+
+const cancelDoc = async ({
+  res,
+  userId,
+  chatId,
+  timestamp
+}) => {
+  try {
+
+    await sendTextData({
+      res,
+      text: {
+        timestamp: timestamp,
+        status: 202,
+        message: 'cancelDoc',
+      },
+      type: 'doc',
+    })
+
+    const dbChat = await connectDB(`db_${userId}_chat`)
+    const chat = await dbChat.get(chatId)
+
+    if (!chat) {
+      return {
+        success: false,
+        message: 'Chat not found'
+      }
+    }
+
+    const updatedMessages = chat.messages.map(message => {
+      if (message && message.timestamp !== timestamp) {
+        return message
+      }
+    }).filter(Boolean)
+
+    chat.threadId = null
+    chat.messages = updatedMessages
+    chat.action.success = 202
+
+    await dbChat.insert(chat)
+
+
+  } catch (error) {
+    console.error('Error in cancelDoc:', error);
+  }
+}
+

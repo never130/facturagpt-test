@@ -1,0 +1,150 @@
+.ItemNavigation {
+  @media (width<=768px) {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: clip;
+  }
+
+  li {
+    text-decoration: none;
+    color: var(--db-background);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    min-width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--f5-background);
+    }
+  }
+}
+
+.ItemNavigation {
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding-left: 0;
+  margin: 0px;
+
+  .active {
+    background-color: var(--db-background);
+
+    a,
+    button {
+      color: var(--_10a37f-background);
+      font-weight: bold;
+    }
+  }
+
+
+  li, span {
+    list-style: none;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    color: var(--black);
+
+    a,
+    button {
+      text-decoration: none;
+      background-color: transparent;
+      outline: none;
+      border: none;
+      color: var(--_374151-color);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      svg {
+        height: 15px;
+        width: 15px;
+        color: var(--_67-color);
+        fill: var(--_67-color);
+       
+      }
+      .iconContainer{
+        background-color: #10A37F;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        border-radius: 6px;
+        svg{
+          color: #fff;
+          fill: #fff;
+        }
+      }
+      .iconStoke{
+        color: #0D0D0D;
+         stroke:#0D0D0D
+      }
+      .activeIcon {
+        color: var(--_10a37f-background);
+        fill: var(--_10a37f-background);
+        /* stroke:var(--_10a37f-background); */
+      }
+      .activeIconStoke{
+         color: var(--_10a37f-background);
+          stroke:var(--_10a37f-background); 
+      }
+    
+    }
+  }
+ 
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px; 
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  p{
+    margin: 0;
+    padding: 0;
+  }
+}
+
+
+.gridContainer > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gridContainer button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+.icon,
+.activeIcon,
+.iconStoke,
+.activeIconStoke {
+  width: 20px;
+  height: 20px;
+}
+.truncate {
+  white-space: nowrap;    
+  overflow: hidden;       
+  text-overflow: ellipsis;
+  width: 150px;           
+}
+}

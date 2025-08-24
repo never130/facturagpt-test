@@ -1,0 +1,8 @@
+.headerThirdPartContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+    padding: 10px 0px;
+}

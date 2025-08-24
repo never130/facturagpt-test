@@ -1,0 +1,204 @@
+.donutContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+}
+
+.donutSvg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: unset;
+}
+
+.backgroundCircle {
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.progressCircle {
+    transition: stroke-dashoffset 0.3s ease;
+    filter: drop-shadow(0 0 4px rgba(22, 192, 152, 0.3));
+}
+
+.progressCircle.loading {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        filter: drop-shadow(0 0 4px rgba(22, 192, 152, 0.3));
+        stroke-width: 8px;
+        opacity: 0.8;
+    }
+
+    50% {
+        filter: drop-shadow(0 0 12px rgba(22, 192, 152, 0.8));
+        stroke-width: 10px;
+        opacity: 1;
+    }
+
+    100% {
+        filter: drop-shadow(0 0 4px rgba(22, 192, 152, 0.3));
+        stroke-width: 8px;
+        opacity: 0.8;
+    }
+}
+
+.donutSvg.loading {
+    animation: subtleRotate 4s linear infinite;
+}
+
+@keyframes subtleRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.progressCircle.transitioning {
+    animation: transitionPulse 0.6s ease-in-out;
+}
+
+
+.endTime {
+    margin: 24px 0px;
+    height: unset !important;
+
+    circle {
+        display: none;
+    }
+
+    .timerText {
+        flex-direction: row;
+        gap: 4px;
+    }
+}
+
+@keyframes transitionPulse {
+    0% {
+        filter: drop-shadow(0 0 4px rgba(22, 192, 152, 0.3));
+        opacity: 1;
+    }
+
+    50% {
+        filter: drop-shadow(0 0 8px rgba(22, 192, 152, 0.6));
+        opacity: 0.8;
+    }
+
+    100% {
+        filter: drop-shadow(0 0 4px rgba(22, 192, 152, 0.3));
+        opacity: 1;
+    }
+}
+
+.timerText {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+}
+
+.seconds {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    line-height: 1;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.unit {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #666;
+    margin-top: -2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+
+.controls {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.donutContainer:hover .controls {
+    opacity: 1;
+}
+
+
+.donutContainer.small {
+    transform: scale(0.7);
+}
+
+.donutContainer.large {
+    transform: scale(1.3);
+}
+
+.donutContainer.completed .progressCircle {
+    animation: completePulse 1s ease-in-out;
+}
+
+@keyframes completePulse {
+    0% {
+        filter: drop-shadow(0 0 4px rgba(22, 192, 152, 0.3));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 12px rgba(22, 192, 152, 0.8));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 4px rgba(22, 192, 152, 0.3));
+    }
+}
+
+.donutContainer.paused .progressCircle {
+    opacity: 0.7;
+    animation: none;
+}
+
+@media (max-width: 768px) {
+    .seconds {
+        font-size: 1.5rem;
+    }
+
+    .unit {
+        font-size: 0.7rem;
+    }
+
+    .controls {
+        bottom: -35px;
+    }
+
+
+}
+
+@media (prefers-color-scheme: dark) {
+    .seconds {
+        color: #fff;
+    }
+
+    .unit {
+        color: #ccc;
+    }
+
+
+}

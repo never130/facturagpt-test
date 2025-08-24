@@ -1,0 +1,23 @@
+.showcaseContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.tooltipGrid {
+  position: absolute;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  left: 0;
+  padding: 0;
+  top: 0;
+  flex-wrap: wrap;
+}
+
+.tooltipWrapper {
+  margin-bottom: 20px;
+}

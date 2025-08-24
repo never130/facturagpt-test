@@ -1,0 +1,167 @@
+.editorToolbar {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 10px;
+  background-color: transparent;
+  align-items: center;
+  position: relative;
+  overflow-x: scroll;
+}
+
+.editorToolbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.editorToolbar::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 4px;
+}
+
+.editorToolbar::-webkit-scrollbar-thumb:hover {
+  background-color: #ababab;
+}
+
+.editorToolbar::-webkit-scrollbar-track {
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 5px;
+  padding: 0 5px;
+  border-right: 1px solid var(--db-background);
+  position: relative;
+}
+
+.buttonGroup:last-child {
+  border-right: none;
+}
+
+.formatBtn {
+  padding: 5px;
+  border: 1px solid var(--db-background);
+  background: var(--white-color);
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formatBtn img {
+  width: 16px;
+  height: 16px;
+}
+
+.formatBtn.active {
+  background-color: #233f39;
+  color: var(--white-color);
+  border-color: #233f39;
+}
+
+.formatBtn.active img {
+  filter: brightness(0) invert(1);
+}
+
+select.formatBtn {
+  min-width: 80px;
+  height: 30px;
+}
+
+.emailBody {
+  width: 100%;
+  min-height: 200px;
+  border-radius: 8px;
+  outline: none;
+  overflow-y: auto;
+  background-color: var(--white-color);
+  box-sizing: border-box;
+  background-color: transparent;
+  max-height: 200px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.emailBody:empty:before {
+  content: "Escriba su mensaje aquí...";
+  color: #999;
+}
+
+.emailBody blockquote {
+  border-left: 3px solid var(--db-background);
+  margin: 0;
+  padding-left: 10px;
+  color: var(--_67-color);
+}
+
+.emailBody code {
+  background-color: var(--f5-background);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: "Consolas", monospace;
+  font-size: 0.9em;
+  color: #e83e8c;
+  border: 1px solid #e1e1e8;
+}
+
+.emojiMenu {
+  position: fixed;
+  background: var(--white-color);
+  border: 1px solid var(--db-background);
+  border-radius: 8px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+  box-shadow: 0 2px 5px var(--_00000033-background);
+  z-index: 1000;
+  width: 240px;
+}
+
+.emojiButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.emojiButton:hover {
+  background-color: var(--f5-background);
+}
+
+.ColorPickerContainer {
+  position: relative;
+}
+
+.colorPicker {
+  display: flex;
+  align-items: center;
+  background-color: var(--white-color);
+  padding: 5px;
+  border: 1px solid var(--db-background);
+  background: var(--white-color);
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.colorOptions {
+  position: fixed;
+  display: flex;
+  background-color: var(--white-color);
+  padding: 5px;
+}

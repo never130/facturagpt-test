@@ -1,0 +1,352 @@
+.infoContainerWrapper {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+  div {
+    color: #1f184b;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  span {
+    max-width: 360px;
+    color: #1f184b;
+    font-size: 12px;
+    font-weight: 300;
+  }
+}
+
+.contentContainer {
+  &.active {
+    display: block;
+  }
+  &.disabled {
+    display: none;
+  }
+}
+
+.contentContainerWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* .variablesContainer  {
+  display: flex;
+} */
+
+.variableItemContainer {
+  border-bottom: 1px solid var(--db-background);
+  border-left: 1px solid var(--db-background);
+  border-right: 1px solid var(--db-background);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 4px;
+}
+
+.variableItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 50px;
+}
+
+.infoVariableTop{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  p{
+    margin: 0;
+    font-size: 10px;
+    border: 1px solid var(--db-background);
+    background-color: var(--white-color);
+    padding: 2px 4px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bolder;
+    color: var(--_18181b-color);
+  }
+}
+.typeVariable{
+  margin: 0;
+  background-color: #656b74;
+  border-radius: 8px;
+  color: var(--white-color);
+  padding: 3px 10px;
+  font-size: 9px;
+}
+
+.required{
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--_18181b-color);
+}
+.cardContainer {
+  border: 1px solid var(--db-background);
+  border-bottom: none;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.labelInput {
+  color: var(--1e293b-color);
+  font-size: 13px;
+  line-height: 1;
+  border-bottom: 0px solid var(--db-background);
+  border-top: 0px solid var(--db-background);
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-bottom: 6px;
+}
+
+.inputContainer {
+  display: flex;
+  gap: 8px;
+  padding: 5px 16px;
+  background: var(--white-color);
+  border-radius: 6px;
+  align-items: center;
+}
+
+.inputSearchEnpoints {
+  padding: 0px;
+  margin: 0px;
+  height: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--black);
+  font-size: 14px;
+}
+
+.buttonInputSearchEndPoints {
+  padding: 0px 10px;
+  margin: 0px;
+  height: 20px;
+  /* width: 100%; */
+  /* max-width: 160px; */
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background-color: var(--white-color);
+  color: rgb(0, 0, 0);
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.methodPOST {
+  background-color: #2b00ff;
+  color: var(--white-color);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 3px 10px;
+  cursor: pointer;
+  border: none;
+  margin-left: 10px;
+}
+
+.methodGET {
+  background-color: var(--_10a37f-background);
+  color: var(--white-color);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 3px 10px;
+  cursor: pointer;
+  border: none;
+  margin-left: 10px;
+}
+
+.methodPUT {
+  background-color: #007ac0;
+  color: var(--white-color);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 3px 10px;
+  cursor: pointer;
+  border: none;
+  margin-left: 10px;
+}
+
+.methodDELETE {
+  background-color: #ff0000;
+  color: var(--white-color);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 3px 10px;
+  cursor: pointer;
+  border: none;
+  margin-left: 10px;
+}
+
+.methodPATCH {
+  background-color: #bd9100;
+  color: var(--white-color);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 3px 10px;
+  cursor: pointer;
+  border: none;
+  margin-left: 10px;
+}
+
+.title {
+  font-size: 10px;
+  border: 1px solid var(--db-background);
+  background-color: var(--white-color);
+  padding: 2px 4px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.buttonShowMore {
+  background-color: var(--white-color);
+  color: var(--_10a37f-background);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0px 0px;
+  cursor: pointer;
+  border: none;
+  margin-left: 0px;
+}
+
+.customSelector {
+  position: relative;
+  cursor: pointer;
+}
+
+
+
+.selectorOption {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  transition: background-color 0.2s;
+}
+
+.selectorOption:hover {
+  background-color: var(--f5-background);
+}
+
+.customSelector {
+  position: relative;
+  cursor: pointer;
+}
+
+.optionsContainer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgb(255, 255, 255);
+  width: 100%;
+  margin-top: 3px;
+  z-index: 1;
+  border-radius: 6px;
+  box-shadow: 0px 4px 8px var(--_00000033-background);
+  text-decoration: none;
+
+  div {
+    padding: 2px 2px;
+    color: #9c9d9f;
+    list-style-type: none;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 4px;
+    &:hover {
+      background-color: var(--f5-background);
+    }
+  }
+}
+
+.type {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0px 4px 18px;
+  font-size: 12px;
+  cursor: default;
+  border-top: 1px solid var(--db-background);
+}
+
+.deleteOption {
+  position: absolute;
+  left: -75%; 
+  cursor: pointer;
+  background-color: var(--white-color);
+  padding: 2px 4px;
+  border-radius: 6px 0px 0px 6px;
+  width: 70%;
+  border-left: 1px solid var(--db-background);
+  border-top: 1px solid var(--db-background);
+  border-bottom: 1px solid var(--db-background);
+}
+
+.selectorOption {
+  position: relative;
+}
+
+.infoDescription {
+  font-size: 12px;
+  padding-left: 4px;
+}
+
+
+.variableContainer{
+  margin: 10px 0;
+  .searchVariable{
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    min-height: 21px !important;
+    background-color: var(--f5-background);
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px;
+  }
+  .addVariableButton{
+    width: 100%;
+
+  }
+}
+
+.searchContainerIcon {
+  background-color: var(--db-background);
+  padding: 4px;
+  border-radius: 4px;
+  height: 10px;
+  width: 10px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  cursor: pointer;
+}

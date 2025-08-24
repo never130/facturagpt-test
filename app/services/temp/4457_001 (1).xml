@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<documento_ptl version="0.6">
+    <info_control>
+        <transaccion>
+            <fecha_creacion>
+                <anyo>2023</anyo>
+                <mes>11</mes>
+                <dia>19</dia>
+                <hora>000</hora>
+                <minuto>000</minuto>
+                <segundo>000</segundo>
+                <msegundo>000</msegundo>
+            </fecha_creacion>
+            <fecha_modificacion>
+                <anyo>2023</anyo>
+                <mes>11</mes>
+                <dia>19</dia>
+                <hora>000</hora>
+                <minuto>000</minuto>
+                <segundo>000</segundo>
+                <msegundo>000</msegundo>
+            </fecha_modificacion>
+            <estado/>
+        </transaccion>
+        <info_tipo version="0.6" url_xsd="">ALBARAN</info_tipo>
+    </info_control>
+    <interlocutores>
+        <origen>
+            <tipo id_grupo="ZZZ" id_usuario=""/>
+        </origen>
+        <destino>
+            <tipo id_grupo="ZZZ" id_usuario=""/>
+        </destino>
+    </interlocutores>
+    <datos_doc>
+        <envio_albaran version="0.6">
+            <id_control_fabricante/>
+            <albaran>
+                <cabecera>
+                    <solicitante/>
+                    <destinatario/>
+                    <cod_punto_venta/>
+                    <numero_albaran>283489</numero_albaran>
+                    <fecha_albaran>
+                        <anyo>2023</anyo>
+                        <mes>11</mes>
+                        <dia>19</dia>
+                        <hora>000</hora>
+                        <minuto>000</minuto>
+                        <segundo>000</segundo>
+                    </fecha_albaran>
+                    <fecha_entrega>
+                        <anyo>2023</anyo>
+                        <mes>11</mes>
+                        <dia>19</dia>
+                        <hora>000</hora>
+                        <minuto>000</minuto>
+                        <segundo>000</segundo>
+                    </fecha_entrega>
+                    <incoterm/>
+                    <desc_incoterm/>
+                    <transportista_texto/>
+                    <exped_transportista/>
+                    <bultos/>
+                    <peso/>
+                    <unidad_peso>KGM</unidad_peso>
+                    <volumen/>
+                    <unidad_volumen/>
+                    <centro_expedidor_nombre>Industrial Blansol S.A.</centro_expedidor_nombre>
+                    <centro_expedidor_direccion>Av. Camino Real, 34</centro_expedidor_direccion>
+                    <centro_expedidor_poblacion>Barcelona</centro_expedidor_poblacion>
+                    <centro_expedidor_cpostal></centro_expedidor_cpostal>
+                    <centro_expedidor_provincia>Barcelona</centro_expedidor_provincia>
+                    <centro_expedidor_pais></centro_expedidor_pais>
+                    <centro_expedidor_telefono></centro_expedidor_telefono>
+                    <cod_fabricante_externo/>
+                    <cod_fabricante_fabricante/>
+                    <cliente_nif>A58861311</cliente_nif>
+                    <cliente_nombre>MATELERSA S.A.</cliente_nombre>
+                    <cliente_direccion>CL. CARRASCO I FORMIGUERA 8302 MATARO</cliente_direccion>
+                    <cliente_poblacion>MATARO</cliente_poblacion>
+                    <cliente_cpostal></cliente_cpostal>
+                    <cliente_provincia></cliente_provincia>
+                    <cliente_pais>ES</cliente_pais>
+                    <destino_nombre>MATELERSA S.A.</destino_nombre>
+                    <destino_direccion>CL. CARRASCO I FORMIGUERA 8302 MATARO</destino_direccion>
+                    <destino_poblacion>MATARO</destino_poblacion>
+                    <destino_cpostal></destino_cpostal>
+                    <destino_provincia></destino_provincia>
+                    <destino_pais>ES</destino_pais>
+                    <destino_telefono>937572600</destino_telefono>
+                    <observaciones/>
+                </cabecera>
+                <posiciones id="1">
+                    <posicion_albaran>1</posicion_albaran>
+                    <posicion_pedido>1</posicion_pedido>
+                    <referencia>MULPPLKT21565</referencia>
+                    <descripcion>TE 25-16-25</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>20.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="2">
+                    <posicion_albaran>2</posicion_albaran>
+                    <posicion_pedido>2</posicion_pedido>
+                    <referencia>EASYPLKMU32</referencia>
+                    <descripcion>MANGUITO UNION 32</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>60.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="3">
+                    <posicion_albaran>3</posicion_albaran>
+                    <posicion_pedido>3</posicion_pedido>
+                    <referencia>EASYPLK32</referencia>
+                    <descripcion>KIT COD 32</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>20.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="4">
+                    <posicion_albaran>4</posicion_albaran>
+                    <posicion_pedido>4</posicion_pedido>
+                    <referencia>EASYAIKRM321</referencia>
+                    <descripcion>KIT RACOR MOVIL 32-1"</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>30.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="5">
+                    <posicion_albaran>5</posicion_albaran>
+                    <posicion_pedido>5</posicion_pedido>
+                    <referencia>RPERPLKRM2520</referencia>
+                    <descripcion>MANGUITO RED 25 20 RAYPER</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>100.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="6">
+                    <posicion_albaran>6</posicion_albaran>
+                    <posicion_pedido>6</posicion_pedido>
+                    <referencia>RPERPLK16</referencia>
+                    <descripcion>CODIGO IGUAL 16 RAYPER</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>150.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="7">
+                    <posicion_albaran>7</posicion_albaran>
+                    <posicion_pedido>7</posicion_pedido>
+                    <referencia>RPERPLKC20</referencia>
+                    <descripcion>CODIGO IGUAL 20 RAYPER</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>100.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="8">
+                    <posicion_albaran>8</posicion_albaran>
+                    <posicion_pedido>8</posicion_pedido>
+                    <referencia>RPERPLKC25</referencia>
+                    <descripcion>CODIGO IGUAL 25 RAYPER</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>90.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="9">
+                    <posicion_albaran>9</posicion_albaran>
+                    <posicion_pedido>9</posicion_pedido>
+                    <referencia>RPERPLK32</referencia>
+                    <descripcion>CODIGO IGUAL 32 RAYPER</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>80.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="10">
+                    <posicion_albaran>10</posicion_albaran>
+                    <posicion_pedido>10</posicion_pedido>
+                    <referencia>MULPPLKT252X</referencia>
+                    <descripcion>TE 25-20-20 *20X2*</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>20.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="11">
+                    <posicion_albaran>11</posicion_albaran>
+                    <posicion_pedido>11</posicion_pedido>
+                    <referencia>MULPPLKC16</referencia>
+                    <descripcion>MPEX PPSU</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>50.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="12">
+                    <posicion_albaran>12</posicion_albaran>
+                    <posicion_pedido>12</posicion_pedido>
+                    <referencia>MULPPLK25</referencia>
+                    <descripcion>COD 25</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>30.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="13">
+                    <posicion_albaran>13</posicion_albaran>
+                    <posicion_pedido>13</posicion_pedido>
+                    <referencia>MULPTHKRM2516</referencia>
+                    <descripcion>MANGUITO RED. 25-16</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>40.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+                <posiciones id="14">
+                    <posicion_albaran>14</posicion_albaran>
+                    <posicion_pedido>14</posicion_pedido>
+                    <referencia>MULPTHKRM2534</referencia>
+                    <descripcion>RACOR MOVIL 25-3/4</descripcion>
+                    <pedido></pedido>
+                    <pedido_cliente>ND</pedido_cliente>
+                    <cantidad_entregada>40.00</cantidad_entregada>
+                    <unidad>UN</unidad>
+                    <observaciones/>
+                </posiciones>
+            </albaran>
+        </envio_albaran>
+    </datos_doc>
+    <mensajes>
+        <severidad/>
+        <msg_ptl id="1"/>
+        <msg_funcional id=""/>
+    </mensajes>
+</documento_ptl>

@@ -1,0 +1,27 @@
+.removeButton {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ef4444;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 0;
+  color: white;
+}
+
+.removeButton:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+}
+
+.removeButton:active {
+  transform: scale(0.95);
+}
+
+.removeIcon {
+  flex-shrink: 0;
+} 

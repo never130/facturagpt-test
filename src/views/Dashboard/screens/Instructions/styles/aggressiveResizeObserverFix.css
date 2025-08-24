@@ -1,0 +1,201 @@
+/* Aggressive CSS to completely prevent ResizeObserver errors */
+
+/* Only disable problematic transitions, keep essential ones */
+* {
+  /* Keep essential transforms but prevent problematic ones */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  contain: layout style paint;
+}
+
+/* Force stable layout for ReactFlow */
+.react-flow,
+.react-flow__node,
+.react-flow__edge,
+.react-flow__viewport,
+.react-flow__renderer,
+.react-flow__pane,
+.react-flow__controls,
+.react-flow__background,
+.react-flow__minimap,
+.react-flow__attribution {
+  /* Allow size changes but optimize them */
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: none;
+  
+  /* Force hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  
+  /* Prevent layout thrashing */
+  contain: layout style paint;
+  
+  /* Allow essential transitions */
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: none;
+  
+  /* Allow size changes */
+  resize: none;
+  overflow: visible;
+  
+  /* Force stable box model */
+  box-sizing: border-box;
+  
+  /* Ensure visibility */
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure nodes are visible and properly positioned */
+.react-flow__node,
+.operatorNode {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: none;
+  transform: translateZ(0);
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  position: absolute !important;
+  z-index: 1 !important;
+  pointer-events: auto !important;
+  padding: 0px;
+  /* width: 100%; */
+  /* height: 100%; */
+}
+
+/* Ensure node content is clickable */
+.react-flow__node *,
+.operatorNode * {
+  pointer-events: auto !important;
+}
+
+/* Force ReactFlow to show nodes */
+.react-flow__node[style*="visibility: hidden"],
+.react-flow__node[style*="opacity: 0"] {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure ReactFlow pane allows node visibility */
+.react-flow__pane {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure ReactFlow viewport allows node visibility */
+.react-flow__viewport {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Disable transitions only during dragging to prevent loops */
+.react-flow__node--dragging,
+.operatorNode--dragging {
+  transition: none;
+  animation: none;
+}
+
+/* Optimize edge transitions */
+.react-flow__edge {
+  transition: stroke 0.2s ease, stroke-width 0.2s ease;
+  animation: none;
+}
+
+/* Optimize child elements */
+.react-flow *,
+.operatorNode *,
+.flowArea *,
+.instructionsContainer *,
+.mainContent * {
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+/* Optimize draggable elements */
+[draggable="true"] {
+  transition: opacity 0.2s ease;
+  animation: none;
+}
+
+/* Optimize ReactFlow data elements */
+[data-reactflow] {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: none;
+}
+
+/* Optimize specific component classes */
+.operationCard {
+  transition: all 0.2s ease !important;
+  animation: none;
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+/* Ensure buttons are clickable */
+.actionButton,
+.closeConfig,
+button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  position: relative !important;
+}
+
+.menuLeft,
+.chat,
+.categoryAccordion,
+.searchInput {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: none;
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+/* Optimize container dimensions */
+.flowArea,
+.instructionsContainer,
+.mainContent,
+.menuLeft,
+.chat {
+  contain: layout style paint;
+  transform: translateZ(0);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: none;
+}
+
+/* Optimize hover and focus effects */
+*:hover {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: none;
+}
+
+*:focus {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: none;
+}
+
+*:active {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: none;
+}
+
+/* Optimize pseudo-elements */
+*::before,
+*::after {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: none;
+}
+
+/* Optimize observed elements */
+.observed,
+.resize-observer-target,
+[data-resize-observer] {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: none;
+  transform: translateZ(0);
+  contain: layout style paint;
+} 

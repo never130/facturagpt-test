@@ -1,0 +1,29 @@
+.formContainer {
+  display: grid;
+  gap: 24px;
+  outline: none;
+}
+
+.addButton {
+  background-color: #208de6;
+  color: var(--white-color);
+  display: flex;
+  justify-content: flex-start;
+  gap: 24px;
+  align-items: center;
+  border-radius: 6px;
+  border: none;
+  height: 40px;
+  padding: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.buttonText {
+  border-left: 1px solid var(--white-color);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-left: -15px;
+  padding-left: 22px;
+}

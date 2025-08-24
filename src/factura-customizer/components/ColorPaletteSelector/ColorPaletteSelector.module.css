@@ -1,0 +1,465 @@
+.colorPaletteSelector {
+  background: #fff;
+}
+
+.tabsContainer {
+  width: 100%;
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  padding: 4px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #999999;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  white-space: nowrap;
+  flex: 1;
+  width: auto;
+  box-sizing: border-box;
+}
+
+.tab:hover {
+  color: #666666;
+}
+
+.activeTab {
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.colorValuesContainer {
+  margin-bottom: 24px;
+  padding: 24px;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.colorValueRow {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  padding: 0;
+}
+
+.colorValueRow:last-child {
+  margin-bottom: 0;
+}
+
+.colorLabel {
+  font-size: 0.95rem;
+  color: #000000;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.colorValueDisplay {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  background-color: #f5f5f5;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
+
+.colorValueDisplay:hover {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+.colorDot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.colorHex {
+  font-size: 0.9rem;
+  color: #666666;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', monospace;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.paletteItem {
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  background-color: var(--white-color);
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  flex: 1;
+  min-width: 150px;
+  box-sizing: border-box;
+}
+
+.paletteItem:hover {
+  border-color: #b6b6b6;
+}
+
+.paletteItem.selected {
+  border-color: transparent;
+  background-color: var(--f5-background);
+}
+
+.previewPlaceholder {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  margin: 0 auto 8px auto;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.paletteName {
+  font-size: 0.8rem;
+  color: #555;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: auto;
+}
+
+.colorCircle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin: 0 auto;
+  border: 2px solid #fff;
+  box-shadow: 0 0 5px var(--_00000033-background);
+}
+
+@media (max-width: 1200px) {
+  .colorValuesContainer {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .paletteItem {
+    min-width: 140px;
+    min-height: 90px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tabsContainer {
+    margin-bottom: 20px;
+    padding: 3px;
+  }
+
+  .tab {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+
+  .colorValuesContainer {
+    padding: 18px;
+    margin-bottom: 18px;
+  }
+
+  .colorLabel {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+
+  .colorValueDisplay {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .colorDot {
+    width: 18px;
+    height: 18px;
+  }
+
+  .colorHex {
+    font-size: 0.85rem;
+  }
+
+  .grid {
+    gap: 10px;
+  }
+
+  .paletteItem {
+    min-width: 130px;
+    min-height: 85px;
+    padding: 8px;
+  }
+
+  .previewPlaceholder {
+    width: 28px;
+    height: 28px;
+    margin: 0 auto 6px auto;
+  }
+
+  .colorCircle {
+    width: 23px;
+    height: 23px;
+  }
+
+  .paletteName {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tabsContainer {
+    gap: 2px;
+    padding: 2px;
+    margin-bottom: 16px;
+  }
+
+  .tab {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .colorValuesContainer {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .colorValueRow {
+    margin-bottom: 12px;
+  }
+
+  .colorLabel {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+
+  .colorValueDisplay {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .colorDot {
+    width: 16px;
+    height: 16px;
+  }
+
+  .colorHex {
+    font-size: 0.8rem;
+  }
+
+  .grid {
+    gap: 8px;
+  }
+
+  .paletteItem {
+    padding: 8px;
+    min-height: 80px;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .previewPlaceholder {
+    width: 20px;
+    height: 20px;
+    margin: 0 auto 6px auto;
+  }
+
+  .colorCircle {
+    width: 18px;
+    height: 18px;
+  }
+
+  .paletteName {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .tabsContainer {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tab {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  .colorValuesContainer {
+    padding: 12px;
+  }
+
+  .paletteItem {
+    min-width: 0;
+    flex: 1;
+    min-width: calc(50% - 4px); 
+  }
+}
+
+@media (max-width: 480px) {
+  .tabsContainer {
+    gap: 4px;
+  }
+
+  .tab {
+    padding: 10px 8px;
+    font-size: 0.9rem;
+  }
+
+  .colorValuesContainer {
+    padding: 12px;
+  }
+
+  .colorValueDisplay {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .colorDot {
+    width: 14px;
+    height: 14px;
+  }
+
+  .colorHex {
+    font-size: 0.75rem;
+  }
+
+  .paletteItem {
+    min-width: calc(50% - 4px);
+    min-height: 70px;
+    padding: 6px;
+  }
+
+  .previewPlaceholder {
+    width: 18px;
+    height: 18px;
+    margin: 0 auto 4px auto;
+  }
+
+  .colorCircle {
+    width: 16px;
+    height: 16px;
+  }
+
+  .paletteName {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .tab {
+    padding: 8px 6px;
+    font-size: 0.8rem;
+  }
+
+  .colorValuesContainer {
+    padding: 10px;
+  }
+
+  .colorLabel {
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+  }
+
+  .colorValueDisplay {
+    padding: 4px 8px;
+    gap: 4px;
+  }
+
+  .colorDot {
+    width: 12px;
+    height: 12px;
+  }
+
+  .colorHex {
+    font-size: 0.7rem;
+  }
+
+  .paletteItem {
+    min-height: 60px;
+    padding: 4px;
+  }
+
+  .previewPlaceholder {
+    width: 16px;
+    height: 16px;
+    margin: 0 auto 2px auto;
+  }
+
+  .colorCircle {
+    width: 14px;
+    height: 14px;
+  }
+
+  .paletteName {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .tabsContainer {
+    gap: 2px;
+  }
+
+  .tab {
+    padding: 6px 4px;
+    font-size: 0.75rem;
+  }
+
+  .colorValuesContainer {
+    padding: 8px;
+  }
+
+  .paletteItem {
+    min-width: calc(100% - 4px); 
+    min-height: 50px;
+    padding: 3px;
+  }
+
+  .previewPlaceholder {
+    width: 14px;
+    height: 14px;
+  }
+
+  .colorCircle {
+    width: 12px;
+    height: 12px;
+  }
+
+  .paletteName {
+    font-size: 0.55rem;
+  }
+}

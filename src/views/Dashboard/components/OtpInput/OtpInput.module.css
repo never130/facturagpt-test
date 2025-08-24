@@ -1,0 +1,32 @@
+.otpGroup {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.otpInput {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--db-background);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #162d3a;
+  background-color: #f8f9fa;
+}
+
+.otpInput:focus {
+  outline: none;
+  border-color: #162d3a;
+  background-color: var(--white-color);
+}
+
+@media (max-width: 480px) {
+  .otpInput {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}

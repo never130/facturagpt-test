@@ -1,0 +1,51 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+.variableListModal {
+  position: absolute;
+  top: 100px;
+  background-color: var(--white-color);
+  z-index: 3;
+  min-width: 400px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  .variablesList
+{
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-weight: 500;
+      padding: 10px 5px;
+      color: var(--_292d32-color);
+      &:hover {
+        background-color: var(--db-background);
+      }
+    }
+  }
+  p {
+    font-weight: 500;
+    padding: 10px 5px;
+  }
+  .newConcept {
+    background-color: var(--f5-background);
+    padding: 10px 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #666666;
+
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}

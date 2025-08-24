@@ -1,0 +1,64 @@
+.cancelledDocuments {
+  padding: 20px;
+  .documents {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 300px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .document {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+    color: var(--009f7a-color);
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; 
+    .OptionDots {
+      transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      cursor: pointer;
+    }
+  }
+  .errors {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    p,
+    span {
+      color: #222;
+      font-family: Inter;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 21px;
+    }
+  }
+}
+
+.optionsPopupContainer {
+  position: absolute;
+  z-index: 9999;
+  bottom: 0px;
+  left: 385px;
+}
+
+.optionsPopupOption {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dropdown {
+  width: 30%;
+}

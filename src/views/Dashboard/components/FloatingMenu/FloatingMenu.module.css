@@ -1,0 +1,123 @@
+.fabContainer {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1000;
+  @media (width<=768px) {
+    z-index: 999999;
+    transform: translateX(0) !important;
+    left: 0;
+  }
+}
+
+
+
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+
+  @media (width<=768px) {
+    background-color: var(--F5F5F538-background) ;
+  }
+}
+
+.menuContainer {
+  position: absolute;
+  top: 50px;
+  gap: 3px;
+  right: 110px;
+  background-color: var(--white-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px var(--_00000033-background);
+  padding: 3px;
+  min-width: 230px;
+  opacity: 0;
+  transform: scale(0.95) translateY(10px);
+  transform-origin: bottom left;
+  transition: all 0.5s ease;
+  pointer-events: none;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  @media (width<=768px) {
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+}
+
+.menuOpen {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: all;
+}
+
+.menuItem {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--_374151-color);
+  cursor: pointer;
+  text-align: left;
+  .shortcut {
+    font-size: 12px;
+    background-color: var(--db-background);
+    border-radius: 4px;
+    padding: 4px 6px;
+    color: var(--_9B-color);
+    font-weight: 400;
+    margin-left: auto;
+    margin-right: 14px;
+    right: -10px;
+    position: relative;
+  }
+}
+.disabledMenuItem{
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.menuItem:hover {
+  background-color: var(--f5-background);
+}
+
+.menuIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--_10a37f-background);
+  border-radius: 6px 0 0 6px;
+  -webkit-border-radius: 6px 0 0 6px;
+  -moz-border-radius: 6px 0 0 6px;
+  -ms-border-radius: 6px 0 0 6px;
+  -o-border-radius: 6px 0 0 6px;
+}
+.menuText {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--_374151-color);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Você tem alguma dúvida?",
+  "moreInfo": "Quer saber mais?",
+  "contact": "Contato",
+  "ask1": "O que é o FacturaGPT?",
+  "ask2": "Quais formatos de arquivo o FacturaGPT aceita?",
+  "ask3": "Como o FacturaGPT ajuda no planejamento financeiro?",
+  "ask4": "Outras ferramentas de software podem ser integradas ao FacturaGPT?",
+  "ask5": "O FacturaGPT detecta erros nas faturas?",
+  "ask6": "O FacturaGPT realiza cálculos fiscais?",
+  "ask7": "O FacturaGPT é atualizado automaticamente?",
+
+  "answer1": "O FacturaGPT é uma ferramenta de gestão e análise financeira que utiliza inteligência artificial para simplificar e otimizar a análise de faturas e dados contábeis. O FacturaGPT é uma solução baseada em nuvem, acessível de qualquer dispositivo com conexão à internet.",
+  "answer2": "Aceitamos arquivos Excel, CSV e PDF, entre outros formatos padrão.",
+  "answer3": "Ele fornece informações essenciais como margens de lucro, padrões de gastos e recomendações personalizadas.",
+  "answer4": "Sim, é compatível com sistemas ERP e de contabilidade populares como SAP, QuickBooks e Odoo.",
+  "answer5": "Sim, identifica automaticamente discrepâncias e possíveis erros nas faturas.",
+  "answer6": "Sim, identifica e calcula automaticamente os impostos aplicáveis nas faturas.",
+  "answer7": "Sim, todas as atualizações e melhorias são implementadas automaticamente, sem custo adicional."
+}

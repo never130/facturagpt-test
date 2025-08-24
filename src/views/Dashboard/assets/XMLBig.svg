@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <g>
+    <path d="M48 2H16a4 4 0 0 0-4 4v52a4 4 0 0 0 4 4h32a4 4 0 0 0 4-4V10z" fill="#AF5EDD"/>
+    <path d="M48 10h-8a4 4 0 0 1-4-4V2z" fill="#934AC2"/>
+    <text x="16" y="45" font-family="Arial" font-size="14" fill="white">XML</text>
+  </g>
+</svg>

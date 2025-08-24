@@ -1,0 +1,78 @@
+.profileModalContainer {
+  height: fit-content;
+  position: sticky;
+  top: 81px;
+display: flex;
+align-items: center;
+justify-content: center;
+    @media (width<=768px) {
+      position: initial;
+      width: fit-content;
+      width:90% !important;
+      height:90% !important;
+        margin: 0 auto;
+  }
+}
+
+.initials,.profileImage{
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  display: flex
+;
+  align-items: center;
+  justify-content: center;
+  background: var(--_10a37f-background);
+  color: var(--white-color);
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 600;
+}
+.profileModalTemplate {
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  position: relative;
+  @media (width <= 768px) {
+    width:90% !important;
+    height:90% !important;
+  }
+  &:hover{
+    .camContainer{
+      display: flex;
+      align-items: center;
+    }
+  }
+  .camContainer {
+    position: absolute;
+    display: none;
+    width: 100%;
+    justify-content: center;
+    height: 40%;
+    left: 50%;
+    bottom: 0px;
+    background-color: var(--_9b-color);
+    transform: translate(-50%);
+    -webkit-transform: translate(-50%);
+    -moz-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    -o-transform: translate(-50%);
+    padding-top: 10px;
+    box-sizing: border-box;
+    .icon {
+      height: 30px;
+      width: 30px;
+      cursor: pointer;
+    }
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,52 @@
+.design-container {
+    display: flex;
+    gap: 10px;
+    padding: 0 15px;
+    border-radius: 8px;
+    width: fit-content;
+    margin: 20px auto;
+}
+
+.symbol {
+    font-size: 24px;
+    font-weight: bold;
+    background-color: var(--white-color);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--db-background);
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    svg {
+        color: var(--_10a37f-background);
+        fill: var(--_10a37f-background);
+        width: 25px;
+    }
+}
+
+.symbol:hover {
+    background-color: var(--_073f31-color);
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px var(--_00000033-background);
+}
+
+
+.symbolExtra {
+    font-size: 24px;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    svg {
+        width: 25px;
+    }
+    cursor: pointer;
+}

@@ -1,0 +1,123 @@
+.attachments{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.attachment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border: 1px solid #e2f4f0;
+  border-radius: 12px;
+  cursor: default;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    border-color: transparent;
+    background-color: var(--f5-background);
+  }
+  .icon{
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    background: var(--f5-background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    >div{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        b {
+            font-size: 12px;
+            font-weight: 600;
+        }
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--_10a37f-background);
+        }
+    }
+    span {
+        font-size: 12px;
+        color: var(--_67-color);
+    }
+    .delete{
+        width: 20px;
+        height: 20px;
+        background: red;
+        border-radius: 50%;
+    }
+  }
+}
+
+.wasImported {
+  padding-left: 6px;
+  .icon{
+    background-color: #ddfff7;
+  }
+}
+
+.loaderImportConnectionAttachment {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite
+}
+.loaderImportConnectionAttachment::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 2px solid var(--_10a37f-background);
+  animation: prixClipFix 2s linear infinite ;
+}
+
+@keyframes rotate {
+  100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+
+.viewMoreContainer {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.viewMoreButton {
+  width: 100%;
+  background: var(--_10a37f-background);
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #e2f4f0;
+  height: 28px;
+  border-radius: 6px;
+  &:hover {
+    background: #10a37ede;
+  }
+}

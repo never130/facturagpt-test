@@ -1,0 +1,70 @@
+.calendarSchedule {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow-x: scroll;
+	.days {
+		width: 100%;
+		display: flex;
+		overflow-x: scroll;
+	}
+	.dayColumn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 0px 8px;
+	}
+	.hour {
+		border: 1px solid var(--border-color);
+		color: var(--_10a37f-background);
+		padding: 10px 5px;
+		margin: 2px;
+		width: 80px;
+		text-align: center;
+		cursor: pointer;
+		font-size: 14px;
+		font-weight: 500;
+		border-radius: 4px;
+		&:hover {
+			font-weight: 600;
+			background: var(--_073f31-color);
+			border: 1px solid var(--_10a37f-background);
+		}
+	}
+	.dayHeader {
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+}
+.occupiedHour {
+	border: 1px solid var(--ed-background);
+	color: var(--white-color);
+	padding: 10px 5px;
+	background: var(--ed-background);
+	margin: 2px;
+	width: 80px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 500;
+	border-radius: 4px;
+	transition: all 0.2s ease;
+	&:hover {
+		font-weight: 600;
+		background: var(--_10a37f-background);
+		border: 1px solid var(--_10a37f-background);
+	}
+}
+.disabledHour {
+	background-color: var(--f5-background);
+	cursor: not-allowed !important;
+	color: var(--text-color-secondary);
+	padding: 10px 5px;
+	margin: 2px;
+	width: 80px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	border-radius: 4px;
+	opacity: 0.5;
+}

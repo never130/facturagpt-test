@@ -1,0 +1,214 @@
+.InviteToWorkspaceContent {
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: 1px solid var(--db-background);
+  background: #fff;
+  padding: 8px 20px 20px 20px;
+  box-sizing: border-box;
+  max-height: 70vh;
+  overflow-y: scroll;
+
+  .workspaceSectionLabel {
+    padding: 20px 0;
+    border-bottom: 1px solid #ebebeb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    p {
+      margin: 0;
+      font-size: 15px;
+    }
+    .descSection {
+      font-size: 15px;
+      color: #717171;
+    }
+    .accessInfo {
+      display: flex;
+      text-align: end;
+      align-items: center;
+      gap: 10px;
+      p {
+        margin: 0;
+      }
+      .access {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .accessType {
+        color: var(--_10a37f-background);
+        font-size: 13px;
+      }
+      .rol {
+        font-size: 13px;
+        color: #717171;
+      }
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+      }
+    }
+
+    .spendingControls {
+      width: fit-content;
+      display: flex;
+      gap: 10px;
+      .inputContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      input {
+        width: fit-content;
+        width: 100px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--_67-color);
+        min-height: 21px !important;
+        background-color: var(--f5-background);
+        border-radius: 5px;
+        font-family: "Inter", sans-serif;
+        box-sizing: border-box;
+        width: 100%;
+        field-sizing: content;
+        min-height: 21px !important;
+        padding: 8px 4px;
+      }
+    }
+  }
+  .mergPlanContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .inputContainer {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--_67-color);
+      min-height: 21px !important;
+      background-color: var(--f5-background);
+      border-radius: 5px;
+      font-family: "Inter", sans-serif;
+      box-sizing: border-box;
+      field-sizing: content;
+      padding: 8px;
+      gap: 5px;
+      input {
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
+      input::placeholder {
+        color: var(--_67-color);
+      }
+    }
+  }
+
+  .mergePlanSwitchContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    svg {
+      height: 20px;
+      width: 20px;
+      fill: #c5c5c5;
+      color: #c5c5c5;
+    }
+    .activeMerge {
+      fill: var(--_10a37f-background);
+      color: var(--_10a37f-background);
+    }
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    margin-top: 7px;
+    height: 24px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--ed-background);
+    transition: 0.4s;
+    border-radius: 24px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--white-color);
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: var(--_10a37f-background);
+  }
+  input:checked + .bgBlack {
+    background-color: #000000;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(16px);
+  }
+}
+
+.editableInputContainer{
+  span{
+    font-weight: 400;
+    font-size: 15px;
+  }
+}
+
+
+
+.emailContainer{
+  /* display: flex; */
+  span{
+    color: #717171;
+  }
+  
+}
+
+
+.errorMessage{
+  color: red;
+  font-size: 12px;
+  margin: 5px 0;
+  text-align: end;
+}

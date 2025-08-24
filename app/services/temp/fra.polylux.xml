@@ -1,0 +1,143 @@
+<envio_factura version="0.6">
+    <id_control_fabricante/>
+    <factura>
+        <cabecera>
+            <tipo_documento>01</tipo_documento>
+            <desc_tipo_documento>Factura</desc_tipo_documento>
+            <solicitante/>
+            <destinatario/>
+            <cod_punto_venta/>
+            <motivo_documento/>
+            <codigo_proveedor/>
+            <condicion_pago/>
+            <cod_medio_pago/>
+            <desc_medio_pago/>
+            <moneda>EUR</moneda>
+            <info_adicional_pago/>
+            <numero_factura>VE24/8673</numero_factura>
+            <referencia_factura/>
+            <fecha_factura>
+                <anyo>2024</anyo>
+                <mes>12</mes>
+                <dia>9</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_factura>
+            <vencimientos>
+                <vencimiento id="0">
+                    <fecha_vencimiento>
+                        <anyo>2025</anyo>
+                        <mes>02</mes>
+                        <dia>08</dia>
+                        <hora>0</hora>
+                        <minuto>0</minuto>
+                        <segundo>0</segundo>
+                    </fecha_vencimiento>
+                    <importe_parcial>754.05</importe_parcial>
+                </vencimiento>
+            </vencimientos>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>754.05</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>03</tipo_importe>
+                    <desc_tipo_importe>Total</desc_tipo_importe>
+                    <valor_importe>885.03</valor_importe>
+                    <porcentaje>21.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="2">
+                    <tipo_importe>09</tipo_importe>
+                    <desc_tipo_importe>Neto antes pronto pago</desc_tipo_importe>
+                    <valor_importe>754.05</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+            </importes>
+            <impuestos>
+                <impuesto id="0">
+                    <tipo_impuesto>01</tipo_impuesto>
+                    <desc_tipo_impuesto>IVA</desc_tipo_impuesto>
+                    <base_impuesto>754.05</base_impuesto>
+                    <porcentaje_impuesto>21.00</porcentaje_impuesto>
+                    <signo_importe>01</signo_importe>
+                    <importe_impuesto>158.35049999999998</importe_impuesto>
+                </impuesto>
+            </impuestos>
+            <incoterm>CIP</incoterm>
+            <desc_incoterm/>
+            <fabricante_nif>A58861311</fabricante_nif>
+            <fabricante_nombre>MATELECSA, S.A.</fabricante_nombre>
+            <fabricante_direccion>C/CARRASCO I FORMIGUERA 26-28</fabricante_direccion>
+            <fabricante_poblacion>Mataró</fabricante_poblacion>
+            <fabricante_cpostal>08302</fabricante_cpostal>
+            <fabricante_provincia>Barcelona</fabricante_provincia>
+            <fabricante_pais>ES</fabricante_pais>
+            <fabricante_reg_mercantil>MATELECSA, S.A.</fabricante_reg_mercantil>
+            <cod_fabricante_externo>B62442736</cod_fabricante_externo>
+            <cod_fabricante_fabricante/>
+            <direcciones>
+                <direccion id="1">
+                    <direc_tipo>01</direc_tipo>
+                    <direc_nombre>CARRASCO I FORMIGUERA</direc_nombre>
+                    <direc_direccion>26-28</direc_direccion>
+                    <direc_poblacion>Mataró</direc_poblacion>
+                    <direc_cpostal>08302</direc_cpostal>
+                    <direc_provincia>Barcelona</direc_provincia>
+                    <direc_pais>ES</direc_pais>
+                </direccion>
+            </direcciones>
+            <observaciones/>
+        </cabecera>
+        <posiciones id="1">
+            <posicion_albaran>1</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2024</anyo>
+                <mes>12</mes>
+                <dia>9</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>4309566</albaran>
+            <referencia>TKW12.5</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>TRANSFORMADOR II 12.5kVA IP23 230/230V</descripcion>
+            <pedido>VE24/8673</pedido>
+            <pedido_cliente>VE24/8673</pedido_cliente>
+            <posicion_pedido>1</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>1</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>1</posicion_factura>
+            <precio_unitario>1371.00</precio_unitario>
+            <unidad_precio>UN</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>754.05</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>619.95</valor_importe>
+                    <porcentaje>45.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+    </factura>
+</envio_factura>

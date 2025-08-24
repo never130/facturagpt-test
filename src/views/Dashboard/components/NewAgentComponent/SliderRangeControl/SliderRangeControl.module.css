@@ -1,0 +1,8 @@
+.MinimalistVolumeSliderContainer{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    >div{
+        flex: 1;
+    }
+}

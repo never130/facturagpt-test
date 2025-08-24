@@ -1,0 +1,16 @@
+.buttonGoogle {
+    background-color: transparent;
+    color: var(--black);
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid var(--db-background);
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+    height: 48px;
+  }

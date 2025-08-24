@@ -1,0 +1,163 @@
+.generalContainer {
+  height: fit-content;
+  position: relative;
+}
+.labelGeneral {
+  display: flex;
+  padding: 11px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  border-bottom: 1px solid var(--db-background);
+  input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--aaa-color);
+    min-height: 21px;
+    background-color: var(--f5-background);
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+
+.typePlan{
+  text-transform: capitalize;
+}
+    p {
+      margin: 0;
+    }
+    .colors {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .color {
+        cursor: pointer;
+        width: 42px;
+        height: 24px;
+        flex-shrink: 0;
+        border-radius: 9999px;
+      }
+    }
+    >div{
+      cursor: default;
+    }
+    .currencyDropdown{
+      cursor: pointer;
+    }
+  }
+
+  .editButton{
+    opacity: 0;
+    display: flex;
+    justify-content: end;
+  }
+
+  &:hover{
+    .editButton{
+      opacity: 1;
+    }
+  }
+}
+.bg {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: var(--_374151-color);
+}
+.newCurrencyPopup {
+  position: fixed;
+  background-color: var(--white-color);
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 70vh;
+  overflow-y: scroll;
+  .dropdownOption {
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--_9b-color);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    -ms-transition: background-color 0.2s;
+    -o-transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--db-background);
+    }
+  }
+}
+
+.deleteChatsContainer {
+  width: 80%;
+  background-color: var(--white-color);
+  margin: 0 auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  p {
+    margin: 0;
+    color: var(--_00000033-background);
+  }
+  .password {
+    display: flex;
+    align-items: center;
+    span,
+    > div {
+      flex: 1;
+    }
+    > div {
+      input {
+        border: none;
+        outline: none;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--aaa-color);
+        min-height: 21px;
+        background-color: var(--f5-background);
+        border-radius: 5px;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 12px;
+      }
+      span {
+        color: var(--d0004b-color);
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+
+

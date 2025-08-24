@@ -1,0 +1,192 @@
+.logoPositionSelector {
+  margin-top: 20px;
+  min-height: auto; 
+}
+
+.label {
+  display: block;
+  font-size: 1rem;
+  color: var(--black);
+  font-weight: 500;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.grid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0 8px 0;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.grid::-webkit-scrollbar {
+  display: none;
+}
+
+.grid {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.positionItem:nth-child(1),
+.positionItem:nth-child(2) {
+  width: 40%;
+}
+.positionItem:nth-child(3),
+.positionItem:nth-child(4),
+.positionItem:nth-child(5) {
+  width: 30%;
+}
+
+.positionItem:last-child {
+  width: 40%;
+}
+
+.positionItem {
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 10px 8px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  background-color: var(--white-color);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 70px;
+  width: 180px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.positionItem:hover {
+  border-color: #b6b6b6;
+}
+
+.positionItem.selected {
+  border-color: transparent;
+  background-color: var(--f5-background);
+}
+
+.positionIcon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.positionName {
+  font-size: 0.85rem;
+  color: #555;
+  display: block;
+  line-height: 1.2;
+  flex: 1;
+}
+
+
+@media (max-width: 1024px) {
+  .logoPositionSelector {
+    margin-top: 18px;
+  }
+
+  .label {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  .grid {
+    gap: 10px;
+    padding: 4px 0 6px 0;
+    overflow-x: auto;
+  }
+
+  .positionItem {
+    padding: 9px 7px;
+    gap: 9px;
+    min-height: 65px;
+    width: 170px;
+    flex-shrink: 0;
+  }
+
+  .positionIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .positionName {
+    font-size: 0.8rem;
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 768px) {
+  .logoPositionSelector {
+    margin-top: 16px;
+  }
+
+  .label {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  .grid {
+    gap: 10px;
+    padding: 4px 0 6px 0;
+  }
+
+  .positionItem {
+    padding: 8px 6px;
+    gap: 8px;
+    min-height: 60px;
+    width: 160px;
+  }
+
+  .positionIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .positionName {
+    font-size: 0.75rem;
+    line-height: 1.1;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoPositionSelector {
+    margin-top: 12px;
+  }
+
+  .label {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+
+  .grid {
+    gap: 8px;
+  }
+
+  .positionItem {
+    padding: 6px 4px;
+    gap: 6px;
+    min-height: 50px;
+    width: 140px;
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .positionIcon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .positionName {
+    font-size: 0.65rem;
+    line-height: 1.0;
+    flex: 1;
+  }
+}

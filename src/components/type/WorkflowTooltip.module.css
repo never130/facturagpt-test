@@ -1,0 +1,247 @@
+.workflowContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.workflowButton {
+  background-color: #10a37f;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 22px;
+  position: relative;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.lockIcon {
+  height: 14px;
+  position: relative;
+  flex-shrink: 0;
+  width: 11px;
+}
+
+.lockIcon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  preserveAspectRatio: none;
+  viewBox: 0 0 11 14;
+}
+
+.lockIcon path {
+  fill: white;
+}
+
+.buttonText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #ffffff;
+  font-size: 14px;
+  text-align: left;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+.statusRow {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.statusText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  color: #009f7a;
+  font-size: 14px;
+  text-align: left;
+  white-space: nowrap;
+  line-height: 24px;
+}
+
+.statusIcon {
+  position: relative;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.statusIcon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  preserveAspectRatio: none;
+  viewBox: 0 0 16 16;
+}
+
+.statusIcon path {
+  clip-rule: evenodd;
+  fill: #10A37F;
+  fill-rule: evenodd;
+}
+
+.menuItem {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.menuItemContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.menuItemInner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.statusDot {
+  height: 11px;
+  position: relative;
+  flex-shrink: 0;
+  width: 10px;
+}
+
+.statusDot svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  preserveAspectRatio: none;
+  viewBox: 0 0 10 11;
+}
+
+.statusLabel {
+  flex-basis: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  flex-grow: 1;
+  position: relative;
+  min-height: 1px;
+  min-width: 1px;
+  flex-shrink: 0;
+  color: #ffffff;
+  font-size: 14px;
+  text-align: left;
+  line-height: 14.4px;
+}
+
+.dotInvalid path:first-child {
+  fill: #C92D45;
+  fill-opacity: 0.2;
+}
+
+.dotInvalid path:last-child {
+  fill: #C92D45;
+}
+
+.dotError path:first-child {
+  fill: #F93E3E;
+  fill-opacity: 0.2;
+}
+
+.dotError path:last-child {
+  fill: #F93E3E;
+}
+
+.dotEmpty path:first-child {
+  fill: #D1D5DB;
+  fill-opacity: 0.2;
+}
+
+.dotEmpty path:last-child {
+  fill: #D1D5DB;
+}
+
+.dotDraft path:first-child {
+  fill: #6E6E80;
+  fill-opacity: 0.5;
+}
+
+.dotDraft path:last-child {
+  fill: #6E6E80;
+}
+
+.dotProcessing path:first-child {
+  fill: #F6851B;
+  fill-opacity: 0.2;
+}
+
+.dotProcessing path:last-child {
+  fill: #F6851B;
+}
+
+.dotRegistered path:first-child {
+  fill: #24C9A0;
+  fill-opacity: 0.2;
+}
+
+.dotRegistered path:last-child {
+  fill: #24C9A0;
+}
+
+.dotSent path:first-child {
+  fill: #0000FF;
+  fill-opacity: 0.2;
+}
+
+.dotSent path:last-child {
+  fill: #0000FF;
+}
+
+.dotPaid path:first-child {
+  fill: #10A37F;
+  fill-opacity: 0.2;
+}
+
+.dotPaid path:last-child {
+  fill: #10A37F;
+}
+
+.dotCustom path:first-child {
+  fill: #10A37F;
+  fill-opacity: 0.2;
+}
+
+.dotCustom path:last-child {
+  fill: #10A37F;
+}

@@ -1,0 +1,156 @@
+.infoContainerWrapper {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+  div {
+    color: #1f184b;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  span {
+    max-width: 360px;
+    color: #1f184b;
+    font-size: 12px;
+    font-weight: 300;
+  }
+}
+
+.contentContainer {
+  &.active {
+    display: block;
+    border: 1px solid #e5e5e5;
+    padding: 6px 10px;
+    border-radius: 15px;
+  }
+  &.disabled {
+    display: none;
+  }
+}
+
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerMail {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  max-width: 240px;
+  margin-top: 10px;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--db-background);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  height: 27px;
+  width: 30px;
+
+}
+
+.addConnection {
+  color: #159b7c;
+  cursor: pointer;
+}
+
+.phoneNumbersList {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  margin: 10px 10px;
+}
+
+.phoneNumberItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #666666;
+}
+
+.qrContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+.loader::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid var(--_10a37f-background);
+  animation: prixClipFix 2s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
+
+
+
+.iconContainer2 {
+  border: 1px solid var(--f5-background);
+  height: 45px;
+  min-width: 45px;
+  border-radius: 50px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.newConnectionButton {
+  border-radius: 999px;
+  height: 45px;
+  border: 1px solid #00000026;
+  background-color: transparent;
+  padding: 0px 14px;
+  font-family: Inter;
+  font-weight: 400;
+}

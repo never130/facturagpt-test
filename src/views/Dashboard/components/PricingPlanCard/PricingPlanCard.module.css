@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+.pricingCardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 522px;
+  font-family: "Inter", sans-serif;
+  margin: 20px auto;
+}
+
+.pricingBox {
+  width: 265px;
+  border: 1px solid #16c09832;
+  border-radius: 32px 32px 0px 0px;
+  text-align: center;
+  padding: 24px;
+  padding-bottom: 15px;
+  border-bottom: none;
+  margin-bottom: -1px;
+  background-color: var(--_10a37f-background);
+  color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.price {
+  font-size: clamp(20px, 5vw, 42px);
+  font-weight: bold;
+  margin: 0;
+}
+
+.perMonth {
+  font-size: clamp(14px, 4vw, 20px);
+  font-weight: 400;
+}
+
+.docPrice {
+  font-size: clamp(18px, 5vw, 22px);
+  font-weight: 400;
+  margin: 4px 0;
+}
+
+.priceTag {
+  font-weight: 400;
+  font-size: clamp(18px, 5vw, 22px);
+}
+
+.planDetails {
+  padding: 24px 10px 24px 10px;
+  width: 80%;
+  max-width: 522px;
+  background-color: #f7f7f7;
+  border-radius: 32px;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .planDetails {
+    padding: 20px;
+  }
+  .pricingBox {
+    padding: 10px 32px;
+  }
+}
+
+.planTitle {
+  font-size: clamp(18px, 6vw, 28px);
+  font-weight: 400;
+  color: #18181b;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 40px;
+}
+
+.featureItem {
+  font-size: clamp(12px, 3.5vw, 14px);
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  color: #555454;
+  margin-bottom: 9px;
+}
+
+.button {
+  width: 100%;
+  background-color: #22463d;
+  color: var(--white-color);
+  border: none;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  font-size: clamp(12px, 3.5vw, 14px);
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 15px;
+  text-align: center;
+  padding: 12px 20px;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  -ms-border-radius: 40px;
+  -o-border-radius: 40px;
+}
+sup {
+  font-size: 0.7em; 
+  vertical-align: super; 
+}
+
+.button:hover {
+  background-color: #163328;
+}
+
+@media (max-width: 576px) {
+  .pricingCardContainer {
+    margin: 10px auto;
+  }
+
+  .planDetails {
+    border-radius: 24px;
+  }
+
+  .pricingBox {
+    border-radius: 24px 24px 0 0;
+    width: 50%;
+  }
+}

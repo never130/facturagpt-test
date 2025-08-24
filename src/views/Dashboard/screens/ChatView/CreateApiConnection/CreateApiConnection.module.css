@@ -1,0 +1,341 @@
+.CreateApiConnectionContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  textarea {
+    resize: none;
+    min-height: 50px;
+    max-height: 80px;
+    width: 100%;
+    field-sizing: content;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: var(--f5-background);
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 8px;
+  }
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  .step3 {
+    align-items: start;
+    gap: 10px;
+  }
+
+  .nameIconFactura {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step1Container {
+    gap: 20px;
+  }
+
+  .IconFacturaGPT {
+    width: 100px;
+    stroke: var(--_10a37f-background);
+  }
+  .searchIconsWrappers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: var(--db-background);
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border-radius: 3px;
+  }
+
+  .noConnection {
+    color: #666666;
+  }
+
+  .servicesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 15px;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .servicesContainer > div {
+    flex: 0 0 calc(20% - 26px); /* 5 por fila en desktop */
+    max-width: calc(20% - 26px);
+    aspect-ratio: 1 / 1;
+    max-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 6px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid var(--db-background);
+    border-radius: 12px;
+    svg {
+      height: 90%;
+      width: 90%;
+    }
+  }
+
+  @media (max-width: 1199px) and (min-width: 768px) {
+    .servicesContainer > div {
+      flex: 0 0 calc(25% - 26px); /* 4 por fila */
+      max-width: calc(25% - 26px);
+      max-height: 80px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .servicesContainer > div {
+      flex: 0 0 calc(50% - 26px); /* 2 por fila */
+      max-width: calc(50% - 26px);
+      max-height: 70px;
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .servicesContainer > div {
+      flex: 0 0 100%; /* 1 por fila */
+      max-width: 100%;
+      max-height: 60px;
+      font-size: 10px;
+    }
+  }
+
+  .activeService {
+    background-color: var(--db-background);
+  }
+}
+
+.labelInput {
+  color: var(--1e293b-color);
+  font-size: 13px;
+  line-height: 1;
+  border-bottom: 0px solid var(--db-background);
+  border-top: 0px solid var(--db-background);
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+.inputContainer {
+  display: flex;
+  gap: 8px;
+  padding: 5px 16px;
+  background: var(--white-color);
+  border-radius: 6px;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+}
+
+.inputSearchEnpoints {
+  padding: 0px;
+  margin: 0px;
+  height: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--black);
+  font-size: 14px;
+}
+
+.buttonInputSearchEndPoints {
+  padding: 0px 10px;
+  margin: 0px;
+  height: 20px;
+  /* width: 100%; */
+  /* max-width: 160px; */
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background-color: var(--white-color);
+  color: #4f5660;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.apiInfo {
+  width: 100%;
+}
+
+.noEndpointsFound {
+  width: 100%;
+}
+
+
+.progressBarWrapper {
+  width: 100%;
+  height: 10px;
+  background-color: #e0e0e0; /* gris claro */
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.progressBarFill {
+  width: 45%; /* valor estático por ahora */
+  height: 100%;
+  background-color: var(--_10a37f-background); /* verde */
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.testApiConnection{
+  color: #222222;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.visualizesEndpointStatus{
+  font-size: 13px;
+}
+.selectEndpoint{
+  width: 100%;
+}
+
+.endpoint{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.endpointInfo{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.endpointName{
+  font-weight: 500;
+}
+
+.typeEndpoint{
+font-size: 13px;
+font-weight: 500;
+}
+
+.typeEndpointPost{
+  color: #0000FF;
+}
+
+.rightSection{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  .statusEndpoint{
+    background-color: #f6851b0c;
+    padding: 6px 16px;
+    border-radius: 8px;
+    color: #71717A;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  span{
+    color: #71717A;
+  }
+}
+
+.endpointScrapperd{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.headerEndpoint{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  p{
+    color: #353A44;
+    font-weight: 500;
+  }
+  span{
+    color: #596171;
+  }
+}
+
+.responseEndpointScrapper{
+  color: #8C90A2;
+}
+
+.percentageResponse{
+  color: #A5A5A5;
+}
+
+.describeContainer{
+  width: 100%;
+  background-color: var(--f5-background);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 4px;
+  box-sizing: border-box;
+  min-height: fit-content;
+  svg{
+    fill: white;
+  }
+}
+
+.automateStep1Container{
+  border: 1px solid var(--db-background);
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  p{
+    color: #000000;
+    font-weight: 400;
+  }
+  span{
+    font-size: 14px;
+    color: #666666;
+  }
+}
+.describeContainerStep2{
+  svg{
+    fill: var(--_10a37f-background);
+  }
+}
+.iconContainer{
+  height: 30px;
+  width: 30px;
+  svg{
+    height: 100%;
+    width: 100%;
+  }
+}

@@ -1,0 +1,58 @@
+.statusField {
+  width: 95px;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+}
+
+.statusContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.statusText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 14px;
+  text-align: left;
+  white-space: nowrap;
+  line-height: 24px;
+}
+
+.statusApproved {
+  color: #009f7a;
+}
+
+.statusPending {
+  color: #ffcc00;
+}
+
+.statusCancelled {
+  color: #c5221f;
+}
+
+.dotApproved {
+  fill: #009f7a;
+}
+
+.dotPending {
+  fill: #ffcc00;
+}
+
+.dotCancelled {
+  fill: #c5221f;
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <style></style>
+</head>
+
+<body>
+  <div class="OrderConfirmationEmailAdmin"
+    style="width: 656px; padding: 32px; background: #F5F7FA; flex-direction: column; justify-content: center; align-items: flex-start;">
+    <div class="ContainerElevated"
+      style="align-self: stretch; padding: 40px; background: white; border-radius: 3px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 40px;">
+      <div class="LogoBrand"
+        style="width: 124px; padding-right: 0.79px; justify-content: center; align-items: flex-start; gap: 7px; display: inline-flex">
+        <img class="Company" style="width: 78.21px;" src="{{apiUrl}}/service/v1/iam/user/{{id}}" />
+      </div>
+      <div class="Header"
+        style="margin-top: 20px; align-self: stretch; color: #222D38; font-size: 24px; font-family: system-ui; font-weight: 700; line-height: 32px; word-wrap: break-word">
+        We’re glad to have you on board!</div>
+      <div class="MessageCta"
+        style="margin-top: 20px; align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px;">
+        <div class="HiCustomerName"
+          style="align-self: stretch; color: #46586B; font-size: 16px; font-family: system-ui; font-weight: 400; line-height: 24px; word-wrap: break-word">
+          Hello {{nombre}}</div>
+        <div class="Text"
+          style="margin-top: 20px; align-self: stretch; color: #46586B; font-size: 16px; font-family: system-ui; font-weight: 400; line-height: 24px; word-wrap: break-word">
+          🌟 We hope you're having a great day. We're pleased to inform you that your subscription has been confirmed with order number: {{OrderNum}}. Log in and discover the power of Aythen Lite.</div>
+        <div class="StackPlanPricing"
+          style="margin-top: 20px; align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px;">
+          <div class="CardPlan"
+            style="width: 512px; padding: 32px; background: #F5F7FA; border-radius: 20px; overflow: hidden; justify-content: flex-start; align-items: center; gap: 40px;">
+            <div class="PlanDetails"
+              style="flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+              <div class="Header"
+                style="align-self: stretch; height: 70px; padding-bottom: 16px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px;">
+                <div class="OrderSummary"
+                  style="align-self: stretch; color: #46586B; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px; word-wrap: break-word">
+                  Your license:</div>
+                <div class="ProductNameTeam"
+                  style="align-self: stretch; color: #222D38; font-size: 18px; font-family: system-ui; font-weight: 700; line-height: 20px; word-wrap: break-word">
+                  Plan {{OrderType}}</div>
+                <div class="Users9PerUse"
+                  style="align-self: stretch; color: #46586B; font-size: 16px; font-family: system-ui; font-weight: 400; line-height: 24px; word-wrap: break-word">
+                  {{UserNum}} user(s), {{OrderPrice}} per month</div>
+              </div>
+              <div class="Table"
+                style="align-self: stretch; height: 70px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px;">
+                <div class="Frame39"
+                  style="padding: 8px 0px; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                  <div class="162000"
+                    style="color: #46586B; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px; word-wrap: break-word">
+                    {{valueSubtotal}}</div>
+                  <div class="Subtotal"
+                    style="margin-left: 10px; color: #46586B; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px; word-wrap: break-word">
+                    {{textSubtotal}}</div>
+                </div>
+                <div class="Sep" style="align-self: stretch; height: 1px; background: #E8EDF3"></div>
+                <div class="Frame38"
+                  style="padding: 8px 0px; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                  <div class="32400"
+                    style="color: #46586B; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px; word-wrap: break-word">
+                    {{valueVat}}</div>
+                  <div class="Vat200"
+                    style="margin-left: 10px; flex: 1 1 0; color: #46586B; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px; word-wrap: break-word">
+                    {{textVat}}</div>
+                </div>
+                <div class="Sep" style="align-self: stretch; height: 1px; background: #E8EDF3"></div>
+                <div class="Frame37"
+                  style="float: left; padding: 8px 0px; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                  <div class="194400"
+                    style="flex: 1 1 0; color: #46586B; font-size: 16px; font-family: system-ui; font-weight: 700; line-height: 24px; word-wrap: break-word">
+                    {{valueTotal}}</div>
+                  <div class="Total"
+                    style="margin-left: 10px; flex: 1 1 0; color: #46586B; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px; word-wrap: break-word">
+                    {{textTotal}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="CustomerInfo"
+            style="margin-top: 12px; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px;">
+            <div class="Frame67"
+              style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+              <div class="BillingAddress"
+                style="align-self: stretch; color: #222D38; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px; word-wrap: break-word">
+                Billing address</div>
+              <div class="DelightConfection1"
+                style="align-self: stretch; color: #222D38; font-size: 16px; font-family: system-ui; font-weight: 400; line-height: 24px; word-wrap: break-word">
+                Delight Confection 123 Billing Street Billtown, Kentucky K2P0B0 United States</div>
+            </div>
+            <div class="Payment"
+              style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+              <div class="PaymentMethod"
+                style="align-self: stretch; color: #222D38; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px; word-wrap: break-word">
+                Payment method</div>
+              <div class="Group3"
+                style="margin-left: 12px; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+                <div class="LogoPayementVisa"
+                  style="padding: 8px; background: blue; border-radius: 4px; border: 1px #E8EDF3 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+                </div>
+                <div class="1881"
+                  style="margin-left: 12px; flex: 1 1 0; color: #222D38; font-size: 16px; font-family: system-ui; font-weight: 400; line-height: 24px; word-wrap: break-word">
+                  4012************1881</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ContainerCta"
+          style="margin-top: 20px; align-self: stretch; height: 166px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px;">
+          <div class="ContainerPrimarySecondary"
+            style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
+            <div class="Button"
+              style="padding-left: 32px; padding-right: 32px; padding-top: 12px; padding-bottom: 12px; background: var(--_10a37f-background); box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.09); border-radius: 3px; justify-content: center; align-items: flex-start; gap: 16px; display: flex">
+              <div class="ButtonText"
+                style="text-align: center; color:var(--black); font-size: 16px; font-family: system-ui; font-weight: 700; line-height: 24px; word-wrap: break-word">
+                Download receipt</div>
+            </div>
+          </div>
+          <div class="SecondaryLinkAndDescription"
+            style="margin-top: 12px; align-self: stretch; height: 106px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+            <div class="CancelAnytimeFor" style="align-self: stretch">
+              <span style="color: #46586B; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px;">
+                Thousands of teams like yours use features like [Integration XXX] and [Unlimited YYY] daily to ensure smooth and efficient workflows within their team. How do they do it? Check out our 
+              </span>
+              <span style="color:var(--black); font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px;">FAQs</span>
+              <span style="color: #46586B; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px;">
+                and forum for tips and tricks. <br /> Can’t find the answers you’re looking for? Contact us directly at
+              </span>
+              <span style="color:var(--black); font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px;">xxx@email.com</span>
+              <span style="color: #46586B; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px;"> or </span>
+              <span style="color:var(--black); font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px;">555-555-5555</span><span
+                style="color: #46586B; font-size: 12px; font-family: system-ui; font-weight: 400; line-height: 18px;">.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div><img src="{{apiUrl}}/service/v1/pixel/{{pixel}}" /></div> -->
+    <!-- {{footerHtml}} -->
+  </div>
+</body>
+
+</html>

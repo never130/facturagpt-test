@@ -1,0 +1,56 @@
+
+.deleteChatContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .deleteChatsContainer {
+    width: 80%;
+    background-color: var(--white-color);
+    margin: 0 auto;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+      margin: 0;
+      color: #38343d;
+    }
+
+    .password {
+      display: flex;
+      align-items: center;
+
+      span,
+      > div {
+        flex: 1;
+      }
+
+      > div {
+        input {
+          border: none;
+          outline: none;
+          font-size: 14px;
+          font-weight: 400;
+          color: var(--_67-color);
+          min-height: 21px;
+          background-color: var(--f5-background);
+          border-radius: 5px;
+          box-sizing: border-box;
+          width: 100%;
+          padding: 12px;
+        }
+
+        span {
+          color: #b40e1b;
+          font-size: 13px;
+        }
+        .errorText{
+          font-size: 13px;
+          color: #b40e1b;
+        }
+      }
+    }
+  }

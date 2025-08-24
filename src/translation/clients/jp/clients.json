@@ -1,0 +1,13 @@
+{
+  "title": "連絡先管理",
+  "buttonNewClient": "新しい連絡先",
+  "placeholderSearch": "検索",
+  "tableCol1": "名前",
+  "tableCol2": "メール",
+  "tableCol3": "電話番号",
+  "tableCol4": "住所",
+  "tableCol5": "税番号",
+  "tableCol6": "支払い方法",
+  "tableCol7": "希望通貨",
+  "tableCol8": "アクション"
+}

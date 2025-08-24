@@ -1,0 +1,150 @@
+{
+  "name": "Nombre de la API",
+  "baseUrl": "URL base de la API",
+  "version": "Versión de la API",
+  "description": "Descripción general de la API",
+  "endpoints": [
+    {
+      "name": "Nombre del endpoint",
+      "method": "GET|POST|PUT|DELETE|PATCH",
+      "path": "/ruta/completa/del/endpoint",
+      "description": "Descripción detallada del endpoint",
+      "authentication": "Tipo de autenticación requerida (si aplica)",
+      "parameters": {
+        "path": [
+          {
+            "name": "nombre_parametro",
+            "type": "string|number|boolean|object|array",
+            "required": true,
+            "description": "Descripción del parámetro",
+            "example": "ejemplo_valor"
+          }
+        ],
+        "query": [
+          {
+            "name": "nombre_parametro",
+            "type": "string|number|boolean|object|array",
+            "required": false,
+            "description": "Descripción del parámetro",
+            "example": "ejemplo_valor"
+          }
+        ],
+        "body": {
+          "type": "object",
+          "schema": {
+            "properties": {
+              "campo1": {
+                "type": "string",
+                "required": true,
+                "description": "Descripción del campo",
+                "example": "ejemplo_valor"
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Respuesta exitosa",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "campo1": {
+                "type": "string",
+                "description": "Descripción del campo"
+              }
+            }
+          },
+          "example": {
+            "campo1": "valor_ejemplo"
+          }
+        },
+        "400": {
+          "description": "Error de validación",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "type": "string",
+                "description": "Mensaje de error"
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "No autorizado",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "type": "string",
+                "description": "Mensaje de error"
+              }
+            }
+          }
+        },
+        "403": {
+          "description": "Prohibido",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "type": "string",
+                "description": "Mensaje de error"
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "No encontrado",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "type": "string",
+                "description": "Mensaje de error"
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Error interno del servidor",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "type": "string",
+                "description": "Mensaje de error"
+              }
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "name": "Ejemplo de uso",
+          "request": {
+            "method": "GET",
+            "url": "https://api.ejemplo.com/endpoint",
+            "headers": {
+              "Authorization": "Bearer token"
+            },
+            "body": {
+              "parametro": "valor"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "resultado": "datos"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "image": {
+    "data": "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",
+    "mimeType": "image/png"
+  }
+}

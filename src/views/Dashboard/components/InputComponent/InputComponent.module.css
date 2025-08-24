@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+.inputContainer {
+  background-color: var(--f5-background) ;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  border-radius: 4px;
+  font-family: "Inter", sans-serif;
+  padding: 0 10px;
+}
+
+.labelContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--white-color);
+  border-radius: 15px;
+  padding: 0 5px;
+}
+
+.labelText {
+  font-size: 12px;
+}
+
+.closeButton {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  align-items: center;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+}
+
+.inputField {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  height: 32px;
+  color: var(--_18181b-color);
+  font-weight: 300;
+  padding: 8px;
+  box-sizing: border-box;
+  font-size: 13px;
+  outline: none;
+  &::placeholder {
+    color: var(--_67-color);
+  }
+}
+
+.actionText {
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.graySelectLocationBtn{
+  background-color: #4F5660;
+  color: var(--white-color);
+  border-radius: 12px;
+  font-weight: 400;
+  padding: 6px 12px;
+}
+
+.remitenteOption {
+  font-size: 12px;
+  white-space: nowrap;
+  background-color: var(--white-color);
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--db-background);
+  color: var(--_9b-color);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.remitentesInputContainer {
+  background-color: var(--f5-background) ;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  border-radius: 4px;
+  padding: 0px 18px;
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+}
+
+.remitentesInputWrapper {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  align-items: center;
+  overflow-x: auto;
+  max-width: 400px;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+  scroll-behavior: smooth;
+}
+
+.remitentesInputWrapper::-webkit-scrollbar {
+  display: none; 
+}
+
+
+.whiteSelectLocationBtn{
+  background-color: white;
+  padding: 6px;
+  border-radius: 8px;
+  color: #4F5660 !important;
+  font-weight: 600;
+}
+
+

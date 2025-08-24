@@ -1,0 +1,1777 @@
+const axios = require("axios");
+const tiktoken = require("tiktoken");
+const { v4: uuidv4 } = require('uuid');
+
+const { extractCodeBlocks } = require("./automate/utils");
+const { connectDB } = require("../controllers/utils");
+
+
+const { sendTextData } = require('./processChat.js');
+const { fn } = require("jquery");
+
+
+
+const meetGPT = async ({
+  id,
+  res,
+  prompt,
+  token,
+  agentId,
+  agent,
+  chatId,
+  threadId,
+  replyId,
+  isRAG
+}) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      // const start = performance.now()
+
+      // console.log('esto es prompt dentro de gpt meet', prompt)
+
+      const skProjRegex = /^sk-proj-[A-Za-z0-9-_]{100,}$/;
+      if (skProjRegex.test(prompt)) {
+        const userData = {
+          id: id,
+          tokenGPT: prompt
+        }
+
+        // updateAccount
+        const text = `El token ha sido ingresado correctamente. ¡Acceso autorizado! 🎉`
+
+        sendTextData({
+          res,
+          text,
+          type: 'text'
+        })
+
+        resolve({
+          success: false,
+          text: text
+        });
+
+        return false
+      }
+
+
+      if (!token || token === '' || token === undefined || token === null) {
+        let text = `Parece que falta el token necesario para continuar. Asegúrate de ingresarlo correctamente. Si no tienes un token válido, es posible que necesites generar uno nuevo o revisar la configuración de autenticación. Si el problema persiste, revisa la documentación o contacta al soporte técnico para obtener asistencia.`
+
+        sendTextData({
+          res,
+          text,
+          type: 'text'
+        })
+
+        resolve({
+          success: false,
+          text: text
+        });
+        return false
+      }
+
+      let promptRAG = ''
+      if (isRAG) {
+        promptRAG = `
+        Items a analizar:
+        ${JSON.stringify(isRAG)}
+
+        Si hay dos o más items pon el primero que encuentres como docs, assets, contacts o agents
+        
+        *REGLAS*
+        - Añade una variable "data" que sea un objeto con todos los parametros que se vayan a añadir donde [key] sera un camelcase
+        y [value] será lo que diga el usuario, si faltan datos obvialos como key,value.
+        - Todas las variables en ingles, camelcase y sin faltas de ortografia.
+        - Añademe sólo cuando el usuario pide eliminar un campo o parametro dentro de "data"."removeField" con el campo o parametro que el usuario quiera eliminar.
+        `
+      }
+
+      let systemPrompt = `
+      Eres un agente que tiene que devolverme un JSON con el siguiente formato:
+
+      {
+        "type": "table" | "automate" | "action" | "graph" | "api" | "other" | "audio" | "image" | "online" | "edit-docs" | "edit-assets" | "edit-contacts" | "edit-agents" | "add-docs" | "add-assets" | "add-contacts" | "add-agents" | "delete-docs" | "delete-assets" | "delete-contacts" | "delete-agents" | "search-docs" | "search-assets" | "search-contacts" | "search-agents",
+      
+        "data": {
+          "key": "value"
+          ... // añade todos los campos que el usuario quiera añadir, si no hay ninguno, no añadas nada.
+              // si el usuario manda un nombre siempre sera contactName
+              // si el usuario manda un email siempre sera contactEmail
+        }
+      }
+
+        TYPE según la consulta del cliente:
+      - table: Si el usuario te pide una tabla
+      - automate: Si el usuario te pide una automatización
+      - action: Si el usuario te pide una acción
+      - graph: Si el usuario te pide una gráfica
+      - api: Si el usuario te pide una conexión api
+      - audio: Si el usuario te pide un audio o voz
+      - image: Si el usuario te pide una imagen
+      - online: Si el usuario te pide una conexión online o buscar cualquier cosa en internet
+      - other: Si no está buscando nada en especifico o no se puede determinar el tipo
+       Especiales:
+      - edit-docs: Si el usuario te pide editar un documento o parametro de él, si quiere eliminar un campo o parametro, si quiere eliminarlo por completo "delete-docs".
+      - edit-assets: Si el usuario te pide editar un activo o parametro de él, si quiere eliminar un campo o parametro, si quiere eliminarlo por completo "delete-assets".
+      - edit-contacts: Si el usuario te pide editar un contacto o parametro de él, si quiere eliminar un campo o parametro, si quiere eliminarlo por completo "delete-contacts".
+      - edit-agents: Si el usuario te pide editar un agente o parametro de él, si quiere eliminar un campo o parametro, si quiere eliminarlo por completo "delete-agents".
+      - add-docs: Si el usuario te pide agregar un documento
+      - add-assets: Si el usuario te pide agregar un activo
+      - add-contacts: Si el usuario te pide agregar un contacto
+      - add-agents: Si el usuario te pide agregar un agente
+      - delete-docs: Si el usuario te pide eliminar un documento
+      - delete-assets: Si el usuario te pide eliminar un assets
+      - delete-contacts: Si el usuario te pide eliminar un contacto
+      - delete-agents: Si el usuario te pide eliminar un agente
+      - search-docs: Si el usuario te pide un documento o quiere buscarlo
+      - search-assets: Si el usuario te pide un activo, producto, servicio o quiere buscarlo
+      - search-contacts: Si el usuario te pide un contacto o quiere buscarlo
+      - search-agents: Si el usuario te pide un agente o quiere buscarlo
+      
+      ${promptRAG}
+
+      Devuelveme el JSON completo, no me devuelvas nada más.
+      `
+
+
+      let json_response = null
+
+
+
+      console.log('threadIdthreadIdthreadId', threadId)
+      // if (!threadId && !replyId) {
+      if (!replyId) {
+        const pre_response = await axios.post("https://api.openai.com/v1/chat/completions",
+          {
+            model: "gpt-4o-mini",
+            temperature: 0.7,
+            max_tokens: 2096,
+            messages: [{
+              role: 'user',
+              content: [{
+                type: 'text',
+                text: systemPrompt
+              },
+              {
+                type: 'text',
+                text: prompt
+              }]
+            }],
+          }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        console.log('pre_response', pre_response.data.choices[0].message.content)
+
+        const value_response = extractCodeBlocks(pre_response.data.choices[0].message.content)
+
+        json_response = JSON.parse(value_response[1])
+      }
+
+
+
+      if (replyId) {
+        const systemPrompt = [{
+          role: 'user',
+          content: `Quiero saber más sobre esta pregunta: ${replyId.text}, ademas de eso quiero que me des una respuesta sobre el tema del usuario.	`
+        }, {
+          role: 'user',
+          content: prompt
+        }]
+
+        const response = await sendRealTime({
+          res,
+          token,
+          systemPrompt: systemPrompt,
+          userId: id,
+          agentId,
+          chatId,
+        })
+
+        resolve({
+          success: true,
+          text: response.text
+        })
+        return false
+      }
+
+
+      // if (threadId && false) {
+
+
+      if (json_response?.type == 'api') {
+        sendTextData({
+          res,
+          text: 'google',
+          type: 'text'
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva api'
+        })
+
+        return false
+      } else if (json_response?.type === 'online') {
+
+        const systemPrompt = `
+        Eres un agente que tiene que devolverme una respuesta sobre este tema:
+        ${prompt}
+        `
+
+        const online = await axios.post(`https://api.openai.com/v1/chat/completions`, {
+          model: "gpt-4o-mini-search-preview",
+          max_tokens: 2096,
+          web_search_options: {
+            search_context_size: "low",
+            user_location: {
+              type: "approximate",
+              approximate: {
+                country: "GB",
+                city: "London",
+                region: "London"
+              }
+            }
+          },
+          messages: [{
+            role: 'user',
+            content: systemPrompt
+          }]
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+
+        const onlineText = online.data.choices[0].message.content
+        const onlineAnnotations = online.data.choices[0].message.annotations
+
+        sendTextData({
+          res,
+          data: {
+            text: onlineText,
+            annotations: onlineAnnotations
+          },
+          type: 'online',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+      } else if (json_response?.type === 'image') {
+
+        const systemPrompt = `
+        Eres un agente que tiene que devolverme una imagen con el siguiente prompt:
+        ${prompt}
+        `
+
+        const image = await axios.post(`https://api.openai.com/v1/images/generations`, {
+          prompt: systemPrompt,
+          n: 1,
+          size: "1024x1024"
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+
+        sendTextData({
+          res,
+          data: image.data.data[0].url,
+          type: 'image',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+      } else if (json_response?.type === 'audio') {
+
+
+        const scriptPrompt = `
+        Eres un guionista experto. Basándote en este prompt:
+        "${prompt}"
+        
+        Genera un guion natural y conversacional que capture la esencia del mensaje. 
+        El guion debe ser claro, conciso y sonar natural al ser leído en voz alta.
+        No incluyas acotaciones ni indicaciones de guion, solo el texto a ser narrado.
+        Limita la respuesta a 2-3 oraciones.`
+
+        const scriptResponse = await axios.post("https://api.openai.com/v1/chat/completions", {
+          model: "gpt-4o-mini",
+          temperature: 0.7,
+          max_tokens: 256,
+          messages: [{
+            role: 'user',
+            content: scriptPrompt
+          }]
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          }
+        });
+
+        const script = scriptResponse.data.choices[0].message.content;
+
+        const audio = await axios.post(`https://api.openai.com/v1/audio/speech`, {
+          input: script,
+          model: "tts-1",
+          voice: "alloy",
+          response_format: "mp3",
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          responseType: 'arraybuffer'
+        });
+
+        const base64Audio = Buffer.from(audio.data).toString('base64');
+        const audioBase64 = `data:audio/mp3;base64,${base64Audio}`;
+
+
+        sendTextData({
+          res,
+          data: audioBase64,
+          type: 'audio',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nuevo audio'
+        })
+        return false
+
+      } else if (json_response?.type === 'action') {
+        // } else if (json_response?.type === 'action' || json_response?.type === 'automate') {
+
+        const systemPrompt1 = [{
+          role: 'user',
+          content: `Dame un texto de 20 palabras como respuesta a la siguiente pregunta:`
+        }, {
+          role: 'user',
+          content: prompt
+        }]
+
+        const realtimeResult = await sendRealTime({
+          res,
+          token,
+          systemPrompt: systemPrompt1,
+          userId: id,
+          agentId,
+          chatId
+        })
+
+        if (!realtimeResult.success) {
+          resolve({
+            success: false,
+            text: 'Error al procesar la solicitud'
+          })
+          return false
+        }
+
+        const systemPrompt2 = `
+        Eres un agente y vas a devolverme una lista como sobre este
+        tema: ${prompt}
+
+        Basándote en esta respuesta previa: "${realtimeResult.text}"
+
+        [{
+          icon: "🔍",
+          title: "titulo de la pregunta",
+          text: "texto de la pregunta",
+          sql: {
+            selector: "codigo del selector couchdb"
+          }
+        }, ..]
+        `
+
+        sendTextData({
+          res,
+          text: 'e',
+          type: 'pause'
+        })
+
+        const actionResult = await axios.post("https://api.openai.com/v1/chat/completions",
+          {
+            model: "gpt-4o-mini",
+            temperature: 0.7,
+            max_tokens: 2096,
+            messages: [{
+              role: 'user',
+              content: [{
+                type: 'text',
+                text: systemPrompt2
+              }]
+            }],
+          }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!actionResult.data.choices[0].message.content) {
+          resolve({
+            success: false,
+            text: 'Error al procesar la solicitud'
+          })
+          return false
+        }
+
+        const value_response = extractCodeBlocks(actionResult.data.choices[0].message.content)
+        const json_response_data = JSON.parse(value_response[1])
+
+        await sendTextData({
+          res,
+          data: json_response_data,
+          type: 'action',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva automatizacion'
+        })
+        return false
+      } else if (json_response?.type === 'automate') {
+        console.log('automate')
+
+        await assistantAgent({
+          res,
+          token,
+          prompt,
+          userId: id,
+          agentId,
+          chatId,
+          // threadId,
+          action: [{
+            id: "salary-calculator",
+            icon: "💰",
+            title: "Calculadora de Salarios",
+            description: "Herramienta para calcular diferentes tipos de salarios y compensaciones",
+            prompt: `Necesito calcular el salario de un empleado al dia será salaryLige/200`
+          }, {
+            id: "bonus-calculator",
+            icon: "🎁",
+            title: "Calculadora de Bonificaciones",
+            description: "Herramienta para calcular bonificaciones y incentivos salariales",
+            prompt: `Necesito calcular la bonificación de un empleado será salaryLife * 0.10`
+          }, {
+            id: "overtime-calculator",
+            icon: "⏰",
+            title: "Calculadora de Horas Extras",
+            description: "Herramienta para calcular el pago por horas extraordinarias",
+            prompt: `Necesito calcular las horas extras de un empleado será salaryLife * 0.25`
+          }, {
+            id: "commission-calculator",
+            icon: "📈",
+            title: "Calculadora de Comisiones",
+            description: "Herramienta para calcular comisiones por ventas",
+            prompt: `Necesito calcular la comisión de un empleado será salaryLife * 0.20`
+          }, {
+            id: "holiday-pay-calculator",
+            icon: "🏖️",
+            title: "Calculadora de Vacaciones",
+            description: "Herramienta para calcular el pago de vacaciones",
+            prompt: `Necesito calcular el pago de vacaciones de un empleado será salaryLife * 0.12`
+          }, {
+            id: "severance-calculator",
+            icon: "📋",
+            title: "Calculadora de Indemnización",
+            description: "Herramienta para calcular indemnizaciones por despido",
+            prompt: `Necesito calcular la indemnización de un empleado será salaryLife * 0.30`
+          }],
+          data: {
+            "salaryLife": {
+              "description": "El salario de por vida del empleado",
+              "type": "number",
+              // "verified": false,
+              // "timestamp": null
+            },
+            // "salaryYear": {
+            //   "description": "El salario year del empleado",
+            //   "type": "number",
+            //   // "verified": false,
+            //   // "timestamp": null
+            // },
+            // "salaryMonth": {
+            //   "description": "El salario mensual del empleado",
+            //   "type": "number",
+            // },
+            // "salaryDay": {
+            //   "description": "El salario diario del empleado",
+            //   "type": "number",
+            // },
+
+            // "nameApi": "Nombre de la api",
+            // "urlApi": "url de la api",
+            // "methodApi": "metodo de la api",
+            // "headersApi": "headers de la api",
+            // "bodyApi": "body de la api",
+            // "responseApi": "response de la api",
+            // "statusApi": "status de la api",
+            // "statusApi": "status de la api",
+            // "statusApi": "status de la api",
+
+            // "statusApi": "status de la api",
+          }
+        })
+
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva automatizacion'
+        })
+        return false
+
+        // const systemPrompt = `
+        // Eres un agente que tiene que devolverme una lista como sobre este
+        // tema: ${prompt}
+
+        // Basándote en esta respuesta previa: "${realtimeResult.text}"
+        // `
+      } else if (json_response?.type === 'graph') {
+
+        const json_response = await axios.post("https://api.openai.com/v1/chat/completions",
+          {
+            model: "gpt-4o-mini",
+            temperature: 0.7,
+            max_tokens: 2096,
+            messages: [{
+              role: 'user',
+              content: [{
+                type: 'text',
+                text: `Analiza el siguiente texto y crea una visualización de datos apropiada:
+
+${systemPrompt}
+
+Basándote en el contenido, genera un JSON con la siguiente estructura:
+{
+  "type": "graph",
+  "style": "pie|bar|flow|sequence", // Elige el estilo más apropiado para los datos
+  "data": {
+    "title": "Título descriptivo de la visualización",
+    // Para gráficos de pie:
+    "slices": [
+      {"label": "Categoría 1", "value": 30},
+      {"label": "Categoría 2", "value": 70}
+    ],
+    // Para gráficos de barras:
+    "bars": [
+      {"label": "Categoría 1", "value": 20},
+      {"label": "Categoría 2", "value": 30}
+    ],
+    // Para diagramas de flujo:
+    "nodes": [
+      {"id": "A", "label": "Inicio"},
+      {"id": "B", "label": "Proceso"},
+      {"id": "C", "label": "Fin"}
+    ],
+    "edges": [
+      {"from": "A", "to": "B"},
+      {"from": "B", "to": "C"}
+    ],
+    // Para diagramas de secuencia:
+    "participants": ["A", "B"],
+    "messages": [
+      {"from": "A", "to": "B", "text": "Mensaje"},
+      {"from": "B", "to": "A", "text": "Respuesta"}
+    ]
+  }
+}
+
+Elige el tipo de visualización más apropiado basándote en los datos y el contexto proporcionado.`
+              }],
+            }],
+          }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+
+        const value_response = extractCodeBlocks(json_response.data.choices[0].message.content)
+        const json_response_data = JSON.parse(value_response[1])
+
+
+        sendTextData({
+          res,
+          data: json_response_data,
+          type: 'graph',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+        sendTextData({
+          res,
+          text: 'ee',
+          type: 'pause'
+        })
+        resolve({
+          success: true,
+          text: 'Mira tu nueva grafica'
+        })
+
+        return false
+      } else if (json_response?.type === 'table') {
+        json_response.data = [{
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          phone: '123-456-7890',
+        }, {
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          phone: '123-456-7890',
+        }, {
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          phone: '123-456-7890',
+        }, {
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          phone: '123-456-7890',
+        }]
+
+
+        await sendTextData({
+          res,
+          data: json_response.data,
+          type: 'table',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+
+        return false
+      }
+      else if (threadId && json_response?.type === 'other') {
+
+        // await assistantAgent({
+        //   res,
+        //   token,
+        //   prompt,
+        //   userId: id,
+        //   agentId,
+        //   chatId,
+        //   threadId,
+        // })
+        // if (threadId) {
+        await assistantAgent({
+          res,
+          token,
+          prompt,
+          userId: id,
+          agentId,
+          chatId,
+          threadId,
+          // data: {
+          //   // "nombre": "Nombre de la persona",
+          //   // "email": "email de la persona",
+          //   // "telefono": "telefono de la persona",
+          //   // "empresa": "nombre de la empresa",
+          //   // "cargo": "cargo de la persona",
+          //   // "descripcion": "descripcion de la persona",
+          //   "coloreyes": "color de ojos"
+          //   // "imagen": "imagen de la persona"
+          // }
+        })
+
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+        return false
+
+        // }
+
+      }
+      else if (json_response?.type === 'other') {
+        const {
+          name = "Nombre por defecto",
+          description = "",
+          language = "Español",
+          tone = "",
+          answer = "",
+          ageOfInterlocutor = "",
+          availability = true,
+          useOfEmojis = false,
+          inclusiveLanguage = false,
+          formality = "",
+          presicion = "",
+          coherence = "",
+          emotionalLanguage = "",
+          scheduledResponses = []
+        } = agent || {}; // ← esto evita el error si agent es undefined
+        
+
+        let responses = ''
+        if (scheduledResponses) {
+          responses += `Si el usuario te habla sobre algun tema que está en el listado, vas a hablar sobre ellos teniendo en cuenta todos los puntos que te indico para cada uno de ellos:\n`
+
+          scheduledResponses.map((resp0) => {
+            // console.log('resp0', resp0)
+            responses += `\n Tema ${resp0.whenuseraskabout}:\n`
+            // responses += `\n Lo que vas a hacer es hablar sobre estas ${resp0.responses.length} temas\n`
+            // console.log('response%%%%', resp0)
+            resp0.responses.map((resp1, index) => {
+              responses += `- Punto ${index + 1}: ${resp1}\n`
+            })
+          })
+
+
+          responses += `\n**Reglas**
+- Solo puedes hablar sobre los puntos del tema, no mezcles temas con puntos.
+- Habla solo sobre los temas que te indico, no hablés sobre otros temas.
+- No comentes que estas programado o des indicios de que tienes ordenes de seguir este guión.
+\n`
+        }
+
+
+        let systemPrompt =
+          `Eres un agente que tiene las siguientes reglas:
+
+          Tu nombre es: ${name}
+
+          Tu descripción es: ${description || 'No tienes descripción'}
+
+       Necesito que me respondas en este lenguaje: ${language || "español"}, 
+      
+      **CONFIGURACIÓN DE PERSONALIDAD (Escala 0-100%, por defecto 50%)**
+
+      - **Tono (${tone || 50}%)**: Ajusta el estilo general del lenguaje
+        - 0-20%: Muy directo y desenfadado
+        - 21-40%: Informal y cercano
+        - 41-60%: Equilibrado y natural
+        - 61-80%: Formal y estructurado
+        - 81-100%: Muy sobrio y profesional
+
+      - **Respuesta (${answer || 50}%)**: Define el nivel de detalle
+        - 0-20%: Resumen básico (1-2 frases)
+        - 21-40%: Explicación concisa
+        - 41-60%: Respuesta equilibrada
+        - 61-80%: Explicación detallada
+        - 81-100%: Análisis profundo paso a paso
+
+      - **Edad/Experiencia del interlocutor (${ageOfInterlocutor || 50}%)**: Adapta según el nivel de conocimiento
+        - 0-20%: Principiante (explicaciones muy básicas)
+        - 21-40%: Básico-intermedio
+        - 41-60%: Intermedio (equilibrado)
+        - 61-80%: Intermedio-avanzado
+        - 81-100%: Experto (conceptos avanzados)
+
+      - **Disponibilidad (${availability || 50}%)**: Controla la disposición a ayudar
+        - 0-20%: Estilo neutro y distante
+        - 21-40%: Moderadamente disponible
+        - 41-60%: Equilibrado en disponibilidad
+        - 61-80%: Proactivo y cercano
+        - 81-100%: Muy acompañante y proactivo
+
+      - **Uso de emojis (${useOfEmojis || 50}%)**: Cantidad de emojis en las respuestas
+        - 0-20%: Ningún emoji
+        - 21-40%: Emojis sutiles ocasionales
+        - 41-60%: Uso equilibrado de emojis
+        - 61-80%: Emojis frecuentes para énfasis
+        - 81-100%: Muchos emojis expresivos
+
+      - **Lenguaje inclusivo (${inclusiveLanguage || 50}%)**: Atención a diversidad y neutralidad
+        - 0-20%: Lenguaje tradicional sin consideraciones especiales
+        - 21-40%: Inclusión básica
+        - 41-60%: Equilibrado en inclusión
+        - 61-80%: Lenguaje muy inclusivo
+        - 81-100%: Máxima atención a diversidad y neutralidad
+
+      - **Formalidad (${formality || 50}%)**: Estilo relajado vs profesional
+        - 0-20%: Muy relajado y casual
+        - 21-40%: Informal
+        - 41-60%: Equilibrado entre formal e informal
+        - 61-80%: Profesional
+        - 81-100%: Muy formal y corporativo
+
+      - **Precisión (${presicion || 50}%)**: Rigurosidad en datos y argumentos
+        - 0-20%: Aproximación general y flexible
+        - 21-40%: Precisión básica
+        - 41-60%: Precisión equilibrada
+        - 61-80%: Alta precisión
+        - 81-100%: Exactitud quirúrgica y rigurosa
+
+      - **Coherencia (${coherence || 50}%)**: Conexión lógica en el discurso
+        - 0-20%: Simple y directo
+        - 21-40%: Coherencia básica
+        - 41-60%: Coherencia equilibrada
+        - 61-80%: Bien hilado y argumentado
+        - 81-100%: Máxima coherencia lógica y estructura
+
+      - **Lenguaje emocional (${emotionalLanguage || 50}%)**: Componente emocional
+        - 0-20%: Frío y objetivo
+        - 21-40%: Poco emocional
+        - 41-60%: Equilibrado emocionalmente
+        - 61-80%: Cálido y humano
+        - 81-100%: Muy emocional y empático
+
+      Ten en cuenta la siguiente configuración adicional para tu respuesta:
+      ${description}
+
+      ${responses}
+      `
+
+        systemPrompt = [{
+          role: 'user',
+          content: systemPrompt
+        }, {
+          role: 'user',
+          content: prompt
+        }]
+
+        const { success, text } = await sendRealTime({
+          res,
+          token,
+          systemPrompt,
+          userId: id,
+          agentId,
+          chatId
+        })
+
+        resolve({
+          success: true,
+          text: text
+        })
+
+      }
+
+
+      // if (replyId) {
+      //   const systemPrompt = [{
+      //     role: 'user',
+      //     content: `Quiero saber más sobre esta pregunta: ${replyId.text}, ademas de eso quiero que me des una respuesta sobre el tema del usuario.	`
+      //   }, {
+      //     role: 'user',
+      //     content: prompt
+      //   }]
+
+      //   const response = await sendRealTime({
+      //     res,
+      //     token,
+      //     systemPrompt: systemPrompt,
+      //     userId: id,
+      //     agentId,
+      //     chatId,
+      //   })
+
+      //   resolve({
+      //     success: true,
+      //     text: response.text
+      //   })
+      //   return false
+      // }
+
+
+      // // if (threadId && false) {
+      // if (threadId) {
+      //   await assistantAgent({
+      //     res,
+      //     token,
+      //     prompt,
+      //     userId: id,
+      //     agentId,
+      //     chatId,
+      //     threadId,
+      //     // data: {
+      //     //   // "nombre": "Nombre de la persona",
+      //     //   // "email": "email de la persona",
+      //     //   // "telefono": "telefono de la persona",
+      //     //   // "empresa": "nombre de la empresa",
+      //     //   // "cargo": "cargo de la persona",
+      //     //   // "descripcion": "descripcion de la persona",
+      //     //   "coloreyes": "color de ojos"
+      //     //   // "imagen": "imagen de la persona"
+      //     // }
+      //   })
+
+
+      //   resolve({
+      //     success: true,
+      //     text: 'Mira tu nueva tabla'
+      //   })
+      //   return false
+
+      // }
+
+      console.log('json_response', json_response)
+
+      if (json_response?.type === 'add-docs' || json_response?.type === 'add-assets' || json_response?.type === 'add-contacts' || json_response?.type === 'add-agents') {
+        const type = json_response?.type.split('-')[1]
+
+        let db = null
+        if (type === 'docs') {
+          db = await connectDB(`db_${id}_docs`)
+        } else if (type === 'assets') {
+          db = await connectDB(`db_${id}_assets`)
+        } else if (type === 'contacts') {
+          db = await connectDB(`db_${id}_contacts`)
+        } else if (type === 'agents') {
+          db = await connectDB(`db_${id}_agents`)
+        } else {
+          sendTextData({
+            res,
+            text: `No se encontró el ${type}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+
+          resolve({
+            success: true,
+            text: 'Mira tu nueva tabla'
+          })
+          return false
+        }
+
+        const data = {
+          ...json_response.data,
+          _id: uuidv4(),
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        }
+
+
+        await db.insert(data)
+
+        const responseRAG = cleanDataObject(data);
+
+        await sendTextData({
+          res,
+          text: `Se ha añadido ${type} correctamente con los siguientes datos: \n 
+${Object.entries(responseRAG).map(([key, value]) => `${key}: ${value}`).join('\n')}`,
+          type: 'stream',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+        return false
+
+      } else if (json_response?.type === 'search-docs' || json_response?.type === 'search-assets' || json_response?.type === 'search-contacts' || json_response?.type === 'search-agents') {
+        const type = json_response?.type.split('-')[1]
+
+        const db = await connectDB(`db_${id}_${type}`)
+        const result = await db.find({
+          selector: {
+            _id: json_response?.id
+          },
+          limit: 1
+        })
+
+        let doc = null
+        if (result.docs.length > 0) {
+          doc = result.docs[0]
+        }
+
+        await sendTextData({
+          res,
+          data: {
+            id: doc?._id,
+            type: type,
+            data: doc
+          },
+          type: 'viewer',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+
+        return false
+      } else if (isRAG && (json_response?.type === 'edit-docs' || json_response?.type === 'edit-assets' || json_response?.type === 'edit-contacts' || json_response?.type === 'edit-agents')) {
+
+        let db = null
+        const type = json_response?.type.split('-')[1]
+
+        if (type === 'docs') {
+          db = await connectDB(`db_${id}_docs`)
+        } else if (type === 'assets') {
+          db = await connectDB(`db_${id}_assets`)
+        } else if (type === 'contacts') {
+          db = await connectDB(`db_${id}_contacts`)
+        } else if (type === 'agents') {
+          db = await connectDB(`db_${id}_agents`)
+        } else {
+          sendTextData({
+            res,
+            text: `No se encontró el ${type} #${isRAG[0].id}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+
+          resolve({
+            success: true,
+            text: 'Documento actualizado'
+          })
+
+          return false
+        }
+
+
+        const result = await db.find({
+          selector: {
+            _id: isRAG[0].id
+          },
+          limit: 1
+        })
+
+
+        if (result.docs.length == 0) {
+          await sendTextData({
+            res,
+            text: `No se encontró el ${type} #${isRAG[0].id}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+        } else {
+
+          const data = {
+            ...result.docs[0],
+            ...(json_response?.data?.removeFiled ? {} : json_response.data),
+            updatedAt: new Date().toISOString(),
+          }
+
+          if (json_response.data?.removeField) {
+            delete data[json_response.data.removeField]
+            delete data.removeField
+          }
+
+          await db.insert(data)
+
+          const responseRAG = cleanDataObject(data);
+
+          await sendTextData({
+            res,
+            text: `Documento actualizado ${type} #${isRAG[0].id} \n 
+${Object.entries(responseRAG).map(([key, value]) => `${key}: ${value}`).join('\n')}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+        }
+
+        resolve({
+          success: true,
+          text: 'Documento actualizado'
+        })
+        return false
+
+      } else if (isRAG && (json_response?.type === 'delete-docs' || json_response?.type === 'delete-assets' || json_response?.type === 'delete-contacts' || json_response?.type === 'delete-agents')) {
+
+        const type = json_response?.type.split('-')[1]
+
+        let db = null
+
+        if (type === 'docs') {
+          db = await connectDB(`db_${id}_docs`)
+        } else if (type === 'assets') {
+          db = await connectDB(`db_${id}_assets`)
+        } else if (type === 'contacts') {
+          db = await connectDB(`db_${id}_contacts`)
+        } else if (type === 'agents') {
+          db = await connectDB(`db_${id}_agents`)
+        } else {
+          await sendTextData({
+            res,
+            text: `No se encontró el ${type}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+
+          resolve({
+            success: true,
+            text: 'Mira tu nueva tabla'
+          })
+
+          return false
+        }
+
+
+        const result = await db.find({
+          selector: {
+            _id: isRAG[0].id
+          },
+          limit: 1
+        })
+
+
+        if (result.docs.length == 0) {
+          await sendTextData({
+            res,
+            text: `No se encontró el ${type} #${isRAG[0].id}`,
+            type: 'stream',
+            conf: {
+              userId: id,
+              agentId: agentId,
+              chatId: chatId
+            }
+          })
+
+          resolve({
+            success: true,
+            text: 'Mira tu nueva tabla'
+          })
+
+          return false
+        }
+
+        await db.destroy(result.docs[0]._id, result.docs[0]._rev)
+
+        await sendTextData({
+          res,
+          text: `Se ha eliminado ${type} #${isRAG[0].id}`,
+          type: 'stream',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+        return false
+
+      } else if (!isRAG) {
+        await sendTextData({
+          res,
+          text: 'No se encontro ninguna acción para realizar',
+          type: 'text',
+          conf: {
+            userId: id,
+            agentId: agentId,
+            chatId: chatId
+          }
+        })
+
+        resolve({
+          success: true,
+          text: 'Mira tu nueva tabla'
+        })
+
+        return false
+      }
+    } catch (e) {
+      console.error('Error in meetGPT:', e);
+      resolve({
+        success: false,
+        text: 'Error al procesar la solicitud'
+      });
+    }
+  })
+}
+
+
+
+const sendRealTime = async ({
+  res,
+  token,
+  systemPrompt,
+  userId = null,
+  agentId = null,
+  chatId = null,
+  threadId = null
+}) => {
+  return new Promise(async (resolve, reject) => {
+
+    try {
+
+      const response = await axios({
+        method: 'post',
+        url: 'https://api.openai.com/v1/chat/completions',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        data: {
+          model: 'gpt-4o-mini',
+          messages: systemPrompt,
+
+          stream: true
+        },
+        responseType: 'stream'
+      });
+
+      let text = ''
+      let buffer = ''
+      const MIN_CHUNK_SIZE = 50
+
+      response.data.on('data', async chunk => {
+        const lines = chunk.toString().split('\n').filter(line => line.trim() !== '');
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const jsonStr = line.replace('data: ', '');
+            if (jsonStr === '[DONE]') {
+              // Send any remaining buffer content
+              if (buffer.length > 0) {
+                await sendTextData({
+                  res,
+                  text: buffer,
+                  type: 'text',
+                  conf: {
+                    // userId: userId,
+                    // agentId: agentId,
+                    // chatId: chatId,
+
+                    threadId: threadId
+                  }
+                })
+                text += buffer
+                buffer = ''
+              }
+              return;
+            }
+
+            try {
+              const json = JSON.parse(jsonStr);
+              const content = json.choices?.[0]?.delta?.content;
+
+              if (content) {
+                buffer += content
+
+                // Send chunk when it reaches minimum size
+                if (buffer.length >= MIN_CHUNK_SIZE) {
+                  await sendTextData({
+                    res,
+                    text: buffer,
+                    type: 'text',
+                    conf: {
+                      threadId: threadId
+                    }
+                  })
+                  text += buffer
+                  buffer = ''
+                }
+              }
+            } catch (err) {
+              console.error('Error al parsear JSON:', err.message);
+            }
+          }
+        }
+      });
+
+      response.data.on('end', async () => {
+        console.log('step6', text)
+        if (userId && agentId && chatId) {
+          await sendTextData({
+            res,
+            text: text,
+            type: 'bot-end',
+            conf: {
+              userId: userId,
+              agentId: agentId,
+              chatId: chatId,
+              threadId: threadId
+            }
+          })
+        }
+
+        res.end();
+        resolve({
+          success: true,
+          text: text
+        })
+      });
+
+      response.data.on('error', err => {
+        console.error('Error de stream:', err.message);
+        reject({
+          success: false,
+          text: 'Error al procesar la solicitud2'
+        })
+      });
+    } catch (error) {
+      console.error('Error in sendRealTime:', error);
+      reject({
+        success: false,
+        text: 'Error al procesar la solicitud1'
+      })
+    }
+  })
+}
+
+
+
+const validateToken = async (token) => {
+
+  // console.log('esto es validador de token', token)
+  try {
+
+    await axios.get("https://api.openai.com/v1/models", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
+const assistantAgent = async ({
+  res,
+  prompt,
+  token,
+  userId,
+  agentId,
+  chatId,
+  threadId = null,
+  action = [],
+  data = null,
+}) => {
+
+
+
+  const fnAgent = async ({
+    res,
+    token,
+    // data,
+    prompt,
+    userId,
+    agentId,
+    chatId,
+    threadId
+  }) => {
+    try {
+
+      const systemPrompt = [{
+        role: 'user',
+        content: `
+Actúa como un asistente amigable y profesional.
+
+Genera una pregunta natural y conversacional para obtener el dato:
+${prompt}
+
+La pregunta debe:
+- Ser corta y directa (máximo 10 palabras)
+- Usar un tono amable y profesional
+- Enfocarse en obtener un solo dato específico
+- Aprovechar el contexto de la información ya recolectada
+- No usar lenguaje técnico ni mencionar variables
+
+Devuelve únicamente la pregunta, sin ningún texto adicional.`
+      }]
+
+      await sendRealTime({
+        res,
+        token,
+        systemPrompt,
+        userId,
+        agentId,
+        chatId,
+        threadId
+      })
+      console.log('step5')
+    } catch (error) {
+      console.error('Error in fnAgent:', error);
+    }
+  }
+
+  const dbChat = await connectDB(`db_${userId}_chat`)
+  let chat = await dbChat.get(chatId)
+
+  if (!chat) {
+    return false
+  }
+
+
+  console.log('chat uuu', chat)
+
+
+
+  return new Promise(async (resolve, reject) => {
+    try {
+
+      // Find the last message sent by the bo
+      if (!threadId && typeof data === 'object') {
+        threadId = uuidv4()
+
+
+        let iniData = {}
+
+        Object.keys(data || {}).map((item) => {
+          iniData[item] = {
+            ...data[item],
+            verified: false,
+            timestamp: null
+          }
+        })
+
+
+        const keys = Object.keys(iniData || {}).filter((key) => iniData[key].timestamp === null)
+        const key = keys[Math.floor(Math.random() * keys.length)]
+
+        chat.action = action || []
+
+        chat.data = {
+          // ...chat.data,
+          info: {
+            ...iniData,
+            [key]: {
+              ...iniData[key],
+              verified: false,
+              timestamp: new Date().toISOString()
+            }
+          }
+        }
+
+
+
+        // console.log('chat.data[key]', data[key])
+        const answerPrompt = () => {
+          return ` - "${key}" (${chat.data.info[key]?.type}): ${chat.data.info[key]?.description}`
+        }
+
+        // console.log('iniData', chat.data)
+
+        await dbChat.insert(chat)
+
+        // console.log('step1')
+        await fnAgent({
+          res,
+          token,
+          prompt: answerPrompt(),
+          // data: chat.data,
+          userId,
+          agentId,
+          chatId,
+          threadId
+        })
+
+        console.log('step3')
+
+        resolve({
+          success: true,
+          threadId
+        })
+      } else {
+
+
+        const info = Object.values(chat.data.info || {})
+          .map(item => item.timestamp).filter(Boolean)
+          .sort().pop()
+        const key = Object.keys(chat.data.info || {}).find(key => chat.data.info[key].timestamp === info)
+
+        console.log('key', key)
+        // const lastMessage = chat.messages.filter(message => message.type === 'bot').pop().text
+
+        const systemPrompt = [{
+          role: 'user',
+          content: `
+Actúa como un asistente experto en procesamiento de datos.     
+      
+Devuelve un JSON con un solo par key-value, donde:
+- El key siempre será value
+- El contenido debe ser el valor del tipo del campo pendiente con el formato de tipo correspondiente.
+
+Formato del tipo: 
+ - ${chat.data.info[key].type}
+
+Descripción del campo pendiente:	
+ - ${chat.data.info[key].description}
+      
+Ejemplo:
+{"value": "contenido"}
+
+Devuelve ÚNICAMENTE el JSON, sin texto adicional.`
+        }, {
+          role: 'user',
+          content: prompt
+        }]
+
+        // ${chat.messages.filter(message => message.type === 'bot').pop().text}
+        console.log('systemPrompt', systemPrompt)
+
+        const response = await axios.post("https://api.openai.com/v1/chat/completions", {
+          model: "gpt-4o-mini",
+          temperature: 0.7,
+          max_tokens: 2096,
+          messages: systemPrompt
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          }
+        });
+
+        const value_response = extractCodeBlocks(response.data.choices[0].message.content)
+        const json_response = JSON.parse(value_response[1])
+
+        chat = await dbChat.get(chat._id)
+
+        console.log('agggente respuesta json_response', json_response)
+        // chat.data = {
+        //   ...chat.data,
+        //   // ...[json_response]
+        //   [key]: json_response.value,
+        //   info: {
+        //     ...chat.data.info,
+        //     [key]: {
+        //       ...chat.data.info[key],
+        //       timestamp: new Date().toISOString()
+        //     }
+        //   }
+        // }
+        // console.log("chat.data", key, chat)
+
+        // console.log('chat.data', chat)
+
+        const keys = Object.keys(chat.data.info || {}).filter((key) => chat.data.info[key].timestamp === null && chat.data.info[key].verified === false)
+        const keyPrompt = keys[Math.floor(Math.random() * keys.length)]
+
+
+        const answerPrompt = () => {
+          return ` - "${keyPrompt}" (${chat?.data?.info[keyPrompt]?.type}): ${chat?.data?.info[keyPrompt]?.description}`
+        }
+
+        chat.data = {
+          ...chat.data,
+          [key]: json_response.value,
+          info: {
+            ...chat.data.info,
+            [key]: {
+              ...chat.data.info[key],
+              verified: true
+            },
+            [keyPrompt]: {
+              ...chat.data.info[keyPrompt],
+              verified: false,
+              timestamp: new Date().toISOString()
+            }
+          }
+        }
+
+        console.log('chat.data nuevo', chat)
+
+        await dbChat.insert(chat)
+
+
+        let _keys = Object.keys(chat.data.info || {})
+
+        let isAllData = true
+        for (const key of _keys) {
+          if (!chat.data[key] && key !== "undefined") {
+            isAllData = false
+          }
+        }
+
+        console.log('isAllData', isAllData)
+        if (!isAllData) {
+          console.log('chat.data.info', chat.data)
+
+          await fnAgent({
+            res,
+            token,
+            prompt: answerPrompt(),
+            // data: chat.data,
+            userId,
+            agentId,
+            chatId,
+            threadId
+          })
+        } else {
+          console.log('!!action', action)
+          await sendTextData({
+            res,
+            data: {
+              text: `**Gracias por tu ayuda, ya tengo toda la información que necesito para crear la automatización:**\n
+${Object.entries(chat.data || {}).filter(([key]) => key !== 'info').map(([key, value]) => ` -> ${key}: ${value}`).join('\n')}`,
+              action: chat.action || []
+            },
+            type: 'automate',
+            conf: {
+              userId: userId,
+              agentId: agentId,
+              chatId: chatId,
+              threadId: threadId
+            }
+          })
+        }
+
+        resolve({
+          success: true,
+          data: json_response
+        })
+      }
+
+    } catch (error) {
+      console.error('Error in assistantAgent:', error);
+      reject({
+        success: false,
+        error: 'Error al procesar la solicitud'
+      });
+    }
+  });
+};
+
+
+
+
+const languageToLan = async ({ text, language = "español", token = null }) => {
+  try {
+
+    let systemPrompt = []
+
+    if(text.name && text.description){
+      systemPrompt = [{
+        role: 'user',
+        content: `
+      Eres un experto en traducciones.
+      Traduceme el siguiente texto al ${language}:
+      Texto Name:${text.name}
+      Texto Description:${text.description}
+  
+      *Reglas*
+      - Devuelve el texto traducido en el mismo idioma que el texto original
+      
+      Devuelve en el formato: 
+  
+      {
+        "name": "nombre traducido",
+        "description": "descripción traducida"
+      }
+      `}]
+    } else {
+      systemPrompt = [{
+        role: 'user',
+        content: `
+      Eres un experto en traducciones.
+      Traduceme el siguiente texto al ${language}:
+      Texto :${text}
+  
+      *Reglas*
+      - Devuelve el texto traducido en el mismo idioma que el texto original
+      - No devuelvas nada más que el texto traducido
+      `}]
+    }
+
+
+    const response = await axios.post("https://api.openai.com/v1/chat/completions", {
+      model: "gpt-4o-mini",
+      temperature: 0.7,
+      max_tokens: 2096,
+      messages: systemPrompt
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      }
+    });
+
+
+    const value_response = extractCodeBlocks(response.data.choices[0].message.content)
+
+    if(typeof value_response[1] === 'object'){
+      return JSON.parse(value_response[1])
+    } else {
+      return value_response[1]
+    }
+
+  } catch (error) {
+    console.error('Error in languageToLan:', error);
+    return "español"
+  }
+}
+
+
+module.exports = {
+  meetGPT,
+  validateToken,
+  languageToLan
+}
+
+const cleanDataObject = (obj) => {
+  if (typeof obj !== 'object' || obj === null) {
+    return obj;
+  }
+
+  const cleaned = {};
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (key === '_id' || key === '_rev') {
+      continue;
+    }
+
+    if (value === undefined || value === null || value === '') {
+      continue;
+    }
+
+    if (typeof value === 'object') {
+      continue;
+    }
+
+    cleaned[key] = value;
+  }
+
+  return cleaned;
+};

@@ -1,0 +1,20 @@
+{
+  "title": "有任何问题吗？",
+  "moreInfo": "想了解更多？",
+  "contact": "联系我们",
+  "ask1": "什么是FacturaGPT？",
+  "ask2": "FacturaGPT支持哪些文件格式？",
+  "ask3": "FacturaGPT如何帮助财务规划？",
+  "ask4": "FacturaGPT可以与其他软件集成吗？",
+  "ask5": "FacturaGPT能检测发票中的错误吗？",
+  "ask6": "FacturaGPT会进行税务计算吗？",
+  "ask7": "FacturaGPT会自动更新吗？",
+
+  "answer1": "FacturaGPT是一款利用人工智能简化和优化发票及会计数据分析的财务管理工具。FacturaGPT是基于云端的解决方案，可通过任何联网设备访问。",
+  "answer2": "我们支持Excel、CSV、PDF等多种常用格式。",
+  "answer3": "它可提供利润率、支出模式等关键信息，并给出个性化建议。",
+  "answer4": "可以，FacturaGPT兼容如SAP、QuickBooks和Odoo等主流ERP和会计系统。",
+  "answer5": "可以，系统会自动识别发票中的差异和潜在错误。",
+  "answer6": "可以，系统会自动识别并计算发票中适用的税费。",
+  "answer7": "是的，所有更新和改进都会自动实施，无需额外费用。"
+}

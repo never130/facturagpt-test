@@ -1,0 +1,337 @@
+.previewContainer {
+  position: fixed;
+  background-color: white;
+  z-index: 9999;
+  width: 400px;
+  max-height: 800px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  user-select: none;
+  transition: box-shadow 0.2s ease;
+  resize: none;
+  top: 20px;
+  right: 20px;
+}
+
+.previewContainer:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.previewContainer.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  border-radius: 0;
+  max-width: none;
+  min-height: none;
+}
+
+.previewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #12ad87 0%, #16be96 100%);
+  color: white;
+  padding: 6px 4px;
+  cursor: move;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.previewHeader:active {
+  cursor: grabbing;
+}
+
+.previewTitle {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.previewActions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.actionButton {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  color: white;
+}
+
+.actionButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.previewStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.successStatus {
+  color: #16be96;
+  padding: 1px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid #16be96;
+}
+
+.errorStatus {
+  background: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.loadingStatus {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.autoUpdateStatus {
+  background: rgba(33, 150, 243, 0.2);
+  color: #2196f3;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.successStatus {
+  background: rgba(22, 190, 150, 0.2);
+  color: #16be96;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid rgba(22, 190, 150, 0.3);
+}
+
+.previewContent {
+  height: calc(100% - 40px);
+  overflow: hidden;
+  position: relative;
+}
+
+.previewFrame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #16be96;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorDisplay {
+  padding: 20px;
+  background: #fee;
+  border: 1px solid #fcc;
+  border-radius: 8px;
+  margin: 16px;
+  color: #c33;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.errorDisplay h4 {
+  margin: 0 0 12px 0;
+  color: #a00;
+}
+
+.errorDisplay pre {
+  background: #f5f5f5;
+  padding: 12px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 8px 0;
+  font-size: 12px;
+  line-height: 1.3;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.errorHelp {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #fcc;
+}
+
+.errorHelp p {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.errorHelp ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.errorHelp li {
+  margin: 4px 0;
+  font-size: 13px;
+}
+
+.previewInfo {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(22, 190, 150, 0.1);
+  color: #16be96;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  border: 1px solid rgba(22, 190, 150, 0.2);
+}
+
+/* Resizers */
+.resizer {
+  position: absolute;
+  background: transparent;
+  z-index: 1001;
+}
+
+.resizerLeft {
+  left: -2px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  cursor: w-resize;
+}
+
+.resizerRight {
+  right: -2px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  cursor: e-resize;
+}
+
+.resizerTop {
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  cursor: n-resize;
+}
+
+.resizerBottom {
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  cursor: s-resize;
+}
+
+.resizerTopLeft {
+  top: -2px;
+  left: -2px;
+  width: 8px;
+  height: 8px;
+  cursor: nw-resize;
+}
+
+.resizerTopRight {
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  cursor: ne-resize;
+}
+
+.resizerBottomLeft {
+  bottom: -2px;
+  left: -2px;
+  width: 8px;
+  height: 8px;
+  cursor: sw-resize;
+}
+
+.resizerBottomRight {
+  bottom: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  cursor: se-resize;
+}
+
+/* Hover effects para resizers */
+.resizer:hover {
+  background: rgba(22, 190, 150, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .previewContainer {
+    width: 90vw;
+    height: 70vh;
+    left: 5vw !important;
+    top: 15vh !important;
+  }
+  
+  .previewContainer.fullscreen {
+    width: 100vw;
+    height: 100vh;
+    left: 0 !important;
+    top: 0 !important;
+  }
+}

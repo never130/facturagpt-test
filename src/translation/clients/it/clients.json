@@ -1,0 +1,13 @@
+{
+  "title": "Gestione Contatti",
+  "buttonNewClient": "Nuovo Contatto",
+  "placeholderSearch": "Cerca",
+  "tableCol1": "Nome",
+  "tableCol2": "Email",
+  "tableCol3": "Telefono",
+  "tableCol4": "Indirizzo fisico",
+  "tableCol5": "Numero fiscale",
+  "tableCol6": "Metodi di pagamento",
+  "tableCol7": "Moneta preferita",
+  "tableCol8": "Azioni"
+}

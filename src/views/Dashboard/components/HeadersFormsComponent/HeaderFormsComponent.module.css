@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 94%;
+  background-color: white;
+  z-index: 5;
+  position: relative;
+}
+
+.headerMail {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--db-background);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  height: 27px;
+  width: 30px;
+}
+
+.addConnection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  p {
+    color: var(--aaa-color);
+    cursor: pointer;
+    min-height: 20px;
+    &.active {
+
+      color: #159b7c;
+    }
+  }
+}

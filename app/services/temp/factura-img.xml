@@ -1,0 +1,210 @@
+<envio_factura version="0.6">
+    <id_control_fabricante/>
+    <factura>
+        <cabecera>
+            <tipo_documento>01</tipo_documento>
+            <desc_tipo_documento>Factura</desc_tipo_documento>
+            <solicitante/>
+            <destinatario/>
+            <cod_punto_venta/>
+            <motivo_documento/>
+            <codigo_proveedor/>
+            <condicion_pago/>
+            <cod_medio_pago/>
+            <desc_medio_pago/>
+            <moneda>EUR</moneda>
+            <info_adicional_pago/>
+            <numero_factura>2024-0001</numero_factura>
+            <referencia_factura/>
+            <fecha_factura>
+                <anyo>2024</anyo>
+                <mes>4</mes>
+                <dia>16</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_factura>
+            <vencimientos>
+                <vencimiento id="0">
+                    <fecha_vencimiento>
+                        <anyo>2024</anyo>
+                        <mes>05</mes>
+                        <dia>17</dia>
+                        <hora>0</hora>
+                        <minuto>0</minuto>
+                        <segundo>0</segundo>
+                    </fecha_vencimiento>
+                    <importe_parcial>1451</importe_parcial>
+                </vencimiento>
+            </vencimientos>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>1451</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>03</tipo_importe>
+                    <desc_tipo_importe>Total</desc_tipo_importe>
+                    <valor_importe>1538.06</valor_importe>
+                    <porcentaje>21.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="2">
+                    <tipo_importe>09</tipo_importe>
+                    <desc_tipo_importe>Neto antes pronto pago</desc_tipo_importe>
+                    <valor_importe>1451</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+            </importes>
+            <impuestos>
+                <impuesto id="0">
+                    <tipo_impuesto>01</tipo_impuesto>
+                    <desc_tipo_impuesto>IVA</desc_tipo_impuesto>
+                    <base_impuesto>1451</base_impuesto>
+                    <porcentaje_impuesto>21.00</porcentaje_impuesto>
+                    <signo_importe>01</signo_importe>
+                    <importe_impuesto>304.71</importe_impuesto>
+                </impuesto>
+            </impuestos>
+            <incoterm>CIP</incoterm>
+            <desc_incoterm/>
+            <fabricante_nif>39000001A</fabricante_nif>
+            <fabricante_nombre>Orlando Juan Lobán</fabricante_nombre>
+            <fabricante_direccion>Avenida Rosario 2, 1 A</fabricante_direccion>
+            <fabricante_poblacion>Barcelona</fabricante_poblacion>
+            <fabricante_cpostal>08001</fabricante_cpostal>
+            <fabricante_provincia></fabricante_provincia>
+            <fabricante_pais>ES</fabricante_pais>
+            <fabricante_reg_mercantil>Orlando Juan Lobán</fabricante_reg_mercantil>
+            <cod_fabricante_externo>B12345678</cod_fabricante_externo>
+            <cod_fabricante_fabricante/>
+            <direcciones>
+                <direccion id="1">
+                    <direc_tipo>01</direc_tipo>
+                    <direc_nombre>Avenida Rosario</direc_nombre>
+                    <direc_direccion>1</direc_direccion>
+                    <direc_poblacion>Barcelona</direc_poblacion>
+                    <direc_cpostal>08001</direc_cpostal>
+                    <direc_provincia></direc_provincia>
+                    <direc_pais>ES</direc_pais>
+                </direccion>
+            </direcciones>
+            <observaciones/>
+        </cabecera>
+        <posiciones id="1">
+            <posicion_albaran>1</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2024</anyo>
+                <mes>4</mes>
+                <dia>16</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran></albaran>
+            <referencia></referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>Producto 1</descripcion>
+            <pedido>2024-0001</pedido>
+            <pedido_cliente>2024-0001</pedido_cliente>
+            <posicion_pedido>1</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>2</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>1</posicion_factura>
+            <precio_unitario>100.00</precio_unitario>
+            <unidad_precio>100.00</unidad_precio>
+            <cantidad_precio>200.00</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>200.00</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="2">
+            <posicion_albaran>2</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2024</anyo>
+                <mes>4</mes>
+                <dia>16</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran></albaran>
+            <referencia></referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>Producto 2</descripcion>
+            <pedido>2024-0001</pedido>
+            <pedido_cliente>2024-0001</pedido_cliente>
+            <posicion_pedido>2</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>4</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>2</posicion_factura>
+            <precio_unitario>150.00</precio_unitario>
+            <unidad_precio>150.00</unidad_precio>
+            <cantidad_precio>600.00</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>600.00</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="3">
+            <posicion_albaran>3</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2024</anyo>
+                <mes>4</mes>
+                <dia>16</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran></albaran>
+            <referencia></referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>Producto 3</descripcion>
+            <pedido>2024-0001</pedido>
+            <pedido_cliente>2024-0001</pedido_cliente>
+            <posicion_pedido>3</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>7</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>3</posicion_factura>
+            <precio_unitario>93.00</precio_unitario>
+            <unidad_precio>93.00</unidad_precio>
+            <cantidad_precio>651.00</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>651.00</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+    </factura>
+</envio_factura>

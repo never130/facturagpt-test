@@ -1,0 +1,43 @@
+.BeforeApproving {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+  margin: 20px auto;
+  background: var(--ed-background);
+  padding: 10px;
+  border-radius: 10px;
+
+  p {
+    font-size: 14px;
+    color: var(--_4F5660-color);
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.13px;
+    margin: 5px ;
+  }
+
+  .draft {
+    color: var(--_67-color);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.13px;
+  }
+
+  .paid {
+    color: var(--_10a37f-background);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.13px;
+  }
+
+}

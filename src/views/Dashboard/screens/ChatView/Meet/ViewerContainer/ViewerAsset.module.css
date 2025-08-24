@@ -1,0 +1,489 @@
+
+
+
+.cardContent {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /* padding: 0.4375rem; */
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.headerSection {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.headerRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.headerContent {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /* padding: 0.625rem 0.6875rem; */
+  position: relative;
+  width: 100%;
+}
+
+.leftContent {
+  flex-basis: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.875rem;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 1px;
+  min-width: 1px;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.assetIcon {
+  background-color: #10a37f;
+  border-radius: 13px;
+  flex-shrink: 0;
+  width: 55px;
+  height: 55px;
+}
+
+.assetInfo {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+  width: 367.586px;
+}
+
+.assetTitleRow {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 9px;
+  height: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.assetTitle {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 20px;
+  text-align: left;
+  white-space: nowrap;
+  color: #09090b;
+  letter-spacing: -0.3px;
+}
+
+.assetTitleP {
+  display: block;
+  line-height: 35px;
+  white-space: pre;
+  letter-spacing: -0.3px;
+}
+
+.assetDescription {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  line-height: 0;
+  min-width: 100%;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #99a1af;
+  font-size: 13px;
+  text-align: left;
+  width: min-content;
+}
+
+.assetDescriptionP {
+  display: block;
+  line-height: 14px;
+}
+
+.assetType {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 0;
+  min-width: 100%;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #6a7282;
+  font-size: 12.25px;
+  text-align: left;
+  width: min-content;
+}
+
+.assetTypeP {
+  display: block;
+  line-height: 17.5px;
+}
+
+.rightActions {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.priceSection {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.375rem;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pvpLabel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  height: 14px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 25px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pvpText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #7c7c7c;
+  font-size: 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.pvpTextP {
+  display: block;
+  line-height: normal;
+  white-space: pre;
+}
+
+.priceValue {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: 0;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+  text-align: left;
+  white-space: nowrap;
+  color: #09090b;
+}
+
+.priceAmount {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  justify-content: center;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.priceAmountP {
+  display: block;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.priceCurrency {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-variation-settings: 'wdth' 100;
+}
+
+.priceCurrencyP {
+  display: block;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.actionButtons {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 0.375rem;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.editButton {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 5px 13px;
+  position: relative;
+  border-radius: 6.75px;
+  flex-shrink: 0;
+  width: 80.367px;
+}
+
+.editButtonBorder {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 6.75px;
+}
+
+.editButtonInner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.editIcon {
+  position: relative;
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+}
+
+.editIconSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.editText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 12.25px;
+  text-align: left;
+  color: #0a0a0a;
+  white-space: nowrap;
+}
+
+.editTextP {
+  display: block;
+  line-height: 17.5px;
+  white-space: pre;
+}
+
+.moreButton {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 5.25px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 9.75px;
+  position: relative;
+  border-radius: 6.75px;
+  flex-shrink: 0;
+  width: 33.5px;
+}
+
+.moreButtonBorder {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 6.75px;
+}
+
+.moreIcon {
+  position: relative;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.moreIconSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.etiquetaBadge {
+  background-color: #dbeafe;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3px 11px;
+  position: relative;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.etiquetaText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #193cb8;
+  font-size: 12.25px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.etiquetaTextP {
+  display: block;
+  line-height: 17.5px;
+  white-space: pre;
+}
+
+.etiquetaClose {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 5.25px;
+  height: 17.5px;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5px 0;
+  position: relative;
+  border-radius: 6.75px;
+  flex-shrink: 0;
+  width: 7.867px;
+}
+
+.etiquetaCloseText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 0;
+  font-style: normal;
+  position: relative;
+  flex-shrink: 0;
+  color: #193cb8;
+  font-size: 12.25px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.etiquetaCloseTextP {
+  display: block;
+  line-height: 17.5px;
+  white-space: pre;
+}
+
+
+.footerInfo {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.footerText {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  gap: 31px;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: 0;
+  font-style: normal;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+  color: #4a5565;
+  font-size: 12.25px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.footerItem {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.footerItemP {
+  display: block;
+  line-height: 17.5px;
+  white-space: nowrap;
+}

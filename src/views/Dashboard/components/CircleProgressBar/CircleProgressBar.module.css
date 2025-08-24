@@ -1,0 +1,146 @@
+.CircleProgressSection {
+  margin-top: 50px;
+  width: 90%;
+  flex-wrap: wrap;
+  height: fit-content !important;
+  min-height: fit-content;
+  margin: 50px 0;
+}
+.CircleProgress {
+  display: grid;
+  gap: 10px;
+  color: var(--_10a37f-background);
+  justify-content: center;
+  width: 100%;
+  padding: 0 40px;
+  box-sizing: border-box;
+  margin: 20px 0;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1100px) {
+  .CircleProgress {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 360px) {
+  .CircleProgress {
+    transform: scale(0.6);
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    -o-transform: scale(0.6);
+  }
+}
+.cardPBContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.skill {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  box-sizing: border-box;
+  transform: scale(0.6);
+  -webkit-transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  -ms-transform: scale(0.6);
+  -o-transform: scale(0.6);
+}
+
+.label {
+  text-align: center;
+  width: 100%;
+  max-width: 130px;
+  margin-left: -35px;
+}
+.outer {
+  height: 160px;
+  width: 160px;
+  padding: 20px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.inner {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#number {
+  font-weight: 700;
+  font-size: 30px;
+  color: black;
+}
+.CircleProgressSection{
+
+  circle {
+    fill: none;
+    stroke: var(--_10a37f-background);
+    stroke-width: 10px;
+    stroke-dasharray: 472;
+    stroke-dashoffset: 165;
+  }
+}
+#ProgressBarCircle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+}
+
+.pg0,
+.pg2 {
+  stroke-dashoffset: 80;
+}
+.pg1 {
+}
+
+.pg3 {
+  stroke-dashoffset: 190;
+}
+
+@media (max-width: 620px) {
+  .CircleProgress {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .cardPBContainer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .label {
+    margin-left: 0;
+  }
+}
+
+
+@media (width <= 620px) {
+  .skill {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+  }
+}

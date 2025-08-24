@@ -1,0 +1,653 @@
+.HelpPage {
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
+
+
+  .HelpPageBody {
+    gap: 20px;
+    width: calc(100% - 60px);
+    height: calc(100vh - 130px);
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    padding: 60px 30px 20px;
+
+    .HelpPageBodyLeft {
+      width: 100%;
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .searchArticleContainer {
+        width: 100%;
+        margin: 0 auto;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        @media (width<=768px) {
+          width: 100%;
+        }
+
+        h3 {
+          margin: 0;
+          color: #1F1F1F;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        p {
+          color: #676767;
+
+        }
+
+        .inputContainer {
+          width: 70%;
+          position: relative;
+          display: inline-flex;
+          gap: 5px;
+
+          
+          button{
+            border: none;
+            border-radius: 8px;
+            padding: 2px 10px;
+            cursor: pointer;
+
+            &.deleteButton {
+              background-color: #dc3545;
+              color: white;  
+              &:hover {
+                background-color: #c82333;
+              }
+            }
+
+            &.addButton {
+              background-color: var(--f5-background);
+              color:var(--black);
+              &:hover {
+                background-color: #e9ecef;
+              }
+            }
+          }
+
+          .searchContainerIcon {
+            background-color: var(--db-background);
+            padding: 4px;
+            border-radius: 4px;
+            height: 10px;
+            width: 10px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+            cursor: pointer;
+          }
+
+
+        }
+      }
+    }
+
+    .HelpPageBodyRight {
+      max-width: 300px;
+    }
+  }
+}
+
+.recomendQuestions {
+  cursor: pointer;
+  position: absolute;
+  background-color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #D9D9E3;
+  top: calc(100% + 5px);
+  width: 100%;
+  max-height: 50vh;
+  overflow-y: scroll;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  scrollbar-width: none;
+
+  >div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .articleItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #D9D9E3;
+    padding: 10px;
+    box-sizing: border-box;
+    gap: 10px;
+
+    svg {
+      fill: var(--_292d32-color);
+      min-width: 10px;
+      min-height: 10px;
+    }
+
+    >div {
+      text-align: start;
+      display: flex;
+      flex-direction: column;
+    }
+
+    p {
+      margin: 0;
+      width: fit-content;
+
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+
+.upgradeNotesContainerList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .upgradeNotesItem {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    padding: 20px 20px 20px 40px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0px;
+      left: 14px;
+      width: 1px;
+      height: 50%;
+      background: #dadada;
+      z-index: 0;
+    }
+
+    label {
+      z-index: 1;
+      font-size: 11px;
+      font-weight: 400;
+      color: #717171;
+      transform: rotate(90deg) translate(calc(100% - 10px), 30px);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 0px;
+      width: 86px;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: #ffff;
+      padding: 10px;
+      border: 1px solid #71717171;
+      padding: 0px;
+      height: 22px;
+      text-align: center;
+      line-height: 23px;
+      border-radius: 10px;
+
+
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0px;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 0px;
+    }
+  }
+}
+
+
+
+
+.upgradeNotesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  .upgradeNotesHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #D9D9E3;
+
+    h2 {
+      margin: 0;
+      color: #1F1F1F;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+
+  }
+
+
+  .formActions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin: 10px 0px 0px;
+
+    button {
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      border: none;
+      background: var(--f5-background);
+      color: #000000;
+    }
+
+    .saveButton {
+      background-color: #10a37f40;
+      color: var(--_10a37f-background);
+      transition: background-color 0.2s;
+
+      &:hover:not(:disabled) {
+        background-color: #10a37f75;
+      }
+
+      &:disabled {
+        background-color: var(--f5-background);
+        color:var(--black);
+        cursor: not-allowed;
+      }
+    }
+
+    .deleteAllButton {
+      background-color: #dc354524;
+      color: #dc3545;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #dc35453b;
+      }
+    }
+  }
+
+  .upgradeNotesForm {
+    display: flex;
+    flex-direction: column;
+
+  
+  }
+
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-weight: 600;
+      color: #1F1F1F;
+      font-size: 12px;
+      margin-top: 10px;
+      margin-bottom: 0px;
+      text-transform: uppercase;
+    }
+
+    input {
+      padding: 10px 4px;
+      border: none;
+      border-bottom: 1px solid #D9D9E3;
+      background: transparent;
+      /* border-radius: 8px; */
+      font-size: 14px;
+      border-radius: 0px;
+      transition: border-color 0.2s;
+      outline: none;
+      font-family: 'Inter';
+      color: #ccc;
+
+      &::placeholder {
+        color: #999;
+      }
+    }
+  }
+
+
+  /* .notesList {
+    margin-top: 30px;
+
+    h3 {
+      margin: 0 0 20px 0;
+      color: #1F1F1F;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  } */
+
+  .editorToolbar {
+    display: flex;
+    gap: 5px;
+    padding: 6px 2px;
+
+    .toolbarButton {
+      padding: 6px 12px;
+      background: white;
+      border: 1px solid #D9D9E3;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      color:var(--black);
+
+      &:hover {
+        background: #e9ecef;
+        border-color: var(--_10a37f-background);
+      }
+
+      &:active {
+        background: #dee2e6;
+      }
+
+      strong,
+      em,
+      u {
+        font-weight: bold;
+        font-style: normal;
+        text-decoration: none;
+        color: var(--black);
+      }
+    }
+  }
+
+
+  .editorContent {
+    min-height: 60px;
+    max-height: 400px;
+    padding: 15px 2px;
+    border-bottom: 1px solid #D9D9E3;
+    font-size: 14px;
+    line-height: 1.6;
+    outline: none;
+    overflow-y: hidden;
+    position: relative;
+    transition: height 0.2s ease;
+    resize: none;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 10px 0 5px 0;
+      color: #1F1F1F;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+
+    p {
+      margin: 0 0 10px 0;
+    }
+
+    ul,
+    ol {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+
+    a {
+      color: var(--_10a37f-background);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    u {
+      text-decoration: underline;
+    }
+  }
+
+
+
+  textarea {
+    width: 100%;
+    height: 100px;
+    border: none;
+    border-bottom: 1px solid #D9D9E3;
+    background: transparent;
+    /* border-radius: 8px; */
+    padding: 10px 4px;
+    font-size: 15px;
+    outline: none;
+    font-family: 'Inter';
+    color: #ccc;
+  }
+
+  button {
+    width: 100%;
+    background-color: var(--_10a37f-background);
+    color: var(--white-color);
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+
+
+.upgradeNotesItem {
+  .upgradeNotesItemButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+
+    button {
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      background-color: var(--f5-background);
+      color: #1F1F1F;
+
+      &.deleteButton {
+        background-color: #dc3545;
+        color: #fff;
+      }
+    }
+  }
+
+  .noteHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    h4 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1F1F1F;
+    }
+
+    .noteActions {
+      display: flex;
+      gap: 10px;
+
+      .editButton {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 500;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+
+      .deleteButton {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 500;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #c82333;
+        }
+      }
+    }
+  }
+
+  .noteDate {
+    font-size: 12px;
+    color: #717171;
+    margin: 0 0 10px 0;
+    font-weight: 500;
+  }
+
+  .noteContent {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 10px 0 5px 0;
+      color: #1F1F1F;
+    }
+
+    p {
+      margin: 0 0 10px 0;
+    }
+
+    ul,
+    ol {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+
+    a {
+      color: var(--_10a37f-background);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/* Loading Styles */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  width: 100%;
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .HelpPageBody {
+    height: unset;
+    flex-direction: column-reverse;
+  }
+  .recomendQuestions{
+    top: unset !important;
+    max-height: unset !important;
+  }
+}

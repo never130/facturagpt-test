@@ -1,0 +1,124 @@
+.miniCalendarTable {
+	border-spacing: 3px;
+	z-index: 400000;
+}
+
+.miniCalendarTbody {
+	gap: 3px;
+}
+
+.miniCalendarTr {
+	border-bottom: 2px solid var(--_073f31-color);
+}
+.miniCalendarTr:last-child {
+	border-bottom: none !important;
+}
+.miniCalendarTd {
+	position: relative;
+	border: 2px solid var(--_073f31-color) !important;
+}
+.miniCalendarTd:first-child {
+	border-left: none !important;
+}
+.miniCalendarTd:last-child {
+	border-right: none !important;
+}
+.bottomMiniCalendarTd {
+	border: none !important;
+	border-right: 2px solid var(--_073f31-color) !important;
+	border-left: 2px solid var(--_073f31-color) !important;
+}
+.bottomMiniCalendarTd:first-child {
+	border-left: none !important;
+}
+.bottomMiniCalendarTd:last-child {
+	border-right: none !important;
+}
+.miniCalendarTh {
+	border: 2px solid var(--_073f31-color);
+	border-top: none;
+}
+.miniCalendarTh:first-child {
+	border-left: none;
+}
+.miniCalendarTh:last-child {
+	border-right: none;
+}
+.dayCell {
+	border-radius: 50%;
+	color: var(--_374151-color);
+	cursor: pointer;
+	width: 25px !important;
+	height: 25px !important;
+	min-width: 25px !important;
+	min-height: 25px !important;
+	user-select: none;
+	padding: 3px !important;
+	display: flex;
+	align-items: center;
+	margin-left: 5px;
+	justify-content: center;
+	font-size: 12px;
+	&:hover {
+		background: var(--label-color);
+	}
+}
+
+.selectedDayCell {
+	background: var(--_073f31-color);
+	border-radius: 50%;
+	cursor: pointer;
+	color: var(--_10a37f-background);
+	width: 25px !important;
+	height: 25px !important;
+	min-width: 25px !important;
+	min-height: 25px !important;
+	padding: 3px !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 12px;
+	&:hover {
+		background: var(--_10a37f-background);
+	}
+}
+
+.currentDayCell {
+	background: var(--_073f31-color);
+	border-radius: 50%;
+	color: var(--white-color);
+	cursor: pointer;
+	width: 25px !important;
+	height: 25px !important;
+	min-width: 25px !important;
+	min-height: 25px !important;
+	padding: 3px !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 12px;
+	&:hover {
+		background: var(--_10a37f-background);
+	}
+}
+.eventDotsContainer {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: row;
+	position: absolute;
+	top: 1px;
+	right: 1px;
+}
+.eventDot {
+	width: 10px;
+	margin-left: -3px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 1px;
+	font-size: 7px;
+	color: var(--white-color);
+	height: 10px;
+	border-radius: 50%;
+}

@@ -1,0 +1,143 @@
+.cardContainer {
+  display: flex;
+  gap: 50px;
+  padding: 16px;
+  overflow-x: auto; 
+  overflow-y: hidden; 
+  white-space: nowrap; 
+  cursor: grab;
+  -webkit-overflow-scrolling: touch; 
+  width: 100%; 
+  box-sizing: border-box; 
+  margin-top: 100px;
+}
+
+.cardContainer:active {
+  cursor: grabbing;
+}
+
+.cardContainer,
+.card {
+  user-select: none; 
+}
+
+.card {
+  display: inline-block; 
+  cursor: pointer;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.cardHeader {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #d8d8d8;
+  border-radius: 4px;
+  padding: 0 10px;
+}
+
+.cardBody {
+  margin-top: 8px;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  p {
+    font-weight: bold;
+  }
+  p,
+  span {
+    color: #000000 !important;
+    margin: 0;
+  }
+}
+
+.cardHeader {
+}
+
+.price {
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.subText {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.button {
+  margin-top: 16px;
+  padding: 8px 16px;
+  background-color: #233f39;
+  color: var(--white-color);
+  border: none;
+  border-radius: 999px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.cardContainer::-webkit-scrollbar {
+  display: none; 
+}
+
+.cardContainer {
+  scrollbar-width: none; 
+}
+
+.selectedCard {
+  .cardHeader {
+    background-color: var(--_10a37f-background);
+    color: var(--white-color);
+  }
+
+  .cardBody {
+    p {
+      color: #16c098 !important;
+    }
+  }
+
+  .button {
+    background-color: var(--_10a37f-background);
+  }
+}
+
+.pricingPageCard {
+  background-color: var(--_10a37f-background);
+  padding: 10px;
+  color: var(--white-color);
+  .cardHeader {
+    background-color: #ffffff3b;
+  }
+  .cardBody {
+    p,
+    span {
+      color: #ffffff !important;
+    }
+    
+.ThousandCharacters{
+  color: #ffffff !important; 
+  font-size: 13px;
+}
+  }
+}
+
+.pricingPageCard.selectedCard {
+  background-color: var(--white-color);
+  .cardHeader {
+    background-color: var(--_10a37f-background);
+  }
+  .cardBody {
+    p,
+    span {
+      color: var(--_10a37f-background) !important;
+    }
+    .ThousandCharacters{
+      color: #AAAAAA !important; 
+      font-size: 13px;
+    }
+  }
+}
+

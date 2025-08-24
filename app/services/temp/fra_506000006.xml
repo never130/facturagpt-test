@@ -1,0 +1,979 @@
+<envio_factura version="0.6">
+    <id_control_fabricante/>
+    <factura>
+        <cabecera>
+            <tipo_documento>01</tipo_documento>
+            <desc_tipo_documento>Factura</desc_tipo_documento>
+            <solicitante/>
+            <destinatario/>
+            <cod_punto_venta/>
+            <motivo_documento/>
+            <codigo_proveedor/>
+            <condicion_pago/>
+            <cod_medio_pago/>
+            <desc_medio_pago/>
+            <moneda>EUR</moneda>
+            <info_adicional_pago/>
+            <numero_factura>506000006</numero_factura>
+            <referencia_factura/>
+            <fecha_factura>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_factura>
+            <vencimientos>
+                <vencimiento id="0">
+                    <fecha_vencimiento>
+                        <anyo>2025</anyo>
+                        <mes>01</mes>
+                        <dia>15</dia>
+                        <hora>0</hora>
+                        <minuto>0</minuto>
+                        <segundo>0</segundo>
+                    </fecha_vencimiento>
+                    <importe_parcial>0</importe_parcial>
+                </vencimiento>
+            </vencimientos>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>0</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>03</tipo_importe>
+                    <desc_tipo_importe>Total</desc_tipo_importe>
+                    <valor_importe>1550.56</valor_importe>
+                    <porcentaje>21.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="2">
+                    <tipo_importe>09</tipo_importe>
+                    <desc_tipo_importe>Neto antes pronto pago</desc_tipo_importe>
+                    <valor_importe>0</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+            </importes>
+            <impuestos>
+                <impuesto id="0">
+                    <tipo_impuesto>01</tipo_impuesto>
+                    <desc_tipo_impuesto>IVA</desc_tipo_impuesto>
+                    <base_impuesto>0</base_impuesto>
+                    <porcentaje_impuesto>21.00</porcentaje_impuesto>
+                    <signo_importe>01</signo_importe>
+                    <importe_impuesto>0</importe_impuesto>
+                </impuesto>
+            </impuestos>
+            <incoterm>CIP</incoterm>
+            <desc_incoterm/>
+            <fabricante_nif>A08789182</fabricante_nif>
+            <fabricante_nombre>LISON PORCEL, GASPAR</fabricante_nombre>
+            <fabricante_direccion>CL RAMONEDA, 42 - 44 LOCAL 3</fabricante_direccion>
+            <fabricante_poblacion>CORNELLA DE LLOBREGAT</fabricante_poblacion>
+            <fabricante_cpostal>08940</fabricante_cpostal>
+            <fabricante_provincia>Barcelona</fabricante_provincia>
+            <fabricante_pais>ES</fabricante_pais>
+            <fabricante_reg_mercantil>LISON PORCEL, GASPAR</fabricante_reg_mercantil>
+            <cod_fabricante_externo>46550218N</cod_fabricante_externo>
+            <cod_fabricante_fabricante/>
+            <direcciones>
+                <direccion id="1">
+                    <direc_tipo>01</direc_tipo>
+                    <direc_nombre>CL RAMONEDA</direc_nombre>
+                    <direc_direccion>3</direc_direccion>
+                    <direc_poblacion>CORNELLA DE LLOBREGAT</direc_poblacion>
+                    <direc_cpostal>08940</direc_cpostal>
+                    <direc_provincia>Barcelona</direc_provincia>
+                    <direc_pais>ES</direc_pais>
+                </direccion>
+            </direcciones>
+            <observaciones/>
+        </cabecera>
+        <posiciones id="1">
+            <posicion_albaran>1</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000034</albaran>
+            <referencia>TOK2981C</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>MONOMANDO PARA LAVABO TOK2981C</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>1</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>1.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>1</posicion_factura>
+            <precio_unitario>57.00</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>33.06</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>23.94</valor_importe>
+                    <porcentaje>42.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="2">
+            <posicion_albaran>2</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000034</albaran>
+            <referencia>GRID4WKA</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>TERMO ELECTRICO TIBER C 50 lt. VERTICAL</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>2</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>1.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>2</posicion_factura>
+            <precio_unitario>220.00</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>110.00</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>110.00</valor_importe>
+                    <porcentaje>50.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="3">
+            <posicion_albaran>3</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000034</albaran>
+            <referencia>02204</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>VALV.M-H 1/2''-1/2'' C/MANDO JUCAR-MINI</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>3</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>1.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>3</posicion_factura>
+            <precio_unitario>9.06</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>4.53</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>4.53</valor_importe>
+                    <porcentaje>50.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="4">
+            <posicion_albaran>4</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000034</albaran>
+            <referencia>060052</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>CONEXION FLEX. PLUS 1/2''-1/2'' 35cm</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>4</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>2.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>4</posicion_factura>
+            <precio_unitario>7.65</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>8.42</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>6.88</valor_importe>
+                    <porcentaje>45.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="5">
+            <posicion_albaran>5</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000045</albaran>
+            <referencia>BH101-20</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>VALV.SALIDA CONTADOR ROSCADA</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>5</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>1.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>5</posicion_factura>
+            <precio_unitario>195.19</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>19.52</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>78.08</valor_importe>
+                    <porcentaje>40.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="6">
+            <posicion_albaran>6</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000045</albaran>
+            <referencia>BH101-20</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>VALV.ENTRADA CONTADOR ROSCADA</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>6</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>1.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>6</posicion_factura>
+            <precio_unitario>174.00</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>17.40</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>69.60</valor_importe>
+                    <porcentaje>40.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="7">
+            <posicion_albaran>7</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000045</albaran>
+            <referencia>JUNTA ANCHA 3</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>JUNTA GOMA ANCHA 3/4''</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>7</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>2.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>7</posicion_factura>
+            <precio_unitario>0.10</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>0.18</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>0.03</valor_importe>
+                    <porcentaje>15.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="8">
+            <posicion_albaran>8</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000045</albaran>
+            <referencia>361002</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>TAPON MACHO LATON 1/2''</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>8</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>2.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>8</posicion_factura>
+            <precio_unitario>1.81</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>1.81</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>1.81</valor_importe>
+                    <porcentaje>50.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="9">
+            <posicion_albaran>9</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000045</albaran>
+            <referencia>060046</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>FLEXO CONTADOR INOXIDABLE 3/4''</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>9</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>1.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>9</posicion_factura>
+            <precio_unitario>12.20</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>7.32</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>4.88</valor_importe>
+                    <porcentaje>40.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="10">
+            <posicion_albaran>10</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000046</albaran>
+            <referencia>35210</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>GRIFO JARDIN DENVER 1/2''x3/4'' CRACOR</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>10</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>1.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>10</posicion_factura>
+            <precio_unitario>10.20</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>5.10</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>5.10</valor_importe>
+                    <porcentaje>50.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="11">
+            <posicion_albaran>11</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000046</albaran>
+            <referencia>01137</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>VALV.M-P MALANCA 1/2'' TURIA 3000</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>11</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>1.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>11</posicion_factura>
+            <precio_unitario>9.52</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>4.95</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>4.57</valor_importe>
+                    <porcentaje>48.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="12">
+            <posicion_albaran>12</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000046</albaran>
+            <referencia>3001512000</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>RACOR RECTO 359GCU 15x1/2''</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>12</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>2.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>12</posicion_factura>
+            <precio_unitario>1.77</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>1.77</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>1.77</valor_importe>
+                    <porcentaje>50.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="13">
+            <posicion_albaran>13</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000046</albaran>
+            <referencia>JUNTA PLANA 1</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>JUNTA GOMA 1/2''</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>13</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>2.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>13</posicion_factura>
+            <precio_unitario>0.08</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>0.13</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>0.02</valor_importe>
+                    <porcentaje>15.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="14">
+            <posicion_albaran>14</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000046</albaran>
+            <referencia>5301 01500000</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>TAPON 5301 H 12 SOLDAR</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>14</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>2.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>14</posicion_factura>
+            <precio_unitario>3.00</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>2.70</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>3.30</valor_importe>
+                    <porcentaje>55.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="15">
+            <posicion_albaran>15</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000046</albaran>
+            <referencia>5301 01500000</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>TAPON 5301 H 15 SOLDAR</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>15</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>2.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>15</posicion_factura>
+            <precio_unitario>1.15</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>1.04</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>1.26</valor_importe>
+                    <porcentaje>55.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="16">
+            <posicion_albaran>16</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000046</albaran>
+            <referencia>3001812000</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>RACOR RECTO 359GCU 18x1/2''</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>16</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>2.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>16</posicion_factura>
+            <precio_unitario>2.49</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>2.49</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>2.49</valor_importe>
+                    <porcentaje>50.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="17">
+            <posicion_albaran>17</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000046</albaran>
+            <referencia>1816</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>VALV.UNLINE SIMPLE REGLAJE VAV SV 1/2</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>17</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>2.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>17</posicion_factura>
+            <precio_unitario>30.00</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>33.00</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>27.00</valor_importe>
+                    <porcentaje>45.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="18">
+            <posicion_albaran>18</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000046</albaran>
+            <referencia>E-5139</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>CJTO.ANTIELECTRO TUBO COBRE M24-15</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>18</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>5.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>18</posicion_factura>
+            <precio_unitario>30.00</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>82.50</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>67.50</valor_importe>
+                    <porcentaje>45.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="19">
+            <posicion_albaran>19</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000046</albaran>
+            <referencia>E-17377</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>VALV.SIMPL REGLAJE VAV SV 1/2</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>19</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>5.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>19</posicion_factura>
+            <precio_unitario>30.00</precio_unitario>
+            <unidad_precio>PZ</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>29.51</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>15.75</valor_importe>
+                    <porcentaje>10.50</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+        <posiciones id="20">
+            <posicion_albaran>20</posicion_albaran>
+            <fecha_albaran>
+                <anyo>2025</anyo>
+                <mes>1</mes>
+                <dia>15</dia>
+                <hora>0</hora>
+                <minuto>0</minuto>
+                <segundo>0</segundo>
+            </fecha_albaran>
+            <albaran>R-500000008</albaran>
+            <referencia>500000008</referencia>
+            <codigo_partida/>
+            <desc_partida/>
+            <descripcion>BOMBA CONDENS.MINIBLANC C/DEPÓSITO</descripcion>
+            <pedido>506000006</pedido>
+            <pedido_cliente>506000006</pedido_cliente>
+            <posicion_pedido>20</posicion_pedido>
+            <referencia_factura/>
+            <cantidad_entregada>1.00</cantidad_entregada>
+            <unidad>UN</unidad>
+            <posicion_factura>20</posicion_factura>
+            <precio_unitario>82.00</precio_unitario>
+            <unidad_precio>UN</unidad_precio>
+            <cantidad_precio>1</cantidad_precio>
+            <observaciones/>
+            <importes>
+                <importe id="0">
+                    <tipo_importe>01</tipo_importe>
+                    <desc_tipo_importe>Neto</desc_tipo_importe>
+                    <valor_importe>82.00</valor_importe>
+                    <porcentaje>00.00</porcentaje>
+                    <signo_importe>01</signo_importe>
+                </importe>
+                <importe id="1">
+                    <tipo_importe>06</tipo_importe>
+                    <desc_tipo_importe>Descuento Comercial</desc_tipo_importe>
+                    <valor_importe>0.00</valor_importe>
+                    <porcentaje>0.00</porcentaje>
+                    <signo_importe>02</signo_importe>
+                </importe>
+            </importes>
+            <posicion_referenciada/>
+        </posiciones>
+    </factura>
+</envio_factura>

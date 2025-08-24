@@ -1,0 +1,218 @@
+.advancedOptions {
+  background-color: var(--white-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--_00000033-background);
+  overflow: visible;
+}
+
+.description {
+  font-size: 0.8rem;
+  color: #71717A !important; 
+  margin-bottom: 20px;
+  text-align: left;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.smallDescription {
+  font-size: 0.8rem;
+  color: #71717A !important; 
+  margin-top: 8px;
+  text-align: left;
+  line-height: 1.3;
+  opacity: 0.85;
+}
+
+.optionGroup {
+  margin-bottom: 20px;
+  overflow: visible;
+}
+
+.label {
+  display: block;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.buttonGrid {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.shapeButton {
+  padding: 20px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: var(--f5-background);
+  color: #333;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 120px;
+  max-width: 250px;
+  box-sizing: border-box;
+}
+
+.shapeButton:hover {
+  border-color: #b6b6b6;
+  background-color: var(--f5-background);
+  color: #333;
+}
+
+.shapeButton.selected {
+  border-color: transparent;
+  background-color: var(--f5-background);
+  font-weight: 600;
+}
+
+.inlineGroup {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.inlineGroup > .optionGroup {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+
+
+
+@media (max-width: 1200px) {
+  .shapeButton {
+    padding: 18px 12px;
+    min-width: 110px;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .description {
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+  }
+
+  .smallDescription {
+    font-size: 0.85rem;
+    margin-top: 6px;
+  }
+
+  .label {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+
+  .shapeButton {
+    padding: 16px 10px;
+    font-size: 0.85rem;
+    min-width: 100px;
+    max-width: 200px;
+  }
+
+  .optionGroup {
+    margin-bottom: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .description {
+    font-size: 0.8rem;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    color: #71717A;
+    opacity: 0.85;
+  }
+
+  .smallDescription {
+    font-size: 0.9rem;
+    margin-top: 6px;
+    line-height: 1.2;
+    color: #71717A;
+    opacity: 0.85;
+  }
+
+  .optionGroup {
+    margin-bottom: 16px;
+  }
+
+  .label {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+
+  .buttonGrid {
+    gap: 8px;
+  }
+
+  .shapeButton {
+    padding: 16px 12px;
+    font-size: 0.8rem;
+    flex: 1;
+    min-width: 100px;
+    max-width: none;
+  }
+
+  .inlineGroup {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .inlineGroup > .optionGroup {
+    margin-bottom: 12px;
+  }
+
+}
+  
+@media (max-width: 480px) {
+  .description {
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+    color: #6b7280;
+    opacity: 0.85;
+  }
+
+  .buttonGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .shapeButton {
+    padding: 12px 10px;
+    font-size: 0.75rem;
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .inlineGroup {
+    gap: 8px;
+  }
+
+  .optionGroup {
+    margin-bottom: 12px;
+  }
+
+  .label {
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+  }
+
+  .smallDescription {
+    font-size: 0.8rem;
+    margin-top: 4px;
+    color: #9ca3af;
+    opacity: 0.85;
+  }
+}

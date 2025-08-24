@@ -1,0 +1,39 @@
+.labelInputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.input {
+  background-color: var(--white-color);
+  border-radius: 8px;
+  height: 30px;
+  width: 100%;
+  border: none;
+  padding: 8px;
+
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  outline: none;
+}
+
+.input[type="number"]::-webkit-inner-spin-button,
+.input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.eye {
+  width: 20px;
+  height: 20px;
+}

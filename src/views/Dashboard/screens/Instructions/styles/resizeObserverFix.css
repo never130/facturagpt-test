@@ -1,0 +1,222 @@
+/* CSS fixes to prevent ResizeObserver loop errors */
+
+/* Optimize ReactFlow elements to prevent ResizeObserver loops */
+.react-flow,
+.react-flow__node,
+.react-flow__edge,
+.react-flow__viewport,
+.react-flow__renderer,
+.react-flow__pane,
+.react-flow__controls,
+.react-flow__background,
+.react-flow__minimap,
+.react-flow__attribution,
+.operatorNode,
+.flowArea {
+  /* Prevent layout thrashing */
+  contain: layout style paint;
+  
+  /* Force hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  
+  /* Prevent size changes from causing loops */
+  box-sizing: border-box;
+  
+  /* Optimize transitions */
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  
+  /* Allow size changes but optimize them */
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Optimize node transitions */
+.react-flow__node,
+.operatorNode {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.react-flow__node--dragging,
+.operatorNode--dragging {
+  transition: none;
+}
+
+/* Optimize child elements */
+.react-flow__node *,
+.operatorNode *,
+.react-flow * {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* Disable animations that might cause ResizeObserver loops */
+@keyframes resizeObserverFix {
+  from { opacity: 1; }
+  to { opacity: 1; }
+}
+
+.react-flow__node,
+.operatorNode {
+  animation: none !important;
+}
+
+/* Force stable dimensions */
+.react-flow__node,
+.operatorNode {
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: none;
+}
+
+/* Prevent flexbox from causing ResizeObserver loops */
+.flowArea {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Disable problematic CSS properties */
+.react-flow__node,
+.operatorNode {
+  /* Disable properties that cause frequent recalculations */
+  position: relative;
+  display: block;
+  
+  /* Prevent margin/padding changes from causing loops */
+  margin: 0;
+  padding: 1rem;
+  
+  /* Use fixed dimensions where possible */
+  width: auto;
+  height: auto;
+}
+
+/* Optimize for ResizeObserver */
+.react-flow__viewport {
+  /* Prevent viewport changes from causing loops */
+  transform: translateZ(0);
+  will-change: transform;
+  
+  /* Disable problematic properties */
+  overflow: visible;
+}
+
+/* Prevent ResizeObserver from observing hidden elements */
+.react-flow__node[style*="display: none"],
+.operatorNode[style*="display: none"] {
+  contain: strict;
+}
+
+/* Force stable rendering */
+.react-flow__renderer {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* Disable ResizeObserver for elements that don't need it */
+.react-flow__controls,
+.react-flow__background {
+  contain: strict;
+  transform: translateZ(0);
+}
+
+/* Prevent ResizeObserver loops in animations */
+.react-flow__node.react-flow__node--selected,
+.operatorNode.selected {
+  /* Use transform instead of size changes */
+  transform: translateZ(0) scale(1.02);
+}
+
+/* Optimize for performance */
+* {
+  /* Prevent layout thrashing */
+  contain: layout style paint;
+}
+
+/* Disable ResizeObserver for elements that change frequently */
+.react-flow__edge-path,
+.react-flow__edge-text {
+  contain: strict;
+}
+
+/* Force GPU acceleration */
+.react-flow,
+.flowArea {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Prevent ResizeObserver from observing elements during animations */
+.react-flow__node.animating,
+.operatorNode.animating {
+  contain: strict;
+  pointer-events: none;
+}
+
+/* Disable ResizeObserver for elements that are being dragged */
+.react-flow__node--dragging,
+.operatorNode--dragging {
+  contain: strict;
+  transform: translateZ(0);
+}
+
+/* Optimize for ResizeObserver performance */
+.react-flow__pane {
+  contain: layout style paint;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Prevent ResizeObserver loops in ReactFlow internals */
+.react-flow__handle {
+  contain: strict;
+  transform: translateZ(0);
+}
+
+/* Disable ResizeObserver for elements that don't need size observation */
+.react-flow__background {
+  contain: strict;
+  transform: translateZ(0);
+}
+
+/* Force stable dimensions for ResizeObserver */
+.react-flow__node,
+.operatorNode {
+  /* Use CSS custom properties for stable dimensions */
+  --node-width: auto;
+  --node-height: auto;
+  
+  width: var(--node-width);
+  height: var(--node-height);
+  
+  /* Prevent size changes from causing loops */
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+/* Disable ResizeObserver for elements that change frequently */
+.react-flow__edge {
+  contain: strict;
+  transform: translateZ(0);
+}
+
+/* Optimize for ResizeObserver performance */
+.react-flow__minimap {
+  contain: strict;
+  transform: translateZ(0);
+}
+
+/* Prevent ResizeObserver loops in ReactFlow controls */
+.react-flow__controls {
+  contain: strict;
+  transform: translateZ(0);
+}
+
+/* Disable ResizeObserver for elements that don't need it */
+.react-flow__attribution {
+  contain: strict;
+  transform: translateZ(0);
+} 

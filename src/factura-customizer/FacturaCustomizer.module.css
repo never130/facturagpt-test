@@ -1,0 +1,209 @@
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+  background-color: #F6F6F6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.mainContent {
+  height: 100px;
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.contentArea {
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+  background-color: #F6F6F6;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  overflow: visible;
+  position: relative;
+  box-sizing: border-box;
+}
+  
+
+
+.activeSection {
+  font-weight: 500;
+  position: relative;
+  color: var(--_10a37f-background);
+  background-color: var(--db-background);
+  border-radius: 15px;
+  padding-left: 12px;
+  border-left: 4px solid var(--_10a37f-background);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.previewColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  height: fit-content;
+  max-height: 100%;
+  overflow-y: scroll;
+  flex-shrink: 0;
+  padding: 0px;
+  width: 250px;
+  min-width: 250px;
+  box-sizing: border-box;
+  margin: 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .mainContent {
+    max-width: 100%;
+    /* padding: 0 20px; */
+  }
+
+  .contentArea {
+    padding: 14px 6px;
+    gap: 10px;
+  }
+
+  .previewColumn {
+    width: 320px;
+    min-width: 320px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainContent {
+    padding: 0 16px;
+  }
+
+  .contentArea {
+    padding: 16px 12px;
+    gap: 16px;
+  }
+
+  .previewColumn {
+    width: 300px;
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    flex-direction: column;
+    overflow-y: auto;
+    height: auto;
+    width: 100%;
+    padding: 0 16px;
+    overflow-x: visible;
+  }
+
+  .contentArea {
+    flex-direction: column;
+    padding: 16px 0;
+    align-items: stretch;
+    height: auto;
+    overflow: visible;
+    width: 100%;
+    margin: 0;
+    gap: 20px;
+    min-width: 0;
+  }
+
+
+  .previewColumn {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    align-self: stretch;
+    margin: 0;
+    overflow: visible;
+    order: 1;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 0 12px;
+    overflow-x: visible;
+  }
+
+  .contentArea {
+    padding: 12px 0;
+    gap: 16px;
+    overflow: visible;
+    min-width: 0;
+  }
+
+  .previewColumn {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .mainContent {
+    padding: 0 8px;
+    overflow-x: visible;
+  }
+
+  .contentArea {
+    padding: 8px 0;
+    gap: 12px;
+    overflow: visible;
+  }
+
+
+
+  .previewColumn {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .mainContent {
+    padding: 0 6px;
+    overflow-x: visible;
+  }
+
+  .contentArea {
+    padding: 6px 0;
+    gap: 10px;
+    overflow: visible;
+  }
+
+
+
+  .previewColumn {
+    width: 100%;
+    margin: 0;
+  }
+}

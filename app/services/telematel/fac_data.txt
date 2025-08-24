@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<invoice>
+    <vat_number type="cif">%clientCif%</vat_number>
+    <date type="date" mask="AAAA-MM-DD">%invoiceDate%</date>
+    <reference>%numberDocument%</reference>
+    <lines for-data="productList">
+            <supplier_delivery_note_id>%productAlbaran%</supplier_delivery_note_id>
+            <quantity type="float">%productQuantity%</quantity>
+            <product_id>%productId%</product_id>
+            <product_reference type="string">%productRef%</product_reference>
+            <brand_id type="integer">0</brand_id>
+            <notification_id type="integer">0</notification_id>
+            <description>%productDescription%</description>
+            <discount_1 type="float">%productDiscountAmount%</discount_1>
+            <notification_line_number type="integer">%n%</notification_line_number>
+            <line_order type="integer">%n%</line_order>
+            <price_quantity type="float">1.00</price_quantity>
+            <price type="float">%productImportUnit%</price>
+            <line_type type="string">A</line_type>  
+    </lines>
+    <taxes for-data="productList">
+            <tax_id type="float">1</tax_id>
+    </taxes>
+    <gross_amount type="float">%partialAmount%</gross_amount>
+    <amount type="float">%totalAmount%</amount>
+    <protocol>OCR</protocol>    
+    <supplier_invoice_id type="string">%numberDocument%</supplier_invoice_id>
+    <invoice_type></invoice_type>
+</invoice>

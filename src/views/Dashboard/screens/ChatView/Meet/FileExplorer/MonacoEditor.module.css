@@ -1,0 +1,287 @@
+.monacoContainer {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+/* .monacoContainer :global(.monaco-editor) {
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.monacoContainer :global(.monaco-editor .overflow-guard) {
+  border-radius: 0 !important;
+}
+
+.monacoContainer :global(.monaco-editor .margin) {
+  background-color: #252526 !important;
+}
+
+.monacoContainer :global(.monaco-editor .monaco-editor-background) {
+  background-color: #1e1e1e !important;
+}
+
+.monacoContainer :global(.monaco-editor .line-numbers) {
+  color: #858585 !important;
+}
+
+.monacoContainer :global(.monaco-editor .current-line) {
+  background-color: #2a2d2e !important;
+  border: none !important;
+}
+
+.monacoContainer :global(.monaco-editor .selection) {
+  background-color: #264f78 !important;
+}
+
+.monacoContainer :global(.monaco-editor .inactive-selection) {
+  background-color: #3a3d41 !important;
+}
+
+.monacoContainer :global(.monaco-editor .cursor) {
+  background-color: #aeafad !important;
+}
+
+.monacoContainer :global(.monaco-editor .whitespace) {
+  color: #3b3b3b !important;
+}
+
+.monacoContainer :global(.monaco-editor .indent-guide) {
+  background-color: #404040 !important;
+}
+
+.monacoContainer :global(.monaco-editor .indent-guide.active) {
+  background-color: #707070 !important;
+}
+
+.monacoContainer :global(.monaco-editor .scrollbar) {
+  background-color: #2d2d30 !important;
+}
+
+.monacoContainer :global(.monaco-editor .scrollbar .slider) {
+  background-color: #424242 !important;
+}
+
+.monacoContainer :global(.monaco-editor .scrollbar .slider:hover) {
+  background-color: #4f4f4f !important;
+}
+
+.monacoContainer :global(.monaco-editor .scrollbar .slider.active) {
+  background-color: #5a5a5a !important;
+}
+
+
+.monacoContainer :global(.monaco-editor .token.keyword) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.string) {
+  color: #ce9178 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.comment) {
+  color: #6a9955 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.number) {
+  color: #b5cea8 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.regexp) {
+  color: #d16969 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.type) {
+  color: #4ec9b0 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.class) {
+  color: #4ec9b0 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.interface) {
+  color: #4ec9b0 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.enum) {
+  color: #4ec9b0 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.function) {
+  color: #dcdcaa !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.variable) {
+  color: #9cdcfe !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.constant) {
+  color: #4fc1ff !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.parameter) {
+  color: #9cdcfe !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.property) {
+  color: #9cdcfe !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.operator) {
+  color: #d4d4d4 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.delimiter) {
+  color: #d4d4d4 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.tag) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.attribute.name) {
+  color: #9cdcfe !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.attribute.value) {
+  color: #ce9178 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.meta) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.meta.tag) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.punctuation.definition.tag) {
+  color: #808080 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.punctuation.definition.tag.begin) {
+  color: #808080 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.punctuation.definition.tag.end) {
+  color: #808080 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.entity.name.tag) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.entity.other.attribute-name) {
+  color: #9cdcfe !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.support.type.property-name) {
+  color: #9cdcfe !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.variable.language) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.variable.other) {
+  color: #9cdcfe !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.variable.other.property) {
+  color: #9cdcfe !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.constant.language) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.constant.numeric) {
+  color: #b5cea8 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.constant.character) {
+  color: #ce9178 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.constant.other) {
+  color: #4fc1ff !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.invalid) {
+  color: #f44747 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.invalid.deprecated) {
+  color: #f44747 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.invalid.illegal) {
+  color: #f44747 !important;
+}
+
+.monacoContainer :global(.monaco-editor .token.invalid.unexpected) {
+  color: #f44747 !important;
+} */
+
+/* Estilos para el resaltado JSX/TSX */
+.monacoContainer :global(.JSXElement.JSXText.tastyPizza) {
+  color: #d4d4d4 !important;
+}
+
+.monacoContainer :global(.JSXElement.JSXIdentifier) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.JSXElement.JSXAttribute) {
+  color: #9cdcfe !important;
+}
+
+.monacoContainer :global(.JSXElement.JSXAttributeValue) {
+  color: #ce9178 !important;
+}
+
+.monacoContainer :global(.JSXElement.JSXExpression) {
+  color: #dcdcaa !important;
+}
+
+.monacoContainer :global(.JSXElement.JSXClosingElement) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.JSXElement.JSXSelfClosingElement) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.JSXElement.JSXFragment) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.JSXElement.JSXOpeningElement) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.JSXElement.JSXClosingFragment) {
+  color: #569cd6 !important;
+}
+
+.monacoContainer :global(.JSXElement.JSXOpeningFragment) {
+  color: #569cd6 !important;
+}
+
+/* Estilos para el modo expandido */
+.expanded .monacoContainer {
+  height: calc(100vh - 120px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .monacoContainer {
+    font-size: 12px;
+  }
+  
+  .monacoContainer :global(.monaco-editor) {
+    font-size: 12px !important;
+  }
+} 

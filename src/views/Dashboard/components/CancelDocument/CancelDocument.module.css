@@ -1,0 +1,35 @@
+.cancelledDocuments {
+  padding: 20px;
+  .documents {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .document {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--d0004b-color);
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+  }
+  .errors {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    p,
+    span {
+      color: #222;
+      font-family: Inter;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 21px; 
+    }
+  }
+}

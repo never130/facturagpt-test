@@ -1,0 +1,466 @@
+.qrCodePreviewContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 250px;
+  min-width: 200px;
+  flex-shrink: 0;
+  margin: 0 auto;
+  position: relative;
+  max-height: calc(100vh - 140px);
+  min-height: 400px;
+  overflow-y: auto;
+  overflow-x: visible;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  box-sizing: border-box;
+}
+
+.qrCodePreviewContainer::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+.qrCodeWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+.removeButton {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #ff4d4f;
+  color: var(--white-color);
+  border: 2px solid var(--white-color);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 1.1rem;
+  line-height: 18px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px var(--_00000033-background);
+}
+
+.removeButton:hover {
+  background-color: #d9363e;
+}
+
+.savedStylesSection {
+  width: 100%;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 1px solid #f0f0f0;
+  box-sizing: border-box;
+}
+
+.addNewStyleButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0px;
+  cursor: pointer;
+  border: 1px solid var(--db-background);
+  border-radius: 20px;
+  padding: 8px 10px;
+  width: fit-content;
+  box-sizing: border-box;
+  background-color: #ffffff;
+
+}
+
+.plusIcon {
+  font-size: 16px;
+  color: #666666;
+  font-weight: 500;
+}
+
+.newStyleText {
+  font-size: 14px;
+  color: #333333;
+  font-weight: 400;
+}
+
+.savedStylesGrid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.savedStylePreviewContainer {
+  position: relative;
+  margin-bottom: 8px;
+  width: fit-content;
+}
+
+.savedStylePreview {
+  min-width: 80px;
+  min-height: 80px;
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  object-fit: cover;
+}
+
+.removeSavedStyleButton {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  z-index: 10;
+  background-color: #ef4444 !important;
+}
+
+.removeSavedStyleButton:hover {
+  background-color: #dc2626 !important;
+}
+
+.selectedRemoveButton {
+  background-color: #ef4444 !important;
+}
+
+.selectedRemoveButton:hover {
+  background-color: #dc2626 !important;
+}
+
+.modeToggleSection {
+  width: 100%;
+  padding: 14px 0px;
+  border-top: 1px solid #f0f0f0;
+  box-sizing: border-box;
+}
+
+.modeToggleItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modeToggleItem:last-child {
+  margin-bottom: 0;
+}
+
+.modeLabel {
+  font-size: 14px;
+  color: #333333;
+  font-weight: 400;
+}
+
+.toggleSwitch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background-color: #e5e5e5;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.toggleSwitch.toggleActive {
+  background-color: #000000;
+}
+
+.toggleSlider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggleActive .toggleSlider {
+  transform: translateX(20px);
+}
+
+.errorCorrectionSection {
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+  box-sizing: border-box;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  color: #333333;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+}
+
+.errorCorrectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #71717A !important;
+}
+
+.errorCorrectionDescription {
+  font-size: 10px;
+  color: #71717A !important;
+  margin: 0;
+  line-height: 1.4;
+}
+
+@media (max-width: 1200px) {
+  .qrCodePreviewContainer {
+    max-width: 320px;
+    min-width: 280px;
+    padding: 14px;
+  }
+
+}
+
+@media (max-width: 1024px) {
+  .qrCodePreviewContainer {
+    max-width: 300px;
+    min-width: 260px;
+    padding: 12px;
+    max-height: calc(100vh - 160px);
+    min-height: 350px;
+  }
+
+
+  .savedStylesSection,
+  .modeToggleSection,
+  .errorCorrectionSection {
+    margin-top: 20px;
+    padding-top: 16px;
+    padding-bottom: 20px;
+  }
+
+  .savedStylePreview {
+    max-width: 80px;
+    max-height: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .qrCodePreviewContainer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0 auto;
+    max-height: none;
+    min-height: 300px;
+    padding: 12px;
+    align-self: center;
+  }
+
+
+
+  .savedStylesSection,
+  .modeToggleSection,
+  .errorCorrectionSection {
+    margin-top: 16px;
+    padding-top: 12px;
+    padding-bottom: 16px;
+  }
+
+  .savedStylesGrid {
+    gap: 10px;
+  }
+
+  .savedStylePreview {
+    max-width: 70px;
+    max-height: 70px;
+  }
+
+  .addNewStyleButton {
+    margin-bottom: 12px;
+    margin-top: 8px;
+    padding: 12px;
+  }
+
+  .plusIcon {
+    font-size: 14px;
+  }
+
+  .newStyleText {
+    font-size: 13px;
+  }
+
+  .modeToggleItem {
+    margin-bottom: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .modeLabel {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .qrCodePreviewContainer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 10px;
+    max-height: none;
+    min-height: 260px;
+    margin: 0 auto;
+  }
+
+
+  .savedStylesSection,
+  .modeToggleSection,
+  .errorCorrectionSection {
+    margin-top: 12px;
+    padding-top: 8px;
+    padding-bottom: 12px;
+  }
+
+  .addNewStyleButton {
+    margin-bottom: 8px;
+    margin-top: 6px;
+    padding: 10px;
+  }
+
+  .plusIcon {
+    font-size: 12px;
+  }
+
+  .newStyleText {
+    font-size: 11px;
+  }
+
+  .savedStylesGrid {
+    gap: 8px;
+  }
+
+  .savedStylePreview {
+    max-width: 60px;
+    max-height: 60px;
+  }
+
+  .sectionTitle {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .modeLabel {
+    font-size: 12px;
+  }
+
+  .modeToggleItem {
+    margin-bottom: 12px;
+  }
+
+  .toggleSwitch {
+    width: 38px;
+    height: 20px;
+  }
+
+  .toggleSlider {
+    width: 16px;
+    height: 16px;
+  }
+
+  .toggleActive .toggleSlider {
+    transform: translateX(18px);
+  }
+
+  .errorCorrectionContent {
+    gap: 8px;
+  }
+
+  .errorCorrectionDescription {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 375px) {
+  .qrCodePreviewContainer {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+  }
+
+
+  .savedStylePreview {
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  .addNewStyleButton {
+    padding: 8px;
+  }
+
+  .plusIcon {
+    font-size: 10px;
+  }
+
+  .newStyleText {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .qrCodePreviewContainer {
+    width: 100%;
+    max-width: 100%;
+    padding: 6px;
+    min-height: 220px;
+  }
+
+
+  .savedStylesSection,
+  .modeToggleSection,
+  .errorCorrectionSection {
+    margin-top: 8px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+  }
+
+  .savedStylePreview {
+    max-width: 45px;
+    max-height: 45px;
+  }
+
+  .sectionTitle {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .modeLabel {
+    font-size: 11px;
+  }
+
+  .toggleSwitch {
+    width: 34px;
+    height: 18px;
+  }
+
+  .toggleSlider {
+    width: 14px;
+    height: 14px;
+  }
+
+  .toggleActive .toggleSlider {
+    transform: translateX(16px);
+  }
+}

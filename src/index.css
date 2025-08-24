@@ -1,0 +1,146 @@
+:root {
+
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+
+  --black: #000000;
+  --_00000033-background: #00000033;
+  --_232222-color: #232222;
+  --_292d32-color: #292d32;
+  --_374151-color: #374151;
+  --f5f5f538-background: #f5f5f538;
+  --_4f5660-color: #4f5660;
+  --_67-color: #676767;
+  --_9b-color: #9b9b9b;
+  --aaa-color: #aaa;
+  --white-color: white;
+  --f5-background: #f5f5f5;
+  --ed-background: #ededed;
+  --db-background: #dbdbdb;
+  --_18181b-color: #18181b;
+  --1e293b-color: #1e293b;
+  --_264f88-color: #264f88;
+  --f2c6c2-background: #f2c6c2;
+  --f2cfc2-background: #f2cfc2;
+  --f2e3c2-background: #f2e3c2;
+  --c2d8f2-background: #c2d8f2;
+  --d7c5f6-background: #d7c5f6;
+  --f0c2f2-background: #f0c2f2;
+  --_c2f2d33b-background: #c2f2d33b;
+  --_c2f2d3-background: #c2f2d3;
+  --_8e8eb7-color: #8e8eb7;
+  --e0f2fe-background: #e0f2fe;
+  --fff6d4-background: #fff6d4;
+  --0070f3-color: #0070f3;
+  --622fae-color: #622fae;
+  --cyan: #0ff;
+  --_122521-background: #122521;
+  --_073f31-color: #073f31;
+  --_10a37e6a-background: #10a37e6a;
+  --009f7a-color: #009f7a;
+  --_10a37f-background: #6ee7b7;
+  --3cb077-background: #3cb077;
+  --2ad348-background: #2ad348;
+  --dcfce7-background: #dcfce7;
+  --8a0300-color: #8a0300;
+  --d0004b-color: #d0004b;
+  --red-color: red;
+  --ff5c5c-background: #ff5c5c;
+  --ff5500-color: #ff5500;
+  --ef0-background: #ef0;
+  --a14689-background: #a14689;
+  --a194b7-border: #a194b7;
+  --ad8caf-border: #ad8caf;
+  --8c9caf-border: #8c9caf;
+  --b6ab92-border: #b6ab92;
+  --af8f8c-border: #af8f8c;
+}
+
+
+[data-theme="dark"] {
+  --black: #ffffff;
+
+  /* Variables de escala de grises para tema oscuro */
+  --gray-50: #1f2937;
+  --gray-100: #374151;
+  --gray-200: #050606;
+  --gray-300: #6b7280;
+  --gray-400: #9ca3af;
+  --gray-500: #d1d5db;
+  --gray-700: #f9fafb;
+
+  --f5-background: #242525;
+  --f5f5f538-background: #ffffff1A;
+  --_9b-color: #bfbfbf;
+  --_073f31-color: #7ed9b1;
+  --ed-background: #3a3a3a;
+  --_67-color: #b3b3b3;
+  --f0-border: #2c2c2e;
+  --f0-border: rgb(58 56 56 / 20%);
+  --white-color: black;
+  --_ffffff33-background: #ffffff33;
+
+  --622fae-color: #5b21b6;
+
+  --cyan: #088a8a;
+  --_122521-background: #0a1615;
+  --_10a37e6a-background: rgba(16, 163, 126, 0.3);
+  --db-background: #333333;
+  --ff5c5c-background: #b94141;
+  --_c2f2d3-background: #2a4d3f;
+  --f2c6c2-background: #663c3a;
+  --f2cfc2-background: #6a403c;
+  --f2e3c2-background: #6f5c3a;
+  --c2d8f2-background: #3d4d66;
+  --d7c5f6-background: #4a3a6a;
+  --f0c2f2-background: #6a3a6f;
+  --a14689-background: #7a3265;
+  --ef0-background: #53602e;
+  --3cb077-background: #2c8b64;
+  --dcfce7-background: #166534;
+  --2ad348-background: #1e8a35;
+  --5df978-background: #3b9f55;
+  --fff6d4-background: #4b4a3a;
+
+  --1e293b-color: #cbd5e1;
+  --_10a37f-background: #6ee7b7;
+  --0070f3-color: #3399ff;
+  --8a0300-color: #d94c47;
+  --ff5500-color: #ff8a4c;
+  --009f7a-color: #1ad1a3;
+  --aaa-color: #666666;
+  --_18181b-color: #c9c9c9;
+
+  --ec-color: #2a2a2a;
+  --_4f5660-color: #9a9fa7;
+  --_232222-color: #dddddd;
+  --_292d32-color: #c4c7cc;
+  --_8e8eb7-color: #b1b3c8;
+  --_374151-color: #a0a7b4;
+  --_264f88-color: #1d2a5d;
+  --red-color: #ff6b6b;
+  --d0004b-color: #a0003a;
+
+
+  --a194b7-border: #c7bbde;
+  --ad8caf-border: #dabbdc;
+  --8c9caf-border: #b7c7de;
+  --b6ab92-border: #d9cfb6;
+  --af8f8c-border: #d4b3b0;
+  --_10a37f-border: #0b735e;
+}
+
+
+
+/* Inicialización de indicadores de ayuda */
+[data-help] {
+  position: relative;
+}
+
+/* Importar estilos del componente HelpPopup */
+@import url('./components/HelpPopup/HelpPopup.css');

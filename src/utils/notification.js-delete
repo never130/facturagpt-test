@@ -1,0 +1,67 @@
+import apiBackend from "@src/apiBackend.js";
+
+
+export const updateNotificationDB = async (notificationId) => {
+    try {
+        const user = localStorage.getItem("user");
+        const userJson = JSON.parse(user);
+        const token = userJson.accessToken;
+        const response = await apiBackend.put('/notifications/view-notification', { notificationId }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+
+        if (!response?.data?.success) {
+            throw new Error('Failed to update notification');
+        }
+
+        return {
+            success: true,
+            error: false,
+            message: 'Notification updated successfully',
+            data: {
+                id: notificationId,
+                status: 'viewed'
+            }
+        }
+    }catch (e) {
+        return {
+            success: false,
+            error: true,
+            message: e.message || 'Error updating notification in the database'
+        };
+    }
+}
+
+export const getNotificationsViewed = async () => {
+    try {
+        const user = localStorage.getItem("user");
+        const userJson = JSON.parse(user);
+        const token = userJson.accessToken;
+        const response = await apiBackend.get('/notifications/get-notifications-status-viewed', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (!response?.data?.success) {
+            throw new Error('Failed to fetch viewed notifications');
+        }
+
+        return {
+            success: true,
+            error: false,
+            message: 'Viewed notifications fetched successfully',
+            data: response.data.notifications || []
+        };
+    } catch (e) {
+        return {
+            success: false,
+            error: true,
+            message: e.message || 'Error fetching viewed notifications'
+        };
+    }
+}
+
+export default null;

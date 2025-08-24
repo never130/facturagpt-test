@@ -1,0 +1,50 @@
+.navigationPopupsContainer{
+    position: sticky;
+    top: 0px;
+    width: 100%;
+z-index: 1;
+    @media (width<=768px) {
+      max-width: 100%;
+      min-width: 100%;
+    }
+    >div{
+      height: 100vh;
+      /* height: calc(100vh - 50px); */
+      overflow-y: scroll;
+      overflow-x: hidden;
+      &::-webkit-scrollbar{
+        display: none;
+      }
+      /* scrollbar-width: none;
+  -ms-overflow-style: none;  
+      &::-webkit-scrollbar {
+        display: none; 
+      } */
+    }
+  }
+
+  .navigationPopupsContainerBill{
+    max-width: 300px;
+  }
+
+  .navigationPopupsContainerContactAsset{
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    max-width: 240px;
+    min-width: 230px;
+
+    @media (width<=768px) {
+      max-width: 100%;
+      min-width: 100%;
+    }
+    >div{
+      height: 100%;
+      overflow-y: visible;
+      /* scrollbar-width: none;
+  -ms-overflow-style: none;  
+      &::-webkit-scrollbar {
+        display: none; 
+      } */
+    }
+  }

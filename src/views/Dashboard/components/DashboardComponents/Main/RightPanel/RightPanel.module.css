@@ -1,0 +1,569 @@
+.rightPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: sticky;
+    width: 100%;
+    top: 20px;
+    height: fit-content;
+    align-self: flex-start;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+.chartCard {
+    background: var(--white-color);
+    /* border: 1px solid #e2e8f0; */
+    border-radius: 12px;
+    padding: 10px;
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */
+}
+
+.chartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* margin-bottom: 20px; */
+}
+
+
+
+.chartTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--1e293b-color);
+    margin-bottom: 4px;
+    margin-top: 0px;
+}
+
+.chartSubtitle {
+    color: #727272;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    button {
+        color: #0000004D
+;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        &.active {
+            color: var(--black);
+        }
+    }
+
+}
+
+.chartControls {
+    font-size: 12px;
+    color: var(--_67-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* margin-right: 18%; */
+}
+
+
+.chartValue {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--1e293b-color);
+}
+
+
+.barChart {
+    display: flex;
+    align-items: end;
+    height: 120px;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+
+.bar {
+    flex: 1;
+    background: var(--_10a37f-background);
+    border-radius: 3px 3px 0 0;
+    min-height: 12px;
+    transition: all 0.2s ease;
+}
+
+.bar:hover {
+    background: var(--_10a37f-background);
+    transform: scaleY(1.05);
+}
+
+.bar:nth-child(2n) {
+    background: #D9D9D9;
+}
+
+.chartLabels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--_67-color);
+    font-weight: 500;
+    gap:10px;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px;
+}
+
+
+.newPanelBtn {
+    border: 1px solid #cccccc;
+    background: none;
+    color: var(--black);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 30px;
+    transition: all 0.2s ease;
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.newPanelBtn:hover {
+    background: var(--ed-background);
+}
+
+
+.chatPanel {
+    text-align: center;
+    background-color: var(--f5-background);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    padding: 12px;
+}
+
+
+
+.chatDescription {
+    font-size: 14px;
+
+    color: var(--_67-color);
+    margin-bottom: 16px;
+
+    font-weight: 500;
+}
+
+.chatButton {
+    width: 100%;
+    padding: 10px 20px;
+    
+    background: linear-gradient(135deg, var(var(--_10a37f-background)) 0%, var(--_10a37f-background) 100%);
+    color: var(--white-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.chatButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--_073f31-color);
+}
+
+.mediaControls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px;
+
+
+}
+
+.mediaBtn {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--white-color);
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px var(--_00000033-background);
+
+    svg {
+        width: 22px;
+        height: 22px;
+    }
+    &.pause {
+        svg {
+            width: 32px;
+            height: 32px;
+        }
+    }
+}
+
+.mediaBtn:hover {
+    transform: scale(1.05);
+}
+
+.mediaBtn.play {
+
+    background: linear-gradient(135deg, var(var(--_10a37f-background)) 0%, var(--_10a37f-background) 100%);
+}
+
+.mediaBtn.pause {
+    background: linear-gradient(135deg, var(--0070f3-color) 0%, var(--0070f3-color) 100%);
+}
+
+.mediaBtn.stop {
+    background: linear-gradient(135deg, var(--red-color) 0%, var(--d0004b-color) 100%);
+
+}
+
+
+
+.timerDisplay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.timerDisplay.playing {
+    background: var(--ed-background);
+    color: var(--_10a37f-background);
+}
+
+.timerDisplay.paused {
+    background: var(--fef2f2-background);
+    color: var(--d0004b-color);
+}
+
+.timeHour {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.month{
+    display: flex;
+    flex:1  
+}
+
+
+
+
+@media (max-width: 1000px) {
+    .mainGrid {
+        padding: 10px;
+    }
+    .chartHeader {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+
+.chronometersOptions{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+
+  .playButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 6px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    svg{
+        height: 90%;
+        width: 90%;
+    }
+  }
+
+  .playButton.pause{
+    background-color: #A7A7A7;
+  }
+
+  .playButton.play{
+    background-color: #10A37F;
+  }
+  .timeDisplayContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+    .chronometerControls{
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+  }
+
+
+  .timeDisplay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid #10A37F;
+    font-size: 1.5rem;
+    background: #fff;
+
+    span{
+        color: #4A5565;
+        font-size: 12px;
+    }
+  }
+
+  .chronometerContainer{
+    display: flex;
+    align-items: start;
+    margin-left: 20px;
+  }
+
+  .infoChronometer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+width: 60%;
+    .section{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .sectionTitle{
+            color: #6A7282;
+            font-size: 13px;
+        }
+
+        .activityContainer{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 10px;
+            .activity{
+                border: 1px solid #E5E7EB;
+                color: #4A5565;
+                padding:8px 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 12px;
+            }
+        }
+.sessionHeader{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    span{
+
+    }
+}
+        .lap{
+            border: 1px solid #F3F4F6;
+            background-color: #f9fafb54;
+            padding: 12px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            >div{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                span{
+                    font-size: 14px;
+                    color: #0A0A0A;
+                }
+
+                span:nth-child(2){
+                    color: #6A7282;
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .bestLap{
+            border:1px solid #B9F8CF;
+            background-color: #f0fdf4b3;
+            span{
+                color: #016630;
+            }
+        }
+    }
+  }
+
+  .btnSectionsSelector {
+    background-color: var(--ed-background);
+    display: flex;
+    padding: 4px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    svg{
+      fill: var(--_9b-color);
+      height: 20px;
+      width: 20px;
+    }
+    
+    button:nth-child(2) svg {
+      height: 30px;
+      width: 30px;
+    }
+    button {
+      flex: 1;
+      border-radius: 8px;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      -ms-border-radius: 8px;
+      -o-border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      border: 1px solid transparent;
+      background-color: transparent;
+      color: var(--_9b-color);
+      padding: 5px 0;
+    }
+    .sectionSelect {
+      background-color: var(--white-color);
+      color: var(--black);
+      border: 1px solid var(--_00000033-background);
+      svg{
+        fill: var(--_292d32-color);
+      
+      }
+    }
+  }
+  .contactAssetItem{
+    padding: 10px 0;
+    border-bottom: 1px solid #0000000e;
+  }
+
+
+  .rightSectionAssetContactHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    .rightSectionAssetContactHeaderInfo{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        p,h3{
+            margin: 0;
+        }
+        h3{
+            color: #222222;
+            font-weight: 500;
+            margin: 5px 0;
+        }
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        span{
+            color: #ACACAC;
+        }
+
+    }
+}
+.tagsContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .tagItem{
+        padding: 5px 10px;
+        border-radius: 4px;
+        p{
+            margin: 0;
+            display: inline-block;
+            font-weight: bold;
+        }
+        span{
+            cursor: pointer;
+        }
+    }
+}
+
+.btnContactInfoContainer{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    pointer-events: auto;
+    button{
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      padding: 0;
+      svg{
+        color: #FFFFFF;
+        fill: #FFFFFF;
+      }
+      .activeBtn{
+        color: #FFFFFF;
+        fill: #FFFFFF;
+      }
+    }
+    svg{
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .rightSectionAssetContactFooter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .percentageContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }

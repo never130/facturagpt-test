@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+.buttonTemplate {
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  min-width: fit-content;
+  color: var(--black);
+  @media (width<=768px) {
+    padding: 6px 10px;
+  }
+  &:disabled{
+    cursor: not-allowed;
+  }
+}
+
+.buttonTemplate:hover {
+}
+
+.buttonTemplateGreen {
+  font-size: 14px;
+  background-color: var(--_10a37f-background);
+  transition: all 100ms;
+  -webkit-transition: all 100ms;
+  -moz-transition: all 100ms;
+  -ms-transition: all 100ms;
+  -o-transition: all 100ms;
+  &:hover {
+    background-color: var(--009f7a-color);
+  }
+  color: var(--db-background);
+  &:disabled{
+    background-color: #0d92708b;
+  }
+}
+
+.buttonTemplateDiscard {
+  background-color: var(--red-color);
+  color: var(--dark-color);
+  cursor: pointer;
+}
+.buttonTemplateWhite {
+  background-color: var(--white-color);
+  border: 1px solid var(--db-background);
+  color: var(--black);
+}
+
+.buttonTemplateWhite:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.buttonTemplateGray {
+  background-color: var(--_9b-color);
+  border: 1px solid var(--_67-color);
+  color: var(--white-color);
+}
+.buttonTemplateButton {
+  text-decoration: underline;
+  color: var(--_292d32-color);
+  font-weight: 500;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 0;
+  position: relative;
+}
+
+.buttonTemplate.filteredUserAutomationSelected {
+  position: relative;
+}
+
+.buttonTemplate.filteredUserAutomationSelected:hover::after {
+  content: "Crea y Selecciona un automata";
+  position: absolute;
+  top: 105%;
+  width: 200px;
+  color: var(--black);
+  padding: 2px 4px;
+  background: var(--white-color);
+  border-radius: 6px;
+  font-size: 12px;
+  box-shadow: 0 1px 1px var(--_00000033-background);
+  z-index: 999999;
+}
+
+.buttonTemplateBorder{
+  border: 1px solid var(--db-background);
+  background-color: var(--white-color);
+  padding: 8px;
+}
+
+
+.buttonTemplateLightGray{
+  background-color: var(--db-background);
+  color: var(--_9b-color);
+}

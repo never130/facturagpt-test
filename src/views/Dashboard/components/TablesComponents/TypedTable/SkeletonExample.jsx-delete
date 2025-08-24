@@ -1,0 +1,122 @@
+import React, { useState } from 'react';
+import { createSkeletonTable, basicSkeletonConfig, advancedSkeletonConfig } from './skeletonConfigs';
+
+// Ejemplo de cómo integrar el skeleton en el sistema de tablas existente
+const SkeletonExample = () => {
+  const [skeletonTables, setSkeletonTables] = useState([
+    createSkeletonTable(basicSkeletonConfig),
+    createSkeletonTable(advancedSkeletonConfig)
+  ]);
+
+  const handleSkeletonCellClick = (rowIndex, colIndex, cellKey) => {
+    console.log(`Celda skeleton clickeada: ${cellKey} (${rowIndex}, ${colIndex})`);
+  };
+
+  const handleSkeletonFormulaApply = (formula) => {
+    console.log('Fórmula skeleton aplicada:', formula);
+    // Aquí puedes implementar la lógica para aplicar la fórmula
+    // Por ejemplo, actualizar datos en una base de datos
+  };
+
+  // Props que se pasarían a TypedTable
+  const typedTableProps = {
+    tableDataMap: {}, // Para skeleton no necesitas datos reales
+    contactSelected: {},
+    dynamicTableRef: null,
+    contactRenderRow: null,
+    assetRenderRow: null,
+    documentRenderRow: null,
+    selectAllContacts: () => {},
+    toggleSelection: () => {},
+    setOrderedTable: () => {},
+    setWidthColumn: () => {},
+    recient: false,
+    // Props específicas del skeleton
+    skeletonConfig: basicSkeletonConfig,
+    onSkeletonCellClick: handleSkeletonCellClick,
+    onSkeletonFormulaApply: handleSkeletonFormulaApply
+  };
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <h2>Ejemplo de Integración con Skeleton</h2>
+      
+      <div style={{ marginBottom: '20px' }}>
+        <h3>Tabla Skeleton Básica</h3>
+        <p>Esta tabla se renderiza automáticamente como skeleton porque su tipo es 'skeleton'</p>
+        
+        {/* Aquí es donde normalmente usarías TypedTable */}
+        <div style={{ 
+          border: '2px dashed #667eea', 
+          padding: '20px', 
+          borderRadius: '8px',
+          background: '#f8f9fa'
+        }}>
+          <p><strong>TypedTable se renderizaría aquí con:</strong></p>
+          <pre style={{ background: '#e9ecef', padding: '10px', borderRadius: '4px' }}>
+{`<TypedTable 
+  table={skeletonTables[0]}
+  {...typedTableProps}
+/>`}
+          </pre>
+        </div>
+      </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <h3>Estructura de la Tabla Skeleton</h3>
+        <pre style={{ background: '#e9ecef', padding: '10px', borderRadius: '4px', overflow: 'auto' }}>
+{JSON.stringify(skeletonTables[0], null, 2)}
+        </pre>
+      </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <h3>Configuración del Skeleton</h3>
+        <pre style={{ background: '#e9ecef', padding: '10px', borderRadius: '4px', overflow: 'auto' }}>
+{JSON.stringify(basicSkeletonConfig, null, 2)}
+        </pre>
+      </div>
+
+      <div>
+        <h3>Pasos para Integrar en tu Aplicación</h3>
+        <ol>
+          <li>
+            <strong>Importar las configuraciones:</strong>
+            <pre style={{ background: '#e9ecef', padding: '5px', borderRadius: '4px' }}>
+{`import { createSkeletonTable, basicSkeletonConfig } from './skeletonConfigs';`}
+            </pre>
+          </li>
+          <li>
+            <strong>Crear una tabla skeleton:</strong>
+            <pre style={{ background: '#e9ecef', padding: '5px', borderRadius: '4px' }}>
+{`const skeletonTable = createSkeletonTable(basicSkeletonConfig);`}
+            </pre>
+          </li>
+          <li>
+            <strong>Usar TypedTable normalmente:</strong>
+            <pre style={{ background: '#e9ecef', padding: '5px', borderRadius: '4px' }}>
+{`<TypedTable 
+  table={skeletonTable}
+  skeletonConfig={basicSkeletonConfig}
+  onSkeletonCellClick={handleCellClick}
+  onSkeletonFormulaApply={handleFormulaApply}
+  {...otherProps}
+/>`}
+            </pre>
+          </li>
+        </ol>
+      </div>
+
+      <div style={{ marginTop: '30px', padding: '20px', background: '#e8f5e8', borderRadius: '8px' }}>
+        <h3>✅ Ventajas de esta Implementación</h3>
+        <ul>
+          <li><strong>Integración transparente:</strong> No necesitas cambiar la lógica existente de TypedTable</li>
+          <li><strong>Reutilización:</strong> Puedes usar el mismo componente para tablas normales y skeletons</li>
+          <li><strong>Flexibilidad:</strong> Puedes crear múltiples configuraciones de skeleton</li>
+          <li><strong>Mantenibilidad:</strong> La lógica del skeleton está encapsulada</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default SkeletonExample; 

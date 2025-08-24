@@ -1,0 +1,98 @@
+{
+  "projects": [
+    {
+      "id": "react-app",
+      "name": "React App Completa",
+      "description": "Aplicación React completa con múltiples componentes y estilos",
+      "path": "/examples/react-app",
+      "icon": "⚛️",
+      "files": [
+        "src/App.jsx",
+        "src/App.css",
+        "src/components/Counter.jsx"
+      ]
+    },
+    {
+      "id": "react-basic",
+      "name": "React Básico",
+      "description": "Proyecto React simple con componentes básicos y formularios",
+      "path": "/examples/react-basic",
+      "icon": "⚛️",
+      "files": [
+        "src/App.jsx",
+        "src/components/ExampleComponent.jsx",
+        "src/styles/ExampleComponent.css",
+        "src/utils/helpers.js",
+        "README.md"
+      ]
+    },
+    {
+      "id": "react-advanced",
+      "name": "Todo App Avanzada",
+      "description": "Aplicación de tareas con temas, filtros y persistencia",
+      "path": "/examples/react-advanced",
+      "icon": "🎯",
+      "files": [
+        "src/App.jsx",
+        "src/App.css",
+        "src/components/TodoItem.jsx",
+        "src/utils/todoUtils.js",
+        "README.md"
+      ]
+    },
+    {
+      "id": "dashboard-analytics",
+      "name": "Dashboard Analytics",
+      "description": "Dashboard moderno con gráficos, métricas y visualizaciones de datos",
+      "path": "/examples/dashboard-analytics",
+      "icon": "📊",
+      "files": [
+        "src/App.jsx",
+        "src/components/Dashboard.jsx",
+        "src/components/ChartCard.jsx",
+        "src/components/MetricCard.jsx",
+        "src/components/Sidebar.jsx",
+        "src/styles/Dashboard.css",
+        "src/utils/chartData.js",
+        "src/utils/metrics.js",
+        "README.md"
+      ]
+    },
+    {
+      "id": "ecommerce-store",
+      "name": "E-commerce Store",
+      "description": "Tienda online completa con productos, carrito de compras y checkout",
+      "path": "/examples/ecommerce-store",
+      "icon": "🛒",
+      "files": [
+        "src/App.jsx",
+        "src/components/ProductGrid.jsx",
+        "src/components/ProductCard.jsx",
+        "src/components/ShoppingCart.jsx",
+        "src/components/Checkout.jsx",
+        "src/styles/Store.css",
+        "src/utils/products.js",
+        "src/utils/cartUtils.js",
+        "README.md"
+      ]
+    },
+    {
+      "id": "social-feed",
+      "name": "Social Media Feed",
+      "description": "Feed de redes sociales con posts, likes, comentarios y perfiles",
+      "path": "/examples/social-feed",
+      "icon": "📱",
+      "files": [
+        "src/App.jsx",
+        "src/components/Feed.jsx",
+        "src/components/Post.jsx",
+        "src/components/Profile.jsx",
+        "src/components/CreatePost.jsx",
+        "src/styles/Social.css",
+        "src/utils/posts.js",
+        "src/utils/userData.js",
+        "README.md"
+      ]
+    }
+  ]
+} 

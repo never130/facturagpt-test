@@ -1,0 +1,15 @@
+.SubtitleTemplate {
+  color: #676767;
+  font-size: clamp(17px, 5vw, 20px) !important;
+  font-weight: 300;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 680px;
+  span{
+    font-weight: 800;
+  }
+
+  p {
+    margin: 0;
+  }
+}

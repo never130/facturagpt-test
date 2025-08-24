@@ -1,0 +1,196 @@
+.resultsContainer {
+    background-color: var(--card);
+    border-top: 1px solid var(--db-background);
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+  }
+  
+  .resultsHeader {
+    padding: 10px 20px;
+    background-color: var(--card);
+    border-bottom: 1px solid var(--db-background);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3{
+        margin: 0px;
+    }
+  }
+  
+  .resultsInfo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .resultsInfo h3 {
+    margin: 0;
+  }
+  
+  .resultCount {
+    font-size: 12px;
+    color: var(--muted-foreground);
+    background-color: var(--muted);
+    padding: 4px 8px;
+    border-radius: 12px;
+  }
+  
+  .exportButtons {
+    display: flex;
+    gap: 8px;
+    button {
+        background: transparent;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+  }
+  
+  .tableContainer {
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  .layerCell {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .layerName {
+    font-weight: 500;
+  }
+  
+  .fieldsCell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-width: 300px;
+  }
+  
+  .fieldBadge {
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+  
+  .timestamp {
+    font-size: 12px;
+    color: var(--muted-foreground);
+    white-space: nowrap;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 4px;
+  }
+  
+  .emptyResults {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--muted-foreground);
+    gap: 16px;
+    padding: 32px;
+  }
+  
+  .emptyIcon {
+    opacity: 0.3;
+  }
+  
+  .emptyResults h4 {
+    margin: 0;
+    color: var(--foreground);
+  }
+  
+  .emptyResults p {
+    margin: 0;
+    max-width: 300px;
+  }
+  
+  .previewDialog {
+    max-width: 600px;
+    max-height: 80vh;
+  }
+  
+  .dataPreview {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .dataField {
+    padding: 12px;
+    background-color: var(--muted);
+    border-radius: 6px;
+  }
+  
+  .fieldName {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--foreground);
+  }
+  
+  .fieldValue {
+    color: var(--muted-foreground);
+    word-break: break-word;
+  }
+  
+  .arrayPreview {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .arrayItem {
+    padding: 8px;
+    background-color: var(--background);
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
+  }
+  
+  .objectPreview {
+    font-family: monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    background-color: var(--background);
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+  
+  .link {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+  
+  .link:hover {
+    text-decoration: none;
+  }
+  
+  @media (max-width: 768px) {
+    .resultsHeader {
+      flex-direction: column;
+      gap: 12px;
+      align-items: stretch;
+    }
+    
+    .exportButtons {
+      justify-content: flex-end;
+    }
+    
+    .fieldsCell {
+      max-width: 200px;
+    }
+  }

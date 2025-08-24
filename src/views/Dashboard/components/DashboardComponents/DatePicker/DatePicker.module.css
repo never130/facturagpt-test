@@ -1,0 +1,15 @@
+.datePicker {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+
+.input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%;
+
+
+}

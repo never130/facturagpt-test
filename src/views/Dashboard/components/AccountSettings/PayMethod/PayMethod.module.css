@@ -1,0 +1,266 @@
+.payMethodContainer:hover {
+  .button,
+  .editButton {
+    opacity: 1;
+  }
+}
+.payMethodContainer {
+  display: flex;
+  flex-direction: column;
+  color: #717171;
+  gap: 5px;
+  border-bottom: 1px solid #ebebeb;
+  padding-bottom: 10px;
+  .row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      margin: 5px 0;
+      color:var(--black) !important;
+      margin: 0;
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
+  .button,
+  .facturacionButtonEdit {
+    text-decoration: underline;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--_292d32-color);
+    opacity: 0;
+  }
+
+  label:hover,
+  .label:hover {
+    .button,
+    .editButton {
+      opacity: 1;
+    }
+  }
+  .phoneContainer {
+    display: flex;
+    gap: 10px;
+  }
+
+  p {
+    color: var(--black);
+    font-weight: 500;
+    margin: 0;
+  }
+  .plan {
+    padding-right: 30px;
+    span {
+      color: var(--black);
+    }
+  }
+
+  .taxes {
+    font-weight: 300;
+    color: var(--black);
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    color: #717171;
+    gap: 5px;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 10px;
+    input,
+    select,
+    option {
+      padding: 10px;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+    }
+    input:disabled,
+    select:disabled,
+    option:disabled {
+      background-color: transparent;
+    }
+
+    select,
+    option {
+      color: var(--_67-color);
+    }
+    .error {
+      color: #b40e1b;
+    }
+    input:disabled,
+    select:disabled,
+    option:disabled,
+    input[readonly],
+    select[readonly],
+    option[readonly],
+    input::placeholder,
+    select::placeholder {
+      color: var(--_67-color);
+    }
+
+    input,
+    select,
+    option {
+      color: 757575; 
+    }
+  }
+
+  .inputWrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .input {
+    width: 100%;
+    padding-right: 70px;
+    padding-left: 10px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+
+  .verify {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    font-size: 14px;
+    color: var(--black);
+    cursor: pointer;
+  }
+
+  .verify:hover {
+    text-decoration: underline;
+  }
+  .payContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .expirationDateSecurityCodeContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+    > div {
+      flex: 1;
+    }
+    input {
+      box-sizing: border-box;
+    }
+  }
+  .paymentMethod {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: start;
+    .paymentContainer {
+      display: flex;
+      gap: 4px;
+    }
+
+    .paymentImage {
+      background-color: var(--white-color);
+      border: 1px solid #e2e2e2;
+      height: 20px;
+      width: 48px;
+      object-fit: contain;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+    }
+  }
+
+  .inputContainer {
+    position: relative;
+    display: flex;
+    margin-top: 8px;
+    align-items: center;
+  }
+
+  .input {
+    width: 100%;
+    max-height: 31px;
+    padding-right: 40px; 
+    box-sizing: border-box; 
+  }
+
+  .icon {
+    position: absolute;
+    right: 10px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px; 
+    height: 20px;
+    pointer-events: none; 
+  }
+
+  .save {
+    width: 100%;
+    background-color: #233f39;
+    padding: 0px 8px;
+    color: var(--white-color);
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    height: 50px;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    &:hover {
+      background-color: #196353;
+    }
+  }
+
+  .facturacion {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+  }
+  .facturacion:hover {
+    .facturacionButtonEdit {
+      opacity: 1;
+    }
+  }
+
+  .btnContainerPayMethod {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .headerPayMethod {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+
+  .defaultPaymethod{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: end;
+    span{
+      color: #2ebc89 !important;
+    }
+  }
+}

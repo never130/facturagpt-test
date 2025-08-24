@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+</head>
+
+<body>
+  <div class="OrderConfirmationEmailAdmin"
+    style="width: 656px; padding: 32px; background: #F5F7FA; flex-direction: column; justify-content: center; align-items: flex-start;">
+    <div class="ContainerElevated"
+      style="align-self: stretch; padding: 40px; background: white; border-radius: 3px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 40px;">
+      <div class="LogoBrand"
+        style="width: 124px; padding-right: 0.79px; justify-content: center; align-items: flex-start; gap: 7px; display: inline-flex">
+        <img class="Company" style="width: 78.21px;" src="{{apiUrl}}/service/v1/iam/user/{{id}}" />
+      </div>
+      <div class="Header"
+        style="margin-top: 20px; align-self: stretch; color: #222D38; font-size: 24px; font-family: system-ui; font-weight: 700; line-height: 32px;">
+        Estamos felizes em ter você a bordo!</div>
+      <div class="MessageCta"
+        style="margin-top: 20px; align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px;">
+        <div class="HiCustomerName"
+          style="align-self: stretch; color: #46586B; font-size: 16px; font-family: system-ui;">
+          Olá {{nombre}}</div>
+        <div class="Text"
+          style="margin-top: 20px; align-self: stretch; color: #46586B; font-size: 16px; font-family: system-ui;">
+          🌟 Esperamos que você esteja tendo um ótimo dia. Queremos informar que sua assinatura foi confirmada com o número do pedido: {{OrderNum}}. Acesse e descubra o poder do Aythen Lite.</div>
+        <div class="StackPlanPricing"
+          style="margin-top: 20px; align-self: stretch; flex-direction: column; gap: 24px;">
+          <div class="CardPlan"
+            style="width: 512px; padding: 32px; background: #F5F7FA; border-radius: 20px; overflow: hidden;">
+            <div class="PlanDetails" style="flex-direction: column;">
+              <div class="Header"
+                style="align-self: stretch; height: 70px; padding-bottom: 16px; flex-direction: column; gap: 8px;">
+                <div class="OrderSummary" style="color: #46586B; font-size: 12px;">
+                  Sua licença:</div>
+                <div class="ProductNameTeam"
+                  style="color: #222D38; font-size: 18px; font-weight: 700;">
+                  Plano {{OrderType}}</div>
+                <div class="Users9PerUse"
+                  style="color: #46586B; font-size: 16px;">
+                  {{UserNum}} usuário(s), {{OrderPrice}} por mês</div>
+              </div>
+              <div class="Table" style="height: 70px; flex-direction: column; gap: 8px;">
+                <div class="Frame39" style="padding: 8px 0; gap: 24px; display: inline-flex">
+                  <div style="color: #46586B; font-size: 12px;">{{valueSubtotal}}</div>
+                  <div style="margin-left: 10px; color: #46586B; font-size: 12px;">{{textSubtotal}}</div>
+                </div>
+                <div class="Sep" style="height: 1px; background: #E8EDF3;"></div>
+                <div class="Frame38" style="padding: 8px 0; gap: 24px; display: inline-flex">
+                  <div style="color: #46586B; font-size: 12px;">{{valueVat}}</div>
+                  <div style="margin-left: 10px; color: #46586B; font-size: 12px;">{{textVat}}</div>
+                </div>
+                <div class="Sep" style="height: 1px; background: #E8EDF3;"></div>
+                <div class="Frame37" style="padding: 8px 0; gap: 24px; display: inline-flex">
+                  <div style="color: #46586B; font-size: 16px; font-weight: 700;">{{valueTotal}}</div>
+                  <div style="margin-left: 10px; color: #46586B; font-size: 12px;">{{textTotal}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="CustomerInfo" style="margin-top: 12px; gap: 24px;">
+            <div class="Frame67" style="gap: 8px; display: inline-flex; flex-direction: column;">
+              <div style="color: #222D38; font-size: 12px;">Endereço de cobrança</div>
+              <div style="color: #222D38; font-size: 16px;">
+                Delight Confection 123 Billing Street Billtown, Kentucky K2P0B0 Estados Unidos</div>
+            </div>
+            <div class="Payment" style="gap: 8px; display: inline-flex; flex-direction: column;">
+              <div style="color: #222D38; font-size: 12px;">Forma de pagamento</div>
+              <div class="Group3" style="margin-left: 12px; gap: 8px; display: inline-flex">
+                <div class="LogoPayementVisa"
+                  style="padding: 8px; background: blue; border-radius: 4px; border: 1px #E8EDF3 solid;"></div>
+                <div style="margin-left: 12px; color: #222D38; font-size: 16px;">4012************1881</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ContainerCta"
+          style="margin-top: 20px; height: 166px; flex-direction: column; gap: 12px;">
+          <div class="ContainerPrimarySecondary" style="gap: 12px; display: inline-flex;">
+            <div class="Button"
+              style="padding: 12px 32px; background: var(--_10a37f-background); box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.09); border-radius: 3px;">
+              <div style="text-align: center; color:var(--black); font-size: 16px; font-weight: 700;">
+                Baixar recibo</div>
+            </div>
+          </div>
+          <div class="SecondaryLinkAndDescription"
+            style="margin-top: 12px; height: 106px; flex-direction: column; display: flex">
+            <div>
+              <span style="color: #46586B; font-size: 12px;">
+                Milhares de equipes como a sua usam recursos como [Integração XXX] e [Ilimitado YYY] todos os dias para garantir fluxos de trabalho fáceis e eficientes dentro da equipe. Como elas fazem isso? Dê uma olhada em nossas 
+              </span><span style="color:var(--black); font-size: 12px;">FAQs</span><span style="color: #46586B; font-size: 12px;">
+                e no fórum para obter dicas e truques. <br />
+                Não encontrou as respostas que procura? Entre em contato diretamente pelo
+              </span><span style="color:var(--black); font-size: 12px;">xxx@email.com</span><span
+                style="color: #46586B; font-size: 12px;"> ou </span><span style="color:var(--black); font-size: 12px;">555-555-5555</span><span
+                style="color: #46586B; font-size: 12px;">.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div><img src="{{apiUrl}}/service/v1/pixel/{{pixel}}" /></div> -->
+    <!-- {{footerHtml}} -->
+  </div>
+</body>
+
+</html>

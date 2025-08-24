@@ -1,0 +1,408 @@
+.NewAgentContainer {
+    display: flex;
+    gap: 20px;
+  }
+  .ProfileImageContainer {
+    width: 150px;
+    height: 150px;
+    padding: 40px;
+  }
+  .infoAgentSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .typeContact {
+    display: flex;
+    background-color: #f3f3f3;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    padding: 6px;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+  
+  
+    button {
+      background-color: transparent;
+      cursor: pointer;
+      color: #999999;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+      border-radius: 8px;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      -ms-border-radius: 8px;
+      -o-border-radius: 8px;
+      border: 1px solid transparent !important;
+      flex: 1;
+      background-color: transparent;
+      max-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+    .selected {
+      background-color: white;
+      color: #0d0d0d;
+      border-radius: 8px;
+      border: 1px solid #0000002b !important;
+      background: #fff;
+      box-shadow:
+        0px 0px 2px 0px rgba(0, 0, 0, 0.03),
+        0px 0px 0px 0px rgba(0, 0, 0, 0),
+        0px 0px 0px 0px rgba(0, 0, 0, 0);
+    }
+  }
+  
+  
+  .typeContactDisabled {
+    background-color: transparent;
+  }
+  .infoAgentSection,
+  .chatSection {
+    flex: 1;
+    border-radius: 8px;
+    padding: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    max-height: calc(100vh - 120px);
+    min-height: calc(100vh - 120px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .newAgentSection {
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid var(--db-background);
+  
+    padding: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+  }
+  
+  .infoAgentSection::-webkit-scrollbar,
+  .chatSection::-webkit-scrollbar {
+    display: none;
+  }
+  .sectionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: "Inter", sans-serif;
+    gap: 5px;
+    
+    input{
+      border: none;
+      outline: none;
+      font-size: 14px;
+      font-weight: 400;
+      color: #757575;
+      min-height: 21px !important;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      font-family: "Inter", sans-serif;
+      box-sizing: border-box;
+      width: 100%;
+      field-sizing: content;
+      min-height: 21px !important;
+      padding: 0;
+    }
+    input:disabled,
+    select:disabled,
+    option:disabled,
+    input[readonly],
+    select[readonly],
+    option[readonly],
+    input::placeholder,
+    select::placeholder {
+      color: #757575; 
+    }
+    input::placeholder,
+    select::placeholder,
+    option::placeholder,
+    input::placeholder,
+    select::placeholder,
+    option::placeholder,
+    input::placeholder,
+    select::placeholder {
+      color: #757575; 
+    }
+  
+    input,
+    select,
+    option {
+      color: 757575; 
+    }
+    input[readonly],
+    input:disabled,
+    textarea[readonly] {
+      background-color: transparent;
+    }
+    p{
+      margin: 0;
+    }
+  }
+  .instructionsWrapper {
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+    textarea {
+      border: none;
+      outline: none;
+      font-size: 14px;
+      font-weight: 400;
+      color: #757575;
+      background-color: transparent;
+      border-radius: 5px;
+      box-sizing: border-box;
+      width: 100%;
+      resize: none;
+      width: 100%;
+      font-family: "Inter", sans-serif;
+      field-sizing: content;
+      min-height: 21px;
+      padding: 8px 0;
+    }
+    .instructionsTagsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .instructionTag {
+      background-color: white;
+      border-radius: 999px;
+      -webkit-border-radius: 999px;
+      -moz-border-radius: 999px;
+      -ms-border-radius: 999px;
+      -o-border-radius: 999px;
+      padding: 4px 6px;
+      border: 1px solid #e0e3e6;
+    }
+  }
+  .instructionsWrapperDisabled {
+    background-color: transparent;
+  }
+  
+  .rowQuantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    > button {
+      cursor: pointer;
+      border: 1px solid #b8b8b8;
+      outline: none;
+      background-color: transparent;
+      padding: 8px;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      -o-border-radius: 4px;
+      width: 100%;
+    }
+    input {
+      outline: none;
+      border: 1px solid #e5e5e5;
+      width: 50px;
+      padding: 8px;
+      border-radius: 12px;
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      -ms-border-radius: 12px;
+      -o-border-radius: 12px;
+      text-align: center;
+    }
+  }
+  .comingSoon {
+    opacity: 0.5;
+  }
+  .rowHeaderCapacities {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    p {
+      margin: 5px 0;
+    }
+    span {
+      color: #71717a;
+    }
+  }
+  .capacitiesContainer {
+    .row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      span {
+        color: #71717a;
+      }
+    }
+  }
+  .automateConnectedApps {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    justify-content: space-between;
+    .connect {
+      height: 10px;
+      width: 10px;
+    }
+    .container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  
+    .automateConnectedAppsInfo {
+      display: flex;
+      flex-direction: column;
+  
+      gap: 5px;
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      p {
+        margin: 0;
+        color: #666666;
+      }
+    }
+  }
+  .Knowledge {
+    p {
+      margin: 0;
+      color: #0d0d0d;
+    }
+    span {
+      color: #b4b4b4;
+    }
+  }
+  .padding {
+    padding: 8px !important;
+  }
+  .automateConnectedApps {
+    border-bottom: 1px solid #d9d9e3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    justify-content: space-between;
+    .container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  
+    .automateConnectedAppsInfo {
+      display: flex;
+      flex-direction: column;
+  
+      gap: 5px;
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      p {
+        margin: 0;
+        color: #666666;
+      }
+    }
+  }
+  .headerSectionOption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 30px;
+  
+    button {
+      display: none;
+    }
+  
+    &:hover {
+      button {
+        display: flex;
+      }
+    }
+  }
+  .flagsAiModelContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  .flagsAiModel {
+    display: flex;
+    gap: 9px;
+    padding: 3px 12px;
+    border-radius: 30px;
+    border: 1px solid #e0e3e6;
+    width: fit-content;
+    align-items: center;
+  }
+  
+  .deleteContact,
+  .restartContact {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    color: #dc3545;
+    gap: 7px;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16.9px;
+    cursor: pointer;
+    margin-top: 20px;
+  
+    .icon {
+      display: flex;
+      padding: 5px;
+      align-items: center;
+      gap: 10px;
+      border-radius: 200px;
+      background: #ededed;
+    }
+  }
+  .restartContact {
+    color: #222;
+  }
+  .agentOptions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    justify-content: end;
+    padding: 0 30px;
+    box-sizing: border-box;
+  }
+  

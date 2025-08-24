@@ -1,0 +1,205 @@
+.workspacesContainer{
+  height: 100%;
+}
+.searchFiltersWorkspace {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  .searchIconsWrappers,.filterIconsWrappers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: var(--db-background);
+    cursor: pointer;
+    user-select: none;
+    border-radius: 6px;
+  }
+  .filterIconsWrappers{
+    height: 32px;
+    width: 32px;
+  }
+
+  
+}
+
+.labelContainer{
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  gap: 20px;
+
+  .label{
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid #ebebeb;
+      padding: 10px 0;
+      gap: 10px;
+      .infoWorkspace{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          >div{
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              .info{
+                display: flex;
+                flex-direction: column;
+                p{
+                    margin: 0;
+                }
+                span{
+                    color: #717171;
+                    font-size: 13px;
+                }
+              }
+          }
+          svg{
+            height: 36px;
+            width: 36px;
+          }
+      }
+
+      .infoUser{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: 10px;
+        .initials{
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--_10a37f-background);
+            color: var(--white-color);
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .info{
+            display: flex;
+            flex-direction: column;
+            p{
+                margin: 0;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                color: #666666;
+            }
+            span{
+                color: #717171;
+                font-size: 13px;
+            }
+        }
+      }
+  }
+}
+
+.workspaceContainer{
+  border-bottom: 1px solid #ebebeb;
+padding-bottom: 20px ;
+
+.headerWorkspace{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+  .headerWorkspaceLeft{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  img{
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  .workspaceTitle{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    h3{
+      margin: 0;
+      font-weight: 500;
+    }
+    .workspacesDate{
+      font-size: 13px;
+      color: #A9A8A9;
+    }
+  }
+  .infoUser{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    p{
+      margin: 0;
+    }
+    span{
+      color: #9F9595;
+      font-size: 13px;
+    }
+    .name{
+      color: #717171;
+    }
+    .evaluation{
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #4F5660;
+    }
+  }
+  
+}
+
+.headerWorkspaceRight{
+  position: relative;
+}
+
+.dropdownMenu{
+  position: absolute;
+  right: -8px;
+  top: calc(100% + 10px);
+  background: var(--white-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px var(--_00000033-background);
+  /* width: 115px; */
+  z-index: 9999;
+  padding: 4px;
+  transition: opacity 0.2s ease-in-out;
+  /* pointer-events: none; */
+  div{
+    width: 100%;
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+    color: #868686;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+  }
+}
+
+.workspaceFooter{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.SkeletonScreenContainer{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

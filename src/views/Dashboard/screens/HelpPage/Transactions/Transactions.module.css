@@ -1,0 +1,106 @@
+.articlesContent {
+    display: flex;
+    flex-direction: column;
+
+
+    ul {
+      margin: 0;
+      li{
+        list-style: disc;
+      }
+    }
+    .article {
+      .articleTitle,
+      .articleInfo {
+        color: #1a1a1a;
+        font-weight: 400;
+      }
+      .articleTitle {
+        margin: 15px 0;
+        font-weight: 300;
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        svg {
+          transform: rotate(-90deg);
+          -webkit-transform: rotate(-90deg);
+          -moz-transform: rotate(-90deg);
+          -ms-transform: rotate(-90deg);
+          -o-transform: rotate(-90deg);
+        }
+      }
+      .articleInfo {
+        margin: 20px 0;
+        interpolate-size: allow-keywords;
+        transition: all 300ms;
+        -webkit-transition: all 300ms;
+        -moz-transition: all 300ms;
+        -ms-transition: all 300ms;
+        -o-transition: all 300ms;
+      }
+    }
+  }
+
+  .YourAccountConfigIcons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ConectionsGrayIcon {
+    width: fit-content;
+    margin: 0 auto;
+  }
+  .iconsLogoContainer {
+    margin: 10px auto;
+    width: fit-content;
+  }
+  .iconLogos {
+    display: inline-block;
+    svg {
+      height: 50px;
+      width: 50px;
+    }
+  }
+  .bottomMenu {
+    display: flex;
+    align-items: center;
+    bottom: 10px;
+    left: 10px;
+    color: #2222226d;
+    max-height: 25px;
+    flex: 1;
+    strong{
+        color: var(--_292d32-color);
+      }
+    span {
+      color: var(--_292d32-color);
+    }
+    .icon {
+      cursor: pointer;
+    }
+    .houseContainer {
+      height: 30px;
+      width: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 99px;
+      -webkit-border-radius: 99px;
+      -moz-border-radius: 99px;
+      -ms-border-radius: 99px;
+      -o-border-radius: 99px;
+      border: 1px solid #DCDCDC;
+      background-color: var(--f5-background);
+      cursor: pointer;
+
+      .house {
+        height: 15px;
+        width: 15px;
+        fill: var(--_292d32-color);
+        opacity: 0.5;
+      }
+    
+    }
+  }

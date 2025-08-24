@@ -1,0 +1,282 @@
+/* ViewerDoc Component Styles */
+.viewerDoc {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+  .headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+    .documentIcon {
+      font-size: 24px;
+      color: #ef4444;
+    }
+
+    .documentInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+      .documentTitle {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: #111827;
+      }
+
+      .documentMeta {
+        margin: 0;
+        font-size: 12px;
+        color: #6b7280;
+      }
+
+  .headerActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+    .approveButton {
+      background-color: #10b981;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.2s;
+    }
+
+      .approveButton:hover {
+        background-color: #059669;
+      }
+
+    .editButton {
+      background-color: transparent;
+      color: #6b7280;
+      border: 1px solid #d1d5db;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+      .editButton:hover {
+        background-color: #f9fafb;
+        color: #374151;
+      }
+
+    .moreButton {
+      background-color: transparent;
+      color: #6b7280;
+      border: none;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+      .moreButton:hover {
+        background-color: #f3f4f6;
+      }
+
+/* Category and Concept Section */
+.categorySection {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+  .categoryItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+    .categoryLabel {
+      font-size: 14px;
+      color: #374151;
+      font-weight: 500;
+    }
+
+    .categoryDropdown {
+      font-size: 12px;
+      color: #6b7280;
+      cursor: pointer;
+    }
+
+  .statusBadge {
+    background-color: #10b981;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .tagSection {
+    margin-left: auto;
+  }
+
+    .tag {
+      background-color: #dbeafe;
+      color: #1e40af;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+/* Toolbar Section */
+.toolbar {
+  padding: 12px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #ffffff;
+}
+
+  .toolbarGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+    .toolButton {
+      background-color: transparent;
+      border: none;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 16px;
+      color: #6b7280;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+      .toolButton:hover {
+        background-color: #f3f4f6;
+        color: #374151;
+      }
+
+/* Info Bar Section */
+.infoBar {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 24px;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+  .infoItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+    .infoLabel {
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .infoValue {
+      color: #111827;
+      font-weight: 400;
+    }
+
+  .stripeInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+  }
+
+    .stripeLabel {
+      background-color: #6366f1;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: lowercase;
+    }
+
+    .stripeText {
+      color: #6b7280;
+      font-size: 12px;
+    }
+
+/* Document Content Area */
+.documentContent {
+  padding: 20px;
+  min-height: 400px;
+  background-color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+    .headerActions {
+      width: 100%;
+      justify-content: flex-end;
+    }
+
+  .categorySection {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .infoBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+    .stripeInfo {
+      margin-left: 0;
+    }
+
+  .toolbarGroup {
+    justify-content: flex-start;
+  }
+}

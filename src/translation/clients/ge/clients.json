@@ -1,0 +1,13 @@
+{
+  "title": "Kontaktverwaltung",
+  "buttonNewClient": "Neuer Kontakt",
+  "placeholderSearch": "Suchen",
+  "tableCol1": "Name",
+  "tableCol2": "E-Mail",
+  "tableCol3": "Telefon",
+  "tableCol4": "Physische Adresse",
+  "tableCol5": "Steuernummer",
+  "tableCol6": "Zahlungsmethoden",
+  "tableCol7": "Bevorzugte Währung",
+  "tableCol8": "Aktionen"
+}

@@ -1,0 +1,83 @@
+/* Estilos CSS para ExampleComponent */
+.example-component {
+  padding: 20px;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  margin: 20px 0;
+  background: #f8f9fa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.example-component h2 {
+  color: #374151;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.example-component p {
+  color: #6b7280;
+  font-size: 16px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.example-component button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin-right: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.example-component button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.example-component button:active {
+  transform: translateY(0);
+}
+
+.example-component .increment-btn {
+  background: #10b981;
+  color: white;
+}
+
+.example-component .increment-btn:hover {
+  background: var(--_10a37f-background);
+}
+
+.example-component .decrement-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.example-component .decrement-btn:hover {
+  background: #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .example-component {
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .example-component h2 {
+    font-size: 1.3rem;
+  }
+  
+  .example-component button {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 8px;
+    justify-content: center;
+  }
+} 

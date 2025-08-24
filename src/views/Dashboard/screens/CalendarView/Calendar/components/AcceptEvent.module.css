@@ -1,0 +1,58 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background-color: var(--f5-background);
+	min-height: 100vh;
+}
+
+.meetingImage {
+	width: 100%;
+	margin-top: -250px;
+	max-width: 250px;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.heading {
+	font-size: 24px;
+	font-weight: 600;
+	color: #333;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.buttonContainer {
+	display: flex;
+	gap: 15px;
+}
+
+.acceptButton,
+.cancelButton {
+	padding: 12px 25px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.acceptButton {
+	background-color: var(--_10a37f-background);
+	color: white;
+}
+
+.cancelButton {
+	background-color: #f44336;
+	color: white;
+}
+
+.acceptButton:hover {
+	background-color: var(--ed-background);
+}
+
+.cancelButton:hover {
+	background-color: #e53935;
+}

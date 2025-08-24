@@ -1,0 +1,151 @@
+.clientsHeader {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 0px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+
+  .headerInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2px 20px;
+
+    @media (width<=933px) {
+      flex-direction: column;
+      gap: 0px;
+      align-items: start;
+    }
+
+    @media (width<=768px) {
+      justify-content: center;
+      gap: 0px;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .additionalInfo {
+      padding: 10px 0;
+      box-sizing: border-box;
+      width: 100%;
+      flex: 1;
+      max-width: fit-content;
+
+      @media (width<=933px) {
+        padding: 0px 0 10px 0;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 26px;
+    margin: 0px;
+    color: var(--black);
+  }
+
+}
+
+.infoClient {
+  display: flex;
+  color: var(--_67-color);
+  gap: 10px;
+
+  h3,
+  p {
+    margin: 0;
+    color: var(--black);
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 22px;
+    color: var(--black);
+  }
+
+  p {
+    font-weight: bold;
+    color: var(--black);
+  }
+}
+
+.arrowContainer {
+  height: 100%;
+}
+
+.iconContainer {
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 4px;
+  display: flex;
+  background-color: var(--_10a37f-background);
+  color: var(--white-color);
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  box-sizing: border-box;
+  height: 25px;
+  width: 25px;
+}
+
+.clientInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactInfo,
+.info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.contactInfo {
+  flex-wrap: wrap;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  @media (width<=768px) {
+    justify-content: center;
+  }
+
+  .button {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--_292d32-color);
+    min-width: fit-content;
+  }
+}
+
+.imgContainer {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 200px;
+  gap: 10px;
+
+  img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
+}

@@ -1,0 +1,172 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.qrWrapper {
+  position: relative;
+  width: 78% 179.391px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: 3px solid #dbdbdb;
+  padding: 15px 15px 10px;
+  border-radius: 25px;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 200px;
+  margin: 0 auto;
+  font-size: 28px;
+
+  >div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+
+    svg {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      color: var(--black);
+    }
+
+    b {
+      font-size: 76px;
+      color: var(--black);
+      line-height: 10px;
+      font-weight: 500;
+      letter-spacing: -3px;
+    }
+  }
+}
+
+.qrWrapper:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.editButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 8px 16px;
+  background-color: var(--_10a37f-background);
+  border: 1px solid var(--_10a37f-background);
+  color: var(--white-color);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.qrWrapper:hover .editButton {
+  opacity: 1;
+}
+
+.editButton:hover {
+  opacity: 1;
+}
+
+
+.editorContent {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--_67-color);
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.closeButton:hover {
+  color: #333;
+}
+
+.editorContent {
+  flex: 1;
+  overflow: hidden;
+  padding: 0;
+}
+
+.savedConfigsContainer {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.savedConfigsContainer h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.savedConfigsList {
+  
+  /* display: flex; */
+  display: grid;
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  /* flex-wrap: wrap; */
+  gap: 14px;
+  margin-top: 10px;
+  overflow-y: scroll;
+  justify-content: center;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.savedConfigItem {
+  align-items: center;
+  padding: 5px 5px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  width: min-content;
+  filter: grayscale(1);
+  margin: 0 auto;
+}
+
+.savedConfigItem:hover {
+  filter: grayscale(0.5);
+}
+
+.selectedConfig {
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+.colorPreview {
+  width: 70px;
+  height: 60px;
+  border-radius: 14px;
+}
+
+
+.savedConfigItemText {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--black);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

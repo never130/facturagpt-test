@@ -1,0 +1,52 @@
+.ChangeImageContainer {
+  input[type="file"] {
+    display: none;
+  }
+}
+.imageContainer {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  box-sizing: border-box;
+  display: flex;
+  img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    box-sizing: border-box;
+  }
+  .optionsImage {
+    position: absolute;
+    display: none;
+    bottom: 0px;
+    width: 100%;
+    height: 30px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    background: var(--Grey-500, var(--_9b-color));
+    svg {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      &:nth-child(2) {
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+
+  &:hover {
+    .optionsImage {
+      display: flex;
+    }
+  }
+}
+.rounded {
+  overflow: hidden;
+  border-radius: 9999px;
+  -webkit-border-radius: 9999px;
+  -moz-border-radius: 9999px;
+  -ms-border-radius: 9999px;
+  -o-border-radius: 9999px;
+}

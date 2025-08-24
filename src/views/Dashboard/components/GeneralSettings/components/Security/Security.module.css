@@ -1,0 +1,67 @@
+.SecurityContainer {
+
+}
+.infolabel{
+  flex-direction: column;
+}
+.securityLabel {
+  border-bottom: 1px solid #0000001a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+  gap: 10px;
+
+  @media (width<=768px) {
+    flex-direction: column;
+  }
+  .rightSide {
+    width: 70%;
+    .inputWrapper {
+      display: flex;
+      align-items: center;
+      background-color: var(--f5-background);
+      box-sizing: border-box;
+      padding: 12px;
+      border-radius: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+      input {
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
+      svg{
+        width: 20px;
+        height: 20px;
+        margin-right: 20px;
+      }
+    }
+    .disabled{
+      background-color: transparent;
+    }
+  }
+
+  .title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    p {
+      margin: 0;
+      color: #0d0d0d;
+    }
+    span {
+      color: #717171;
+      font-size: 13px;
+    }
+  }
+}

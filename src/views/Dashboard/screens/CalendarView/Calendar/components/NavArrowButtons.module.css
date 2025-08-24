@@ -1,0 +1,30 @@
+.buttonsNavs {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+
+	button {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		width: 30px;
+		height: 30px;
+		border-radius: 8px;
+		border: none;
+		background: var(--white-color);
+		color: var(--_10a37f-background);
+		cursor: pointer;
+
+		svg {
+			min-width: 26px;
+			min-height: 26px;
+			color: var(--black);
+			fill: transparent;
+			width: 26px;
+		}
+
+		&:hover {
+			color: var(--_10a37f-background);
+		}
+	}
+}

@@ -1,0 +1,50 @@
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--f5-background);
+  border-radius: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--white-color);
+}
+
+.landingContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  background: linear-gradient(180deg, #ffffff 21%, #f5f5f5 100%);
+  overflow-y: auto;
+}
+
+[class*="section-doc"] {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (width < 500px) {
+  section {
+    min-height: 30vh;
+  }
+}
+
+
+@media (width >1800px) {
+ [class*="section-doc"] {
+   /* min-height: 30vh; */
+
+  }
+}
+
+
+
+
+

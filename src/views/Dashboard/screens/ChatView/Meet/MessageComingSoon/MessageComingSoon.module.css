@@ -1,0 +1,138 @@
+.messageComingSoon {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .intro {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+    align-items: baseline;
+}
+
+.card {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #ffffff;
+    flex-direction: column;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .icon {
+        width: 28px;
+        height: 28px;
+        flex: 0 0 28px;
+
+        svg {
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+    .title {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: #0f172a;
+    }
+}
+
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .description {
+        margin: 0;
+        font-size: 13px;
+        color: #334155;
+    }
+}
+
+
+.progress {
+    width: calc(100% - 12px);
+    background: #e2e8f0;
+    border-radius: 6px;
+    padding: 4px;
+
+    .progressBar {
+        background: var(--_10a37f-background);
+        height: 10px;
+        border-radius: 10px;
+    }
+}
+
+
+.config {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .configHeader {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+
+        .icon {
+            width: 28px;
+            height: 28px;
+
+            svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        .icon1 {
+            width: 35px;
+            height: 35px;
+
+            svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0f172a;
+            margin: 10px 0px 0px;
+        }
+    }
+
+    .configDescription {
+        font-size: 16px;
+        line-height: 22px;
+        color: #334155;
+    }
+
+    .configButton {
+        background: var(--_10a37f-background);
+        color: #fff;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+    }
+}

@@ -1,0 +1,96 @@
+.container {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0;
+  background: var(--white-color);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--white-color);
+  border-radius: 8px;
+}
+
+.rowBorderBottom {
+  border-bottom: 1px solid var(--db-background);
+}
+
+
+.labelBold {
+  font-weight: bold;
+  color: var(--_374151-color);
+}
+
+.greyText {
+  color: var(--_9b-color);
+}
+
+.blackText {
+  color: var(--black);
+  font-weight: 500;
+}
+
+
+.blockGroup {
+  background: var(--white-color);
+  border: 1px solid var(--db-background);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.groupRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--db-background);
+  padding: 20px 16px;
+}
+
+.topRadius {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-top: none;
+}
+
+.bottomRadius {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.limitControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.controlButton {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: var(--db-background);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.limitInput {
+  width: 80px;
+  padding: 4px;
+  border: 1px solid var(--db-background);
+  border-radius: 6px;
+  text-align: center;
+  background-color: var(--db-background);
+}
+
+.displayColumn{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

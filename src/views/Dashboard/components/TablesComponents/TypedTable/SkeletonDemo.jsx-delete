@@ -1,0 +1,119 @@
+import React, { useState } from 'react';
+import TableSkeleton from './TableSkeleton';
+import { 
+  basicSkeletonConfig, 
+  advancedSkeletonConfig, 
+  financialSkeletonConfig, 
+  modernSkeletonConfig,
+  mixedTablesSkeletonConfig
+} from './skeletonConfigs';
+import './SkeletonDemo.module.css';
+
+const SkeletonDemo = () => {
+  const [selectedConfig, setSelectedConfig] = useState('mixed');
+
+  const configs = {
+    basic: {
+      name: 'Configuración Básica',
+      description: 'Tabla de productos con cálculos simples',
+      config: basicSkeletonConfig
+    },
+    advanced: {
+      name: 'Configuración Avanzada',
+      description: 'Tabla de departamentos con análisis trimestral',
+      config: advancedSkeletonConfig
+    },
+    financial: {
+      name: 'Configuración Financiera',
+      description: 'Tabla de conceptos financieros con promedios',
+      config: financialSkeletonConfig
+    },
+    modern: {
+      name: 'Configuración Moderna',
+      description: 'Tabla de proyectos con presupuestos y balances',
+      config: modernSkeletonConfig
+    },
+    mixed: {
+      name: 'Operaciones entre Tablas',
+      description: 'Diferentes operaciones matemáticas entre dos tablas con skeleton',
+      config: mixedTablesSkeletonConfig
+    }
+  };
+
+  const currentConfig = configs[selectedConfig];
+
+  return (
+    <div className="skeleton-demo-container">
+      <div className="demo-header">
+        <h2>Demostración de TableSkeleton</h2>
+        <p>Explora las diferentes configuraciones disponibles para crear tablas interactivas con fórmulas</p>
+      </div>
+
+      <div className="config-selector">
+        <h3>Selecciona una configuración:</h3>
+        <div className="config-buttons">
+          {Object.entries(configs).map(([key, config]) => (
+            <button
+              key={key}
+              onClick={() => setSelectedConfig(key)}
+              className={`config-button ${selectedConfig === key ? 'active' : ''}`}
+            >
+              <div className="config-name">{config.name}</div>
+              <div className="config-description">{config.description}</div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="current-config-info">
+        <h3>Configuración actual: {currentConfig.name}</h3>
+        <p>{currentConfig.description}</p>
+        <div className="config-details">
+          <div className="detail-item">
+            <span className="detail-label">Filas:</span>
+            <span className="detail-value">{currentConfig.config.rows}</span>
+          </div>
+          <div className="detail-item">
+            <span className="detail-label">Columnas:</span>
+            <span className="detail-value">{currentConfig.config.columns}</span>
+          </div>
+          <div className="detail-item">
+            <span className="detail-label">Fórmulas:</span>
+            <span className="detail-value">{Object.keys(currentConfig.config.formulas).length}</span>
+          </div>
+          <div className="detail-item">
+            <span className="detail-label">Conexiones:</span>
+            <span className="detail-value">{currentConfig.config.connections.length}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="skeleton-preview">
+        <TableSkeleton
+          skeletonConfig={currentConfig.config}
+          onCellClick={(rowIndex, colIndex, cellKey) => {
+            console.log(`Celda clickeada: ${cellKey} (${rowIndex}, ${colIndex})`);
+          }}
+          onFormulaApply={(formula) => {
+            console.log('Fórmula aplicada:', formula);
+          }}
+          isAnimating={true}
+        />
+      </div>
+
+      <div className="demo-footer">
+        <h4>Características destacadas:</h4>
+        <ul>
+          <li>✨ Animaciones fluidas y modernas</li>
+          <li>🎯 Interactividad con hover y click</li>
+          <li>🧮 Soporte para múltiples tipos de fórmulas</li>
+          <li>🔗 Visualización de conexiones entre celdas</li>
+          <li>📱 Diseño responsive</li>
+          <li>🎨 Efectos visuales avanzados</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default SkeletonDemo; 

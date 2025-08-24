@@ -1,0 +1,319 @@
+const { Router } = require("express");
+const { authenticateToken } = require('../middlewares/auth/auth');
+const { 
+    saveTemplate, 
+    loadTemplates, 
+    loadTemplate, 
+    deleteTemplate, 
+    executeTemplate 
+} = require("../services/meet/scraping");
+
+const scrapingRouter = Router();
+
+// ===== ENDPOINTS PARA TEMPLATES =====
+
+// Guardar template
+scrapingRouter.post("/templates", authenticateToken, async (req, res) => {
+    try {
+        const { template } = req.body;
+        const userId = req.user.id;
+        
+        if (!template) {
+            return res.status(400).json({
+                success: false,
+                error: "Template es requerido"
+            });
+        }
+        
+        const result = await saveTemplate(userId, template);
+        
+        if (result.success) {
+            res.status(200).json(result);
+        } else {
+            res.status(500).json(result);
+        }
+    } catch (error) {
+        console.error('Error saving template:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
+// Cargar todos los templates del usuario
+scrapingRouter.get("/templates", authenticateToken, async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const result = await loadTemplates(userId);
+        
+        if (result.success) {
+            res.status(200).json(result);
+        } else {
+            res.status(500).json(result);
+        }
+    } catch (error) {
+        console.error('Error loading templates:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
+// Cargar template específico
+scrapingRouter.get("/templates/:templateId", authenticateToken, async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const { templateId } = req.params;
+        
+        const result = await loadTemplate(userId, templateId);
+        
+        if (result.success) {
+            res.status(200).json(result);
+        } else {
+            res.status(404).json(result);
+        }
+    } catch (error) {
+        console.error('Error loading template:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
+// Eliminar template
+scrapingRouter.delete("/templates/:templateId", authenticateToken, async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const { templateId } = req.params;
+        
+        const result = await deleteTemplate(userId, templateId);
+        
+        if (result.success) {
+            res.status(200).json(result);
+        } else {
+            res.status(500).json(result);
+        }
+    } catch (error) {
+        console.error('Error deleting template:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
+// Ejecutar template
+scrapingRouter.post("/templates/:templateId/execute", authenticateToken, async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const { templateId } = req.params;
+        const { agentId, chatId } = req.body;
+        
+        // Cargar el template
+        const templateResult = await loadTemplate(userId, templateId);
+        
+        if (!templateResult.success) {
+            return res.status(404).json({
+                success: false,
+                error: "Template no encontrado"
+            });
+        }
+        
+        const template = templateResult.template;
+        
+        // Configurar headers para streaming
+        res.writeHead(200, {
+            'Content-Type': 'text/plain',
+            'Transfer-Encoding': 'chunked',
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive'
+        });
+        
+        // Ejecutar el template
+        await executeTemplate({
+            res,
+            token: req.headers.authorization?.split(' ')[1],
+            template,
+            userId,
+            agentId,
+            chatId,
+            conf: {
+                userId,
+                agentId,
+                chatId
+            }
+        });
+        
+        res.end();
+        
+    } catch (error) {
+        console.error('Error executing template:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
+// ===== ENDPOINTS PARA SCRAPING BÁSICO =====
+
+// Cargar página web
+scrapingRouter.post("/load-page", authenticateToken, async (req, res) => {
+    try {
+        const { url } = req.body;
+        
+        if (!url) {
+            return res.status(400).json({
+                success: false,
+                error: "URL es requerida"
+            });
+        }
+        
+        // Configurar headers para streaming
+        res.writeHead(200, {
+            'Content-Type': 'text/plain',
+            'Transfer-Encoding': 'chunked',
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive'
+        });
+        
+        // Aquí iría la lógica de carga de página
+        // Por ahora simulamos
+        const progressData = JSON.stringify({
+            data: {
+                text: "🔄 Cargando página web...",
+                status: "loading",
+                progress: 0
+            }
+        });
+        
+        res.write(progressData + '\n');
+        
+        // Simular progreso
+        for (let i = 10; i <= 100; i += 10) {
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
+            const progressData = JSON.stringify({
+                data: {
+                    text: `🔄 Cargando página web... ${i}%`,
+                    status: "loading",
+                    progress: i
+                }
+            });
+            
+            res.write(progressData + '\n');
+        }
+        
+        // Simular screenshot
+        const mockScreenshot = `data:image/svg+xml;base64,${Buffer.from(`
+            <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100%" height="100%" fill="#f0f0f0"/>
+                <text x="400" y="300" text-anchor="middle" fill="#333" font-size="24">
+                    Página cargada: ${url}
+                </text>
+            </svg>
+        `).toString('base64')}`;
+        
+        const finalData = JSON.stringify({
+            data: {
+                text: "✅ Página cargada exitosamente",
+                status: "completed",
+                screenshot: mockScreenshot,
+                url: url
+            }
+        });
+        
+        res.write(finalData + '\n');
+        res.end();
+        
+    } catch (error) {
+        console.error('Error loading page:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
+// Extraer elementos de una página
+scrapingRouter.post("/extract-elements", authenticateToken, async (req, res) => {
+    try {
+        const { url, selectors } = req.body;
+        
+        if (!url || !selectors || !Array.isArray(selectors)) {
+            return res.status(400).json({
+                success: false,
+                error: "URL y selectores son requeridos"
+            });
+        }
+        
+        // Configurar headers para streaming
+        res.writeHead(200, {
+            'Content-Type': 'text/plain',
+            'Transfer-Encoding': 'chunked',
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive'
+        });
+        
+        const startData = JSON.stringify({
+            data: {
+                text: "🔍 Extrayendo elementos de la página...",
+                status: "extracting"
+            }
+        });
+        
+        res.write(startData + '\n');
+        
+        // Simular extracción de elementos
+        const results = [];
+        
+        for (let i = 0; i < selectors.length; i++) {
+            const selector = selectors[i];
+            
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            const progressData = JSON.stringify({
+                data: {
+                    text: `🔍 Extrayendo: ${selector.name}`,
+                    status: "extracting",
+                    current: i + 1,
+                    total: selectors.length
+                }
+            });
+            
+            res.write(progressData + '\n');
+            
+            // Simular resultado
+            results.push({
+                id: selector.id,
+                name: selector.name,
+                value: `Valor extraído de ${selector.name}`,
+                status: 'success',
+                timestamp: new Date().toISOString()
+            });
+        }
+        
+        const finalData = JSON.stringify({
+            data: {
+                text: `✅ Extracción completada. ${results.length} elementos extraídos.`,
+                status: "completed",
+                results: results
+            }
+        });
+        
+        res.write(finalData + '\n');
+        res.end();
+        
+    } catch (error) {
+        console.error('Error extracting elements:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
+module.exports = scrapingRouter; 

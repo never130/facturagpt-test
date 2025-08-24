@@ -1,0 +1,10 @@
+node_modules
+build/
+app/data
+src/apiBackend.js
+.env
+
+whatsapp_sessions
+.wwebjs_cache
+
+.wwebjs_auth

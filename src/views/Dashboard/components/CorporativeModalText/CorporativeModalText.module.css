@@ -1,0 +1,67 @@
+.modalContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .CorporativeModalText {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    width: 90%;
+    height: 80%;
+    margin: 0px auto 10px;
+    padding: 15px 10px 10px 10px;
+    border-radius: 10px;
+    background-color: var(--white-color);
+
+    .textContainer {
+      margin: 12px 0 24px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--black);
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--_4F5660-color);
+      text-align: center;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px;
+      letter-spacing: 0.13px;
+      margin: 0;
+    }
+
+
+
+
+  }
+}
+
+
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.iconContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.textContainerGeneral {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+}
+
+.modalAndHeaderContainer {
+  background: var(--f5-background);
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Do you have any questions?",
+  "moreInfo": "Want to know more?",
+  "contact": "Contact",
+  "ask1": "What is FacturaGPT?",
+  "ask2": "What file formats does Factura GPT accept?",
+  "ask3": "How does Factura GPT help with financial planning?",
+  "ask4": "Can other software tools be integrated with Factura GPT?",
+  "ask5": "Does Factura GPT detect invoice errors?",
+  "ask6": "Does Factura GPT perform tax calculations?",
+  "ask7": "Does Factura GPT update automatically?",
+
+  "answer1": "FacturaGPT is a cloud-based, AI-powered solution designed to optimize and simplify financial document management. Its advanced automation system enables data validation, intelligent filtering, and real-time alerts, ensuring accuracy, efficiency, and reduced errors in every operation.\n\nFully compatible with ERP, CRM, and accounting systems, it facilitates data transfer and synchronization, minimizing operational workload and improving integration between platforms.\n\nAdditionally, it offers predictive and comparative analytics for more strategic, data-driven management. Accessible from any device with an internet connection, FacturaGPT provides precise, adaptable, and always up-to-date financial control.",
+  "answer2": "We accept images, Excel files, CSV, PDF, XML, and other standard formats, ensuring compatibility with multiple systems and facilitating document management.",
+  "answer3": "FacturaGPT knows your company in detail, and for that reason, it can provide you with key insights such as profit margins, spending patterns, comparisons, predictions, and personalized recommendations, helping you optimize your financial management. You just have to ask.\n\nWith intelligent automation, it analyzes data in real time, optimizes financial management effortlessly, and acts as a collaborative tool, allowing teams and departments to have a centralized data system.",
+  "answer4": "Yes, FacturaGPT is compatible with ERP, CRM, accounting systems, and legacy platforms.\n\nIf you don't find the integration you need, contact our sales team and we will help you connect it.",
+  "answer5": "Yes, it automatically identifies discrepancies and possible errors in invoices.",
+  "answer6": "Yes, it automatically identifies and calculates applicable taxes on invoices and simplifies audits.",
+  "answer7": "Yes, all updates and improvements are implemented automatically at no additional cost."
+}

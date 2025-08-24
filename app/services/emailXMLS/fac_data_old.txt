@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><documento_ptl version="0.6">
+   <info_control>
+      <transaccion>
+         <fecha_creacion>
+            <anyo>%invoiceDate::year%</anyo>
+            <mes>%invoiceDate::month%</mes>
+            <dia>%invoiceDate::day%</dia>
+            <hora>000</hora>
+            <minuto>000</minuto>
+            <segundo>000</segundo>
+            <msegundo>000</msegundo>
+         </fecha_creacion>
+         <fecha_modificacion>
+            <anyo>%invoiceDate::year%</anyo>
+            <mes>%invoiceDate::month%</mes>
+            <dia>%invoiceDate::day%</dia>
+            <hora>000</hora>
+            <minuto>000</minuto>
+            <segundo>000</segundo>
+            <msegundo>000</msegundo>
+         </fecha_modificacion>
+         <estado/>
+      </transaccion>
+      <info_tipo url_xsd="" version="0.6"/>
+   </info_control>
+   <datos_doc>
+      <envio_factura version="0.6">
+         <id_control_fabricante />
+         <factura>
+            <cabecera>
+               <tipo_documento>01</tipo_documento>
+               <desc_tipo_documento>Factura</desc_tipo_documento>
+               <solicitante/>
+               <destinatario/>
+               <cod_punto_venta>001_MNR</cod_punto_venta>
+               <motivo_documento/>
+               <codigo_proveedor>0000000000</codigo_proveedor>
+               <condicion_pago />
+               <cod_medio_pago />
+               <desc_medio_pago />
+               <moneda>EUR</moneda>
+               <info_adicional_pago/>
+               <numero_factura>%numberInvoice%</numero_factura>
+               <referencia_factura/>
+               <fecha_factura>
+                  <anyo>%invoiceDate::year%</anyo>
+                  <mes>%invoiceDate::month%</mes>
+                  <dia>%invoiceDate::day%</dia>
+                  <hora>00</hora>
+                  <minuto>00</minuto>
+                  <segundo>00</segundo>
+               </fecha_factura>
+               <vencimientos>
+                  <vencimiento id="1">
+                     <fecha_vencimiento>
+                        <anyo>%invoiceDate::year%</anyo>
+                        <mes>%invoiceDate::month%</mes>
+                        <dia>%invoiceDate::day%</dia>
+                        <hora>00</hora>
+                        <minuto>00</minuto>
+                        <segundo>00</segundo>
+                     </fecha_vencimiento>
+                     <importe_parcial>%invoiceTotal%</importe_parcial>
+                  </vencimiento>
+               </vencimientos>
+               <importes>
+                  <importe id="1">
+                     <tipo_importe>01</tipo_importe>
+                     <desc_tipo_importe>Neto</desc_tipo_importe>
+                     <valor_importe>%invoiceTotal::/1.21%</valor_importe>
+                     <porcentaje>0.00</porcentaje>
+                     <signo_importe>01</signo_importe>
+                  </importe>
+                  <importe id="3">
+                     <tipo_importe>03</tipo_importe>
+                     <desc_tipo_importe>Total</desc_tipo_importe>
+                     <valor_importe>%invoiceTotal%</valor_importe>
+                     <porcentaje>0.00</porcentaje>
+                     <signo_importe>01</signo_importe>
+                  </importe>
+                  <importe id="2">
+                     <tipo_importe>02</tipo_importe>
+                     <desc_tipo_importe>Bruto</desc_tipo_importe>
+                     <valor_importe>%invoiceTotal::/1.21%</valor_importe>
+                     <porcentaje>0.00</porcentaje>
+                     <signo_importe>01</signo_importe>
+                  </importe>
+                  <importe id="4">
+                     <tipo_importe>04</tipo_importe>
+                     <desc_tipo_importe>Portes</desc_tipo_importe>
+                     <valor_importe>0.00</valor_importe>
+                     <porcentaje>0.00</porcentaje>
+                     <signo_importe>01</signo_importe>
+                  </importe>
+                  <importe id="5">
+                     <tipo_importe>05</tipo_importe>
+                     <desc_tipo_importe>Embalaje</desc_tipo_importe>
+                     <valor_importe>0.00</valor_importe>
+                     <porcentaje>0.00</porcentaje>
+                     <signo_importe>01</signo_importe>
+                  </importe>
+                  <importe id="6">
+                     <tipo_importe>06</tipo_importe>
+                     <desc_tipo_importe>Descuento</desc_tipo_importe>
+                     <valor_importe>%invoiceDiscount%</valor_importe>
+                     <porcentaje>0.00</porcentaje>
+                     <signo_importe>02</signo_importe>
+                  </importe>
+                  <importe id="7">
+                     <tipo_importe>07</tipo_importe>
+                     <desc_tipo_importe>Descuento PP</desc_tipo_importe>
+                     <valor_importe>0.00</valor_importe>
+                     <porcentaje>0.00</porcentaje>
+                     <signo_importe>02</signo_importe>
+                  </importe>
+               </importes>
+               <impuestos>
+                  <impuesto id="1">
+                     <tipo_impuesto>01</tipo_impuesto>
+                     <desc_tipo_impuesto>IVA</desc_tipo_impuesto>
+                     <base_impuesto>%invoiceTotal::/1.21%</base_impuesto>
+                     <porcentaje_impuesto>21.00</porcentaje_impuesto>
+                     <signo_importe>01</signo_importe>
+                     <importe_impuesto>%invoiceTotal::/0.21%</importe_impuesto>
+                  </impuesto>
+               </impuestos>
+               <incoterm>ZCP</incoterm>
+               <desc_incoterm/>
+               <fabricante_nif>%clientNif%</fabricante_nif>
+               <fabricante_nombre>%clientName%</fabricante_nombre>
+               <fabricante_direccion>%clientAddress%</fabricante_direccion>
+               <fabricante_poblacion>%clientCity%</fabricante_poblacion>
+               <fabricante_cpostal>%clientPostCode%</fabricante_cpostal>
+               <fabricante_provincia>%clientProvince%</fabricante_provincia>
+               <fabricante_pais>%clientCountry%</fabricante_pais>
+               <fabricante_reg_mercantil />
+               <cod_fabricante_fabricante />
+               <cliente_nif>A59095281</cliente_nif>
+               <cliente_nombre>TECNICAL MANRESA, S.A.</cliente_nombre>
+               <cliente_direccion>SALLENT, 46-48, POL.IND. ELS DOLORS</cliente_direccion>
+               <cliente_poblacion>MANRESA</cliente_poblacion>
+               <cliente_cpostal>08243</cliente_cpostal>
+               <cliente_provincia>08</cliente_provincia>
+               <cliente_pais>ES</cliente_pais>
+               <direcciones>
+                  <direccion id="1">
+                     <direc_tipo>01</direc_tipo>
+                     <direc_nombre>TECNICAL MANRESA, S.A.</direc_nombre>
+                     <direc_direccion>SALLENT, 46-48, POL.IND. ELS DOLORS</direc_direccion>
+                     <direc_poblacion>MANRESA</direc_poblacion>
+                     <direc_cpostal>08243</direc_cpostal>
+                     <direc_provincia>08</direc_provincia>
+                     <direc_pais>ES</direc_pais>
+                  </direccion>
+               </direcciones>
+               <observaciones/>
+            </cabecera>
+            <posiciones for-data="productList">
+               <posicion_albaran>%n%</posicion_albaran>
+               <fecha_albaran>
+                  <anyo>%invoiceDate::year%</anyo>
+                  <mes>%invoiceDate::month%</mes>
+                  <dia>%invoiceDate::day%</dia>
+                  <hora>00</hora>
+                  <minuto>00</minuto>
+                  <segundo>00</segundo>
+               </fecha_albaran>
+               <albaran>%itemAlbaranRef%</albaran>
+               <referencia />
+               <cod_fegime>%productRef%</cod_fegime>
+               <codigo_partida/>
+               <desc_partida/>
+               <descripcion>%productDescription%</descripcion>
+               <pedido />
+               <pedido_cliente />
+               <posicion_pedido />
+               <referencia_factura>%numberInvoice%</referencia_factura>
+               <cantidad_entregada>%productQuantity%</cantidad_entregada>
+               <unidad>UN</unidad>
+               <posicion_factura />
+               <precio_unitario>%productImport%</precio_unitario>
+               <unidad_precio>UN</unidad_precio>
+               <cantidad_precio>1</cantidad_precio>
+               <observaciones/>
+               <importes>
+                  <importe id="0">
+                     <tipo_importe>02</tipo_importe>
+                     <desc_tipo_importe>Bruto</desc_tipo_importe>
+                     <valor_importe>%productImport%</valor_importe>
+                     <porcentaje>0.00</porcentaje>
+                     <signo_importe>01</signo_importe>
+                  </importe>
+                  <importe id="1">
+                     <tipo_importe>06</tipo_importe>
+                     <desc_tipo_importe>Descuento</desc_tipo_importe>
+                     <valor_importe>0</valor_importe>
+                     <porcentaje>%productDiscount%</porcentaje>
+                     <signo_importe>02</signo_importe>
+                  </importe>
+                  <importe id="2">
+                     <tipo_importe>09</tipo_importe>
+                     <desc_tipo_importe/>
+                     <valor_importe>%productImport%</valor_importe>
+                     <porcentaje>0.00</porcentaje>
+                     <signo_importe>01</signo_importe>
+                  </importe>
+                  <importe id="3">
+                     <tipo_importe>10</tipo_importe>
+                     <desc_tipo_importe>Coste Reciclado repercutido</desc_tipo_importe>
+                     <valor_importe>0</valor_importe>
+                     <porcentaje>0.00</porcentaje>
+                     <signo_importe>01</signo_importe>
+                  </importe>
+               </importes>
+            </posiciones>
+         </factura>
+      </envio_factura>
+   </datos_doc>
+   <mensajes>
+      <severidad>0</severidad>
+      <msg_ptl id="0">Factura</msg_ptl>
+      <msg_funcional id="0">Factura</msg_funcional>
+   </mensajes>
+</documento_ptl>
