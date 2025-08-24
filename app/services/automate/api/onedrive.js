@@ -6,9 +6,6 @@ const { connectDB } = require("../../../controllers/utils");
 const axios = require("axios");
 const { catchedAsync } = require("../../../utils/err");
 
-const CLIENT_ID_MICROSOFT = "e0e4034a-b833-47f3-bf09-ad710802c396";
-const CLIENT_SECRET_MICROSOFT = "HeP8Q~5ssMzYkynnefzwdn7Ak-vAVLRRVOh0JcYg";
-
 
 const REDIRECT_URI_MICROSOFT_ONEDRIVE_DEV =
   "http://localhost:3006/api/automate/oneDriveRedirect";

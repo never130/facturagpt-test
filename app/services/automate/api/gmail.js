@@ -8,11 +8,6 @@ const { catchedAsync } = require("../../../utils/err");
 
 
 
-const CLIENT_ID =
-  "605147855779-6ti5rm48vagp43n7tg28gf1g72dcadft.apps.googleusercontent.com";
-const CLIENT_SECRET = "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";
-const REDIRECT_URI = "http://localhost:3006/api/gmail/gmailRedirect";
-const REDIRECT_URI_PROD = "https://facturagpt.com/api/gmail/gmailRedirect";
 
 const oauth2Client = new google.auth.OAuth2(
   CLIENT_ID,
