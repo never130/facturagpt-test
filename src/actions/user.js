@@ -695,6 +695,9 @@ export const createVariable = createAsyncThunk(
     // console.log("variableData", variableData)
     try {
       const user = localStorage.getItem("user");
+      if (!user) {
+        throw new Error("User not found in localStorage");
+      }
       const userJson = JSON.parse(user);
       const token = userJson.accessToken;
 
@@ -710,7 +713,7 @@ export const createVariable = createAsyncThunk(
       return res.data;
     } catch (error) {
       console.error("Error updating client:", error);
-      if (error.response.status === 501) logout();
+      if (error.response?.status === 501) logout();
       throw error;
     }
   }
@@ -721,6 +724,9 @@ export const getVariable = createAsyncThunk(
   async ({ type,search }) => {
     try {
       const user = localStorage.getItem("user");
+      if (!user) {
+        throw new Error("User not found in localStorage");
+      }
       const userJson = JSON.parse(user);
       const token = userJson.accessToken;
 
@@ -735,7 +741,7 @@ export const getVariable = createAsyncThunk(
     } catch (error) {
       console.error("Error updating client:", error);
 
-      if (error.response.status === 501) logout();
+      if (error.response?.status === 501) logout();
       throw error;
     }
   }

@@ -40,15 +40,14 @@ Añade tu correo electrónico en `app/config/valid_emails.txt` para obtener perm
 
 ⚠️ Si al registrar una cuenta recibes el error:
 "Email no autorizado. Por favor, contacte al administrador para obtener acceso."
-Es porque tu correo no está en valid_emails.txt. Agrega tu email, uno por línea, y guarda el archivo. 
+Es porque tu correo no está en valid_emails.txt. Agrega tu email, uno por línea, y guarda el archivo.
 
 ---
 
-
-### 4 Instalar couchdb 
- Desde la url https://couchdb.apache.org/
- Poner usuario: admin
- Poner password: 1234
+### 4 Instalar couchdb
+Desde la url https://couchdb.apache.org/
+Poner usuario: admin
+Poner password: 1234
 
 ## 🚀 Ejecución del Proyecto
 
@@ -56,7 +55,7 @@ Es porque tu correo no está en valid_emails.txt. Agrega tu email, uno por líne
 ```bash
 npm run start
 ```
-🔁 Si tienes problemas con sourcemaps o memoria, usa este comando alternativo: 
+🔁 Si tienes problemas con sourcemaps o memoria, usa este comando alternativo:
 "cross-env GENERATE_SOURCEMAP=false craco start --max-old-space-size=8192"
 
 ### Backend (Desarrollo)
@@ -66,7 +65,7 @@ cd app
 # Ejecuta node
 nodemon service
 ```
-Asegúrate de tener nodemon instalado globalmente (npm install -g nodemon) o usa npx nodemon service. 
+Asegúrate de tener nodemon instalado globalmente (npm install -g nodemon) o usa npx nodemon service.
 
 
 ### Solución de Problemas de Puertos
@@ -177,13 +176,13 @@ Gestionan errores de red, tiempo de espera o respuestas inesperadas de forma est
 # Ventajas principales:
 Centralización: Toda la lógica de comunicación con la API está en un solo lugar, evitando duplicación.
 
-# Integración con Redux: 
+# Integración con Redux:
 Los thunks disparan acciones automáticas (pending, fulfilled, rejected), lo que permite actualizar el estado global según el estado de la petición (cargando, éxito, error).
 
-# Manejo de errores robusto: 
+# Manejo de errores robusto:
 Los errores se capturan y pueden ser devueltos para ser tratados en el componente o en el reducer.
 
-# Reutilizables y predecibles: 
+# Reutilizables y predecibles:
 Pueden ser llamados desde cualquier parte de la aplicación con distintos parámetros, manteniendo un flujo de datos consistente.
 
 Este enfoque mejora la mantenibilidad, facilita las pruebas y asegura que el estado de la aplicación refleje fielmente la actividad asincrónica en curso.
@@ -211,14 +210,15 @@ facturagpt/
 │   │           ├──  assets/
 │   │           ├──  components/
 │   │           └──  screens/
-│   │   
+│
 ├── app/
 │   ├── routers
 │   ├── controllers
 │   └── middleware/authenticateToken.js
-│   
+│
 ├── package.json
 └── README.md
+
 
 
 ### Producción (Solo para deploy)
@@ -242,36 +242,4 @@ sudo journalctl -u facturagpt-backend -f
 sudo certbot certonly --standalone -d facturagpt.com -d www.facturagpt.com
 ```
 
-*¿Necesitas ayuda? No dudes en preguntar al equipo por WhatsApp o en el canal correspondiente.*#   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- #   f a c t u r a g p t - t e s t 
- 
- 
+*¿Necesitas ayuda? No dudes en preguntar al equipo por WhatsApp o en el canal correspondiente.*

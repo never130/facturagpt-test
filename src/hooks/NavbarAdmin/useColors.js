@@ -19,6 +19,12 @@ export default function useColors() {
   // Load themeSettings from backend on mount
   useEffect(() => {
     async function loadThemeSettingsFromDB() {
+      const user = localStorage.getItem("user");
+      if (!user) {
+        setLoading(false);
+        return;
+      }
+
       setLoading(true);
       try {
         const res = await dispatch(getVariable({ type: THEME_SETTINGS_CATEGORY, search: "" }));
@@ -40,7 +46,7 @@ export default function useColors() {
         setPresetColors(loadedPresetColors);
         // secondaryColor is always the last of presetColors or fallback
         const loadedSecondaryColor = loadedPresetColors.length > 0 ? loadedPresetColors[loadedPresetColors.length - 1] : fallbackColor;
-        
+
         setSecondaryColor(loadedSecondaryColor);
         // Update global state for themeColor and theme if different
         if (loadedThemeColor && loadedThemeColor !== themeColor) {
@@ -61,8 +67,9 @@ export default function useColors() {
 
   // Sync themeSettings in DB when presetColors, themeColor or theme change
   useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (!user || loading) return;
 
-    if (loading) return;
     async function saveThemeSettings() {
       try {
         const themeConfiguration = {
