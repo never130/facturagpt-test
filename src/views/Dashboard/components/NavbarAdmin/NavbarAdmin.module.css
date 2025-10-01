@@ -170,6 +170,64 @@
   align-items: center;
   gap: 20px;
   /* flex: 1; */
+
+  .settingsBox {
+    cursor: pointer;
+    position: relative;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+
+    &:hover {
+      background: var(--db-background);
+    }
+
+    svg {
+      fill: var(--black);
+      color: var(--black);
+      width: 20px;
+      height: 20px;
+    }
+
+    &::before {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: calc(120% + 1px);
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 5px 10px;
+      background: var(--black);
+      color: var(--white-color);
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: calc(100% - 1px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-bottom-color: var(--_00000033-background);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    &:hover::before,
+    &:hover::after {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 @media (width <=950px) {

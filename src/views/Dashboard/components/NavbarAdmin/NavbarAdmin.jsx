@@ -1434,6 +1434,13 @@ useEffect(() => {
             )}
 
           </a>
+          <div
+            className={styles.settingsBox}
+            onClick={() => dispatch(setShowModal('settings'))}
+            data-tooltip={t("setting")}
+          >
+            <SettingBlackIcon />
+          </div>
           {selectedLocationNew}
           <div
             onClick={() => setMenuOpen(true)}
