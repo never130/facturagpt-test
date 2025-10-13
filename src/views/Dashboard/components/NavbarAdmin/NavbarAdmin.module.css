@@ -1196,7 +1196,8 @@
 
 
         &:hover {
-          background-color: #555555;
+          background-color: rgba(16, 163, 127, 0.1);
+          transition: background-color 0.2s ease;
         }
 
         .NavarSearchExpandItemIcon {
