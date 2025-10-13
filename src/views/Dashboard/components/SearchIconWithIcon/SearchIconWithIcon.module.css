@@ -31,7 +31,7 @@
   justify-content: center;
   width: 18px;
   height: 18px;
-  background: var(--db-background);
+  background: var(--ed-background);
   cursor: pointer;
   user-select: none;
   border-radius: 3px;
@@ -64,7 +64,7 @@
   justify-content: center;
   width: 18px;
   height: 18px;
-  background: var(--db-background);
+  background: var(--ed-background);
   cursor: pointer;
   user-select: none;
   border-radius: 3px;
